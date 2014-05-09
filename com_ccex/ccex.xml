@@ -1,0 +1,75 @@
+<extension type="component" version="3.3.0" method="upgrade">
+  <name>COM_CCEX</name>
+  <creationDate>2014-05-09</creationDate>
+  <author>Keep Solutions</author>
+  <authorEmail>asantos@keep.pt</authorEmail>
+  <authorUrl>http://keep.pt</authorUrl>
+  <copyright>Keep Solutions. All rights reserved.</copyright>
+  <license>GNU/GPLv3 or later</license>
+  <version>1.0.0</version>
+  <description>COM_CCEX_DESCRIPTION</description>
+
+  <install>
+    <sql>
+      <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+    </sql>
+  </install>
+  <uninstall>
+    <sql>
+      <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+    </sql>
+  </uninstall>
+  <update>
+    <schemas>
+      <schemapath type="mysql">sql/updates/mysql</schemapath>
+    </schemas>
+  </update>
+
+  <files folder="site">
+    <folder>assets</folder>
+    <folder>controllers</folder>
+    <folder>helpers</folder>
+    <folder>languages</folder>
+    <folder>models</folder>
+    <folder>tables</folder>
+    <folder>views</folder>
+    <filename>index.html</filename>
+    <filename>ccex.php</filename>
+    <filename>router.php</filename>
+  </files> 
+
+  <scriptfile>install.php</scriptfile>
+
+  <languages folder="site">
+    <language tag="en-EN">languages/en-EN/en-EN.com_ccex.ini</language>
+  </languages>
+
+  <media destination="com_ccex" folder="media">
+    <filename>index.html</filename>
+    <folder>images</folder>
+  </media>
+
+  <administration>
+    <menu link="option=com_ccex" img="components/com_ccex/media/images/ccex_icon.png">COM_CCEX</menu>
+
+    <submenu>
+      <menu view="settings" img="components/com_ccex/media/images/settings_icon.png" alt="CCEX/Settings">COM_CCEX_SETTINGS</menu>
+    </submenu>
+
+    <files folder="admin">
+      <folder>controllers</folder>
+      <folder>languages</folder>
+      <folder>models</folder>
+      <folder>helpers</folder>
+      <folder>sql</folder>
+      <folder>views</folder>
+      <filename>ccex.php</filename>
+      <filename>index.html</filename>
+    </files>  
+
+    <languages folder="admin">
+      <language tag="en-EN">languages/en-EN/en-EN.com_ccex.ini</language>
+      <language tag="en-EN">languages/en-EN/en-EN.com_ccex.sys.ini</language>
+    </languages>
+  </administration>
+</extension>
