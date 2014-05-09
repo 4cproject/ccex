@@ -10,8 +10,7 @@ jimport('joomla.installer.helper');
 * @param  mixed    $parent     The class calling this method
 * @return void
 */
-function install($parent) 
-{
+function install($parent) {
   echo JText::_('COM_CCEX_INSTALL_SUCCESSFULL');
 }
 
@@ -21,8 +20,7 @@ function install($parent)
 * @param  mixed  $parent   The class calling this method
 * @return void
 */
-function update($parent) 
-{   
+function update($parent) {   
   echo JText::_('COM_CCEX_UPDATE_SUCCESSFULL');
 }
 
@@ -32,12 +30,8 @@ function update($parent)
 * @param  mixed  $parent   The class calling this method
 * @return void
 */
-function preflight($type, $parent) 
-{
-  ...
+function preflight($type, $parent) {
 }
  
-function postflight($type, $parent)
-{
-  ...
+function postflight($type, $parent){
 }
