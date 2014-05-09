@@ -1,4 +1,4 @@
-ccex
+CCEx - Curation Cost Exchange platform
 ====
 
-Curation Cost Exchange
+This project will have the development sources of the CCEx platform.
