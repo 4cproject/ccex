@@ -9,7 +9,7 @@
   <version>1.0.0</version>
   <description>COM_CCEX_DESCRIPTION</description>
 
-  <install>
+<!--   <install>
     <sql>
       <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
     </sql>
@@ -23,7 +23,7 @@
     <schemas>
       <schemapath type="mysql">sql/updates/mysql</schemapath>
     </schemas>
-  </update>
+  </update> -->
 
   <files folder="site">
     <folder>assets</folder>
@@ -63,7 +63,6 @@
       <folder>helpers</folder>
       <folder>sql</folder>
       <folder>views</folder>
-      <filename>ccex.php</filename>
       <filename>index.html</filename>
     </files>  
 

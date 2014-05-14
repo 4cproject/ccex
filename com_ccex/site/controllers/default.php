@@ -20,7 +20,7 @@ class CCExControllersDefault extends JControllerBase{
  
     $viewName     = $app->input->getWord('view', 'profile');
     $viewFormat   = $document->getType();
-    $layoutName   = $app->input->getWord('layout', 'new');
+    $layoutName   = $app->input->getWord('layout', 'edit');
 
     $app->input->set('view', $viewName);
  

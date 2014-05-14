@@ -1,4 +1,6 @@
 <?php // No direct access
+ini_set( 'display_errors', true );
+error_reporting( E_ALL ); 
 defined( '_JEXEC' ) or die( 'Restricted access' );
  
 //sessions
@@ -22,7 +24,7 @@ if($controller = $app->input->get('controller','default')) {
 }
  
 // Create the controller
-$classname  = 'CCExController'.$controller;
+$classname  = 'CCExControllers'.$controller;
 $controller = new $classname();
  
 // Perform the Request task
