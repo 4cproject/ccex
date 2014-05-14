@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+
+<extension version="0.1" type="template" client="site" method="upgrade">
+	
+	<name>CCEx Template</name>
+	<creationDate>2014-05-14</creationDate>
+	<author>Keep Solutions</author>
+	<copyright>Copyright © 2014 keep.pt</copyright>
+	<authorEmail>asantos@keep.pt</authorEmail>
+	<authorUrl>http://keep.pt</authorUrl>
+	<version>0.0.1</version><!-- give your template a number -->
+	<description><![CDATA[ 
+		<h1>CCEx Template</h1>
+		<p>Created by <a href="http://www.keep.pt" target="_blank">Keep Solutions</a>.</p>
+	]]></description>
+	
+	<files>
+		<folder>libs</folder>
+		<folder>theme</folder>
+		<folder>images</folder>
+		<folder>html</folder>
+		<filename>component.php</filename>
+		<filename>error.php</filename>
+		<filename>index.php</filename>
+		<filename>offline.php</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<filename>favicon.ico</filename>
+		<filename>templateDetails.xml</filename>
+	</files>
+	
+	<positions>
+		<position>debug</position>
+		<position>menu</position>
+	</positions>
+	
+</extension>
