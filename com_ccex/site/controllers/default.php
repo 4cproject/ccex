@@ -1,7 +1,7 @@
 <?php // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class LendrControllersDefault extends JControllerBase{
+class CCExControllersDefault extends JControllerBase{
   public function execute(){
 
     // Get the application
