@@ -1,5 +1,7 @@
-function SliderUtils(chartElemId, totalFeedbackElemId, formatter) {
+function SliderUtils(chartElemId, chartWidth, chartHeight, totalFeedbackElemId, formatter) {
 	this.chartElemId = chartElemId;
+	this.chartWidth = chartWidth;
+	this.chartHeight = chartHeight;
 	this.totalFeedbackElemId = totalFeedbackElemId;
 	this.formatter = formatter;
 
@@ -65,14 +67,14 @@ SliderUtils.prototype = {
 		};
 
 		// Initialize chart
-		var ctxBarChart = $(this.chartElemId).get(0).getContext("2d");
+		var ctxChart = $(this.chartElemId).get(0).getContext("2d");
 
 		var pieChartOptions = {
 			animation: false
 		};
 
-        var pieChartContext = new Chart(ctxBarChart);
-        var pieChart = pieChartContext.Doughnut(this.getData(), pieChartOptions);
+        var chart = new Chart(ctxChart);
+        var pieChart = chart.Doughnut(this.getData(), pieChartOptions);
 
         var instance = this;
 
@@ -81,7 +83,7 @@ SliderUtils.prototype = {
 			this.sliders[i].on('slide', function(slideEvt) {
 				var data = instance.getData();
 				if(instance.total <= 100) {
-					pieChartContext.Doughnut(data, pieChartOptions);
+					chart.Doughnut(data, pieChartOptions);
 					instance.updateLabels();
 				}
 			});
@@ -93,8 +95,10 @@ SliderUtils.prototype = {
 					data = instance.getData();
 				}
 
-				pieChartContext = new Chart(ctxBarChart);
-        		pieChart = pieChartContext.Doughnut(data, pieChartOptions);
+				ctxChart.canvas.width = instance.chartWidth;
+				ctxChart.canvas.height = instance.chartHeight;
+				chart = new Chart(ctxChart);
+        		pieChart = chart.Doughnut(data, pieChartOptions);
 			});
 		};
 	},
