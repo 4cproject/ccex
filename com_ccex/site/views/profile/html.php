@@ -10,10 +10,16 @@ class CCExViewsProfileHtml extends JViewHtml
 
     //retrieve task list from model
     $profileModel = new CCExModelsProfile();
+    $orgTypeModel = new CCExModelsOrganizationtype();
+    $currencyModel = new CCExModelsCurrency();
+    $countryModel = new CCExModelsCountry();
 
     switch($layout) {
 
       case "edit":
+        $this->orgTypes = $orgTypeModel->listItems();
+        $this->currencies = $currencyModel->listItems();
+        $this->countries = $countryModel->listItems();
       break;
 
       default:

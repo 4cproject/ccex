@@ -12,17 +12,10 @@
 	<div class="form-group">
 		<label for="organization_type" class="col-sm-2 control-label">Type</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="If there is not a perfect match between your organisation and one of the options, similar is sufficient.">
-			<select class="form-control">
-				<option>Big data science</option>
-				<option>Digital preservation vendor</option>
-				<option>Government agency</option>
-				<option>Industry</option>
-				<option>Memory institution or content holder</option>
-				<option>Publisher or content producer</option>
-				<option>Research funder</option>
-				<option>Small or medium enterprise</option>
-				<option>University</option>
-				<option selected="true">Other</option>
+			<select class="form-control" id="organization_type">
+				<?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
+				    <option value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
+				<?php } ?>
 			</select>
 		</div>
 	</div>
@@ -41,14 +34,22 @@
 	</div>
 	<div class="form-group">
 		<label for="organization_country" class="col-sm-2 control-label">Country</label>
-		<div class="col-sm-10">
-			<select class="form-control bfh-countries" id="organization_country" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate in which country where the organization's headquarters are located."></select>
+		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate in which country where the organization's headquarters are located.">
+			<select class="form-control" id="organization_country">
+				<?php for($i=0, $n = count($this->countries);$i<$n;$i++) { ?>
+				    <option value="<?php echo $this->countries[$i]->county_id; ?>"><?php echo $this->countries[$i]->name; ?></option>
+				<?php } ?>
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="collection_data_volume" class="col-sm-2 control-label">Currency</label>
-		<div class="col-sm-10">
-			<select class="form-control bfh-currencies" id="organization_country" data-currency="EUR" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the currency in which you would prefer to provide costs to the CCEx."></select>
+		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the currency in which you would prefer to provide costs to the CCEx.">
+			<select class="form-control" id="organization_currency">
+				<?php for($i=0, $n = count($this->currencies);$i<$n;$i++) { ?>
+				    <option value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo $this->currencies[$i]->name; ?></option>
+				<?php } ?>
+			</select>
 		</div>
 	</div>
 

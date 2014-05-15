@@ -2,15 +2,12 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class CCExModelsProfile extends CCExModelsDefault
-{
+class CCExModelsProfile extends CCExModelsDefault {
 
   //Define class level variables
   var $_user_id     = null;
 
-  function __construct()
-  {
-
+  function __construct(){
     $app = JFactory::getApplication();
 
     //If no User ID is set to current logged in user
@@ -19,24 +16,20 @@ class CCExModelsProfile extends CCExModelsDefault
     parent::__construct();       
   }
 
-  function getItem()
-  {
+  function getItem(){
     $profile = JFactory::getUser($this->_user_id);
 
     return $profile;
   }
  
-  protected function _buildQuery()
-  {
+  protected function _buildQuery(){
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
     return $query;
   }
 
-  protected function _buildWhere($query)
-  {
+  protected function _buildWhere($query){
     return $query;
   }
-
 }
