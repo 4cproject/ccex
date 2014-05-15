@@ -20,6 +20,7 @@
 		<folder>theme</folder>
 		<folder>images</folder>
 		<folder>html</folder>
+		<folder>assets</folder>
 		<filename>component.php</filename>
 		<filename>error.php</filename>
 		<filename>index.php</filename>

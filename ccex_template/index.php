@@ -33,6 +33,14 @@ $doc->addScript($tpath.'/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpe
 $doc->addStyleSheet($tpath.'/theme/bolt/css/main.css');
 $doc->addStyleSheet($tpath.'/theme/bolt/css/font-awesome.min.css');
 
+
+$doc->addStyleSheet($tpath.'/libs/bootstrap-slider/css/bootstrap-slider.min.css');
+$doc->addScript($tpath.'/libs/modernizr/2.7.1/modernizr.min.js');
+$doc->addScript($tpath.'/libs/bootstrap-slider/js/bootstrap-slider.min.js');
+$doc->addScript($tpath.'/libs/humanize.min.js');
+$doc->addScript($tpath.'/assets/js/ccex.js');
+$doc->addStyleSheet($tpath.'/assets/css/ccex.css');
+
 ?>
 <!doctype html>
 <html>
