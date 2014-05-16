@@ -17,7 +17,13 @@ class CCExModelsCurrency extends CCExModelsDefault {
     
     parent::__construct();       
   }
- 
+
+  public function getItem() {
+    $currency = parent::getItem();
+
+    return $currency;
+  }
+
   /**
   * Builds the query to be used by the Currency model
   * @return   object  Query object
@@ -32,12 +38,6 @@ class CCExModelsCurrency extends CCExModelsDefault {
     return $query;
   }
 
-  public function getItem() {
-    $currency = parent::getItem();
-
-    return $currency;
-  }
-
   /**
   * Builds the filter for the query
   * @param    object  Query object
@@ -47,10 +47,6 @@ class CCExModelsCurrency extends CCExModelsDefault {
 
     if(is_numeric($this->_currency_id)) {
       $query->where('c.currency_id = ' . (int) $this->_currency_id);
-    }
-
-    if($this->_name) {
-      $query->where('c.name = ' . (int) $this->_name);
     }
 
     return $query;

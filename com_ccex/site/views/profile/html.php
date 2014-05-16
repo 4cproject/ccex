@@ -1,10 +1,8 @@
 <?php  // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class CCExViewsProfileHtml extends JViewHtml
-{
-  function render()
-  {
+class CCExViewsProfileHtml extends JViewHtml {
+  function render() {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
 
@@ -17,6 +15,8 @@ class CCExViewsProfileHtml extends JViewHtml
     switch($layout) {
 
       case "edit":
+        $this->profile = $profileModel->getItem();
+
         $this->orgTypes = $orgTypeModel->listItems();
         $this->currencies = $currencyModel->listItems();
         $this->countries = $countryModel->listItems();

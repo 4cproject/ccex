@@ -1,12 +1,12 @@
 <h1>Profile</h1>
-<p>Information about you, your organization and your content, that would allow us to find your cost determinants and allow us to show you which other organization your costs should be compared against. Please fill out the following information about your organisation. None of the information will be shared unless you explicitly allow this.</p>
+<p>Please fill out the following profile information for your organisation and your content to help identify your cost determinants and enable a comparison of costs against similar organisations. None of the information will be shared unless you explicitly allow this.</p>
 
-<form class="form-horizontal" role="form">
-	<h2>Organization</h2>
+<form class="form-horizontal" role="form" action="<?php echo JRoute::_('index.php?option=com_ccex&controller=editprofile&view=profile&layout=edit'.$this->profile->id); ?>" method="post">
+	<h2>Organisation</h2>
 	<div class="form-group">
-		<label for="organization_name" class="col-sm-2 control-label">Name</label>
+		<label for="organisation_name" class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="organization_name">
+			<input type="text" class="form-control" id="organisation_name" name="organization[name]" value="<?php echo $this->profile->organization->name ?>">
 		</div>
 	</div>
 	<div class="form-group">
@@ -20,16 +20,16 @@
 		</div>
 	</div>
 	<div class="form-group has-feedback">
-		<label for="organization_type_other" class="col-sm-2 control-label">Other type</label>
+		<label for="organisation_type_other" class="col-sm-2 control-label">Other type</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="organization_type_other">
+			<input type="text" class="form-control" id="organisation_type_other">
 			<span class="glyphicon glyphicon-info-sign form-control-feedback" data-toggle='tooltip'  data-container="body" data-placement="right" title="If you select 'Other' on the dropdown above, describe your organisation type here."></span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="organization_description" class="col-sm-2 control-label">Description, purpose and mission</label>
+		<label for="organisation_description" class="col-sm-2 control-label">Description, purpose and mission</label>
 		<div class="col-sm-10">
-			<textarea type="text" class="form-control" id="organization_description" rows="3"></textarea>
+			<textarea type="text" class="form-control" id="organisation_description" rows="3"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
@@ -52,15 +52,14 @@
 			</select>
 		</div>
 	</div>
-
 	<br/>
 	<h2>Collection profile</h2>
-	<p class="small">This information is used to nuance and give sense to the submitted cost data. For example, the information "Data volume" will allow us to calculate the costs per gigabyte, terabyte, petabyte...</p>
+	<p class="small">This information is used to nuance and give sense to the submitted cost data. For example, the information "Data volume" will enable the calculation of costs per gigabyte, terabyte, petabyte...</p>
 	<div class="form-group">
 		<label for="collection_scope" class="col-sm-2 control-label">Scope</label>
-		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="You may not want to give cost information about the whole organization, but just for a single department, project or even collection. Please describe the scope here.">
+		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="You may not want to give cost information about the whole organisation, but just for a single department, project or even collection. Please describe the scope here.">
 			<select class="form-control" id="collection_scope">
-				<option>The whole organization</option>
+				<option>The whole organisation</option>
 				<option>A department</option>
 				<option>A project</option>
 				<option>A collection</option>
@@ -69,7 +68,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="collection_staff" class="col-sm-2 control-label">Staff within scope</label>
+		<label for="collection_staff" class="col-sm-2 control-label">Curation staff in scope</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the number of staff members working with digital curation within the scope defined above.">
 			<select class="form-control" id="collection_staff">
 				<option>Less than 10 people</option>
@@ -97,7 +96,7 @@
 	</div>
 	<div class="form-group">
 		<label for="collection_copies" class="col-sm-2 control-label">Number of copies</label>
-		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the number of copies you have for each digital asset within the scope. The original does not count as a copy, only backup copies or replicas. If your organization has a different number of copies policy dependending on the value of the assets, please provide the number closer to the average within the scope.">
+		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the number of copies you have for each digital asset within the scope. The original does not count as a copy, only backup copies or replicas. If your organisation has a different number of copies policy dependending on the value of the assets, please provide the number closer to the average within the scope.">
 			<select class="form-control" id="collection_copies">
 				<option>No replicas</option>
 				<option>One replica</option>
@@ -119,77 +118,77 @@
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Unformatted text</label>
 				<div class="col-sm-8">
-					<input id="asset_unformatted_text" class="slider" data-slider-id='asset_unformatted_text' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_unformatted_text" class="slider" data-slider-id='asset_unformatted_text' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_unformatted_text_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Word processing</label>
 				<div class="col-sm-8">
-					<input id="asset_word_processing" class="slider" data-slider-id='asset_word_processing' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_word_processing" class="slider" data-slider-id='asset_word_processing' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_word_processing_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Spreadsheet</label>
 				<div class="col-sm-8">
-					<input id="asset_spreadsheet" class="slider" data-slider-id='asset_spreadsheet' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_spreadsheet" class="slider" data-slider-id='asset_spreadsheet' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_spreadsheet_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Graphics</label>
 				<div class="col-sm-8">
-					<input id="asset_graphics" class="slider" data-slider-id='asset_graphics' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_graphics" class="slider" data-slider-id='asset_graphics' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_graphics_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Audio</label>
 				<div class="col-sm-8">
-					<input id="asset_audio" class="slider" data-slider-id='asset_audio' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_audio" class="slider" data-slider-id='asset_audio' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_audio_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Video</label>
 				<div class="col-sm-8">
-					<input id="asset_video" class="slider" data-slider-id='asset_video' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_video" class="slider" data-slider-id='asset_video' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_video_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Hypertext</label>
 				<div class="col-sm-8">
-					<input id="asset_hypertext" class="slider" data-slider-id='asset_hypertext' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_hypertext" class="slider" data-slider-id='asset_hypertext' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_hypertext_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Geodata</label>
 				<div class="col-sm-8">
-					<input id="asset_geodata" class="slider" data-slider-id='asset_geodata' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_geodata" class="slider" data-slider-id='asset_geodata' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_geodata_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">E-mail</label>
 				<div class="col-sm-8">
-					<input id="asset_email" class="slider" data-slider-id='asset_email' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_email" class="slider" data-slider-id='asset_email' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_email_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Database</label>
 				<div class="col-sm-8">
-					<input id="asset_database" class="slider" data-slider-id='asset_database' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_database" class="slider" data-slider-id='asset_database' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_database_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Research data</label>
 				<div class="col-sm-8">
-					<input id="asset_research_data" class="slider" data-slider-id='asset_research_data' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+					<input id="asset_research_data" class="slider" data-slider-id='asset_research_data' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_research_data_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
@@ -242,17 +241,15 @@
 						</div>
 					</div>
 					<br/>
+					
 					<!-- Action -->
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-3">
-							<a href="costs.html" class="btn btn-success btn-block">Define curation costs  <span class="fa fa-angle-right"></span></a>
+							<a href="costs.html" class="btn btn-success btn-block">Save Profile</span></a>
+							<input type="submit" value="Save Profile" class="btn btn-success btn-block">
 						</div>
 					</div>
 				</form>
-				<div class="alert alert-warning alert-dismissable col-md-offset-2 col-md-8">
-				  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				  <strong>Warning!</strong> This is a non-functioning mockup, no information will be saved.
-				</div>
 			</div>
 		</div>
 	</div>
@@ -260,7 +257,7 @@
 <script>
 $("[data-toggle='tooltip']").tooltip();
 
-var sliderUtils = new SliderUtils("#pieChart", "#assetTotalFeedback", function(total) {
+var sliderUtils = new SliderUtils("#pieChart", 400, 400, "#assetTotalFeedback", function(total) {
 	var volume_number = +($("#collection_data_volume_number").val());
 	var volume_unit = +($("#collection_data_volume_unit").val());
 

@@ -18,6 +18,12 @@ class CCExModelsCountry extends CCExModelsDefault {
     parent::__construct();       
   }
  
+  public function getItem() {
+    $country = parent::getItem();
+
+    return $country;
+  }
+ 
   /**
   * Builds the query to be used by the Country model
   * @return   object  Query object
@@ -32,12 +38,6 @@ class CCExModelsCountry extends CCExModelsDefault {
     return $query;
   }
 
-  public function getItem() {
-    $country = parent::getItem();
-
-    return $country;
-  }
-
   /**
   * Builds the filter for the query
   * @param    object  Query object
@@ -47,10 +47,6 @@ class CCExModelsCountry extends CCExModelsDefault {
 
     if(is_numeric($this->_country_id)) {
       $query->where('c.country_id = ' . (int) $this->_country_id);
-    }
-
-    if($this->_name) {
-      $query->where('c.name = ' . (int) $this->_name);
     }
 
     return $query;

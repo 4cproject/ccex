@@ -7,12 +7,9 @@ class CCExControllersDefault extends JControllerBase{
     // Get the application
     $app = $this->getApplication();
 
-    $params = JComponentHelper::getParams('com_ccex');
-    if ($params->get('required_account') == 1) {
-        $user = JFactory::getUser();
-        if ($user->get('guest')) {
-            $app->redirect('index.php',JText::_('COM_CCEX_ACCOUNT_REQUIRED_MSG'));
-        }
+    $user = JFactory::getUser();
+    if ($user->get('guest')) {
+        $app->redirect('index.php',JText::_('COM_CCEX_ACCOUNT_REQUIRED_MSG'));
     }
  
     // Get the document object.

@@ -15,6 +15,22 @@ class CCExModelsDefault extends JModelBase
     parent::__construct(); 
   }
 
+  /**
+  * Build a query, where clause and return an object
+  *
+  */
+  public function getItem() {
+    $db = JFactory::getDBO();
+
+    $query = $this->_buildQuery();
+    $this->_buildWhere($query);
+    $db->setQuery($query);
+
+    $item = $db->loadObject();
+
+    return $item;
+  }
+
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $row = JTable::getInstance($data['table'],'Table');
@@ -62,22 +78,6 @@ class CCExModelsDefault extends JModelBase
 
   public function get($property, $default = null) {
     return isset($this->$property) ? $this->$property : $default;
-  }
-
-  /**
-  * Build a query, where clause and return an object
-  *
-  */
-  public function getItem() {
-    $db = JFactory::getDBO();
-
-    $query = $this->_buildQuery();
-    $this->_buildWhere($query);
-    $db->setQuery($query);
-
-    $item = $db->loadObject();
-
-    return $item;
   }
 
   /**
