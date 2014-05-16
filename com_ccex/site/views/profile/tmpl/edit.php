@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 <p>Please fill out the following profile information for your organisation and your content to help identify your cost determinants and enable a comparison of costs against similar organisations. None of the information will be shared unless you explicitly allow this.</p>
 
-<form class="form-horizontal" role="form" action="<?php echo JRoute::_('index.php?option=com_ccex&controller=editprofile&view=profile&layout=edit'.$this->profile->id); ?>" method="post">
+<form class="form-horizontal" role="form" id="profileForm">
 	<h2>Organisation</h2>
 	<div class="form-group">
 		<label for="organisation_name" class="col-sm-2 control-label">Name</label>
@@ -12,14 +12,14 @@
 	<div class="form-group">
 		<label for="organization_type" class="col-sm-2 control-label">Type</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="If there is not a perfect match between your organisation and one of the options, similar is sufficient.">
-			<select class="form-control" id="organization_type">
+			<select class="form-control" id="organization_type" onChange="changeOrganizationTpe()">
 				<?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
-				    <option value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
+				    <option <?php if($this->orgTypes[$i]->name == "Other"){ echo "selected=\"true\"";} ?>  value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
 				<?php } ?>
 			</select>
 		</div>
 	</div>
-	<div class="form-group has-feedback">
+	<div class="form-group has-feedback" id="organisation_type_other_container">
 		<label for="organisation_type_other" class="col-sm-2 control-label">Other type</label>
 		<div class="col-sm-10">
 			<input type="text" class="form-control" id="organisation_type_other">
@@ -245,8 +245,11 @@
 					<!-- Action -->
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-3">
-							<a href="costs.html" class="btn btn-success btn-block">Save Profile</span></a>
-							<input type="submit" value="Save Profile" class="btn btn-success btn-block">
+							<a href="javascript:void(0)" onclick="updateProfile()" class="btn btn-success btn-block">Update Profile</span></a>
+						</div>
+						<div id="_message_container" class="alert alert-dismissable col-md-7" style="display: none;">
+						  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						  <p id="_message"></p>
 						</div>
 					</div>
 				</form>

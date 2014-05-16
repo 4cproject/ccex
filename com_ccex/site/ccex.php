@@ -15,6 +15,9 @@ JLoader::registerPrefix('CCEx', JPATH_COMPONENT);
 //Load plugins
 //JPluginHelper::importPlugin('ccex');
  
+//Load styles and javascripts
+CCExHelpersStyle::load();
+
 //application
 $app = JFactory::getApplication();
  

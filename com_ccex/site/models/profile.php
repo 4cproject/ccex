@@ -63,7 +63,7 @@ class CCExModelsProfile extends CCExModelsDefault {
     return $query;
   }
 
-  public function edit($data=null) {    
+  public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
