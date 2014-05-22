@@ -32,7 +32,7 @@ class CCExModelsOrganizationprofile extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('p.org_profile_id, p.organization_id, p.profile_scope_id, p.data_volume, p.number_copies');
+    $query->select('p.org_profile_id, p.organization_id, p.profile_scope_id, p.data_volume, p.number_copies, p.asset_unformatted_text, p.asset_word_processing, p.asset_spreadsheet, p.asset_graphics, p.asset_audio, p.asset_video, p.asset_hypertext, p.asset_geodata, p.asset_email, p.asset_database, p.asset_research_data');
     $query->from('#__ccex_organization_profiles as p');
 
     return $query;

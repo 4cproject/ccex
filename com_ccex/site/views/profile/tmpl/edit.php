@@ -192,77 +192,77 @@
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Unformatted text</label>
 				<div class="col-sm-8">
-					<input id="asset_unformatted_text" class="slider" data-slider-id='asset_unformatted_text' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" name="test"/>
+					<input id="asset_unformatted_text" name="profile[asset_unformatted_text]" value="<?php echo (isset($this->org_profile->asset_unformatted_text) ? $this->org_profile->asset_unformatted_text : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_unformatted_text) ? $this->org_profile->asset_unformatted_text : 0) ?>" class="slider" data-slider-id='asset_unformatted_text' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_unformatted_text_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Word processing</label>
 				<div class="col-sm-8">
-					<input id="asset_word_processing" class="slider" data-slider-id='asset_word_processing' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_word_processing" name="profile[asset_word_processing]" value="<?php echo (isset($this->org_profile->asset_word_processing) ? $this->org_profile->asset_word_processing : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_word_processing) ? $this->org_profile->asset_word_processing : 0) ?>" class="slider" data-slider-id='asset_word_processing' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_word_processing_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Spreadsheet</label>
 				<div class="col-sm-8">
-					<input id="asset_spreadsheet" class="slider" data-slider-id='asset_spreadsheet' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_spreadsheet" name="profile[asset_spreadsheet]" value="<?php echo (isset($this->org_profile->asset_spreadsheet) ? $this->org_profile->asset_spreadsheet : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_spreadsheet) ? $this->org_profile->asset_spreadsheet : 0) ?>" class="slider" data-slider-id='asset_spreadsheet' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_spreadsheet_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Graphics</label>
 				<div class="col-sm-8">
-					<input id="asset_graphics" class="slider" data-slider-id='asset_graphics' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_graphics" name="profile[asset_graphics]" value="<?php echo (isset($this->org_profile->asset_graphics) ? $this->org_profile->asset_graphics : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_graphics) ? $this->org_profile->asset_graphics : 0) ?>" class="slider" data-slider-id='asset_graphics' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_graphics_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Audio</label>
 				<div class="col-sm-8">
-					<input id="asset_audio" class="slider" data-slider-id='asset_audio' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_audio" name="profile[asset_audio]" value="<?php echo (isset($this->org_profile->asset_audio) ? $this->org_profile->asset_audio : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_audio) ? $this->org_profile->asset_audio : 0) ?>" class="slider" data-slider-id='asset_audio' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_audio_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Video</label>
 				<div class="col-sm-8">
-					<input id="asset_video" class="slider" data-slider-id='asset_video' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_video" name="profile[asset_video]" value="<?php echo (isset($this->org_profile->asset_video) ? $this->org_profile->asset_video : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_video) ? $this->org_profile->asset_video : 0) ?>" class="slider" data-slider-id='asset_video' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_video_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Hypertext</label>
 				<div class="col-sm-8">
-					<input id="asset_hypertext" class="slider" data-slider-id='asset_hypertext' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_hypertext" name="profile[asset_hypertext]" value="<?php echo (isset($this->org_profile->asset_hypertext) ? $this->org_profile->asset_hypertext : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_hypertext) ? $this->org_profile->asset_hypertext : 0) ?>" class="slider" data-slider-id='asset_hypertext' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_hypertext_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Geodata</label>
 				<div class="col-sm-8">
-					<input id="asset_geodata" class="slider" data-slider-id='asset_geodata' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_geodata" name="profile[asset_geodata]" value="<?php echo (isset($this->org_profile->asset_geodata) ? $this->org_profile->asset_geodata : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_geodata) ? $this->org_profile->asset_geodata : 0) ?>" class="slider" data-slider-id='asset_geodata' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_geodata_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">E-mail</label>
 				<div class="col-sm-8">
-					<input id="asset_email" class="slider" data-slider-id='asset_email' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_email" name="profile[asset_email]" value="<?php echo (isset($this->org_profile->asset_email) ? $this->org_profile->asset_email : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_email) ? $this->org_profile->asset_email : 0) ?>" class="slider" data-slider-id='asset_email' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_email_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Database</label>
 				<div class="col-sm-8">
-					<input id="asset_database" class="slider" data-slider-id='asset_database' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_database" name="profile[asset_database]" value="<?php echo (isset($this->org_profile->asset_database) ? $this->org_profile->asset_database : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_database) ? $this->org_profile->asset_database : 0) ?>" class="slider" data-slider-id='asset_database' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_database_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Research data</label>
 				<div class="col-sm-8">
-					<input id="asset_research_data" class="slider" data-slider-id='asset_research_data' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_research_data" name="profile[asset_research_data]" value="<?php echo (isset($this->org_profile->asset_research_data) ? $this->org_profile->asset_research_data : 0) ?>" data-slider-value="<?php echo (isset($this->org_profile->asset_research_data) ? $this->org_profile->asset_research_data : 0) ?>" class="slider" data-slider-id='asset_research_data' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
 					<span id="asset_research_data_feedback" class="slider-feedback"></span>
 				</div>
 			</div>

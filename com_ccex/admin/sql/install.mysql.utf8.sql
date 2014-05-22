@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS `#__ccex_organization_types`;
-DROP TABLE IF EXISTS `#__ccex_profile_assets`;
 DROP TABLE IF EXISTS `#__ccex_profile_scopes`;
 DROP TABLE IF EXISTS `#__ccex_organization_profiles`;
 DROP TABLE IF EXISTS `#__ccex_organizations`;
@@ -35,22 +34,22 @@ CREATE TABLE `#__ccex_organization_profiles` (
   `data_volume` int(11) NOT NULL DEFAULT 0,
   `number_copies` int(11) NOT NULL DEFAULT 0,
 
+  `asset_unformatted_text` int(11) NOT NULL DEFAULT 0,
+  `asset_word_processing` int(11) NOT NULL DEFAULT 0,
+  `asset_spreadsheet` int(11) NOT NULL DEFAULT 0,
+  `asset_graphics` int(11) NOT NULL DEFAULT 0,
+  `asset_audio` int(11) NOT NULL DEFAULT 0,
+  `asset_video` int(11) NOT NULL DEFAULT 0,
+  `asset_hypertext` int(11) NOT NULL DEFAULT 0,
+  `asset_geodata` int(11) NOT NULL DEFAULT 0,
+  `asset_email` int(11) NOT NULL DEFAULT 0,
+  `asset_database` int(11) NOT NULL DEFAULT 0,
+  `asset_research_data` int(11) NOT NULL DEFAULT 0,
+
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
   PRIMARY KEY (`org_profile_id`)
-);
-
-CREATE TABLE `#__ccex_profile_assets` (
-  `profile_asset_id` int(11) NOT NULL AUTO_INCREMENT,
-  `asset_type` varchar(255) NOT NULL,
-  `org_profile_id` int(11) NOT NULL,
-  `value` int(11) NOT NULL,
-
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified` timestamp NOT NULL,
-
-  PRIMARY KEY (`profile_asset_id`)
 );
 
 CREATE TABLE `#__ccex_profile_scopes` (
