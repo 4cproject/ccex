@@ -51,39 +51,4 @@ class CCExModelsCountry extends CCExModelsDefault {
 
     return $query;
   }
-
-  /**
-  * Delete a Country
-  * @param int      ID of the Country to delete
-  * @return boolean True if successfully deleted
-  */
-  public function delete($id = null)
-  {
-    $app  = JFactory::getApplication();
-    $id   = $id ? $id : $app->input->get('country_id');
-
-    if (!$id) {
-      if ($country_id = $app->input->get('country_id')) {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query->delete()
-            ->from('#__ccex_countries')
-            ->where('country_id = ' . $country_id);
-        $db->setQuery($query);
-        if($db->query()) {
-          return true;
-        }
-      } 
-    } else {
-      $waitlist = JTable::getInstance('Country','Table');
-      $waitlist->load($id);
-
-      if ($waitlist->delete()) {
-        return true;
-      }      
-    }
-
-    return false;
-  }
-
 }

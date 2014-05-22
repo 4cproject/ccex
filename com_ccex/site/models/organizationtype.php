@@ -47,43 +47,12 @@ class CCExModelsOrganizationtype extends CCExModelsDefault {
 
     if(is_numeric($this->_org_type_id)) {
       $query->where('t.org_type_id = ' . (int) $this->_org_type_id);
+    }else{
+      if($this->_name) {
+        $query->where("t.name = '" . $this->_name . "'");
+      }
     }
-
+    
     return $query;
   }
-
-  /**
-  * Delete a OrganizationType
-  * @param int      ID of the OrganizationType to delete
-  * @return boolean True if successfully deleted
-  */
-  public function delete($id = null)
-  {
-    $app  = JFactory::getApplication();
-    $id   = $id ? $id : $app->input->get('org_type_id');
-
-    if (!$id) {
-      if ($org_type_id = $app->input->get('org_type_id')) {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query->delete()
-            ->from('#__ccex_organization_types')
-            ->where('org_type_id = ' . $org_type_id);
-        $db->setQuery($query);
-        if($db->query()) {
-          return true;
-        }
-      } 
-    } else {
-      $waitlist = JTable::getInstance('Organizationtype','Table');
-      $waitlist->load($id);
-
-      if ($waitlist->delete()) {
-        return true;
-      }      
-    }
-
-    return false;
-  }
-
 }

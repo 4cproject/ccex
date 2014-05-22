@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `#__ccex_currencies`;
 CREATE TABLE `#__ccex_organizations` (
   `organization_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
   `org_type_id` int(11) NOT NULL,
   `other_org_type` varchar(255),
   `description` text,
@@ -32,8 +32,8 @@ CREATE TABLE `#__ccex_organization_profiles` (
   `org_profile_id` int(11) NOT NULL AUTO_INCREMENT,
   `organization_id` int(11) NOT NULL,
   `profile_scope_id` int(11),
-  `data_volume` int(11) NOT NULL,
-  `number_copies` int(11) NOT NULL,
+  `data_volume` int(11) NOT NULL DEFAULT 0,
+  `number_copies` int(11) NOT NULL DEFAULT 0,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
@@ -55,9 +55,9 @@ CREATE TABLE `#__ccex_profile_assets` (
 
 CREATE TABLE `#__ccex_profile_scopes` (
   `profile_scope_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
   `min_size` int(11) NOT NULL DEFAULT 0,
-  `max_size` int(11),
+  `max_size` int(11) NOT NULL DEFAULT 0,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,

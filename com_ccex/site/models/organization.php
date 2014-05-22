@@ -16,11 +16,27 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $app = JFactory::getApplication();
     $this->_organization_id = $app->input->get('id', null);
     
-    parent::__construct();       
+    parent::__construct();  
   }
 
   public function getItem() {
     $organization = parent::getItem();
+
+    if($organization){
+      $organizationTypeModel = new CCExModelsOrganizationtype();
+      
+      $organizationTypeModel->set('_org_type_id', $organization->org_type_id);
+      $organizationTypeModel->set('_name', "Other");
+
+      $organizationType = $organizationTypeModel->getItem();
+
+      if(!$organizationType){
+        $organizationType = new CCExModelsOrganizationtype();
+        $organizationType->name = "Other";
+      }
+
+      $organization->org_type = $organizationType;
+    }
 
     return $organization;
   }
@@ -33,7 +49,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('o.organization_id, o.name');
+    $query->select('o.organization_id, o.name, o.org_type_id, o.other_org_type, o.description, o.country_id, o.currency_id, o.linked_data_provider, o.linked_cost_data, o.share_information, o.share_data');
     $query->from('#__ccex_organizations as o');
 
     return $query;
@@ -56,39 +72,4 @@ class CCExModelsOrganization extends CCExModelsDefault {
 
     return $query;
   }
-
-  /**
-  * Delete a Organization
-  * @param int      ID of the Organization to delete
-  * @return boolean True if successfully deleted
-  */
-  public function delete($id = null)
-  {
-    $app  = JFactory::getApplication();
-    $id   = $id ? $id : $app->input->get('organization_id');
-
-    if (!$id) {
-      if ($organization_id = $app->input->get('organization_id')) {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query->delete()
-            ->from('#__ccex_organizations')
-            ->where('organization_id = ' . $organization_id);
-        $db->setQuery($query);
-        if($db->query()) {
-          return true;
-        }
-      } 
-    } else {
-      $waitlist = JTable::getInstance('Organization','Table');
-      $waitlist->load($id);
-
-      if ($waitlist->delete()) {
-        return true;
-      }      
-    }
-
-    return false;
-  }
-
 }

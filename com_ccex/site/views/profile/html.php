@@ -16,6 +16,9 @@ class CCExViewsProfileHtml extends JViewHtml {
 
       case "edit":
         $this->profile = $profileModel->getItem();
+        $this->organization = $this->profile->organization;
+        $this->org_profile = CCExHelpersCast::cast('CCExModelsOrganizationprofile', $this->organization->profile);
+        $this->scope = $this->org_profile->scope;
 
         $this->orgTypes = $orgTypeModel->listItems();
         $this->currencies = $currencyModel->listItems();

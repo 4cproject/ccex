@@ -1,7 +1,7 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class CCExControllersEdit extends JControllerBase {
+class CCExControllersNew extends JControllerBase {
   public function execute() {
     $app      = JFactory::getApplication();
     $return   = array("success"=>false);
@@ -14,11 +14,12 @@ class CCExControllersEdit extends JControllerBase {
     $modelName  = 'CCExModels'.ucwords($_model);
 
     $model = new $modelName();
-    if ( $model->store() ) {
+    if ( $row = $model->store() ) {
         $return['success'] = true;
-        $return['message'] = JText::_('COM_CCEX_' . strtoupper($_model) . '_UPDATE_SUCCESS');
+        $return['message'] = JText::_('COM_CCEX_' . strtoupper($_model) . '_CREATE_SUCCESS');
+        $return['html'] = CCExHelpersView::getHtml($view, $layout, $item, $row);
     }else{
-        $return['message'] = JText::_('COM_CCEX_' . strtoupper($_model) . '_UPDATE_FAILURE');
+        $return['message'] = JText::_('COM_CCEX_' . strtoupper($_model) . '_CREATE_FAILURE');
     }
     
     echo json_encode($return);

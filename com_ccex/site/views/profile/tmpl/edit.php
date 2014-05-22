@@ -6,38 +6,49 @@
 	<div class="form-group">
 		<label for="organisation_name" class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="organisation_name" name="organization[name]" value="<?php echo $this->profile->organization->name ?>">
+			<input type="text" class="form-control" id="organisation_name" name="organization[name]" value="<?php echo (isset($this->organization->name) ? $this->organization->name : '' ); ?>">
 		</div>
 	</div>
+
 	<div class="form-group">
 		<label for="organization_type" class="col-sm-2 control-label">Type</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="If there is not a perfect match between your organisation and one of the options, similar is sufficient.">
-			<select class="form-control" id="organization_type" onChange="changeOrganizationTpe()">
+			<select class="form-control" id="organization_type" name="organization[org_type_id]" onChange="changeOrganizationTpe()">
 				<?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
-				    <option <?php if($this->orgTypes[$i]->name == "Other"){ echo "selected=\"true\"";} ?>  value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
+				    <option <?php 
+						if($this->orgTypes[$i]->name == $this->organization->org_type->name){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
 				<?php } ?>
 			</select>
 		</div>
 	</div>
-	<div class="form-group has-feedback" id="organisation_type_other_container">
+	<div class="form-group has-feedback" id="organisation_type_other_container" <?php
+		if($this->organization->org_type->name != "Other"){ 
+			echo "style=\"display: none;\"";
+		}
+	?> >
 		<label for="organisation_type_other" class="col-sm-2 control-label">Other type</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="organisation_type_other">
+			<input type="text" class="form-control" id="organisation_type_other" name="organization[other_org_type]" >
 			<span class="glyphicon glyphicon-info-sign form-control-feedback" data-toggle='tooltip'  data-container="body" data-placement="right" title="If you select 'Other' on the dropdown above, describe your organisation type here."></span>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="organisation_description" class="col-sm-2 control-label">Description, purpose and mission</label>
 		<div class="col-sm-10">
-			<textarea type="text" class="form-control" id="organisation_description" rows="3"></textarea>
+			<textarea type="text" class="form-control" id="organisation_description" name="organization[description]" rows="3"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="organization_country" class="col-sm-2 control-label">Country</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate in which country where the organization's headquarters are located.">
-			<select class="form-control" id="organization_country">
+			<select class="form-control" id="organization_country" name="organization[country_id]">
 				<?php for($i=0, $n = count($this->countries);$i<$n;$i++) { ?>
-				    <option value="<?php echo $this->countries[$i]->county_id; ?>"><?php echo $this->countries[$i]->name; ?></option>
+				    <option <?php 
+						if(isset($this->organization->country_id) && $this->countries[$i]->country_id == $this->organization->country_id){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="<?php echo $this->countries[$i]->country_id; ?>"><?php echo $this->countries[$i]->name; ?></option>
 				<?php } ?>
 			</select>
 		</div>
@@ -47,7 +58,10 @@
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the currency in which you would prefer to provide costs to the CCEx.">
 			<select class="form-control" id="organization_currency">
 				<?php for($i=0, $n = count($this->currencies);$i<$n;$i++) { ?>
-				    <option value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo $this->currencies[$i]->name; ?></option>
+				    <option <?php 
+						if(isset($this->organization->currency_id) && $this->currencies[$i]->currency_id == $this->organization->currency_id){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo $this->currencies[$i]->name; ?></option>
 				<?php } ?>
 			</select>
 		</div>
@@ -58,51 +72,111 @@
 	<div class="form-group">
 		<label for="collection_scope" class="col-sm-2 control-label">Scope</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="You may not want to give cost information about the whole organisation, but just for a single department, project or even collection. Please describe the scope here.">
-			<select class="form-control" id="collection_scope">
-				<option>The whole organisation</option>
-				<option>A department</option>
-				<option>A project</option>
-				<option>A collection</option>
-				<option>Other</option>
+			<select class="form-control" id="collection_scope" name="scope[name]">
+				<option  <?php 
+						if(isset($this->scope->name) && $this->scope->name == 'The whole organisation'){ 
+				    		echo "selected=\"true\"";
+				    	}?>  value="The whole organisation">The whole organisation</option>
+				<option <?php 
+						if(isset($this->scope->name) && $this->scope->name == 'A department'){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="A department">A department</option>
+				<option <?php 
+						if(isset($this->scope->name) && $this->scope->name == 'A project'){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="A project">A project</option>
+				<option <?php 
+						if(isset($this->scope->name) && $this->scope->name == 'A collection'){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="A collection">A collection</option>
+				<option <?php 
+						if(isset($this->scope->name) && $this->scope->name == 'Other'){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="Other">Other</option>
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="collection_staff" class="col-sm-2 control-label">Curation staff in scope</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the number of staff members working with digital curation within the scope defined above.">
-			<select class="form-control" id="collection_staff">
-				<option>Less than 10 people</option>
-				<option>Less than 50 people</option>
-				<option>Less than 100 people</option>
-				<option>Less than 500 people</option>
-				<option>Less than 1000 people</option>
-				<option>Less than 10000 people</option>
-				<option>More than 10000 people</option>
+			<select class="form-control" id="collection_staff" name="scope[staff]">
+				<option <?php 
+						if(isset($this->scope->max_size) && $this->scope->max_size == 10){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="0|10">Less than 10 people</option>
+				<option <?php 
+						if(isset($this->scope->max_size) && $this->scope->max_size == 50){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="10|50">Less than 50 people</option>
+				<option <?php 
+						if(isset($this->scope->max_size) && $this->scope->max_size == 100){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="50|100">Less than 100 people</option>
+				<option <?php 
+						if(isset($this->scope->max_size) && $this->scope->max_size == 500){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="100|500">Less than 500 people</option>
+				<option <?php 
+						if(isset($this->scope->max_size) && $this->scope->max_size == 1000){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="500|1000">Less than 1000 people</option>
+				<option <?php 
+						if(isset($this->scope->max_size) && $this->scope->max_size == 10000){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="1000|10000">Less than 10000 people</option>
+				<option <?php 
+						if(isset($this->scope->min_size) && $this->scope->min_size == 10000){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="10000|0">More than 10000 people</option>
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="collection_data_volume" class="col-sm-2 control-label">Data volume</label>
 		<div class="col-sm-2">
-			<input id="collection_data_volume_number" type="number" min="0" class="form-control">
+			<input id="collection_data_volume_number" type="number" min="0" class="form-control" value="<?php echo $this->org_profile->dataVolume()->value; ?>" name="profile[data_volume_number]">
 		</div>
 		<div class="col-sm-2">
-			<select class="form-control" id="collection_data_volume_unit">
-				<option value="1">Gigabytes</option>
-				<option value="1024" selected="true">Terabytes</option>
-				<option value="1048576">Petabytes</option>
+			<select class="form-control" id="collection_data_volume_unit" name="profile[data_volume_unit]" value="<?php echo $this->org_profile->dataVolume()->value; ?>">
+				<option <?php 
+						if($this->org_profile->dataVolume()->format == "Gigabytes"){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="1">Gigabytes</option>
+				<option <?php 
+						if($this->org_profile->dataVolume()->format == "Terabytes"){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="1024" selected="true">Terabytes</option>
+				<option <?php 
+						if($this->org_profile->dataVolume()->format == "Petabytes"){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="1048576">Petabytes</option>
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="collection_copies" class="col-sm-2 control-label">Number of copies</label>
 		<div class="col-sm-10" data-toggle='tooltip' data-placement="right" data-container="body" title="Indicate the number of copies you have for each digital asset within the scope. The original does not count as a copy, only backup copies or replicas. If your organisation has a different number of copies policy dependending on the value of the assets, please provide the number closer to the average within the scope.">
-			<select class="form-control" id="collection_copies">
-				<option>No replicas</option>
-				<option>One replica</option>
-				<option>Two replicas</option>
-				<option>Three replicas</option>
-				<option>More than three replicas</option>
+			<select class="form-control" id="collection_copies" name="profile[number_copies]">
+				<option <?php 
+						if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 0){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="0">No replicas</option>
+				<option <?php 
+						if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 1){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="1">One replica</option>
+				<option <?php 
+						if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 2){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="2">Two replicas</option>
+				<option <?php 
+						if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 3){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="3">Three replicas</option>
+				<option <?php 
+						if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == -1){ 
+				    		echo "selected=\"true\"";
+				    	}?> value="-1">More than three replicas</option>
 			</select>
 		</div>
 	</div>
@@ -118,7 +192,7 @@
 			<div class="form-group">
 				<label for="collection_data_volume" class="col-sm-4 control-label">Unformatted text</label>
 				<div class="col-sm-8">
-					<input id="asset_unformatted_text" class="slider" data-slider-id='asset_unformatted_text' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+					<input id="asset_unformatted_text" class="slider" data-slider-id='asset_unformatted_text' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" name="test"/>
 					<span id="asset_unformatted_text_feedback" class="slider-feedback"></span>
 				</div>
 			</div>
