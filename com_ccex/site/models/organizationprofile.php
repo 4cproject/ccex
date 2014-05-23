@@ -66,12 +66,12 @@ class CCExModelsOrganizationprofile extends CCExModelsDefault {
 
       if($datav >= 1048576){
         $result->format = "Petabytes";
-        $result->value = $datav/1048576;
+        $result->value = round($datav/1048576);
       }elseif($datav >= 1024){
         $result->format = "Terabytes";
-        $result->value = $datav/1024;
+        $result->value = round($datav/1024);
       }else{
-        $result->value = $datav;
+        $result->value = round($datav);
       }
     }
 

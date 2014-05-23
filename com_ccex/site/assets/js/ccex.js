@@ -17,6 +17,21 @@ function updateProfile(){
 		profileInfo[jQuery(ele).attr('name')] = jQuery(ele).val();
 	});
 
+	if($('input[name="organization[linked_cost_data]"]').is(':checked')){
+		profileInfo['organization[linked_cost_data]'] = 1;
+	}else{
+		profileInfo['organization[linked_cost_data]'] = 0;
+	}
+
+	if($('input[name="organization[linked_data_provider]"]').is(':checked')){
+		profileInfo['organization[linked_data_provider]'] = 1;
+	}else{
+		profileInfo['organization[linked_data_provider]'] = 0;
+	}
+
+	profileInfo['organization[share_information]'] = $('input[name="organization[share_information]"]:checked').val();
+	profileInfo['organization[share_data]'] = $('input[name="organization[share_data]"]:checked').val();
+
 	$.ajax({
 		url:'index.php?option=com_ccex&controller=edit&format=raw&tmpl=component',
 		type:'POST',
