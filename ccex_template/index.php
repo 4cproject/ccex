@@ -21,6 +21,17 @@ $metadesc = $app->getCfg('MetaDesc');
 
 $this->setGenerator(null);
 
+
+# unset frameworks
+JHtml::_('bootstrap.framework',false);
+JHtml::_('jquery.framework',false);
+
+# unset scripts
+unset($doc->_scripts[$this->baseurl.'/media/jui/js/jquery.min.js']);
+unset($doc->_scripts[$this->baseurl.'/media/jui/js/jquery-noconflict.js']);
+unset($doc->_scripts[$this->baseurl.'/media/jui/js/jquery-migrate.min.js']);
+unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']);
+
 $doc->addScript($tpath.'/libs/Chart.min.js');
 
 $doc->addScript($tpath.'/libs/jquery/2.1.0/jquery.min.js');
@@ -56,7 +67,7 @@ $doc->addStyleSheet($tpath.'/assets/css/ccex.css');
     <body style="margin: 0; background-color: white;">
         <div class="jumbotron">
           <div class="container">
-            <a href="index.html"><img src="<?php echo $tpath; ?>/images/CCEx_logo_125.png" class="pull-left" style="margin: 15px 45px 0 0;"/></a>
+            <a href="<?php echo JRoute::_('index.php?option=com_content&view=article&id=1'); ?>"><img src="<?php echo $tpath; ?>/images/CCEx_logo_125.png" class="pull-left" style="margin: 15px 45px 0 0;"/></a>
               <h1><?php echo $sitename; ?></h1>
               <p><?php echo $metadesc; ?></p>
             </div>

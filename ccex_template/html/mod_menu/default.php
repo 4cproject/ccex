@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 <?php // The menu class is deprecated. Use nav instead. ?>
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="ccex-navbar">
 			<ul class="nav navbar-nav menu<?php echo $class_sfx;?>"
 				<?php
 					$tag = '';
@@ -28,6 +28,10 @@ defined('_JEXEC') or die;
 				<?php
 				foreach ($list as $i => &$item)
 				{
+					if ($item->link == "index.php?option=com_users&view=registration" && !JFactory::getUser()->get('guest')) {
+						continue;
+					}
+
 					$class = 'item-' . $item->id;
 
 					if ($item->id == $active_id)
@@ -68,26 +72,42 @@ defined('_JEXEC') or die;
 						$class .= ' parent';
 					}
 
+					if ($item->link == "index.php?option=com_users&view=login"){
+						$class .= ' pull-right';
+					}
+
+					if ($item->link == "index.php?option=com_users&view=registration"){
+						$class .= ' pull-right';
+					}
+
 					if (!empty($class))
 					{
 						$class = ' class="' . trim($class) . '"';
 					}
 
 					echo '<li' . $class . '>';
+					
+					if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')){ ?>
+						<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.logout'); ?>" method="post" class="form-horizontal">
+							<input type="submit" value="Logout"></input>
+							<input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('index.php?option=com_users&view=login')); ?>" />
+							<?php echo JHtml::_('form.token'); ?>
+						</form> <?php
+					}else{
+						// Render the menu item.
+						switch ($item->type) :
+							case 'separator':
+							case 'url':
+							case 'component':
+							case 'heading':
+								require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
+								break;
 
-					// Render the menu item.
-					switch ($item->type) :
-						case 'separator':
-						case 'url':
-						case 'component':
-						case 'heading':
-							require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
-							break;
-
-						default:
-							require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
-							break;
-					endswitch;
+							default:
+								require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
+								break;
+						endswitch;
+					}
 
 					// The next item is deeper.
 					if ($item->deeper)

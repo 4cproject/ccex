@@ -83,3 +83,26 @@
 	letter-spacing:2px; 
 	font-weight:300;
 }
+
+#ccex-navbar ul{
+	width: 100%;
+}
+
+.navbar-nav>li input {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	line-height: 20px;
+
+	border: none;
+	background: none;
+	outline-color: #fff;
+}
+
+.navbar-nav>li input {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.navbar-default .navbar-nav>li input {
+	color: #777;
+}
