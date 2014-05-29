@@ -8,7 +8,6 @@ class CCExModelsProfile extends CCExModelsDefault {
   **/
   var $_user_id         = null;
   var $_organization_id = null;
-  var $_name            = null;
   var $_pagination      = null;
   var $_total           = null;
 
@@ -62,7 +61,7 @@ class CCExModelsProfile extends CCExModelsDefault {
   }
 
   /**
-  * Builds the query to be used by the Country model
+  * Builds the query to be used by the Profile model
   * @return   object  Query object
   */
   protected function _buildQuery() {

@@ -6,7 +6,6 @@ class CCExViewsProfileHtml extends JViewHtml {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
 
-    //retrieve task list from model
     $profileModel = new CCExModelsProfile();
     $orgTypeModel = new CCExModelsOrganizationtype();
     $currencyModel = new CCExModelsCurrency();

@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
 
 //Display partial views
-class CCExViewsProfilePhtml extends JViewHTML {
+class CCExViewsCostPhtml extends JViewHTML {
 
     function render() {
     	return parent::render();
