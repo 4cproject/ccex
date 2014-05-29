@@ -82,8 +82,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="collection_data_volume">Data
-            volume</label>
+        <label class="col-sm-2 control-label" for="collection_data_volume">Data volume</label>
         <div class="col-sm-2">
             <input class="form-control" id="collection_data_volume_number" min="0" name="profile[data_volume_number]" type="number" value="<?php echo $this->org_profile->dataVolume()->value; ?>">
         </div>
@@ -242,13 +241,17 @@
     <br/>
     <!-- Action -->
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-3">
-            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="updateProfile()">Update Profile</span></a>
+		<div class="col-sm-2">
+			<div class="alert alert-dismissable" id="_message_container" style="display: none;">
+	        	<button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
+	        	<p id="_message"></p>
+	        	<p id="_description"></p>
+	    	</div>
+	    </div>
+        <div class="col-sm-3">
+            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="updateProfile()">Save Profile</span></a>
     </div>
-    <div class="alert alert-dismissable col-md-7" id="_message_container" style="display: none;">
-        <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
-        <p id="_message"></p>
-    </div>
+    
 </form>
 <script>
 $("[data-toggle='tooltip']").tooltip();
@@ -290,3 +293,5 @@ $("#collection_data_volume_unit").change(function () {
     sliderUtils.updateLabels();
 });
 </script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/profile.js') ?>"></script>

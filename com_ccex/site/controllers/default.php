@@ -9,7 +9,8 @@ class CCExControllersDefault extends JControllerBase{
 
     $user = JFactory::getUser();
     if ($user->get('guest')) {
-        $app->redirect('index.php',JText::_('COM_CCEX_ACCOUNT_REQUIRED_MSG'));
+        $app->enqueueMessage(JText::_('COM_CCEX_ACCOUNT_REQUIRED_MSG'), "warning");
+        $app->redirect(JRoute::_('index.php?option=com_users&view=login'));
     }
  
     // Get the document object.

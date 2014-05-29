@@ -46,7 +46,7 @@
   <scriptfile>install.php</scriptfile>
 
   <languages folder="site">
-    <language tag="en-EN">languages/en-EN/en-EN.com_ccex.ini</language>
+    <language tag="en-GB">languages/en-GB/en-GB.com_ccex.ini</language>
   </languages>
 
   <media destination="com_ccex" folder="media">
@@ -73,8 +73,8 @@
     </files>  
 
     <languages folder="admin">
-      <language tag="en-EN">languages/en-EN/en-EN.com_ccex.ini</language>
-      <language tag="en-EN">languages/en-EN/en-EN.com_ccex.sys.ini</language>
+      <language tag="en-GB">languages/en-GB/en-GB.com_ccex.ini</language>
+      <language tag="en-GB">languages/en-GB/en-GB.com_ccex.sys.ini</language>
     </languages>
   </administration>
 </extension>
