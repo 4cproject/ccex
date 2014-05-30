@@ -19,9 +19,9 @@ class CCExModelsCollection extends CCExModelsDefault {
   }
  
   public function getItem() {
-    $Collection = parent::getItem();
+    $collection = parent::getItem();
 
-    return $Collection;
+    return CCExHelpersCast::cast('CCExModelsCollection', $collection);
   }
  
   /**
@@ -82,10 +82,13 @@ class CCExModelsCollection extends CCExModelsDefault {
     $organizationModel = new CCExModelsOrganization();
     $organization = $organizationModel->getItemBy('_organization_id', $this->organization_id);
 
-    if($organization){
-      return CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-    }else{
-      return null;
-    }
+    return $organization;
+  }
+
+  public function costs() {
+    $costModel = new CCExModelsCost();
+    $costs = $costModel->listItemsBy('_collection_id', $this->collection_id);
+
+    return $costs;
   }
 }

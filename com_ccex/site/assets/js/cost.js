@@ -1,18 +1,15 @@
 $(document).ready(function() {
-    $('form#profileForm').validate({
+    $('form#costForm').validate({
         rules: {
-            'organization[name]': {
+            'cost[name]': {
                 required: true,
                 blank: false
             },
-            'profile[data_volume_number]': {
+            'cost[cost]': {
                 required: true,
                 blank: false,
                 number: true,
-                min: 1
-            },
-            'organization[other_org_type]': {
-                required: requiredOrganizationType()
+                min: 0.01
             }
         },
         highlight: function(element) {
@@ -33,67 +30,34 @@ $(document).ready(function() {
     });
 });
 
-function requiredOrganizationType() {
-    var org_type_name = $("#organization_type option:selected").text();
-    if (org_type_name == "Other") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function changeOrganizationTpe() {
-    var org_type_name = $("#profileForm #organization_type option:selected").text();
-    if (org_type_name == "Other") {
-        $("#organisation_type_other_container").show();
-    } else {
-        $("#organisation_type_other_container").hide();
-    }
-}
-
-function updateProfile() {
-    if (!$('#profileForm').validate().form()) {
+function createCost() {
+    if (!$('#costForm').validate().form()) {
         $("#_message_container").hide();
         $("#_message_container").removeClass("alert-success");
         $("#_message_container").removeClass("alert-danger");
         $("#_message_container").addClass("alert-danger");
 
-        $("#_message_container #_message").text("Error saving profile");
+        $("#_message_container #_message").text("Error saving cost");
         $("#_message_container #_description").text("Please check errors");
         $("#_message_container").show();
 
         return;
     }
 
-    var profileInfo = {};
+    var costInfo = {};
 
     $("#_message_container").hide();
     $("#_message_container #_description").text("");
     $("#_message_container #_message").text("");
 
-    $("#profileForm :input").each(function(idx, ele) {
-        profileInfo[jQuery(ele).attr('name')] = jQuery(ele).val();
+    $("#costForm :input").each(function(idx, ele) {
+        costInfo[jQuery(ele).attr('name')] = jQuery(ele).val();
     });
 
-    if ($('input[name="organization[linked_cost_data]"]').is(':checked')) {
-        profileInfo['organization[linked_cost_data]'] = 1;
-    } else {
-        profileInfo['organization[linked_cost_data]'] = 0;
-    }
-
-    if ($('input[name="organization[linked_data_provider]"]').is(':checked')) {
-        profileInfo['organization[linked_data_provider]'] = 1;
-    } else {
-        profileInfo['organization[linked_data_provider]'] = 0;
-    }
-
-    profileInfo['organization[share_information]'] = $('input[name="organization[share_information]"]:checked').val();
-    profileInfo['organization[share_data]'] = $('input[name="organization[share_data]"]:checked').val();
-
     $.ajax({
-        url: 'index.php?option=com_ccex&controller=edit&format=raw&tmpl=component',
+        url: 'index.php?option=com_ccex&controller=add&format=raw&tmpl=component',
         type: 'POST',
-        data: profileInfo,
+        data: costInfo,
         dataType: 'JSON',
         success: function(data) {
             $("#_message_container").removeClass("alert-success");

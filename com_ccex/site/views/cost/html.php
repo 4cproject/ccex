@@ -7,11 +7,17 @@ class CCExViewsCostHtml extends JViewHtml {
     $layout = $app->input->get('layout');
 
     $costModel = new CCExModelsCost();
+    $profileModel = new CCExModelsProfile();
+
+    $organization = $profileModel->organization();
 
     switch($layout) {
 
       case "index":
-        $this->costs = $costModel->listItems();
+        $this->costs = $organization->collection()->costs();
+      case "add":
+        $this->currency = $organization->currency();
+        $this->collection = $organization->collection();
       break;
 
       default:

@@ -36,16 +36,9 @@ class CCExModelsDefault extends JModelBase
       return null;
     }
 
-    $db = JFactory::getDBO();
-
     $this->set($field, $value);
-    $query = $this->_buildQuery();
-    $this->_buildWhere($query);
-    $db->setQuery($query);
 
-    $item = $db->loadObject();
-
-    return $item;
+    return $this->getItem();
   }
 
   public function store($data=null) {    
@@ -109,6 +102,16 @@ class CCExModelsDefault extends JModelBase
     $list = $this->_getList($query, $this->limitstart, $this->limit);
 
     return $list;
+  }
+
+  public function listItemsBy($field=null, $value=null){
+    if($field==null || $value == null){
+      return array();
+    }
+
+    $this->set($field, $value);
+
+    return $this->listItems();
   }
 
   /**

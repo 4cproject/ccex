@@ -21,7 +21,7 @@ class CCExModelsCurrency extends CCExModelsDefault {
   public function getItem() {
     $currency = parent::getItem();
 
-    return $currency;
+    return CCExHelpersCast::cast('CCExModelsCurrency', $currency);
   }
 
   /**

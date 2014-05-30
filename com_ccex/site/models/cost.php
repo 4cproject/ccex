@@ -24,7 +24,7 @@ class CCExModelsCost extends CCExModelsDefault {
   public function getItem() {
     $cost = parent::getItem();
 
-    return $cost;
+    return CCExHelpersCast::cast('CCExModelsCost', $cost);
   }
 
   /**
@@ -58,6 +58,20 @@ class CCExModelsCost extends CCExModelsDefault {
     return $query;
   }
 
+  public function store($data=null) {    
+    $data = $data ? $data : JRequest::get('post');
+    $date = date("Y-m-d H:i:s");
+
+    $row_organization = JTable::getInstance('cost','Table');
+    if (!$row_organization->bind($data['cost'])){ return false; }
+
+    $row_organization->modified = $date;
+    if (!$row_organization->check()){ return false; }
+    if (!$row_organization->store()){ return false; }
+    
+    return true;
+  }
+
   public function listItemsByCollection($collection_id){
     $this->set('_collection_id', $collection_id);
     return $this->listItems();
@@ -80,16 +94,12 @@ class CCExModelsCost extends CCExModelsDefault {
     return $number; 
   }
 
-  public function Collection() {
-    $CollectionModel = new CCExModelsCollection();
-    $CollectionModel->set('collection_id', $this->collection_id);
-    $Collection = $CollectionModel->getItem();
+  public function collection() {
+    $collectionModel = new CCExModelsCollection();
+    $collectionModel->set('collection_id', $this->collection_id);
+    $collection = $collectionModel->getItem();
     
-    if($Collection){
-      return CCExHelpersCast::cast('CCExModelsCollection', $Collection);
-    }else{
-      return null;
-    }
+    return $collection;
   }
 
 }

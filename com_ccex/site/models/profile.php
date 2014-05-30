@@ -22,7 +22,7 @@ class CCExModelsProfile extends CCExModelsDefault {
   public function getItem() {
     $profile = parent::getItem();
 
-    return $profile;
+    return CCExHelpersCast::cast('CCExModelsProfile', $profile);
   }
 
   /**
@@ -92,11 +92,7 @@ class CCExModelsProfile extends CCExModelsDefault {
     $organizationModel = new CCExModelsOrganization();
     $organization = $organizationModel->getItemBy('_user_id',$this->_user_id);
 
-    if($organization){
-      return CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-    }else{
-      return null;
-    }
+    return $organization;
   }
 
   public function organizationOrEmpty(){
@@ -109,10 +105,6 @@ class CCExModelsProfile extends CCExModelsDefault {
       $organization->set('org_type_id');
     }
 
-    if($organization){
-      return CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-    }else{
-      return null;
-    }
+    return $organization;
   }
 }

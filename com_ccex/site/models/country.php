@@ -21,7 +21,7 @@ class CCExModelsCountry extends CCExModelsDefault {
   public function getItem() {
     $country = parent::getItem();
 
-    return $country;
+    return CCExHelpersCast::cast('CCExModelsCountry', $country);
   }
  
   /**

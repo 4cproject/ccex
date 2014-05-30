@@ -22,7 +22,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
   public function getItem() {
     $organization = parent::getItem();
 
-    return $organization;
+    return CCExHelpersCast::cast('CCExModelsOrganization', $organization);
   }
   
   /**
@@ -61,22 +61,14 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $currencyModel = new CCExModelsCurrency();
     $currency = $currencyModel->getItemBy('_currency_id', $this->currency_id);
     
-    if($currency){
-      return CCExHelpersCast::cast('CCExModelsCurrency', $currency);
-    }else{
-      return null;
-    }
+    return $currency;
   }
 
   public function organizationType() {
     $organizationTypeModel = new CCExModelsOrganizationtype();
     $organizationType = $organizationTypeModel->getItemBy('_org_type_id', $this->org_type_id);
     
-    if($organizationType){
-      return CCExHelpersCast::cast('CCExModelsOrganizationtype', $organizationType);
-    }else{
-      return null;
-    }
+    return $organizationType;
   }
 
   public function organizationTypeOrOther() {
@@ -87,37 +79,26 @@ class CCExModelsOrganization extends CCExModelsDefault {
       $organizationType->set('name', 'Other');
     }
 
-    if($organizationType){
-      return CCExHelpersCast::cast('CCExModelsOrganizationtype', $organizationType);
-    }else{
-      return null;
-    }
+    return $organizationType;
   }
 
-  public function Collection(){
-    $CollectionModel = new CCExModelsCollection();
-    $Collection = $CollectionModel->getItemBy('_organization_id', $this->organization_id);
+  public function collection(){
+    $collectionModel = new CCExModelsCollection();
+    $collection = $collectionModel->getItemBy('_organization_id', $this->organization_id);
     
-    if($Collection){
-      return CCExHelpersCast::cast('CCExModelsCollection', $Collection);
-    }else{
-      return null;
-    }
+    return $collection;
   }
 
-  public function CollectionOrEmpty(){
-    $Collection = $this->Collection();
+  public function collectionOrEmpty(){
+    $collection = $this->collection();
 
-    if(!$Collection){
-      $Collection = new CCExModelsCollection();
-      $Collection->set('organization_id', $this->organization_id);
-      $Collection->set('collection_id');
+    if(!$collection){
+      $collection = new CCExModelscollection();
+      $collection->set('organization_id', $this->organization_id);
+      $collection->set('collection_id');
     }
 
-    if($Collection){
-      return CCExHelpersCast::cast('CCExModelsCollection', $Collection);
-    }else{
-      return null;
-    }
+    return $collection;
   }
+
 }
