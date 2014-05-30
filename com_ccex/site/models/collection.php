@@ -1,39 +1,39 @@
 <?php // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class CCExModelsOrganizationprofile extends CCExModelsDefault {
+class CCExModelsCollection extends CCExModelsDefault {
 
   /**
   * Protected fields
   **/
-  var $_org_profile_id  = null;
+  var $_collection_id  = null;
   var $_organization_id = null;
   var $_pagination      = null;
   var $_total           = null;
 
   function __construct() {
     $app = JFactory::getApplication();
-    $this->_org_profile_id = $app->input->get('id', null);
+    $this->_collection_id = $app->input->get('id', null);
     
     parent::__construct();       
   }
  
   public function getItem() {
-    $organizationProfile = parent::getItem();
+    $Collection = parent::getItem();
 
-    return $organizationProfile;
+    return $Collection;
   }
  
   /**
-  * Builds the query to be used by the OrganizationProfile model
+  * Builds the query to be used by the Collection model
   * @return   object  Query object
   */
   protected function _buildQuery() {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('p.org_profile_id, p.organization_id, p.profile_scope_id, p.data_volume, p.number_copies, p.asset_unformatted_text, p.asset_word_processing, p.asset_spreadsheet, p.asset_graphics, p.asset_audio, p.asset_video, p.asset_hypertext, p.asset_geodata, p.asset_email, p.asset_database, p.asset_research_data');
-    $query->from('#__ccex_organization_profiles as p');
+    $query->select('p.collection_id, p.organization_id, p.data_volume, p.number_copies, p.asset_unformatted_text, p.asset_word_processing, p.asset_spreadsheet, p.asset_graphics, p.asset_audio, p.asset_video, p.asset_hypertext, p.asset_geodata, p.asset_email, p.asset_database, p.asset_research_data, p.scope, p.staff_min_size, p.staff_max_size');
+    $query->from('#__ccex_collections as p');
 
     return $query;
   }
@@ -45,8 +45,8 @@ class CCExModelsOrganizationprofile extends CCExModelsDefault {
   */
   protected function _buildWhere(&$query) {
 
-    if(is_numeric($this->_org_profile_id)) {
-      $query->where('p.org_profile_id = ' . (int) $this->_org_profile_id);
+    if(is_numeric($this->_collection_id)) {
+      $query->where('p.collection_id = ' . (int) $this->_collection_id);
     }else{
       if($this->_organization_id) {
         $query->where("p.organization_id = '" . $this->_organization_id . "'");
@@ -76,5 +76,16 @@ class CCExModelsOrganizationprofile extends CCExModelsDefault {
     }
 
     return $result;
+  }
+
+  public function organization() {
+    $organizationModel = new CCExModelsOrganization();
+    $organization = $organizationModel->getItemBy('_organization_id', $this->organization_id);
+
+    if($organization){
+      return CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+    }else{
+      return null;
+    }
   }
 }

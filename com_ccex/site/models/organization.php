@@ -22,22 +22,6 @@ class CCExModelsOrganization extends CCExModelsDefault {
   public function getItem() {
     $organization = parent::getItem();
 
-    if($organization){
-      $organizationTypeModel = new CCExModelsOrganizationtype();
-      
-      $organizationTypeModel->set('_org_type_id', $organization->org_type_id);
-      $organizationTypeModel->set('_name', "Other");
-
-      $organizationType = $organizationTypeModel->getItem();
-
-      if(!$organizationType){
-        $organizationType = new CCExModelsOrganizationtype();
-        $organizationType->name = "Other";
-      }
-
-      $organization->org_type = $organizationType;
-    }
-
     return $organization;
   }
   
@@ -71,5 +55,69 @@ class CCExModelsOrganization extends CCExModelsDefault {
     }
 
     return $query;
+  }
+
+  public function currency() {
+    $currencyModel = new CCExModelsCurrency();
+    $currency = $currencyModel->getItemBy('_currency_id', $this->currency_id);
+    
+    if($currency){
+      return CCExHelpersCast::cast('CCExModelsCurrency', $currency);
+    }else{
+      return null;
+    }
+  }
+
+  public function organizationType() {
+    $organizationTypeModel = new CCExModelsOrganizationtype();
+    $organizationType = $organizationTypeModel->getItemBy('_org_type_id', $this->org_type_id);
+    
+    if($organizationType){
+      return CCExHelpersCast::cast('CCExModelsOrganizationtype', $organizationType);
+    }else{
+      return null;
+    }
+  }
+
+  public function organizationTypeOrOther() {
+    $organizationType = $this->organizationType();
+
+    if(!$organizationType){
+      $organizationType = new CCExModelsOrganizationtype();
+      $organizationType->set('name', 'Other');
+    }
+
+    if($organizationType){
+      return CCExHelpersCast::cast('CCExModelsOrganizationtype', $organizationType);
+    }else{
+      return null;
+    }
+  }
+
+  public function Collection(){
+    $CollectionModel = new CCExModelsCollection();
+    $Collection = $CollectionModel->getItemBy('_organization_id', $this->organization_id);
+    
+    if($Collection){
+      return CCExHelpersCast::cast('CCExModelsCollection', $Collection);
+    }else{
+      return null;
+    }
+  }
+
+  public function CollectionOrEmpty(){
+    $Collection = $this->Collection();
+
+    if(!$Collection){
+      $Collection = new CCExModelsCollection();
+      $Collection->set('organization_id', $this->organization_id);
+      $Collection->set('collection_id');
+    }
+
+    if($Collection){
+      return CCExHelpersCast::cast('CCExModelsCollection', $Collection);
+    }else{
+      return null;
+    }
   }
 }

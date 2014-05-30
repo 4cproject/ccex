@@ -31,6 +31,23 @@ class CCExModelsDefault extends JModelBase
     return $item;
   }
 
+  public function getItemBy($field=null, $value=null) {
+    if($field==null || $value == null){
+      return null;
+    }
+
+    $db = JFactory::getDBO();
+
+    $this->set($field, $value);
+    $query = $this->_buildQuery();
+    $this->_buildWhere($query);
+    $db->setQuery($query);
+
+    $item = $db->loadObject();
+
+    return $item;
+  }
+
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $row = JTable::getInstance($data['table'],'Table');
@@ -93,7 +110,7 @@ class CCExModelsDefault extends JModelBase
 
     return $list;
   }
- 
+
   /**
   * Gets an array of objects from the results of database query.
   *

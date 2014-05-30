@@ -13,24 +13,18 @@
 		<th class="text-right"></th>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Digitisation 1</td>
-			<td class="text-right">14,000.00 €</td>
-			<td class="text-right">10 FTE</td>
-			<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes">1.4 €/GB</td>
-			<td class="text-right">100% mapped</td>
-			<td class="text-right">50% mapped</td>
-			<td class="text-right"><a href="add_cost.html"><span class="glyphicon glyphicon-edit"></span></a></td>
-		</tr>
-		<tr>
-			<td>Format migration</td>
-			<td class="text-right">2,200.00 €</td>
-			<td class="text-right">0 FTE</td>
-			<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes">0.22 €/GB</td>
-			<td class="text-right">100% mapped</td>
-			<td class="text-right">50% mapped</td>
-			<td class="text-right"><a href="add_cost.html"><span class="glyphicon glyphicon-edit"></span></a></td>
-		</tr>
+        <?php for($i=0, $n = count($this->costs);$i<$n;$i++) { ?>
+        	<?php $cost = CCExHelpersCast::cast('CCExModelsCost', $this->costs[$i]); ?>
+			<tr>
+				<td><?php echo $cost->name ?></td>
+				<td class="text-right"><?php echo $cost->formattedCostWithCurrency() ?></td>
+				<td class="text-right"><?php echo $cost->human_resources ?> FTE</td>
+				<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes">1.4 €/GB</td>
+				<td class="text-right">100% mapped</td>
+				<td class="text-right">50% mapped</td>
+				<td class="text-right"><a href="add_cost.html"><span class="glyphicon glyphicon-edit"></span></a></td>
+			</tr>
+        <?php } ?>
 	</tbody>
 	<tfoot>
 		<tr style="color: #999">

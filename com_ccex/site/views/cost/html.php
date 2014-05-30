@@ -6,9 +6,12 @@ class CCExViewsCostHtml extends JViewHtml {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
 
+    $costModel = new CCExModelsCost();
+
     switch($layout) {
 
       case "index":
+        $this->costs = $costModel->listItems();
       break;
 
       default:

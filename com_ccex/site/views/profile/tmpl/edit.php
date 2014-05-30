@@ -13,12 +13,12 @@
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="If there is not a perfect match between your organisation and one of the options, similar is sufficient.">
             <select class="form-control" id="organization_type" name="organization[org_type_id]" onChange="changeOrganizationTpe()">
                 <?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
-                <option <?php if($this->orgTypes[$i]->name == $this->organization->org_type->name){ echo "selected=\"true\""; }?> value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
+                <option <?php if($this->orgTypes[$i]->name == $this->organization->organizationTypeOrOther()->name){ echo "selected=\"true\""; }?> value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
                 <?php } ?>
             </select>
         </div>
     </div>
-    <div class="form-group has-feedback" id="organisation_type_other_container" <?php if($this->organization->org_type->name != "Other"){ echo "style=\"display: none;\""; } ?>>
+    <div class="form-group has-feedback" id="organisation_type_other_container" <?php if($this->organization->organizationTypeOrOther()->name != "Other"){ echo "style=\"display: none;\""; } ?>>
         <label class="col-sm-2 control-label" for="organisation_type_other">Other type</label>
         <div class="col-sm-10">
             <input <?php if(isset($this->organization->other_org_type)){ echo "value=\"" . $this->organization->other_org_type . "\""; }?> class="form-control" id="organisation_type_other" name="organization[other_org_type]" type="text" >
@@ -44,7 +44,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="collection_data_volume">Currency</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="Indicate the currency in which you would prefer to provide costs to the CCEx.">
-            <select class="form-control" id="organization_currency">
+            <select class="form-control" id="organization_currency" name="organization[currency_id]">
                 <?php for($i=0, $n = count($this->currencies);$i<$n;$i++) { ?>
                 <option <?php if(isset($this->organization->currency_id) && $this->currencies[$i]->currency_id == $this->organization->currency_id){ echo "selected=\"true\""; }?> value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo $this->currencies[$i]->name; ?></option>
                 <?php } ?>
@@ -57,12 +57,12 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="collection_scope">Scope</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="You may not want to give cost information about the whole organisation, but just for a single department, project or even collection. Please describe the scope here.">
-            <select class="form-control" id="collection_scope" name="scope[name]">
-                <option <?php if(isset($this->scope->name) && $this->scope->name == 'The whole organisation'){ echo "selected=\"true\""; }?> value="The whole organisation">The whole organisation</option>
-                <option <?php if(isset($this->scope->name) && $this->scope->name == 'A department'){ echo "selected=\"true\""; }?> value="A department">A department</option>
-                <option <?php if(isset($this->scope->name) && $this->scope->name == 'A project'){ echo "selected=\"true\""; }?> value="A project">A project</option>
-                <option <?php if(isset($this->scope->name) && $this->scope->name == 'A collection'){ echo "selected=\"true\""; }?> value="A collection">A collection</option>
-                <option <?php if(isset($this->scope->name) && $this->scope->name == 'Other'){ echo "selected=\"true\""; }?> value="Other">Other</option>
+            <select class="form-control" id="collection_scope" name="profile[scope]">
+                <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'The whole organisation'){ echo "selected=\"true\""; }?> value="The whole organisation">The whole organisation</option>
+                <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'A department'){ echo "selected=\"true\""; }?> value="A department">A department</option>
+                <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'A project'){ echo "selected=\"true\""; }?> value="A project">A project</option>
+                <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'A collection'){ echo "selected=\"true\""; }?> value="A collection">A collection</option>
+                <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'Other'){ echo "selected=\"true\""; }?> value="Other">Other</option>
             </select>
         </div>
     </div>
@@ -70,27 +70,27 @@
         <label class="col-sm-2 control-label" for="collection_staff">Curation
             staff in scope</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="Indicate the number of staff members working with digital curation within the scope defined above.">
-            <select class="form-control" id="collection_staff" name="scope[staff]">
-                <option <?php if(isset($this->scope->max_size) && $this->scope->max_size == 10){ echo "selected=\"true\""; }?> value="0|10">Less than 10 people</option>
-                <option <?php if(isset($this->scope->max_size) && $this->scope->max_size == 50){ echo "selected=\"true\""; }?> value="10|50">Less than 50 people</option>
-                <option <?php if(isset($this->scope->max_size) && $this->scope->max_size == 100){ echo "selected=\"true\""; }?> value="50|100">Less than 100 people</option>
-                <option <?php if(isset($this->scope->max_size) && $this->scope->max_size == 500){ echo "selected=\"true\""; }?> value="100|500">Less than 500 people</option>
-                <option <?php if(isset($this->scope->max_size) && $this->scope->max_size == 1000){ echo "selected=\"true\""; }?> value="500|1000">Less than 1000 people</option>
-                <option <?php if(isset($this->scope->max_size) && $this->scope->max_size == 10000){ echo "selected=\"true\""; }?> value="1000|10000">Less than 10000 people</option>
-                <option <?php if(isset($this->scope->min_size) && $this->scope->min_size == 10000){ echo "selected=\"true\""; }?> value="10000|0">More than 10000 people</option>
+            <select class="form-control" id="collection_staff" name="profile[staff]">
+                <option <?php if(isset($this->collection->staff_max_size) && $this->collection->staff_max_size == 10){ echo "selected=\"true\""; }?> value="0|10">Less than 10 people</option>
+                <option <?php if(isset($this->collection->staff_max_size) && $this->collection->staff_max_size == 50){ echo "selected=\"true\""; }?> value="10|50">Less than 50 people</option>
+                <option <?php if(isset($this->collection->staff_max_size) && $this->collection->staff_max_size == 100){ echo "selected=\"true\""; }?> value="50|100">Less than 100 people</option>
+                <option <?php if(isset($this->collection->staff_max_size) && $this->collection->staff_max_size == 500){ echo "selected=\"true\""; }?> value="100|500">Less than 500 people</option>
+                <option <?php if(isset($this->collection->staff_max_size) && $this->collection->staff_max_size == 1000){ echo "selected=\"true\""; }?> value="500|1000">Less than 1000 people</option>
+                <option <?php if(isset($this->collection->staff_max_size) && $this->collection->staff_max_size == 10000){ echo "selected=\"true\""; }?> value="1000|10000">Less than 10000 people</option>
+                <option <?php if(isset($this->collection->staff_min_size) && $this->collection->staff_min_size == 10000){ echo "selected=\"true\""; }?> value="10000|0">More than 10000 people</option>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="collection_data_volume">Data volume</label>
         <div class="col-sm-2">
-            <input class="form-control" id="collection_data_volume_number" min="0" name="profile[data_volume_number]" type="number" value="<?php echo $this->org_profile->dataVolume()->value; ?>">
+            <input class="form-control" id="collection_data_volume_number" min="0" name="profile[data_volume_number]" type="number" value="<?php echo $this->collection->dataVolume()->value; ?>">
         </div>
         <div class="col-sm-2">
-            <select class="form-control" id="collection_data_volume_unit" name="profile[data_volume_unit]" value="<?php echo $this->org_profile->dataVolume()->value; ?>">
-                <option <?php if($this->org_profile->dataVolume()->format == "Gigabytes"){ echo "selected=\"true\""; }?> value="1">Gigabytes</option>
-                <option <?php if($this->org_profile->dataVolume()->format == "Terabytes"){ echo "selected=\"true\""; }?> value="1024" selected="true">Terabytes</option>
-                <option <?php if($this->org_profile->dataVolume()->format == "Petabytes"){ echo "selected=\"true\""; }?> value="1048576">Petabytes</option>
+            <select class="form-control" id="collection_data_volume_unit" name="profile[data_volume_unit]" value="<?php echo $this->collection->dataVolume()->value; ?>">
+                <option <?php if($this->collection->dataVolume()->format == "Gigabytes"){ echo "selected=\"true\""; }?> value="1">Gigabytes</option>
+                <option <?php if($this->collection->dataVolume()->format == "Terabytes"){ echo "selected=\"true\""; }?> value="1024" selected="true">Terabytes</option>
+                <option <?php if($this->collection->dataVolume()->format == "Petabytes"){ echo "selected=\"true\""; }?> value="1048576">Petabytes</option>
             </select>
         </div>
     </div>
@@ -99,11 +99,11 @@
             copies</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="Indicate the number of copies you have for each digital asset within the scope. The original does not count as a copy, only backup copies or replicas. If your organisation has a different number of copies policy dependending on the value of the assets, please provide the number closer to the average within the scope.">
             <select class="form-control" id="collection_copies" name="profile[number_copies]">
-                <option <?php if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 0){ echo "selected=\"true\""; }?> value="0">No replicas</option>
-                <option <?php if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 1){ echo "selected=\"true\""; }?> value="1">One replica</option>
-                <option <?php if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 2){ echo "selected=\"true\""; }?> value="2">Two replicas</option>
-                <option <?php if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == 3){ echo "selected=\"true\""; }?> value="3">Three replicas</option>
-                <option <?php if(isset($this->org_profile->number_copies) && $this->org_profile->number_copies == -1){ echo "selected=\"true\""; }?> value="-1">More than three replicas</option>
+                <option <?php if(isset($this->collection->number_copies) && $this->collection->number_copies == 0){ echo "selected=\"true\""; }?> value="0">No replicas</option>
+                <option <?php if(isset($this->collection->number_copies) && $this->collection->number_copies == 1){ echo "selected=\"true\""; }?> value="1">One replica</option>
+                <option <?php if(isset($this->collection->number_copies) && $this->collection->number_copies == 2){ echo "selected=\"true\""; }?> value="2">Two replicas</option>
+                <option <?php if(isset($this->collection->number_copies) && $this->collection->number_copies == 3){ echo "selected=\"true\""; }?> value="3">Three replicas</option>
+                <option <?php if(isset($this->collection->number_copies) && $this->collection->number_copies == -1){ echo "selected=\"true\""; }?> value="-1">More than three replicas</option>
             </select>
         </div>
     </div>
@@ -118,77 +118,77 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Unformatted text</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_unformatted_text' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_unformatted_text) ? $this->org_profile->asset_unformatted_text : 0) ?>" id="asset_unformatted_text" name="profile[asset_unformatted_text]" type="text" value="<?php echo (isset($this->org_profile->asset_unformatted_text) ? $this->org_profile->asset_unformatted_text : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_unformatted_text' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_unformatted_text) ? $this->collection->asset_unformatted_text : 0) ?>" id="asset_unformatted_text" name="profile[asset_unformatted_text]" type="text" value="<?php echo (isset($this->collection->asset_unformatted_text) ? $this->collection->asset_unformatted_text : 0) ?>"/>
                     <span class="slider-feedback" id="asset_unformatted_text_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Word processing</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_word_processing' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_word_processing) ? $this->org_profile->asset_word_processing : 0) ?>" id="asset_word_processing" name="profile[asset_word_processing]" type="text" value="<?php echo (isset($this->org_profile->asset_word_processing) ? $this->org_profile->asset_word_processing : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_word_processing' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_word_processing) ? $this->collection->asset_word_processing : 0) ?>" id="asset_word_processing" name="profile[asset_word_processing]" type="text" value="<?php echo (isset($this->collection->asset_word_processing) ? $this->collection->asset_word_processing : 0) ?>"/>
                     <span class="slider-feedback" id="asset_word_processing_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Spreadsheet</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_spreadsheet' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_spreadsheet) ? $this->org_profile->asset_spreadsheet : 0) ?>" id="asset_spreadsheet" name="profile[asset_spreadsheet]" type="text" value="<?php echo (isset($this->org_profile->asset_spreadsheet) ? $this->org_profile->asset_spreadsheet : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_spreadsheet' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_spreadsheet) ? $this->collection->asset_spreadsheet : 0) ?>" id="asset_spreadsheet" name="profile[asset_spreadsheet]" type="text" value="<?php echo (isset($this->collection->asset_spreadsheet) ? $this->collection->asset_spreadsheet : 0) ?>"/>
                     <span class="slider-feedback" id="asset_spreadsheet_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Graphics</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_graphics' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_graphics) ? $this->org_profile->asset_graphics : 0) ?>" id="asset_graphics" name="profile[asset_graphics]" type="text" value="<?php echo (isset($this->org_profile->asset_graphics) ? $this->org_profile->asset_graphics : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_graphics' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_graphics) ? $this->collection->asset_graphics : 0) ?>" id="asset_graphics" name="profile[asset_graphics]" type="text" value="<?php echo (isset($this->collection->asset_graphics) ? $this->collection->asset_graphics : 0) ?>"/>
                     <span class="slider-feedback" id="asset_graphics_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Audio</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_audio' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_audio) ? $this->org_profile->asset_audio : 0) ?>" id="asset_audio" name="profile[asset_audio]" type="text" value="<?php echo (isset($this->org_profile->asset_audio) ? $this->org_profile->asset_audio : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_audio' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_audio) ? $this->collection->asset_audio : 0) ?>" id="asset_audio" name="profile[asset_audio]" type="text" value="<?php echo (isset($this->collection->asset_audio) ? $this->collection->asset_audio : 0) ?>"/>
                     <span class="slider-feedback" id="asset_audio_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Video</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_video' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_video) ? $this->org_profile->asset_video : 0) ?>" id="asset_video" name="profile[asset_video]" type="text" value="<?php echo (isset($this->org_profile->asset_video) ? $this->org_profile->asset_video : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_video' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_video) ? $this->collection->asset_video : 0) ?>" id="asset_video" name="profile[asset_video]" type="text" value="<?php echo (isset($this->collection->asset_video) ? $this->collection->asset_video : 0) ?>"/>
                     <span class="slider-feedback" id="asset_video_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Hypertext</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_hypertext' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_hypertext) ? $this->org_profile->asset_hypertext : 0) ?>" id="asset_hypertext" name="profile[asset_hypertext]" type="text" value="<?php echo (isset($this->org_profile->asset_hypertext) ? $this->org_profile->asset_hypertext : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_hypertext' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_hypertext) ? $this->collection->asset_hypertext : 0) ?>" id="asset_hypertext" name="profile[asset_hypertext]" type="text" value="<?php echo (isset($this->collection->asset_hypertext) ? $this->collection->asset_hypertext : 0) ?>"/>
                     <span class="slider-feedback" id="asset_hypertext_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Geodata</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_geodata' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_geodata) ? $this->org_profile->asset_geodata : 0) ?>" id="asset_geodata" name="profile[asset_geodata]" type="text" value="<?php echo (isset($this->org_profile->asset_geodata) ? $this->org_profile->asset_geodata : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_geodata' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_geodata) ? $this->collection->asset_geodata : 0) ?>" id="asset_geodata" name="profile[asset_geodata]" type="text" value="<?php echo (isset($this->collection->asset_geodata) ? $this->collection->asset_geodata : 0) ?>"/>
                     <span class="slider-feedback" id="asset_geodata_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">E-mail</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_email' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_email) ? $this->org_profile->asset_email : 0) ?>" id="asset_email" name="profile[asset_email]" type="text" value="<?php echo (isset($this->org_profile->asset_email) ? $this->org_profile->asset_email : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_email' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_email) ? $this->collection->asset_email : 0) ?>" id="asset_email" name="profile[asset_email]" type="text" value="<?php echo (isset($this->collection->asset_email) ? $this->collection->asset_email : 0) ?>"/>
                     <span class="slider-feedback" id="asset_email_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Database</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_database' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_database) ? $this->org_profile->asset_database : 0) ?>" id="asset_database" name="profile[asset_database]" type="text" value="<?php echo (isset($this->org_profile->asset_database) ? $this->org_profile->asset_database : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_database' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_database) ? $this->collection->asset_database : 0) ?>" id="asset_database" name="profile[asset_database]" type="text" value="<?php echo (isset($this->collection->asset_database) ? $this->collection->asset_database : 0) ?>"/>
                     <span class="slider-feedback" id="asset_database_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="collection_data_volume">Research data</label>
                 <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_research_data' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->org_profile->asset_research_data) ? $this->org_profile->asset_research_data : 0) ?>" id="asset_research_data" name="profile[asset_research_data]" type="text" value="<?php echo (isset($this->org_profile->asset_research_data) ? $this->org_profile->asset_research_data : 0) ?>"/>
+                    <input class="slider" data-slider-id='asset_research_data' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->collection->asset_research_data) ? $this->collection->asset_research_data : 0) ?>" id="asset_research_data" name="profile[asset_research_data]" type="text" value="<?php echo (isset($this->collection->asset_research_data) ? $this->collection->asset_research_data : 0) ?>"/>
                     <span class="slider-feedback" id="asset_research_data_feedback"></span>
                 </div>
             </div>

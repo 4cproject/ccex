@@ -32,7 +32,7 @@ class CCExModelsCurrency extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('c.currency_id, c.name');
+    $query->select('c.currency_id, c.name, c.symbol');
     $query->from('#__ccex_currencies as c');
 
     return $query;
