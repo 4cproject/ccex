@@ -30,46 +30,66 @@ $(document).ready(function() {
     });
 });
 
-function createCost() {
-    if (!$('#costForm').validate().form()) {
-        $("#_message_container").hide();
-        $("#_message_container").removeClass("alert-success");
-        $("#_message_container").removeClass("alert-danger");
-        $("#_message_container").addClass("alert-danger");
+function updateCost(redirect_url) {
+    saveCost(redirect_url, 'edit');
+}
 
-        $("#_message_container #_message").text("Error saving cost");
-        $("#_message_container #_description").text("Please check errors");
-        $("#_message_container").show();
+function createCost(redirect_url) {
+    saveCost(redirect_url, 'add');
+}
 
+function saveCost(redirect_url, controller) {
+    if (!validateCostForm()) {
         return;
     }
-
     var costInfo = {};
 
     $("#_message_container").hide();
-    $("#_message_container #_description").text("");
-    $("#_message_container #_message").text("");
+    $("#_message_container").children().empty();
 
     $("#costForm :input").each(function(idx, ele) {
         costInfo[jQuery(ele).attr('name')] = jQuery(ele).val();
     });
 
     $.ajax({
-        url: 'index.php?option=com_ccex&controller=add&format=raw&tmpl=component',
+        url: 'index.php?option=com_ccex&controller=' + controller + '&format=raw&model=Cost&view=Cost&layout=' + controller,
         type: 'POST',
         data: costInfo,
         dataType: 'JSON',
         success: function(data) {
-            $("#_message_container").removeClass("alert-success");
-            $("#_message_container").removeClass("alert-danger");
+            $("#_message_container").removeClass("alert-success alert-danger");
+
             if (data.success) {
                 $("#_message_container").addClass("alert-success");
             } else {
                 $("#_message_container").addClass("alert-danger");
                 $("#_message_container #_description").text("Please check errors");
             }
+
             $("#_message_container #_message").text(data.message);
             $("#_message_container").show();
+
+            if (redirect_url) {
+                var delay = 700;
+                setTimeout(function() {
+                    window.location.href = redirect_url;
+                }, delay);
+            }
         }
     });
+}
+
+function validateCostForm() {
+    if (!$('#costForm').validate().form()) {
+        $("#_message_container").hide();
+        $("#_message_container").removeClass("alert-success alert-danger");
+        $("#_message_container").addClass("alert-danger");
+
+        $("#_message_container #_message").text("Error saving cost");
+        $("#_message_container #_description").text("Please check errors");
+        $("#_message_container").show();
+
+        return false;
+    }
+    return true;
 }

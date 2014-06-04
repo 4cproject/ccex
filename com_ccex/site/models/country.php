@@ -13,7 +13,7 @@ class CCExModelsCountry extends CCExModelsDefault {
 
   function __construct() {
     $app = JFactory::getApplication();
-    $this->_country_id = $app->input->get('id', null);
+    $this->_country_id = $app->input->get('country_id', null);
     
     parent::__construct();       
   }
@@ -21,7 +21,9 @@ class CCExModelsCountry extends CCExModelsDefault {
   public function getItem() {
     $country = parent::getItem();
 
-    return CCExHelpersCast::cast('CCExModelsCountry', $country);
+    if($country){
+      return CCExHelpersCast::cast('CCExModelsCountry', $country);
+    }
   }
  
   /**

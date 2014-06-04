@@ -15,8 +15,7 @@ class CCExModelsCost extends CCExModelsDefault {
   function __construct() {
     $app = JFactory::getApplication();
 
-    $this->_cost_id = $app->input->get('id', null);
-    $this->_user_id = JFactory::getUser()->id;
+    $this->_cost_id = $app->input->get('cost_id', null);
     
     parent::__construct();       
   }
@@ -24,7 +23,9 @@ class CCExModelsCost extends CCExModelsDefault {
   public function getItem() {
     $cost = parent::getItem();
 
-    return CCExHelpersCast::cast('CCExModelsCost', $cost);
+    if($cost){
+      return CCExHelpersCast::cast('CCExModelsCost', $cost);
+    }
   }
 
   /**
@@ -77,21 +78,8 @@ class CCExModelsCost extends CCExModelsDefault {
     return $this->listItems();
   }
 
-  public function formattedCostwithCurrency() {
-    return sprintf('%s %s', $this->formattedCost(), $this->Collection()->organization()->currency()->symbol);
-  }
-
   public function formattedCost() {
-    $number = sprintf('%.2f', $this->cost);  
-    while (true) { 
-        $replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1,$2', $number); 
-        if ($replaced != $number) { 
-            $number = $replaced; 
-        } else { 
-            break; 
-        } 
-    } 
-    return $number; 
+    return CCExHelpersTag::formatCurrencyWithSymbol($this->cost, $this->Collection()->organization()->currency()->symbol);
   }
 
   public function collection() {
@@ -102,4 +90,11 @@ class CCExModelsCost extends CCExModelsDefault {
     return $collection;
   }
 
+  public function costPerGB(){
+    return $this->cost / collection()->dataVolume;
+  }
+
+  public function formattedCostPerGB() {
+    return CCExHelpersTag::formatCurrencyWithSymbol(costPerGB(), $this->Collection()->organization()->currency()->symbol);
+  }
 }

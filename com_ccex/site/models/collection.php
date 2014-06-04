@@ -13,7 +13,7 @@ class CCExModelsCollection extends CCExModelsDefault {
 
   function __construct() {
     $app = JFactory::getApplication();
-    $this->_collection_id = $app->input->get('id', null);
+    $this->_collection_id = $app->input->get('collection_id', null);
     
     parent::__construct();       
   }
@@ -21,7 +21,9 @@ class CCExModelsCollection extends CCExModelsDefault {
   public function getItem() {
     $collection = parent::getItem();
 
-    return CCExHelpersCast::cast('CCExModelsCollection', $collection);
+    if($collection){
+      return CCExHelpersCast::cast('CCExModelsCollection', $collection);
+    }
   }
  
   /**

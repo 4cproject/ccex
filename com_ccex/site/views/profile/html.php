@@ -20,10 +20,10 @@ class CCExViewsProfileHtml extends JViewHtml {
         $this->orgTypes = $orgTypeModel->listItems();
         $this->currencies = $currencyModel->listItems();
         $this->countries = $countryModel->listItems();
-      break;
+        break;
 
       default:
-      break;
+        break;
 
     }
 

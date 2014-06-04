@@ -15,13 +15,21 @@ class CCExViewsCostHtml extends JViewHtml {
 
       case "index":
         $this->costs = $organization->collection()->costs();
+        break;
       case "add":
-        $this->currency = $organization->currency();
-        $this->collection = $organization->collection();
-      break;
+        $this->_formView = CCExHelpersView::load('Cost','_form','phtml');
+        $this->_formView->currency = $organization->currency();
+        $this->_formView->collection = $organization->collection();
+        break;
+      case "edit":
+        $this->_formView = CCExHelpersView::load('Cost','_form','phtml');
+        $this->_formView->cost = $costModel->getItem();
+        $this->_formView->currency = $organization->currency();
+        $this->_formView->collection = $organization->collection();
+        break;
 
       default:
-      break;
+        break;
 
     }
 

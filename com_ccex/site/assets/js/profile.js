@@ -51,25 +51,19 @@ function changeOrganizationTpe() {
     }
 }
 
-function updateProfile() {
-    if (!$('#profileForm').validate().form()) {
-        $("#_message_container").hide();
-        $("#_message_container").removeClass("alert-success");
-        $("#_message_container").removeClass("alert-danger");
-        $("#_message_container").addClass("alert-danger");
+function updateProfile(redirect_url) {
+    saveProfile(redirect_url, 'edit');
+}
 
-        $("#_message_container #_message").text("Error saving profile");
-        $("#_message_container #_description").text("Please check errors");
-        $("#_message_container").show();
-
+function saveProfile(redirect_url, controller) {
+    if (!validateProfileForm()) {
         return;
     }
 
     var profileInfo = {};
 
     $("#_message_container").hide();
-    $("#_message_container #_description").text("");
-    $("#_message_container #_message").text("");
+    $("#_message_container").children().empty();
 
     $("#profileForm :input").each(function(idx, ele) {
         profileInfo[jQuery(ele).attr('name')] = jQuery(ele).val();
@@ -91,21 +85,44 @@ function updateProfile() {
     profileInfo['organization[share_data]'] = $('input[name="organization[share_data]"]:checked').val();
 
     $.ajax({
-        url: 'index.php?option=com_ccex&controller=edit&format=raw&tmpl=component',
+        url: 'index.php?option=com_ccex&controller=' + controller + '&format=raw&model=Profile&view=Profile&layout=' + controller,
         type: 'POST',
         data: profileInfo,
         dataType: 'JSON',
         success: function(data) {
-            $("#_message_container").removeClass("alert-success");
-            $("#_message_container").removeClass("alert-danger");
+            $("#_message_container").removeClass("alert-success alert-danger");
+
             if (data.success) {
                 $("#_message_container").addClass("alert-success");
             } else {
                 $("#_message_container").addClass("alert-danger");
                 $("#_message_container #_description").text("Please check errors");
             }
+
             $("#_message_container #_message").text(data.message);
             $("#_message_container").show();
+
+            if (redirect_url) {
+                var delay = 700;
+                setTimeout(function() {
+                    window.location.href = redirect_url;
+                }, delay);
+            }
         }
     });
+}
+
+function validateProfileForm() {
+    if (!$('#profileForm').validate().form()) {
+        $("#_message_container").hide();
+        $("#_message_container").removeClass("alert-success alert-danger");
+        $("#_message_container").addClass("alert-danger");
+
+        $("#_message_container #_message").text("Error saving profile");
+        $("#_message_container #_description").text("Please check errors");
+        $("#_message_container").show();
+
+        return false;
+    }
+    return true;
 }

@@ -13,7 +13,7 @@ class CCExModelsCurrency extends CCExModelsDefault {
 
   function __construct() {
     $app = JFactory::getApplication();
-    $this->_currency_id = $app->input->get('id', null);
+    $this->_currency_id = $app->input->get('currency_id', null);
     
     parent::__construct();       
   }
@@ -21,7 +21,9 @@ class CCExModelsCurrency extends CCExModelsDefault {
   public function getItem() {
     $currency = parent::getItem();
 
-    return CCExHelpersCast::cast('CCExModelsCurrency', $currency);
+    if($currency){
+      return CCExHelpersCast::cast('CCExModelsCurrency', $currency);
+    }
   }
 
   /**

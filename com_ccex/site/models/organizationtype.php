@@ -13,7 +13,7 @@ class CCExModelsOrganizationtype extends CCExModelsDefault {
 
   function __construct() {
     $app = JFactory::getApplication();
-    $this->_org_type_id = $app->input->get('id', null);
+    $this->_org_type_id = $app->input->get('org_type_id', null);
     
     parent::__construct();       
   }
@@ -21,7 +21,9 @@ class CCExModelsOrganizationtype extends CCExModelsDefault {
   public function getItem() {
     $organizationType = parent::getItem();
 
-    return $organizationType;
+    if($organizationType){
+      return CCExHelpersCast::cast('CCExModelsOrganizationtype', $organizationType);
+    }
   }
  
   /**

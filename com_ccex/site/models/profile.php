@@ -22,7 +22,9 @@ class CCExModelsProfile extends CCExModelsDefault {
   public function getItem() {
     $profile = parent::getItem();
 
-    return CCExHelpersCast::cast('CCExModelsProfile', $profile);
+    if($profile){
+      return CCExHelpersCast::cast('CCExModelsProfile', $profile);
+    }
   }
 
   /**
