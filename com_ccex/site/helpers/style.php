@@ -7,6 +7,6 @@ class CCExHelpersStyle {
 		$document = JFactory::getDocument();
 
 		//javascripts
-		$document->addStylesheet(JURI::base().'components/com_ccex/assets/css/profile.css');
+		$document->addStylesheet(JURI::base().'components/com_ccex/assets/css/form.css');
 	}
 }

@@ -93,4 +93,57 @@ class CCExModelsCollection extends CCExModelsDefault {
 
     return $costs;
   }
+
+  public function sumCosts() {
+    $sum = 0;
+    foreach ($this->costs() as $cost) {
+      $sum += $cost->cost;
+    }
+
+    return $sum;
+  }
+
+  public function formattedSumCosts() {
+    return CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->organization()->currency()->symbol);
+  }
+
+  public function sumCostsPerGB() {
+    return $this->sumCosts() / $this->data_volume;
+  }
+
+  public function formattedSumCostsPerGB() {
+    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGB(), $this->organization()->currency()->symbol));
+  }
+
+  public function percentageActivityMapping(){
+    $sum = 0;
+    $size = 0;
+    foreach ($this->costs() as $cost) {
+      $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
+      $sum += $cost->percentageActivityMapping();
+      $size++;
+    }
+
+    if($size){
+      return intval($sum/$size);
+    }else{
+      return 0;
+    }
+  }
+
+  public function percentageFinancialAccountingMapping(){
+    $sum = 0;
+    $size = 0;
+    foreach ($this->costs() as $cost) {
+      $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
+      $sum += $cost->percentageFinancialAccountingMapping();
+      $size++;
+    }
+
+    if($size){
+      return intval($sum/$size);
+    }else{
+      return 0;
+    }
+  }
 }

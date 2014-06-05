@@ -91,10 +91,19 @@ class CCExModelsCost extends CCExModelsDefault {
   }
 
   public function costPerGB(){
-    return $this->cost / collection()->dataVolume;
+    return $this->cost / $this->collection()->data_volume;
   }
 
   public function formattedCostPerGB() {
-    return CCExHelpersTag::formatCurrencyWithSymbol(costPerGB(), $this->Collection()->organization()->currency()->symbol);
+    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGB(), $this->Collection()->organization()->currency()->symbol));
   }
+
+  public function percentageActivityMapping(){
+    return $this->cat_hardware + $this->cat_software + $this->cat_external + $this->cat_producer + $this->cat_it_developer + $this->cat_support + $this->cat_analyst + $this->cat_manager + $this->cat_overhead;
+  }
+
+  public function percentageFinancialAccountingMapping(){
+    return $this->cat_production + $this->cat_ingest + $this->cat_storage + $this->cat_access;
+  }
+
 }

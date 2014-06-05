@@ -16,9 +16,16 @@ class CCExControllersDefault extends JControllerBase{
     // Get the document object.
     $document     = JFactory::getDocument();
  
-    $viewName     = $app->input->getWord('view', 'profile');
+    $viewName     = $app->input->getWord('view', 'comparecosts');
     $viewFormat   = $document->getType();
-    $layoutName   = $app->input->getWord('layout', 'edit');
+    $layoutName   = $app->input->getWord('layout', 'index');
+
+
+    $userModel = new CCExModelsUser();
+    if ($viewName == 'comparecosts' && $layoutName == 'index' && !$userModel->organization()) {
+        $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
+        $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
+    }
 
     $app->input->set('view', $viewName);
  

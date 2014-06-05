@@ -59,6 +59,23 @@ class CCExModelsOrganization extends CCExModelsDefault {
     return $query;
   }
 
+  public function store($data=null) {    
+    $data = $data ? $data : JRequest::get('post');
+    $date = date("Y-m-d H:i:s");
+    $userModel = new CCExModelsUser();
+
+    $data['organization']['user_id'] = $userModel->_user_id;
+
+    $row_organization = JTable::getInstance('organization','Table');
+    if (!$row_organization->bind($data['organization'])){ return false; }
+
+    $row_organization->modified = $date;
+    if (!$row_organization->check()){ return false; }
+    if (!$row_organization->store()){ return false; }
+
+    return true;
+  }
+
   public function currency() {
     $currencyModel = new CCExModelsCurrency();
     $currency = $currencyModel->getItemBy('_currency_id', $this->currency_id);

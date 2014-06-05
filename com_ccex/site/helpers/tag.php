@@ -19,4 +19,8 @@ class CCExHelpersTag {
 	function formatCurrencyWithSymbol($value, $symbol) {
 	    return sprintf('%s %s', CCExHelpersTag::formatCurrency($value), $symbol);
 	}	
+
+	function formatWithSymbol($value, $symbol) {
+	    return sprintf('%s %s', $value, $symbol);
+	}		
 }

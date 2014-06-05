@@ -17,9 +17,9 @@
 			<tr>
 				<td><?php echo $cost->name ?></td>
 				<td class="text-right"><?php echo $cost->formattedCost() ?></td>
-				<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes">1.4 €/GB</td>
-				<td class="text-right">100% mapped</td>
-				<td class="text-right">50% mapped</td>
+				<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes"><?php echo $cost->formattedCostPerGB() ?></td>
+				<td class="text-right"><?php echo $cost->percentageActivityMapping() ?>% mapped</td>
+				<td class="text-right"><?php echo $cost->percentageFinancialAccountingMapping() ?>% mapped</td>
 				<td class="text-right"><a href="<?php echo JRoute::_('index.php?option=com_ccex&view=cost&layout=edit&cost_id=' . $cost->cost_id) ?>"><span class="glyphicon glyphicon-edit"></span></a></td>
 			</tr>
         <?php } ?>
@@ -27,10 +27,10 @@
 	<tfoot>
 		<tr style="color: #999">
 			<td></td>
-			<td class="text-right">16,200.00 €</td>
-			<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes">1.64 €/GB</td>
-			<td class="text-right">100% mapped</td>
-			<td class="text-right danger">50% mapped</td>
+			<td class="text-right"><?php echo $this->collection->formattedSumCosts() ?></td>
+			<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes"><?php echo $this->collection->formattedSumCostsPerGB() ?></td>
+			<td class="text-right <?php if($this->collection->percentageActivityMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->collection->percentageActivityMapping() ?>% mapped</td>
+			<td class="text-right <?php if($this->collection->percentageFinancialAccountingMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->collection->percentageFinancialAccountingMapping() ?>% mapped</td>
 			<td class="text-right"></td>
 		</tr>
 	</tfoot>

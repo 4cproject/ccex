@@ -14,6 +14,7 @@ class CCExViewsCostHtml extends JViewHtml {
     switch($layout) {
 
       case "index":
+        $this->collection = $organization->collection();
         $this->costs = $organization->collection()->costs();
         break;
       case "add":
