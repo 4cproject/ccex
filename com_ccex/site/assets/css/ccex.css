@@ -1,0 +1,11 @@
+.dl-org-info.dl-horizontal > dd:after {
+    display: table;
+    content:"";
+    clear: both;
+}
+.dl-org-info.dl-horizontal dd {
+    margin-left: 220px;
+}
+.dl-org-info.dl-horizontal dt {
+    width: 200px;
+}

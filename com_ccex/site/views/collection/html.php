@@ -1,12 +1,14 @@
 <?php  // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class CCExViewsComparecostsHtml extends JViewHtml {
+class CCExViewsCollectionHtml extends JViewHtml {
   function render() {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
 
+    $collectionModel = new CCExModelsCollection();
     $userModel = new CCExModelsUser();
+
     $organization = $userModel->organization();
 
     if (!$organization) {
@@ -15,9 +17,17 @@ class CCExViewsComparecostsHtml extends JViewHtml {
     }
 
     switch($layout) {
-      case "index":
-        $this->_showOrganization = CCExHelpersView::load('Organization','_show','phtml');
-        $this->_showOrganization->organization = $organization;
+      case "add":
+          $this->_formView = CCExHelpersView::load('Collection','_form','phtml');
+
+          $this->_formView->collection = $collectionModel;
+          $this->_formView->organization = $organization;
+        break;
+      case "edit":
+          $this->_formView = CCExHelpersView::load('Collection','_form','phtml');
+
+          $this->_formView->collection = $collectionModel->getItem();
+          $this->_formView->organization = $organization;
         break;
 
       default:

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `#__ccex_organization_org_types`;
 DROP TABLE IF EXISTS `#__ccex_organization_types`;
 DROP TABLE IF EXISTS `#__ccex_collections`;
 DROP TABLE IF EXISTS `#__ccex_organizations`;
@@ -9,7 +10,6 @@ CREATE TABLE `#__ccex_organizations` (
   `organization_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `org_type_id` int(11) NOT NULL,
   `other_org_type` varchar(255),
   `description` text,
   `country_id` int(11) NOT NULL,
@@ -35,6 +35,18 @@ CREATE TABLE `#__ccex_organization_types` (
   `modified` timestamp NOT NULL,
 
   PRIMARY KEY (`org_type_id`)
+);
+
+CREATE TABLE `#__ccex_organization_org_types` (
+  `organization_org_type_id` int(11) NOT NULL AUTO_INCREMENT,
+
+  `org_type_id` int(11) NOT NULL,
+  `organization_id` int(11) NOT NULL,
+
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL,
+
+  PRIMARY KEY (`organization_org_type_id`)
 );
 
 CREATE TABLE `#__ccex_collections` (

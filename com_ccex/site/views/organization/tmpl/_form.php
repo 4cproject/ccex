@@ -101,7 +101,7 @@
             <?php if(isset($this->organization->organization_id)){ ?>
                 <input type="hidden" name="organization[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
             <?php } ?>
-            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->organization->organization_id)){ echo 'ccexUpdate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; }else{ echo 'ccexCreate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; } ?>">Save Profile</span></a>
+            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->organization->organization_id)){ echo 'ccexUpdate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; }else{ echo 'ccexCreate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; } ?>">Save</span></a>
         </div>
         <?php if(isset($this->organization->organization_id)){ ?>
             <div class="col-sm-2">

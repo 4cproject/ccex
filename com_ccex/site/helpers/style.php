@@ -8,5 +8,6 @@ class CCExHelpersStyle {
 
 		//javascripts
 		$document->addStylesheet(JURI::base().'components/com_ccex/assets/css/form.css');
+		$document->addStylesheet(JURI::base().'components/com_ccex/assets/css/ccex.css');
 	}
 }

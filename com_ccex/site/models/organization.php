@@ -120,4 +120,11 @@ class CCExModelsOrganization extends CCExModelsDefault {
     return $collection;
   }
 
+  public function country() {
+    $countryModel = new CCExModelsCountry();
+    $country = $countryModel->getItemBy('_country_id', $this->country_id);
+    
+    return $country;
+  }
+
 }

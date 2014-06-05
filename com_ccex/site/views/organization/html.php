@@ -7,6 +7,7 @@ class CCExViewsOrganizationHtml extends JViewHtml {
     $layout = $app->input->get('layout');
 
     $userModel = new CCExModelsUser();
+    $organizationModel = new CCExModelsOrganization();
     $orgTypeModel = new CCExModelsOrganizationtype();
     $currencyModel = new CCExModelsCurrency();
     $countryModel = new CCExModelsCountry();
@@ -15,13 +16,20 @@ class CCExViewsOrganizationHtml extends JViewHtml {
       case "add":
           $this->_formView = CCExHelpersView::load('Organization','_form','phtml');
 
-          $this->_formView->organization = new CCExModelsOrganization();
+          $this->_formView->organization = $organizationModel;
 
           $this->_formView->orgTypes = $orgTypeModel->listItems();
           $this->_formView->currencies = $currencyModel->listItems();
           $this->_formView->countries = $countryModel->listItems();
         break;
       case "edit":
+          $this->_formView = CCExHelpersView::load('Organization','_form','phtml');
+
+          $this->_formView->organization = $organizationModel->getItem();
+
+          $this->_formView->orgTypes = $orgTypeModel->listItems();
+          $this->_formView->currencies = $currencyModel->listItems();
+          $this->_formView->countries = $countryModel->listItems();
         break;
 
       default:
