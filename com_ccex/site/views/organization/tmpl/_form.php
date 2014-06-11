@@ -7,23 +7,6 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="organization_type">Type</label>
-        <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="If there is not a perfect match between your organisation and one of the options, similar is sufficient.">
-            <select class="form-control" id="organization_type" name="organization[org_type_id]" onChange="changeOrganizationTpe()">
-                <?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
-                <option <?php if($this->orgTypes[$i]->name == $this->organization->organizationTypeOrOther()->name){ echo "selected=\"true\""; }?> value="<?php echo $this->orgTypes[$i]->org_type_id; ?>"><?php echo $this->orgTypes[$i]->name; ?></option>
-                <?php } ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group has-feedback" id="organisation_type_other_container" <?php if($this->organization->organizationTypeOrOther()->name != "Other"){ echo "style=\"display: none;\""; } ?>>
-        <label class="col-sm-2 control-label" for="organisation_type_other">Other type</label>
-        <div class="col-sm-10">
-            <input <?php if(isset($this->organization->other_org_type)){ echo "value=\"" . $this->organization->other_org_type . "\""; }?> class="form-control" id="organisation_type_other" name="organization[other_org_type]" type="text" >
-            <span class="glyphicon glyphicon-info-sign form-control-feedback" data-container="body" data-placement="right" data-toggle='tooltip' title="If you select 'Other' on the dropdown above, describe your organisation type here."></span>
-        </div>
-    </div>
-    <div class="form-group">
         <label class="col-sm-2 control-label" for="organisation_description">Description, purpose and mission</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="organisation_description" name="organization[description]" rows="3" type="text"><?php if(isset($this->organization->description)){ echo $this->organization->description; }?></textarea>
@@ -49,13 +32,35 @@
             </select>
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="organization_type">Type</label>
+        <div class="col-sm-10">
+            <?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
+                <div class="col-sm-3">
+                    <div class="checkbox">
+                        <label>
+                          <input class="org-type-checkbox" <?php if(isset($this->organization->organization_id) && $this->organization->isOfType($this->orgTypes[$i]->org_type_id)){ echo 'checked'; } ?> type="checkbox" name="org_type[]" value="<?php echo $this->orgTypes[$i]->org_type_id; ?>">
+                            <?php echo $this->orgTypes[$i]->name ?>
+                        </label>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="form-group has-feedback" id="organisation_type_other_container" <?php if(!$this->organization->haveOtherType()){ echo "style=\"display: none;\""; } ?>>
+        <label class="col-sm-2 control-label" for="organisation_type_other">Other type</label>
+        <div class="col-sm-10">
+            <input <?php if(isset($this->organization->other_org_type)){ echo "value=\"" . $this->organization->other_org_type . "\""; }?> class="form-control" id="organisation_type_other" name="organization[other_org_type]" type="text" >
+            <span class="glyphicon glyphicon-info-sign form-control-feedback" data-container="body" data-placement="right" data-toggle='tooltip' title="If you select 'Other', describe your organisation type here."></span>
+        </div>
+    </div>
     <br/>
     <h2>Information sharing</h2>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
-                    <input name="organization[linked_data_provider]" <?php echo (isset($this->organization->linked_data_provider) && $this->organization->linked_data_provider ? 'checked="true"' : '') ?> type="checkbox"> Allow my organisation to be listed as a data provider
+                    <input name="organization[linked_data_provider]" <?php echo (isset($this->organization->linked_data_provider) && $this->organization->linked_data_provider ? 'checked="true"' : '') ?> type="checkbox" value="1"> Allow my organisation to be listed as a data provider
                 </label>
             </div>
         </div>
@@ -64,7 +69,7 @@
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
-                    <input name="organization[linked_cost_data]" <?php echo (isset($this->organization->linked_cost_data) && $this->organization->linked_cost_data ? 'checked="true"' : '') ?> type="checkbox"> Allow my organisation to be linked to the cost data I provide
+                    <input name="organization[linked_cost_data]" <?php echo (isset($this->organization->linked_cost_data) && $this->organization->linked_cost_data ? 'checked="true"' : '') ?> type="checkbox" value="1"> Allow my organisation to be linked to the cost data I provide
                 </label>
             </div>
         </div>

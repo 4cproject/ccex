@@ -34,7 +34,7 @@ class CCExModelsCollection extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('p.collection_id, p.organization_id, p.data_volume, p.number_copies, p.asset_unformatted_text, p.asset_word_processing, p.asset_spreadsheet, p.asset_graphics, p.asset_audio, p.asset_video, p.asset_hypertext, p.asset_geodata, p.asset_email, p.asset_database, p.asset_research_data, p.scope, p.staff_min_size, p.staff_max_size');
+    $query->select('p.collection_id, p.organization_id, p.name, p.description, p.data_volume, p.number_copies, p.asset_unformatted_text, p.asset_word_processing, p.asset_spreadsheet, p.asset_graphics, p.asset_audio, p.asset_video, p.asset_hypertext, p.asset_geodata, p.asset_email, p.asset_database, p.asset_research_data, p.scope, p.staff_min_size, p.staff_max_size');
     $query->from('#__ccex_collections as p');
 
     return $query;

@@ -6,7 +6,8 @@ $(document).ready(function() {
                 blank: false
             },
             'organization[other_org_type]': {
-                required: requiredOrganizationType()
+                required: requiredOrganizationType(),
+                blank: blankOrganizationType(),
             }
         },
         highlight: function(element) {
@@ -25,24 +26,29 @@ $(document).ready(function() {
             }
         }
     });
+
+    $('.org-type-checkbox:checkbox').change(function() {
+        var org_type_name = $(this)[0].nextSibling.nodeValue.trim();
+        if (org_type_name == "Other") {
+            if ($(this).is(':checked')) {
+                $("#organisation_type_other_container").show();
+            } else {
+                $("#organisation_type_other_container").hide();
+            }
+        }
+    });
 });
 
 function requiredOrganizationType() {
-    var org_type_name = $("#organization_type option:selected").text();
-    if (org_type_name == "Other") {
+    if ($("#organisation_type_other_container").is(":visible")) {
         return true;
     } else {
         return false;
     }
 }
 
-function changeOrganizationTpe() {
-    var org_type_name = $("#organization_type option:selected").text();
-    if (org_type_name == "Other") {
-        $("#organisation_type_other_container").show();
-    } else {
-        $("#organisation_type_other_container").hide();
-    }
+function blankOrganizationType() {
+    return !requiredOrganizationType();
 }
 
 function ccexSaveOrganization(info) {
@@ -57,9 +63,6 @@ function ccexSaveOrganization(info) {
     } else {
         info['organization[linked_data_provider]'] = 0;
     }
-
-    info['organization[share_information]'] = $('input[name="organization[share_information]"]:checked').val();
-    info['organization[share_data]'] = $('input[name="organization[share_data]"]:checked').val();
 
     return info;
 }

@@ -63,12 +63,12 @@ class CCExModelsCost extends CCExModelsDefault {
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
-    $row_organization = JTable::getInstance('cost','Table');
-    if (!$row_organization->bind($data['cost'])){ return false; }
+    $row_cost = JTable::getInstance('cost','Table');
+    if (!$row_cost->bind($data['cost'])){ return false; }
 
-    $row_organization->modified = $date;
-    if (!$row_organization->check()){ return false; }
-    if (!$row_organization->store()){ return false; }
+    $row_cost->modified = $date;
+    if (!$row_cost->check()){ return false; }
+    if (!$row_cost->store()){ return false; }
     
     return true;
   }

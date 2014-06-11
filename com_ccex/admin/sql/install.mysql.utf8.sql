@@ -52,6 +52,8 @@ CREATE TABLE `#__ccex_organization_org_types` (
 CREATE TABLE `#__ccex_collections` (
   `collection_id` int(11) NOT NULL AUTO_INCREMENT,
   `organization_id` int(11) NOT NULL,
+  `ǹame` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(255) NOT NULL DEFAULT '',
   `data_volume` int(11) NOT NULL DEFAULT 0,
   `number_copies` int(11) NOT NULL DEFAULT 0,
 
@@ -127,7 +129,7 @@ CREATE TABLE `#__ccex_currencies` (
   PRIMARY KEY (`currency_id`)
 );
 
-INSERT INTO `#__ccex_organization_types` (`name`) VALUES ('Big data science'), ('Industry'), ('Other');
+INSERT INTO `#__ccex_organization_types` (`name`) VALUES ('Big data science'), ('Industry'), ('University'), ('Memory institution'), ('Government agency'), ('Other');
 INSERT INTO `#__ccex_countries` (`name`) VALUES ('Portugal'), ('Angola'), ('Spain');
 INSERT INTO `#__ccex_currencies` (`name`, `symbol`) VALUES ('Euro', '€'), ('Canadian dollar', '$');
 INSERT INTO `#__ccex_costs` (`name`, `cost`, `human_resources`, `collection_id`) VALUES ('Format migration', 14000, 10, 1), ('Format migration', 14000, 10, 2);

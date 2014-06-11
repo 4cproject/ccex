@@ -2,18 +2,6 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="organisation_name">Name</label>
         <div class="col-sm-10">
-            <input class="form-control" id="collection_name" name="collection[name]" type="text" value="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="collection_description">Description</label>
-        <div class="col-sm-10">
-            <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"></textarea>
-        </div>
-    </div>
-<!--     <div class="form-group">
-        <label class="col-sm-2 control-label" for="organisation_name">Name</label>
-        <div class="col-sm-10">
             <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo $this->collection->name; } ?>">
         </div>
     </div>
@@ -22,7 +10,7 @@
         <div class="col-sm-10">
             <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo $this->collection->description; }?></textarea>
         </div>
-    </div> -->
+    </div>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="collection_scope">Scope</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="You may not want to give cost information about the whole organisation, but just for a single department, project or even collection. Please describe the scope here.">

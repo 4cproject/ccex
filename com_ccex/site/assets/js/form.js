@@ -11,14 +11,11 @@ function ccexSave(model, action, redirect_url) {
         return;
     }
 
-    var info = {};
-
     $("#_message_container").hide();
     $("#_message_container").children().empty();
 
-    $("#" + model + "Form :input").each(function(idx, ele) {
-        info[jQuery(ele).attr('name')] = jQuery(ele).val();
-    });
+    var form = $("#" + model + "Form");
+    var info = form.serialize();
 
     if (typeof window["ccexSave" + capitalize(model)] != 'undefined') {
         info = window["ccexSave" + capitalize(model)](info);

@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
 	<li><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
-	<li class="active">Add profile</li>
+	<li class="active">Create profile</li>
 </ol>
 
 <h1>Profile</h1>
