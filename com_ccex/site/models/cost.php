@@ -7,7 +7,7 @@ class CCExModelsCost extends CCExModelsDefault {
   * Protected fields
   **/
   var $_user_id         = null;
-  var $_collection_id = null;
+  var $_interval_id = null;
   var $_cost_id         = null;
   var $_pagination      = null;
   var $_total           = null;
@@ -36,7 +36,7 @@ class CCExModelsCost extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('c.cost_id, c.collection_id, c.name, c.description, c.cost, c.human_resources, c.cat_hardware, c.cat_software, c.cat_external, c.cat_producer, c.cat_it_developer, c.cat_support, c.cat_analyst, c.cat_manager, c.cat_overhead, c.cat_production, c.cat_ingest, c.cat_storage, c.cat_access');
+    $query->select('c.cost_id, c.interval_id, c.name, c.description, c.cost, c.human_resources, c.cat_hardware, c.cat_software, c.cat_external, c.cat_producer, c.cat_it_developer, c.cat_support, c.cat_analyst, c.cat_manager, c.cat_overhead, c.cat_production, c.cat_ingest, c.cat_storage, c.cat_access');
     $query->from('#__ccex_costs as c');
 
     return $query;
@@ -51,8 +51,8 @@ class CCExModelsCost extends CCExModelsDefault {
     if(is_numeric($this->_cost_id)) {
       $query->where('c.cost_id = ' . (int) $this->_cost_id);
     }else{
-      if(is_numeric($this->_collection_id)) {
-        $query->where('c.collection_id = ' . (int) $this->_collection_id);
+      if(is_numeric($this->_interval_id)) {
+        $query->where('c.interval_id = ' . (int) $this->_interval_id);
       }
     }
 
@@ -73,29 +73,29 @@ class CCExModelsCost extends CCExModelsDefault {
     return true;
   }
 
-  public function listItemsByCollection($collection_id){
-    $this->set('_collection_id', $collection_id);
+  public function listItemsByInterval($interval_id){
+    $this->set('_interval_id', $interval_id);
     return $this->listItems();
   }
 
   public function formattedCost() {
-    return CCExHelpersTag::formatCurrencyWithSymbol($this->cost, $this->Collection()->organization()->currency()->symbol);
+    return CCExHelpersTag::formatCurrencyWithSymbol($this->cost, $this->interval()->organization()->currency()->symbol);
   }
 
-  public function collection() {
-    $collectionModel = new CCExModelsCollection();
-    $collectionModel->set('collection_id', $this->collection_id);
-    $collection = $collectionModel->getItem();
+  public function interval() {
+    $intervalModel = new CCExModelsInterval();
+    $intervalModel->set('interval_id', $this->interval_id);
+    $interval = $intervalModel->getItem();
     
-    return $collection;
+    return $interval;
   }
 
   public function costPerGB(){
-    return $this->cost / $this->collection()->data_volume;
+    return $this->cost / $this->interval()->data_volume;
   }
 
   public function formattedCostPerGB() {
-    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGB(), $this->Collection()->organization()->currency()->symbol));
+    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGB(), $this->interval()->organization()->currency()->symbol));
   }
 
   public function percentageActivityMapping(){

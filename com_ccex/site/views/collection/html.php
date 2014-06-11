@@ -22,12 +22,16 @@ class CCExViewsCollectionHtml extends JViewHtml {
 
           $this->_formView->collection = $collectionModel;
           $this->_formView->organization = $organization;
+
+          $this->_formView->_intervalFormView = CCExHelpersView::load('Interval','_form','phtml');
         break;
       case "edit":
           $this->_formView = CCExHelpersView::load('Collection','_form','phtml');
 
           $this->_formView->collection = $collectionModel->getItem();
           $this->_formView->organization = $organization;
+
+          $this->_formView->_intervalFormView = CCExHelpersView::load('Interval','_form','phtml');
         break;
 
       default:

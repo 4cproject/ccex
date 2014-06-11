@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `#__ccex_interval`;
 DROP TABLE IF EXISTS `#__ccex_organization_org_types`;
 DROP TABLE IF EXISTS `#__ccex_organization_types`;
 DROP TABLE IF EXISTS `#__ccex_profile_scopes`;

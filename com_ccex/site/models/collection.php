@@ -34,7 +34,7 @@ class CCExModelsCollection extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('p.collection_id, p.organization_id, p.name, p.description, p.data_volume, p.number_copies, p.asset_unformatted_text, p.asset_word_processing, p.asset_spreadsheet, p.asset_graphics, p.asset_audio, p.asset_video, p.asset_hypertext, p.asset_geodata, p.asset_email, p.asset_database, p.asset_research_data, p.scope, p.staff_min_size, p.staff_max_size');
+    $query->select('p.collection_id, p.organization_id, p.name, p.description, p.scope');
     $query->from('#__ccex_collections as p');
 
     return $query;
@@ -58,26 +58,18 @@ class CCExModelsCollection extends CCExModelsDefault {
     return $query;
   }
 
-  public function dataVolume(){
-    $result = new stdClass();
-    $result->format = "Gigabytes";
-    $result->value = 0;
+  public function store($data=null) {    
+    $data = $data ? $data : JRequest::get('post');
+    $date = date("Y-m-d H:i:s");
 
-    if(isset($this->data_volume)){
-      $datav = $this->data_volume;
+    $row_cost = JTable::getInstance('collection','Table');
+    if (!$row_cost->bind($data['collection'])){ return false; }
 
-      if($datav >= 1048576){
-        $result->format = "Petabytes";
-        $result->value = round($datav/1048576);
-      }elseif($datav >= 1024){
-        $result->format = "Terabytes";
-        $result->value = round($datav/1024);
-      }else{
-        $result->value = round($datav);
-      }
-    }
-
-    return $result;
+    $row_cost->modified = $date;
+    if (!$row_cost->check()){ return false; }
+    if (!$row_cost->store()){ return false; }
+    
+    return true;
   }
 
   public function organization() {
@@ -87,63 +79,36 @@ class CCExModelsCollection extends CCExModelsDefault {
     return $organization;
   }
 
-  public function costs() {
-    $costModel = new CCExModelsCost();
-    $costs = $costModel->listItemsBy('_collection_id', $this->collection_id);
+  public function intervals() {
+    $intervalModel = new CCExModelsInterval();
 
-    return $costs;
+    return $intervalModel->listItemsByCollection($this->_collection_id);
   }
 
-  public function sumCosts() {
-    $sum = 0;
-    foreach ($this->costs() as $cost) {
-      $sum += $cost->cost;
+  public function intervalsOrNewWithCurrentYear() {
+    $intervals = $this->intervals();
+
+    if(!$intervals){
+      $newInterval = new CCExModelsInterval();
+      $newInterval->set('collection_id', $this->_collection_id);
+      $newInterval->set('begin_year', date("Y"));
+
+      array_push($intervals, $newInterval);
+    }
+    
+    return $intervals;
+  }
+
+  public function activeInterval() {
+    $intervals = $this->intervalsOrNewWithCurrentYear();
+    $activeInterval = array_shift($intervals);
+
+    foreach ($intervals as $interval) {
+      if($interval->begin_year > $activeInterval->begin_year){
+        $activeInterval = $interval;
+      }
     }
 
-    return $sum;
-  }
-
-  public function formattedSumCosts() {
-    return CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->organization()->currency()->symbol);
-  }
-
-  public function sumCostsPerGB() {
-    return $this->sumCosts() / $this->data_volume;
-  }
-
-  public function formattedSumCostsPerGB() {
-    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGB(), $this->organization()->currency()->symbol));
-  }
-
-  public function percentageActivityMapping(){
-    $sum = 0;
-    $size = 0;
-    foreach ($this->costs() as $cost) {
-      $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
-      $sum += $cost->percentageActivityMapping();
-      $size++;
-    }
-
-    if($size){
-      return intval($sum/$size);
-    }else{
-      return 0;
-    }
-  }
-
-  public function percentageFinancialAccountingMapping(){
-    $sum = 0;
-    $size = 0;
-    foreach ($this->costs() as $cost) {
-      $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
-      $sum += $cost->percentageFinancialAccountingMapping();
-      $size++;
-    }
-
-    if($size){
-      return intval($sum/$size);
-    }else{
-      return 0;
-    }
+    return $activeInterval;
   }
 }

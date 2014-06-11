@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `#__ccex_interval`;
 DROP TABLE IF EXISTS `#__ccex_organization_org_types`;
 DROP TABLE IF EXISTS `#__ccex_organization_types`;
 DROP TABLE IF EXISTS `#__ccex_collections`;
@@ -52,12 +53,27 @@ CREATE TABLE `#__ccex_organization_org_types` (
 CREATE TABLE `#__ccex_collections` (
   `collection_id` int(11) NOT NULL AUTO_INCREMENT,
   `organization_id` int(11) NOT NULL,
-  `ǹame` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
+
+  `scope` varchar(255) NOT NULL DEFAULT '',
+
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL,
+
+  PRIMARY KEY (`collection_id`)
+);
+
+CREATE TABLE `#__ccex_ìnterval` (
+  `interval_id` int(11) NOT NULL AUTO_INCREMENT,
+  `collection_id` int(11) NOT NULL,
+
+  `begin_year` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+
   `data_volume` int(11) NOT NULL DEFAULT 0,
   `number_copies` int(11) NOT NULL DEFAULT 0,
 
-  `scope` varchar(255) NOT NULL DEFAULT '',
   `staff_min_size` int(11) NOT NULL DEFAULT 0,
   `staff_max_size` int(11) NOT NULL DEFAULT 0,
 
@@ -76,12 +92,12 @@ CREATE TABLE `#__ccex_collections` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
-  PRIMARY KEY (`collection_id`)
+  PRIMARY KEY (`interval_id`)
 );
 
 CREATE TABLE `#__ccex_costs` (
   `cost_id` int(11) NOT NULL AUTO_INCREMENT,
-  `collection_id` int(11) NOT NULL,
+  `interval_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL DEFAULT '',
   `cost` double NOT NULL DEFAULT 0,
@@ -132,4 +148,4 @@ CREATE TABLE `#__ccex_currencies` (
 INSERT INTO `#__ccex_organization_types` (`name`) VALUES ('Big data science'), ('Industry'), ('University'), ('Memory institution'), ('Government agency'), ('Other');
 INSERT INTO `#__ccex_countries` (`name`) VALUES ('Portugal'), ('Angola'), ('Spain');
 INSERT INTO `#__ccex_currencies` (`name`, `symbol`) VALUES ('Euro', '€'), ('Canadian dollar', '$');
-INSERT INTO `#__ccex_costs` (`name`, `cost`, `human_resources`, `collection_id`) VALUES ('Format migration', 14000, 10, 1), ('Format migration', 14000, 10, 2);
+INSERT INTO `#__ccex_costs` (`name`, `cost`, `human_resources`, `interval_id`) VALUES ('Format migration', 14000, 10, 1), ('Format migration', 14000, 10, 2);
