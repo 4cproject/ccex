@@ -68,6 +68,10 @@ class CCExModelsCollection extends CCExModelsDefault {
     $row_cost->modified = $date;
     if (!$row_cost->check()){ return false; }
     if (!$row_cost->store()){ return false; }
+
+    $data['interval']['collection_id'] = $row_cost->collection_id;
+    $intervalModel = new CCExModelsInterval();
+    $intervalModel->store($data['interval']);
     
     return true;
   }
@@ -82,33 +86,35 @@ class CCExModelsCollection extends CCExModelsDefault {
   public function intervals() {
     $intervalModel = new CCExModelsInterval();
 
-    return $intervalModel->listItemsByCollection($this->_collection_id);
+    if(is_numeric($this->_collection_id)){
+      return $intervalModel->listItemsByCollection($this->_collection_id);
+    }else{
+      return array();
+    }
   }
 
-  public function intervalsOrNewWithCurrentYear() {
-    $intervals = $this->intervals();
-
-    if(!$intervals){
-      $newInterval = new CCExModelsInterval();
-      $newInterval->set('collection_id', $this->_collection_id);
-      $newInterval->set('begin_year', date("Y"));
-
-      array_push($intervals, $newInterval);
-    }
-    
-    return $intervals;
+  public function intervalsWithoutLast(){
+    return array_slice($this->intervals(), 0, -1);
   }
 
-  public function activeInterval() {
-    $intervals = $this->intervalsOrNewWithCurrentYear();
-    $activeInterval = array_shift($intervals);
+  public function lastInterval() {
+    return CCExHelpersCast::cast('CCExModelsInterval',end($this->intervals()));
+  }
 
-    foreach ($intervals as $interval) {
-      if($interval->begin_year > $activeInterval->begin_year){
-        $activeInterval = $interval;
-      }
+  public function newInterval() {
+    $newInterval = new CCExModelsInterval();
+    $newInterval->set('collection_id', $this->_collection_id);
+    $newInterval->set('begin_year', date("Y"));
+
+    return $newInterval;
+  }
+
+  public function activeInterval($intervalID) {
+    if($intervalID){
+      $intervalModel = new CCExModelsInterval();
+      return $intervalModel->getItemBy('_interval_id', $intervalID);
+    }else{
+      return $this->lastInterval();
     }
-
-    return $activeInterval;
   }
 }

@@ -23,24 +23,29 @@
             </select>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" <?php if(!isset($this->collection->collection_id)){ echo 'style="display:none;"'; } ?>>
         <label class="col-sm-2 control-label" for="collection_yaers">Years</label>
         <div class="col-sm-10">
-            <ul class="nav nav-tabs">
-                <?php foreach ($this->collection->intervalsOrNewWithCurrentYear() as $interval) { ?>
-                    <li <?php if($this->collection->activeInterval()->begin_year == $interval->begin_year){ echo "class=\"active\""; } ?>><a href="#<?php echo $interval->toString(); ?>" data-toggle="tab"><?php echo $interval->toString(); ?></a></li>
+            <ul class="nav nav-tabs" id="collection_year_tabs">
+                <?php foreach ($this->intervals as $interval) { ?>
+                    <?php $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval); ?>
+                    <li><a class="year-tab" href="#interval<?php echo $interval->interval_id; ?>"><?php echo $interval->toString();?></a></li>
                 <?php } ?>
-              <li><a href=""><i class="fa fa-plus"></i></a></li>
+                <?php if(isset($this->new_interval)) { ?>
+                    <li class="active"><a href="#current"><?php echo $this->new_interval->toString();?></a></li>
+                <?php } else { ?>
+                    <li class="active"><a href="#current"><?php echo $this->active_interval->toString();?></a></li>
+                <?php } ?>
+                <?php if(isset($this->collection->collection_id)){ ?>
+                    <li><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', \'true\')'; ?>"><i class="fa fa-plus"></i></a></li>
+                <?php } ?>
             </ul>
         </div>
     </div>
     <div class="tab-content">
-        <?php foreach ($this->collection->intervalsOrNewWithCurrentYear() as $interval) { ?>
-          <div class="tab-pane fade in active" id="<?php echo $interval->toString(); ?>">
-            <?php $this->_intervalFormView->interval = $interval ?>
-            <?php echo $this->_intervalFormView->render(); ?>
-          </div>
-        <?php } ?>
+      <div class="tab-pane fade in active" id="current">
+        <?php echo $this->_intervalFormView->render(); ?>
+      </div>
     </div>
     <br/>
     <!-- Action -->

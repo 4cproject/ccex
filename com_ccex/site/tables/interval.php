@@ -8,6 +8,6 @@ class TableInterval extends JTable {
   * @param object Database connector object
   */
   function __construct( &$db ) {
-    parent::__construct('#__ccex_ìnterval', 'interval_id', $db);
+    parent::__construct('#__ccex_interval', 'interval_id', $db);
   }
 }

@@ -36,7 +36,8 @@ class CCExModelsInterval extends CCExModelsDefault {
     $query = $db->getQuery(TRUE);
 
     $query->select('i.interval_id, i.collection_id, i.begin_year, i.duration, i.data_volume, i.number_copies, i.asset_unformatted_text, i.asset_word_processing, i.asset_spreadsheet, i.asset_graphics, i.asset_audio, i.asset_video, i.asset_hypertext, i.asset_geodata, i.asset_email, i.asset_database, i.asset_research_data, i.staff_min_size, i.staff_max_size');
-    $query->from('#__ccex_ìnterval as i');
+    $query->from('#__ccex_interval as i');
+    $query->order('i.begin_year');
 
     return $query;
   }
@@ -61,6 +62,14 @@ class CCExModelsInterval extends CCExModelsDefault {
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
+
+    if(isset($data['data_volume_number'])){
+      if(isset($data['data_volume_unit'])){
+        $data['data_volume'] = $data['data_volume_number'] * $data['data_volume_unit'];
+      }else{
+        $data['data_volume'] = $data['data_volume_number'];
+      }
+    }
 
     $row_cost = JTable::getInstance('interval','Table');
     if (!$row_cost->bind($data)){ return false; }
@@ -170,8 +179,8 @@ class CCExModelsInterval extends CCExModelsDefault {
   public function toString(){
     $string = $this->begin_year;
 
-    if (isset($this->duration)) {
-      $string .= "-" . $this->begin_year + $this->duration;
+    if (isset($this->duration) && $this->duration > 1) {
+      $string .= "-" . ($this->begin_year + $this->duration -1);
     }
 
     return $string;

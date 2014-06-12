@@ -1,25 +1,21 @@
-#_message_container{
-	padding: 12px 15px 7px 15px;
-	font-size: 13px;
+#_message_container {
+    padding: 12px 15px 8px 15px;
+    font-size: 12px;
 }
-
-#_message_container p{
-	line-height: 15px;
+#_message_container p {
+    line-height: 15px;
 }
-
-#_message_container p#_description{
-	margin-top: 0px;
-	font-size: 12px;
-	padding-bottom: 3px;
+#_message_container p#_description {
+    margin-top: 0px;
+    font-size: 12px;
+    padding-bottom: 3px;
 }
-
 #_message_container.alert-dismissable .close {
-	position: relative;
-	top: 4px;
-	right: -12px;
-	color: inherit;
+    position: relative;
+    top: 4px;
+    right: -12px;
+    color: inherit;
 }
-
 #_message_container.alert-dismissable {
-	padding-right: 20px;
+    padding-right: 20px;
 }

@@ -64,7 +64,7 @@ CREATE TABLE `#__ccex_collections` (
   PRIMARY KEY (`collection_id`)
 );
 
-CREATE TABLE `#__ccex_ìnterval` (
+CREATE TABLE `#__ccex_interval` (
   `interval_id` int(11) NOT NULL AUTO_INCREMENT,
   `collection_id` int(11) NOT NULL,
 
