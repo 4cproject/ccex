@@ -91,11 +91,11 @@ class CCExModelsOrganization extends CCExModelsDefault {
     return $currency;
   }
 
-  public function collection(){
+  public function collections(){
     $collectionModel = new CCExModelsCollection();
-    $collection = $collectionModel->getItemBy('_organization_id', $this->organization_id);
+    $collections = $collectionModel->listItemsBy('_organization_id', $this->organization_id);
     
-    return $collection;
+    return $collections;
   }
 
   public function country() {

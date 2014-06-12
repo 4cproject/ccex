@@ -6,7 +6,7 @@ class CCExViewsCollectionHtml extends JViewHtml {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
     $new_year = $app->input->get('new_year');
-    $intervalID = $app->input->get('new_year');
+    $intervalID = $app->input->get('active_interval');
 
     $collectionModel = new CCExModelsCollection();
     $userModel = new CCExModelsUser();

@@ -4,6 +4,7 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco.</p>
 
 <?php echo $this->_showOrganization->render(); ?>
+<?php echo $this->_indexCollection->render(); ?>
 
 <div class="row" style="margin-top:20px">
 	<div class="col-md-3">

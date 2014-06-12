@@ -29,12 +29,16 @@
             <ul class="nav nav-tabs" id="collection_year_tabs">
                 <?php foreach ($this->intervals as $interval) { ?>
                     <?php $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval); ?>
-                    <li><a class="year-tab" href="#interval<?php echo $interval->interval_id; ?>"><?php echo $interval->toString();?></a></li>
+                    
+                    <?php if(isset($this->new_interval) || $this->active_interval->interval_id != $interval->interval_id){ ?>
+                        <li><a class="year-tab" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=' . $interval->interval_id ); ?>"><?php echo $interval->toString();?></a></li>
+                    <?php } else { ?>
+                        <li class="active"><a href="#current"><?php echo $interval->toString();?></a></li>
+                    <?php } ?>
+                    
                 <?php } ?>
                 <?php if(isset($this->new_interval)) { ?>
                     <li class="active"><a href="#current"><?php echo $this->new_interval->toString();?></a></li>
-                <?php } else { ?>
-                    <li class="active"><a href="#current"><?php echo $this->active_interval->toString();?></a></li>
                 <?php } ?>
                 <?php if(isset($this->collection->collection_id)){ ?>
                     <li><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', \'true\')'; ?>"><i class="fa fa-plus"></i></a></li>
