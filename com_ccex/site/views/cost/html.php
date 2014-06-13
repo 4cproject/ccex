@@ -6,27 +6,29 @@ class CCExViewsCostHtml extends JViewHtml {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
 
+    $intervalModel = new CCExModelsInterval();
     $costModel = new CCExModelsCost();
-    $profileModel = new CCExModelsProfile();
+    $userModel = new CCExModelsUser();
+    $organization = $userModel->organization();
 
-    $organization = $profileModel->organization();
+    if (!$organization) {
+        $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
+        $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
+    }
 
     switch($layout) {
-
-      case "index":
-        $this->collection = $organization->collection();
-        $this->costs = $organization->collection()->costs();
-        break;
       case "add":
         $this->_formView = CCExHelpersView::load('Cost','_form','phtml');
         $this->_formView->currency = $organization->currency();
-        $this->_formView->collection = $organization->collection();
+        $this->_formView->interval = $intervalModel->getItem();
         break;
       case "edit":
+        $cost = $costModel->getItem();
+
         $this->_formView = CCExHelpersView::load('Cost','_form','phtml');
-        $this->_formView->cost = $costModel->getItem();
+        $this->_formView->cost = $cost;
         $this->_formView->currency = $organization->currency();
-        $this->_formView->collection = $organization->collection();
+        $this->_formView->interval = $cost->interval();
         break;
 
       default:
@@ -34,7 +36,6 @@ class CCExViewsCostHtml extends JViewHtml {
 
     }
 
-    //display
     return parent::render();
   } 
 }

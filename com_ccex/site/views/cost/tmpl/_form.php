@@ -165,14 +165,14 @@ Includes outsourcing, renting and leasing of hardware and software.">
 	    	</div>
 	    </div>
 		<div class="col-sm-2">
-			<input type="hidden" name="cost[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
+			<input type="hidden" name="cost[interval_id]" value="<?php echo $this->interval->interval_id; ?>">
 			<?php if(isset($this->cost->cost_id)){ ?>
 				<input type="hidden" name="cost[cost_id]" value="<?php echo $this->cost->cost_id; ?>">
 			<?php } ?>
-			<a href="javascript:void(0)" onclick="<?php if(isset($this->cost->cost_id)){ echo 'updateCost(\'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=index') .  '\')'; }else{ echo 'createCost()'; } ?>" class="btn btn-success btn-block">Save</a>		
+            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->cost->cost_id)){ echo 'ccexUpdate(\'cost\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; }else{ echo 'ccexCreate(\'cost\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; } ?>">Save</span></a>
 		</div>
 		<div class="col-sm-2">
-			<a href="<?php echo JRoute::_('index.php?option=com_ccex&view=cost&layout=index') ?>" class="btn btn-danger btn-block">Cancel</a>
+            <a class="btn btn-danger btn-block" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
 		</div>
 	</div>
 </form>
@@ -227,4 +227,5 @@ $("#cost_value").change(function() {
 
 </script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/form.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/cost.js') ?>"></script>

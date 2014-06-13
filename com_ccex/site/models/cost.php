@@ -79,12 +79,12 @@ class CCExModelsCost extends CCExModelsDefault {
   }
 
   public function formattedCost() {
-    return CCExHelpersTag::formatCurrencyWithSymbol($this->cost, $this->interval()->organization()->currency()->symbol);
+    return CCExHelpersTag::formatCurrencyWithSymbol($this->cost, $this->interval()->collection()->organization()->currency()->symbol);
   }
 
   public function interval() {
     $intervalModel = new CCExModelsInterval();
-    $intervalModel->set('interval_id', $this->interval_id);
+    $intervalModel->set('_interval_id', $this->interval_id);
     $interval = $intervalModel->getItem();
     
     return $interval;
@@ -94,8 +94,24 @@ class CCExModelsCost extends CCExModelsDefault {
     return $this->cost / $this->interval()->data_volume;
   }
 
+  public function costPerYear(){
+    return $this->cost / $this->interval()->duration;
+  }
+
+    public function costPerGBPerYear(){
+    return $this->costPerGB() / $this->interval()->duration;
+  }
+
   public function formattedCostPerGB() {
-    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGB(), $this->interval()->organization()->currency()->symbol));
+    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGB(), $this->interval()->collection()->organization()->currency()->symbol));
+  }
+
+  public function formattedCostPerYear() {
+    return sprintf('%s/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerYear(), $this->interval()->collection()->organization()->currency()->symbol));
+  }
+
+  public function formattedCostPerGBPerYear() {
+    return sprintf('%s/GB/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGBPerYear(), $this->interval()->collection()->organization()->currency()->symbol));
   }
 
   public function percentageActivityMapping(){

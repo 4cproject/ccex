@@ -63,6 +63,12 @@ class CCExModelsInterval extends CCExModelsDefault {
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
+    if(isset($data['staff'])){
+      $scope_size = explode('|', $data['staff']);
+            
+      $data['staff_min_size'] = $scope_size[0];
+      $data['staff_max_size'] = $scope_size[1];
+    }
     if(isset($data['data_volume_number'])){
       if(isset($data['data_volume_unit'])){
         $data['data_volume'] = $data['data_volume_number'] * $data['data_volume_unit'];
@@ -106,7 +112,7 @@ class CCExModelsInterval extends CCExModelsDefault {
         $result->format = "Petabytes";
         $result->value = round($datav/1048576);
       }elseif($datav >= 1024){
-        $result->format = "Terabytes";
+        $result->value = "Terabytes";
         $result->value = round($datav/1024);
       }else{
         $result->value = round($datav);
@@ -116,11 +122,63 @@ class CCExModelsInterval extends CCExModelsDefault {
     return $result;
   }
 
+  public function formattedDataVolume(){
+    $result = $this->dataVolume();
+
+    return sprintf('%s %s', $result->value, $result->format);
+  }
+
+  public function formattedNumberOfCopies(){
+    $nrCopies = "";
+
+    if(is_numeric($this->number_copies)){
+      if ($this->number_copies == 1) {
+        $nrCopies .= "One replica";
+      }else{
+        if ($this->number_copies == 0) {
+          $nrCopies .= "No";
+        }else if($this->number_copies == 2){
+          $nrCopies .= "Two";
+        }else if($this->number_copies == 3){
+          $nrCopies .= "Three";
+        }else{
+          $nrCopies .= "More than three";
+        }
+
+        $nrCopies .= " replicas";
+      }
+    }
+
+    return $nrCopies;
+  }
+
+public function formattedStaff(){
+    $staff = "";
+
+    if(is_numeric($this->staff_min_size) && is_numeric($this->staff_max_size)){
+      if ($this->staff_max_size == 0) {
+        $staff .= "More than ";
+        $staff .= $this->staff_min_size;
+      }else{
+        $staff .= "Less than ";
+        $staff .= $this->staff_max_size;
+      }
+      $staff .= " people";
+    }
+
+    return $staff;
+  }
+
   public function costs() {
     $costModel = new CCExModelsCost();
-    $costs = $costModel->listItemsBy('_interval_id', $this->interval_id);
 
-    return $costs;
+    if(is_numeric($this->_interval_id)){
+      return $costModel->listItemsByInterval($this->_interval_id);
+    }else if(is_numeric($this->interval_id)){
+      return $costModel->listItemsByInterval($this->interval_id);
+    }else{
+      return array();
+    }
   }
 
   public function sumCosts() {
@@ -133,15 +191,31 @@ class CCExModelsInterval extends CCExModelsDefault {
   }
 
   public function formattedSumCosts() {
-    return CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->organization()->currency()->symbol);
+    return CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->collection()->organization()->currency()->symbol);
   }
 
   public function sumCostsPerGB() {
     return $this->sumCosts() / $this->data_volume;
   }
 
+  public function sumCostsPerYear() {
+    return $this->sumCosts() / $this->duration;
+  }
+
+    public function sumCostsPerGBPerYear() {
+    return $this->sumCostsPerGB() / $this->duration;
+  }
+
   public function formattedSumCostsPerGB() {
-    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGB(), $this->organization()->currency()->symbol));
+    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGB(), $this->collection()->organization()->currency()->symbol));
+  }
+
+    public function formattedSumCostsPerYear() {
+    return sprintf('%s/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerYear(), $this->collection()->organization()->currency()->symbol));
+  }
+
+    public function formattedSumCostsPerGBPerYear() {
+    return sprintf('%s/GB/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGBPerYear(), $this->collection()->organization()->currency()->symbol));
   }
 
   public function percentageActivityMapping(){

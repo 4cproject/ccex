@@ -1,7 +1,7 @@
-<h2>
+<h1>
 	<?php echo $this->organization->name ?> 
-	<a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-</h2>
+	<small><a style="opacity:0.6" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>"><span class="glyphicon glyphicon-edit"></span></a></small>
+</h1>
 <p><?php echo $this->organization->description ?></p>
 <div class="row">
 	<div class="col-md-12">

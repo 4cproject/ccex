@@ -21,6 +21,10 @@ class CCExViewsComparecostsHtml extends JViewHtml {
 
         $this->_indexCollection = CCExHelpersView::load('Collection','_index','phtml');
         $this->_indexCollection->collections = $organization->collections();
+        $this->_indexCollection->_showCollection = CCExHelpersView::load('Collection','_show','phtml');
+        $this->_indexCollection->_showCollection->_indexInterval = CCExHelpersView::load('Interval','_index','phtml');
+        $this->_indexCollection->_showCollection->_indexInterval->_showInterval = CCExHelpersView::load('Interval','_show','phtml');
+        $this->_indexCollection->_showCollection->_indexInterval->_showInterval->_indexCost = CCExHelpersView::load('Cost','_index','phtml');
         break;
 
       default:

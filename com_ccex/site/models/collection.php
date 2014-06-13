@@ -88,6 +88,8 @@ class CCExModelsCollection extends CCExModelsDefault {
 
     if(is_numeric($this->_collection_id)){
       return $intervalModel->listItemsByCollection($this->_collection_id);
+    }else if(isset($this->collection_id)){
+      return $intervalModel->listItemsByCollection($this->collection_id);
     }else{
       return array();
     }
