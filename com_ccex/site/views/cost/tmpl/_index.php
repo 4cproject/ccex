@@ -2,16 +2,16 @@
 <p>Define your curation costs and map them to the categories of our framework of comparable costs.</p>
 
 <table class="table table-condensed">
-	<thead>
-		<th>Name</th>
-		<th class="text-right">Cost</th>
-		<th class="text-right">Cost p/Year</th>
-		<th class="text-right">Cost p/GB</th>
-		<th class="text-right">Cost per GB per year</th>
-		<th class="text-right">Map to activities</th>
-		<th class="text-right">Map to financial accounting</th>
-		<th class="text-center"></th>
-	</thead>
+    <thead>
+        <th>Name</th>
+        <th class="text-right">Cost</th>
+        <th class="text-right">Cost per GB</th>
+        <th class="text-right">Cost per Year</th>
+        <th class="text-right">Cost per GB per Year</th>
+        <th class="text-right">Map to activities</th>
+        <th class="text-right">Map to financial accounting</th>
+        <th class="text-right"></th>
+    </thead>
 	<tbody>
         <?php for($i=0, $n = count($this->costs);$i<$n;$i++) { ?>
         	<?php $cost = CCExHelpersCast::cast('CCExModelsCost', $this->costs[$i]); ?>
@@ -38,7 +38,7 @@
 				<td class="text-right <?php if($this->interval->percentageActivityMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageActivityMapping() ?>% mapped</td>
 				<td class="text-right <?php if($this->interval->percentageFinancialAccountingMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageFinancialAccountingMapping() ?>% mapped</td>
 			<?php } else { ?>
-				<td class="text-left" colspan="7">Please add your collection costs to enable a comparison against similar organizations.</td>
+				<td class="text-right" colspan="7">Click here to add curation costs to this collection &nbsp; &rarr;</td>
 			<?php } ?>
 			<td class="text-center"><a href="<?php echo JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id) ?>"><span class="glyphicon glyphicon-plus"></span></a></td>
 		</tr>

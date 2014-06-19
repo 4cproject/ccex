@@ -23,9 +23,8 @@
             </select>
         </div>
     </div>
-    <div class="form-group" <?php if(!isset($this->collection->collection_id)){ echo 'style="display:none;"'; } ?>>
-        <label class="col-sm-2 control-label" for="collection_yaers">Years</label>
-        <div class="col-sm-10">
+    <div class="form-group interval-tabs">
+        <div class="col-sm-12">
             <ul class="nav nav-tabs" id="collection_year_tabs">
                 <?php foreach ($this->intervals as $interval) { ?>
                     <?php $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval); ?>
@@ -42,11 +41,13 @@
                 <?php } ?>
                 <?php if(isset($this->collection->collection_id)){ ?>
                     <li><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', \'true\')'; ?>"><i class="fa fa-plus"></i></a></li>
+                <?php } else { ?>
+                    <li><a id="" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' ) . '\', \'true\')'; ?>"><i class="fa fa-plus"></i></a></li>
                 <?php } ?>
             </ul>
         </div>
     </div>
-    <div class="tab-content">
+    <div class="tab-content interval-tab-content">
       <div class="tab-pane fade in active" id="current">
         <?php echo $this->_intervalFormView->render(); ?>
       </div>

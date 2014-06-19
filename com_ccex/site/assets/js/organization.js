@@ -1,4 +1,11 @@
 $(document).ready(function() {
+    jQuery.validator.addMethod("otherOrgType", function(value, element) {
+
+        var visible = $("#organisation_type_other_container").is(":visible");
+
+        return !visible || value;
+    }, "* This field is required.");
+
     $('form#organizationForm').validate({
         rules: {
             'organization[name]': {
@@ -6,8 +13,7 @@ $(document).ready(function() {
                 blank: false
             },
             'organization[other_org_type]': {
-                required: requiredOrganizationType(),
-                blank: blankOrganizationType(),
+                otherOrgType: true
             }
         },
         highlight: function(element) {
@@ -38,18 +44,6 @@ $(document).ready(function() {
         }
     });
 });
-
-function requiredOrganizationType() {
-    if ($("#organisation_type_other_container").is(":visible")) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function blankOrganizationType() {
-    return !requiredOrganizationType();
-}
 
 function ccexSaveOrganization(info) {
     if ($('input[name="organization[linked_cost_data]"]').is(':checked')) {

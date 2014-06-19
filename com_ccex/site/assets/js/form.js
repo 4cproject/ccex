@@ -43,6 +43,10 @@ function ccexSave(model, action, redirect_url, silent) {
                 $("#_message_container").show();
             }
 
+            if (typeof window["ccexSaveUpdateURL" + capitalize(model)] != 'undefined') {
+                redirect_url = window["ccexSaveUpdateURL" + capitalize(model)](data, redirect_url);
+            }
+
             if (redirect_url) {
                 var delay = 500;
                 setTimeout(function() {

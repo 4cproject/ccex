@@ -14,7 +14,10 @@ class CCExControllersAdd extends JControllerBase {
     $modelName  = 'CCExModels'.ucwords($_model);
 
     $model = new $modelName();
-    if ( $model->store() ) {
+    $result = $model->store();
+
+    if ( $result ) {
+        $return['response'] = $result;
         $return['success'] = true;
         $return['message'] = JText::_('COM_CCEX_' . strtoupper($_model) . '_CREATE_SUCCESS');
     }else{

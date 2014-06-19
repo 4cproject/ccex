@@ -107,11 +107,11 @@ class CCExModelsCost extends CCExModelsDefault {
   }
 
   public function formattedCostPerYear() {
-    return sprintf('%s/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerYear(), $this->interval()->collection()->organization()->currency()->symbol));
+    return sprintf('%s/Y', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerYear(), $this->interval()->collection()->organization()->currency()->symbol));
   }
 
   public function formattedCostPerGBPerYear() {
-    return sprintf('%s/GB/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGBPerYear(), $this->interval()->collection()->organization()->currency()->symbol));
+    return sprintf('%s/GB·Y', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGBPerYear(), $this->interval()->collection()->organization()->currency()->symbol));
   }
 
   public function percentageActivityMapping(){

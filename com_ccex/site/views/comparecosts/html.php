@@ -16,6 +16,9 @@ class CCExViewsComparecostsHtml extends JViewHtml {
 
     switch($layout) {
       case "index":
+        $this->_summaryOrganization = CCExHelpersView::load('Organization', '_summary', 'phtml');
+        $this->_summaryOrganization->organization = $organization;
+
         $this->_showOrganization = CCExHelpersView::load('Organization','_show','phtml');
         $this->_showOrganization->organization = $organization;
 

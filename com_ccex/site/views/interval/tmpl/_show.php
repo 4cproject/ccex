@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-6">
-		<dl class="dl-horizontal dl-org-info">
+		<dl class="dl-horizontal">
 	        <dt>Data volume</dt>
 	        <dd><?php echo $this->interval->formattedDataVolume() ?></dd>	        
 	        <dt>Number of copies</dt>
@@ -8,7 +8,7 @@
 	     </dl>
 	</div>
 	<div class="col-md-6">
-		<dl class="dl-horizontal dl-org-info">
+		<dl class="dl-horizontal">
 	        <dt>Curation staff in scope</dt>
 	        <dd><?php echo $this->interval->formattedStaff() ?></dd>
 	        <dt>Years</dt>

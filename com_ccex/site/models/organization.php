@@ -35,7 +35,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('o.organization_id, o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.linked_data_provider, o.linked_cost_data, o.share_information, o.share_data');
+    $query->select('o.organization_id, o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.global_comparison, o.peer_comparison, o.publish_raw_data');
     $query->from('#__ccex_organizations as o');
 
     return $query;
@@ -96,6 +96,124 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $collections = $collectionModel->listItemsBy('_organization_id', $this->organization_id);
     
     return $collections;
+  }
+
+  public function numberCollections(){
+    return count($this->collections());
+  }
+
+  public function totalCost(){
+    $cost = 0;
+
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCost();
+    }
+
+    return $cost;
+  }
+
+  public function totalCostPerGB() {
+    $cost = 0;
+
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCostPerGB();
+    }
+
+    return $cost;
+  }
+
+  public function totalCostPerYear() {
+    $cost = 0;
+
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCostPerYear();
+    }
+
+    return $cost;
+  }
+
+  public function totalCostPerGBPerYear() {
+    $cost = 0;
+
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCostPerGBPerYear();
+    }
+
+    return $cost;
+  }
+
+  public function formattedSumCostPerGB() {
+    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->totalCostPerGB(), $this->currency()->symbol));
+  }
+
+  public function formattedTotalCostPerYear() {
+    return sprintf('%s/Y', CCExHelpersTag::formatCurrencyWithSymbol($this->totalCostPerYear(), $this->currency()->symbol));
+  }
+
+    public function formattedTotalCostPerGBPerYear() {
+    return sprintf('%s/GB·Y', CCExHelpersTag::formatCurrencyWithSymbol($this->totalCostPerGBPerYear(), $this->currency()->symbol));
+  }
+
+  public function formattedTotalCost() {
+    return CCExHelpersTag::formatCurrencyWithSymbol($this->totalCost(), $this->currency()->symbol);
+  }
+
+  public function totalDuration(){
+    $duration = 0;
+
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $duration += $collection->totalDuration();
+    }
+
+    return $duration;
+  }
+
+  public function numberIntervals(){
+    $numberIntervals = 0;
+
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $numberIntervals += $collection->numberIntervals();
+    }
+
+    return $numberIntervals;
+  }
+
+  public function percentageActivityMapping(){
+    $sum = 0;
+    $size = 0;
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $sum += $collection->percentageActivityMapping();
+      $size++;
+    }
+
+    if($size){
+      return intval($sum/$size);
+    }else{
+      return 0;
+    }
+  }
+
+  public function percentageFinancialAccountingMapping(){
+    $sum = 0;
+    $size = 0;
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $sum += $collection->percentageFinancialAccountingMapping();
+      $size++;
+    }
+
+    if($size){
+      return intval($sum/$size);
+    }else{
+      return 0;
+    }
   }
 
   public function country() {
@@ -187,4 +305,27 @@ class CCExModelsOrganization extends CCExModelsDefault {
     return $string;
   }
 
+  public function globalComparison(){
+    if($this->global_comparison){
+      return "Include my costs";
+    }else{
+      return "Exclude my costs";
+    }
+  }
+
+  public function peerComparison(){
+    if($this->peer_comparison){
+      return "Include my costs";
+    }else{
+      return "Exclude my costs";
+    }
+  }
+
+  public function publishRawData(){
+    if($this->publish_raw_data){
+      return "Include my costs";
+    }else{
+      return "Exclude my costs";
+    }
+  }
 }

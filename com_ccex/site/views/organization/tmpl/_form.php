@@ -59,8 +59,9 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
-                <label>
-                    <input name="organization[linked_data_provider]" <?php echo (isset($this->organization->linked_data_provider) && $this->organization->linked_data_provider ? 'checked="true"' : '') ?> type="checkbox" value="1"> Allow my organisation to be listed as a data provider
+                <label data-container="body" data-placement="right" data-toggle='tooltip' title="Averages will always have at least 5 organisations.">
+                    <input name="organization[global_comparison]" <?php echo (isset($this->organization->global_comparison) && $this->organization->global_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                    Allow the use of my costs to calculate averages in the global comparison result
                 </label>
             </div>
         </div>
@@ -68,28 +69,21 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
-                <label>
-                    <input name="organization[linked_cost_data]" <?php echo (isset($this->organization->linked_cost_data) && $this->organization->linked_cost_data ? 'checked="true"' : '') ?> type="checkbox" value="1"> Allow my organisation to be linked to the cost data I provide
+                <label data-container="body" data-placement="right" data-toggle='tooltip' title="Only mappings to the framework of comparable costs will be shown with this option.">
+                    <input name="organization[peer_comparison]" <?php echo (isset($this->organization->peer_comparison) && $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                    Allow the use of my cost mappings in the peer comparison results and allow other organisations to contact me
                 </label>
             </div>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="collection_data_volume">Share information with</label>
-        <div class="col-sm-10">
-            <label class="radio-inline">
-                <input <?php if(!isset($this->organization->share_information) || $this->organization->share_information == "everyone"){ echo 'checked="true"'; } ?> id="inlineRadio1" name="organization[share_information]" type="radio" value="everyone">Everyone</label>
-            <label class="radio-inline">
-                <input <?php if(isset($this->organization->share_information) && $this->organization->share_information == "trusted"){ echo 'checked="true"'; } ?> id="inlineRadio2" name="organization[share_information]" type="radio" value="trusted">Trusted users</label>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="collection_data_volume">Share data with</label>
-        <div class="col-sm-10">
-            <label class="radio-inline">
-                <input <?php if(!isset($this->organization->share_data) || $this->organization->share_data == "everyone"){ echo 'checked="true"'; } ?> id="inlineRadio1" name="organization[share_data]" type="radio" value="everyone">Everyone</label>
-            <label class="radio-inline">
-                <input <?php if(isset($this->organization->share_data) && $this->organization->share_data == "trusted"){ echo 'checked="true"'; } ?> id="inlineRadio2" name="organization[share_data]" type="radio" value="trusted">Trusted users</label>
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label data-container="body" data-placement="right" data-toggle='tooltip' title="Show all of your inputted cost information to all registered users that request it.">
+                    <input name="organization[publish_raw_data]" <?php echo (isset($this->organization->publish_raw_data) && $this->organization->publish_raw_data ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                    Publish my raw inputted costs to other registered users
+                </label>
+            </div>
         </div>
     </div>
     <br/>

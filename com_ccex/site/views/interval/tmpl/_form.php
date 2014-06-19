@@ -1,16 +1,16 @@
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_begin_year">Begin year</label>
+                <label class="col-sm-6 control-label" for="interval_begin_year">Begin year</label>
                 <div class="col-sm-6">
                     <input class="form-control" id="interval_begin_year" name="interval[begin_year]" type="number" value="<?php if(isset($this->interval->begin_year)){ echo $this->interval->begin_year; } ?>">
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="interval_duration">Duration</label>
-                <div class="col-sm-8">
+                <label class="col-sm-3 control-label" for="interval_duration">Duration</label>
+                <div class="col-sm-9 duration-slider">
                     <input class="slider" data-slider-id='interval_duration' data-slider-max="20" data-slider-min="1" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->duration) ? $this->interval->duration : 1) ?>" id="interval_duration" name="interval[duration]" type="text" value="<?php echo (isset($this->interval->duration) ? $this->interval->duration : 1) ?>"/>
                     <span class="slider-feedback" id="interval_duration_feedback"><?php echo (isset($this->interval->duration) ? $this->interval->duration : 1) ?></span> 
                     <span class="slider-feedback"> years</span> 
@@ -169,7 +169,10 @@ var sliderUtils = new SliderUtils("#pieChart", 400, 400, "#assetTotalFeedback", 
             return total + "%";
         } else {
             var volume = volume_number * volume_unit * 1073741824 * total / 100.0;
-            return humanFileSize(volume) + " &nbsp; <small>| " + total + "%</small>";
+            
+            if(volume>0){
+                return humanFileSize(volume) + " &nbsp; <small>| " + total + "%</small>";
+            }
         }
 
         return total + "%";

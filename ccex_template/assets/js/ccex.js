@@ -123,17 +123,17 @@ SliderUtils.prototype = {
 function humanFileSize(filesize, decimals) {
 	var sizeStr;
     if (filesize >= 1125899906842624) {
-      sizeStr = Humanize.formatNumber(filesize / 1125899906842624, decimals, "") + " Petabytes";
+      sizeStr = Humanize.formatNumber(filesize / 1125899906842624, decimals, "") + " PB";
     } else if (filesize >= 1099511627776) {
-      sizeStr = Humanize.formatNumber(filesize / 1099511627776, decimals, "") + " Terabytes";
+      sizeStr = Humanize.formatNumber(filesize / 1099511627776, decimals, "") + " TB";
     } else if (filesize >= 1073741824) {
-      sizeStr = Humanize.formatNumber(filesize / 1073741824, decimals, "") + " Gigabytes";
+      sizeStr = Humanize.formatNumber(filesize / 1073741824, decimals, "") + " GB";
     } else if (filesize >= 1048576) {
-      sizeStr = Humanize.formatNumber(filesize / 1048576, decimals, "") + " Megabytes";
+      sizeStr = Humanize.formatNumber(filesize / 1048576, decimals, "") + " MB";
     } else if (filesize >= 1024) {
-      sizeStr = Humanize.formatNumber(filesize / 1024, 0) + " Kilobytes";
+      sizeStr = Humanize.formatNumber(filesize / 1024, 0) + " KB";
     } else {
-      sizeStr = Humanize.formatNumber(filesize, 0) + Humanize.pluralize(filesize, " Byte");
+      sizeStr = Humanize.formatNumber(filesize, 0) + Humanize.pluralize(filesize, " B");
     }
     return sizeStr;
 }

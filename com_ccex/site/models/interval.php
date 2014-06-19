@@ -211,11 +211,11 @@ public function formattedStaff(){
   }
 
     public function formattedSumCostsPerYear() {
-    return sprintf('%s/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerYear(), $this->collection()->organization()->currency()->symbol));
+    return sprintf('%s/Y', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerYear(), $this->collection()->organization()->currency()->symbol));
   }
 
     public function formattedSumCostsPerGBPerYear() {
-    return sprintf('%s/GB/Year', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGBPerYear(), $this->collection()->organization()->currency()->symbol));
+    return sprintf('%s/GB·Y', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGBPerYear(), $this->collection()->organization()->currency()->symbol));
   }
 
   public function percentageActivityMapping(){
@@ -260,4 +260,7 @@ public function formattedStaff(){
     return $string;
   }
 
+  public function duration(){
+    return $this->duration;
+  }
 }

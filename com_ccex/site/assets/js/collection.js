@@ -60,6 +60,12 @@ $(document).ready(function() {
             },
             'fake_interval[duration]': {
                 durationCoverDefinedYears: true
+            },
+            'interval[data_volume_number]': {
+                required: true,
+                blank: false,
+                number: true,
+                min: 1
             }
         },
         highlight: function(element) {
@@ -79,3 +85,11 @@ $(document).ready(function() {
         }
     });
 });
+
+function ccexSaveUpdateURLCollection(data, redirect_url){
+    if(redirect_url && data.response){
+        return redirect_url + data.response;
+    }
+
+    return redirect_url;
+}
