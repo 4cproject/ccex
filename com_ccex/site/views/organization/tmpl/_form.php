@@ -36,7 +36,7 @@
         <label class="col-sm-2 control-label" for="organization_type">Type</label>
         <div class="col-sm-10">
             <?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="checkbox">
                         <label>
                           <input class="org-type-checkbox" <?php if(isset($this->organization->organization_id) && $this->organization->isOfType($this->orgTypes[$i]->org_type_id)){ echo 'checked'; } ?> type="checkbox" name="org_type[]" value="<?php echo $this->orgTypes[$i]->org_type_id; ?>">
@@ -60,7 +60,7 @@
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label data-container="body" data-placement="right" data-toggle='tooltip' title="Averages will always have at least 5 organisations.">
-                    <input name="organization[global_comparison]" <?php echo (isset($this->organization->global_comparison) && $this->organization->global_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                    <input name="organization[global_comparison]" <?php echo (!isset($this->organization->global_comparison) || $this->organization->global_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow the use of my costs to calculate averages in the global comparison result
                 </label>
             </div>
@@ -70,7 +70,7 @@
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label data-container="body" data-placement="right" data-toggle='tooltip' title="Only mappings to the framework of comparable costs will be shown with this option.">
-                    <input name="organization[peer_comparison]" <?php echo (isset($this->organization->peer_comparison) && $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                    <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow the use of my cost mappings in the peer comparison results and allow other organisations to contact me
                 </label>
             </div>

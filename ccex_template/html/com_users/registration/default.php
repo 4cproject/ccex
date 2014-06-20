@@ -101,7 +101,7 @@ JHtml::_('behavior.keepalive');
 	        <div class="col-md-offset-6 col-sm-3">
 	            <input class="btn btn-success btn-block" type="submit" value="<?php echo JText::_('JREGISTER');?>"/>
 	    </div>
-	    <input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('index.php?option=com_ccex&view=profile&layout=edit')); ?>" />
+	    <input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('/ccex/')); ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
 </div>

@@ -9,7 +9,7 @@ class CCExModelsDefault extends JModelBase
   protected $_db          = null;
   protected $id           = null;
   protected $limitstart   = 0;
-  protected $limit        = 10;
+  protected $limit        = 1000000;
  
   function __construct() {
     parent::__construct(); 

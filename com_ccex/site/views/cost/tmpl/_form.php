@@ -156,14 +156,7 @@ Includes outsourcing, renting and leasing of hardware and software.">
 	</div>
 
 	<br/>
-	<div class="form-group">
-		<div class="col-sm-2">
-			<div class="alert alert-dismissable" id="_message_container" style="display: none;">
-	        	<button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
-	        	<p id="_message"></p>
-	        	<p id="_description"></p>
-	    	</div>
-	    </div>
+	<div class="form-group utils" style="margin-top:30px">
 		<div class="col-sm-2">
 			<input type="hidden" name="cost[interval_id]" value="<?php echo $this->interval->interval_id; ?>">
 			<?php if(isset($this->cost->cost_id)){ ?>
@@ -172,7 +165,17 @@ Includes outsourcing, renting and leasing of hardware and software.">
             <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->cost->cost_id)){ echo 'ccexUpdate(\'cost\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; }else{ echo 'ccexCreate(\'cost\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; } ?>">Save</span></a>
 		</div>
 		<div class="col-sm-2">
-            <a class="btn btn-danger btn-block" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
+			<div class="alert alert-dismissable" id="_message_container" style="display: none;">
+	        	<button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
+	        	<p id="_message"></p>
+	        	<p id="_description"></p>
+	    	</div>
+	    </div>
+		<div class="col-sm-2 col-sm-offset-4">
+            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
+		</div>
+		<div class="col-sm-2">
+            <a class="btn btn-danger btn-block" href="#">Delete</span></a>
 		</div>
 	</div>
 </form>

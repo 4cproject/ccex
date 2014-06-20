@@ -74,7 +74,10 @@ class CCExModelsOrganization extends CCExModelsDefault {
     if (!$row_organization->store()){ return false; }
 
     $organizationModel = new CCExModelsOrganization();
-    $organization = $organizationModel->getItemBy('organization_id', $row_organization->organization_id);
+    $organization = $organizationModel->getItemBy('_organization_id', $row_organization->organization_id);
+
+    $organization->set('_organization_id', $row_organization->organization_id);
+    $organization->set('organization_id', $row_organization->organization_id);
 
     $organization->removeAllTypes();
     if(array_key_exists('org_type', $data)){
@@ -265,7 +268,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
     foreach ($typeIds as $typeId) {
       $data = array();
       $data['org_type_id'] = $typeId;
-      $data['organization_id'] = $this->organization_id; 
+      $data['organization_id'] = $this->_organization_id; 
 
       $organizationOrgTypeModel->store($data);
     }

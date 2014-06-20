@@ -2,11 +2,11 @@ function ccexUpdate(model, redirect_url, silent) {
     ccexSave(model, 'edit', redirect_url, silent);
 }
 
-function ccexCreate(model, redirect_url, silent) {
+function ccexCreate(model, redirect_url, silent, update_id) {
     ccexSave(model, 'add', redirect_url, silent);
 }
 
-function ccexSave(model, action, redirect_url, silent) {
+function ccexSave(model, action, redirect_url, silent, update_id) {
     if (!ccexValidateForm(model, silent)) {
         return;
     }
@@ -29,29 +29,30 @@ function ccexSave(model, action, redirect_url, silent) {
         data: info,
         dataType: 'JSON',
         success: function(data) {
-            if (!silent) {
-                $("#_message_container").removeClass("alert-success alert-danger");
+            // if (!silent) {
+            //     $("#_message_container").removeClass("alert-success alert-danger");
 
-                if (data.success) {
-                    $("#_message_container").addClass("alert-success");
-                } else {
-                    $("#_message_container").addClass("alert-danger");
-                    $("#_message_container #_description").text("Please check errors");
-                }
+            //     if (data.success) {
+            //         $("#_message_container").addClass("alert-success");
+            //     } else {
+            //         $("#_message_container").addClass("alert-danger");
+            //         $("#_message_container #_description").text("Please check errors");
+            //     }
 
-                $("#_message_container #_message").text(data.message);
-                $("#_message_container").show();
-            }
+            //     $("#_message_container #_message").text(data.message);
+            //     $("#_message_container").show();
+            // }
 
-            if (typeof window["ccexSaveUpdateURL" + capitalize(model)] != 'undefined') {
+            if (update_id && typeof window["ccexSaveUpdateURL" + capitalize(model)] != 'undefined') {
                 redirect_url = window["ccexSaveUpdateURL" + capitalize(model)](data, redirect_url);
             }
 
             if (redirect_url) {
-                var delay = 500;
-                setTimeout(function() {
-                    window.location.href = redirect_url;
-                }, delay);
+                // var delay = 500;
+                // setTimeout(function() {
+                //     window.location.href = redirect_url;
+                // }, delay);
+                window.location.href = redirect_url;
             }
         }
     });

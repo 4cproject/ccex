@@ -32,17 +32,17 @@
                     <?php if(isset($this->new_interval) || $this->active_interval->interval_id != $interval->interval_id){ ?>
                         <li><a class="year-tab" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=' . $interval->interval_id ); ?>"><?php echo $interval->toString();?></a></li>
                     <?php } else { ?>
-                        <li class="active"><a href="#current"><?php echo $interval->toString();?></a></li>
+                        <li class="active"><a href="#current"><?php echo $interval->toString();?> <span class="fa fa-times close-tab"></span></a></li>
                     <?php } ?>
                     
                 <?php } ?>
                 <?php if(isset($this->new_interval)) { ?>
-                    <li class="active"><a href="#current"><?php echo $this->new_interval->toString();?></a></li>
+                    <li class="active"><a href="#current"><?php echo $this->new_interval->toString();?> <span class="fa fa-times close-tab"></span></a></a></li>
                 <?php } ?>
                 <?php if(isset($this->collection->collection_id)){ ?>
                     <li><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', \'true\')'; ?>"><i class="fa fa-plus"></i></a></li>
                 <?php } else { ?>
-                    <li><a id="" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' ) . '\', \'true\')'; ?>"><i class="fa fa-plus"></i></a></li>
+                    <li><a id="" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' ) . '\', \'true\', \'true\')'; ?>"><i class="fa fa-plus"></i></a></li>
                 <?php } ?>
             </ul>
         </div>
@@ -54,14 +54,7 @@
     </div>
     <br/>
     <!-- Action -->
-    <div class="form-group">
-        <div class="col-sm-2">
-            <div class="alert alert-dismissable" id="_message_container" style="display: none;">
-                <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
-                <p id="_message"></p>
-                <p id="_description"></p>
-            </div>
-        </div>
+    <div class="form-group utils">
         <div class="col-sm-2">
             <input type="hidden" name="collection[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
             <?php if(isset($this->collection->collection_id)){ ?>
@@ -70,7 +63,17 @@
             <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; } ?>">Save</span></a>
         </div>
         <div class="col-sm-2">
-            <a class="btn btn-danger btn-block" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
+            <div class="alert alert-dismissable" id="_message_container" style="display: none;">
+                <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
+                <p id="_message"></p>
+                <p id="_description"></p>
+            </div>
+        </div>
+        <div class="col-sm-2 col-sm-offset-4">
+            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
+        </div>
+        <div class="col-sm-2">
+            <a class="btn btn-danger btn-block" href="#">Delete</span></a>
         </div>
     </div>
 </form>

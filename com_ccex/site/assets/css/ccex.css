@@ -24,15 +24,13 @@
 .organization {
     padding: 15px 0; 
     background-color: #74cfae; 
-}
-
-.organization .description {
-    color: #333;
+    color: #333; 
 }
 
 .summary {
     background-color: #74cfae;
     padding: 15px 0 5px; 
+    color: #333; 
 }
 
 .interval-tab-content{
@@ -53,4 +51,25 @@
 
 .duration-slider .slider.slider-horizontal{
     width: 150px;
+}
+
+.utils .btn-border{
+    border: 1px solid #ccc;
+    padding: 14px 34px;
+}
+
+.close-tab{
+    margin-left: 7px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.close-tab:hover{
+    color: #f85c37;
+}
+
+.collections-empty{
+    margin: 40px 0; 
+    color: #999; 
+    font-size: 2em;
 }

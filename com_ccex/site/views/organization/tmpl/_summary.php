@@ -25,7 +25,6 @@
                 </dl>
             </div>
             <div class="col-md-6">
-                <br/><br/>
                 <a href="<?php echo JRoute::_('index.php?view=collection&layout=add') ?>" class="btn btn-default btn-block">Add new collection</a>
                 <a href="<?php echo JRoute::_('#RESULTS') ?>" class="btn btn-danger btn-block">Compare costs with other organisations</a>
             </div>

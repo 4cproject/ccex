@@ -82,4 +82,8 @@ $doc->addStyleSheet($tpath.'/assets/css/ccex.css');
           </div>
         </div>
     </body>
+
+    <script>
+      $("[data-toggle='tooltip']").tooltip();
+    </script>
 </html>
