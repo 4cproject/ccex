@@ -18,17 +18,29 @@ class CCExViewsCostHtml extends JViewHtml {
 
     switch($layout) {
       case "add":
+        $interval = $intervalModel->getItem();
+
+        $this->organization = $organization;
+        $this->collection = $interval->collection();
+        $this->interval = $interval;
+
         $this->_formView = CCExHelpersView::load('Cost','_form','phtml');
         $this->_formView->currency = $organization->currency();
-        $this->_formView->interval = $intervalModel->getItem();
+        $this->_formView->interval = $interval;
         break;
       case "edit":
         $cost = $costModel->getItem();
+        $interval = $cost->interval();
+
+        $this->organization = $organization;
+        $this->collection = $interval->collection();
+        $this->interval = $interval;
+        $this->cost = $cost;
 
         $this->_formView = CCExHelpersView::load('Cost','_form','phtml');
         $this->_formView->cost = $cost;
         $this->_formView->currency = $organization->currency();
-        $this->_formView->interval = $cost->interval();
+        $this->_formView->interval = $interval;
         break;
 
       default:

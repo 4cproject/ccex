@@ -21,23 +21,28 @@ class CCExViewsCollectionHtml extends JViewHtml {
     switch($layout) {
       case "add":
           $collection =  $collectionModel;
-          $this->_formView = CCExHelpersView::load('Collection','_form','phtml');
+          $this->organization = $organization;
 
+          $this->_formView = CCExHelpersView::load('Collection','_form','phtml');
           $this->_formView->collection = $collection;
           $this->_formView->organization = $organization;
           $this->_formView->new_interval = $collection->newInterval();
           $this->_formView->intervals = $collection->intervals();
 
           $this->_formView->_intervalFormView = CCExHelpersView::load('Interval','_form','phtml');
+          $this->_formView->_intervalFormView->_indexCost = CCExHelpersView::load('Cost','_index','phtml');
           $this->_formView->_intervalFormView->interval = $this->_formView->new_interval;
         break;
       case "edit":
           $collection =  $collectionModel->getItem();
-          $this->_formView = CCExHelpersView::load('Collection','_form','phtml');
+          $this->collection = $collection;
+          $this->organization = $organization;
 
+          $this->_formView = CCExHelpersView::load('Collection','_form','phtml');
           $this->_formView->collection = $collection;
           $this->_formView->organization = $organization;
           $this->_formView->_intervalFormView = CCExHelpersView::load('Interval','_form','phtml');
+          $this->_formView->_intervalFormView->_indexCost = CCExHelpersView::load('Cost','_index','phtml');
 
           if($new_year){
             $this->_formView->new_interval = $collection->newInterval();

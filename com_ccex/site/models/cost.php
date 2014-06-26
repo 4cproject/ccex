@@ -70,7 +70,9 @@ class CCExModelsCost extends CCExModelsDefault {
     if (!$row_cost->check()){ return false; }
     if (!$row_cost->store()){ return false; }
     
-    return true;
+    $return = array('cost_id' => $row_cost->cost_id);
+
+    return $return;
   }
 
   public function listItemsByInterval($interval_id){

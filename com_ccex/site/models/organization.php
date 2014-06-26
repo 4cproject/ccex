@@ -35,7 +35,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('o.organization_id, o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.global_comparison, o.peer_comparison, o.publish_raw_data');
+    $query->select('o.organization_id, o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.global_comparison, o.peer_comparison, o.contact_and_sharing, o.snapshots');
     $query->from('#__ccex_organizations as o');
 
     return $query;
@@ -84,7 +84,9 @@ class CCExModelsOrganization extends CCExModelsDefault {
       $organization->addTypes($data['org_type']);
     }
 
-    return true;
+    $return = array('organization_id' => $row_organization->organization_id);
+
+    return $return;
   }
 
   public function currency() {
@@ -310,25 +312,33 @@ class CCExModelsOrganization extends CCExModelsDefault {
 
   public function globalComparison(){
     if($this->global_comparison){
-      return "Include my costs";
+      return "Yes";
     }else{
-      return "Exclude my costs";
+      return "No";
     }
   }
 
   public function peerComparison(){
     if($this->peer_comparison){
-      return "Include my costs";
+      return "Yes";
     }else{
-      return "Exclude my costs";
+      return "No";
     }
   }
 
-  public function publishRawData(){
-    if($this->publish_raw_data){
-      return "Include my costs";
+  public function contactAndSharing(){
+    if($this->contact_and_sharing){
+      return "Yes";
     }else{
-      return "Exclude my costs";
+      return "No";
+    }
+  }
+
+  public function snapshots(){
+    if($this->snapshots){
+      return "Yes";
+    }else{
+      return "No";
     }
   }
 }

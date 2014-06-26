@@ -62,18 +62,23 @@ class CCExModelsCollection extends CCExModelsDefault {
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
-    $row_cost = JTable::getInstance('collection','Table');
-    if (!$row_cost->bind($data['collection'])){ return 0; }
+    $row_collection = JTable::getInstance('collection','Table');
+    if (!$row_collection->bind($data['collection'])){ return 0; }
 
-    $row_cost->modified = $date;
-    if (!$row_cost->check()){ return 0; }
-    if (!$row_cost->store()){ return 0; }
+    $row_collection->modified = $date;
+    if (!$row_collection->check()){ return 0; }
+    if (!$row_collection->store()){ return 0; }
 
-    $data['interval']['collection_id'] = $row_cost->collection_id;
+    $data['interval']['collection_id'] = $row_collection->collection_id;
     $intervalModel = new CCExModelsInterval();
-    $intervalModel->store($data['interval']);
+    $result = $intervalModel->store($data['interval']);
     
-    return $row_cost->collection_id;
+    $return = array('collection_id' => $row_collection->collection_id);
+    foreach( $result as $key => $value ){
+      $return[$key] = $value;
+    }
+
+    return $return;
   }
 
   public function organization() {

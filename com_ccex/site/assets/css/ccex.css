@@ -23,14 +23,40 @@
 
 .organization {
     padding: 15px 0; 
-    background-color: #74cfae; 
-    color: #333; 
+    background-color: #5cb85c; 
+    color: #fff; 
+}
+
+.organization h1{
+    font-weight: 600;
+    color: #fff; 
+}
+
+.organization p, .organization dd{
+    font-weight: 400;
+    color: #fff; 
+}
+
+.organization a{
+    color: #168B24; 
+}
+
+.organization a:hover{
+    color: #000; 
 }
 
 .summary {
-    background-color: #74cfae;
+/*    background-color: #74cfae;
     padding: 15px 0 5px; 
-    color: #333; 
+    color: #333; */
+
+    background-color: #4e4e4e;
+    padding: 15px 0 5px; 
+    color: #fff; 
+}
+
+.summary h2 {
+    color: #fff; 
 }
 
 .interval-tab-content{
@@ -55,7 +81,19 @@
 
 .utils .btn-border{
     border: 1px solid #ccc;
-    padding: 14px 34px;
+    padding: 14px 15px;
+}
+
+.collection-utils .btn-border{
+    border: 1px solid #ccc;
+}
+
+.collection-utils .btn{
+    padding: 10px 30px;
+    margin-bottom: 0;
+    font-size: 15px;
+    border-radius: 0px;
+    margin-top: 30px;
 }
 
 .close-tab{
@@ -72,4 +110,20 @@
     margin: 40px 0; 
     color: #999; 
     font-size: 2em;
+}
+
+.dl-horizontal dt.dt-large{
+    width: 350px;
+    margin-right: 10px;
+}
+
+.error-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #737373;
+}
+
+.has-error .error-block {
+    color: #a94442;
 }

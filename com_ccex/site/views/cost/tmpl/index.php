@@ -20,7 +20,7 @@
 				<td class="text-right" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes"><?php echo $cost->formattedCostPerGB() ?></td>
 				<td class="text-right"><?php echo $cost->percentageActivityMapping() ?>% mapped</td>
 				<td class="text-right"><?php echo $cost->percentageFinancialAccountingMapping() ?>% mapped</td>
-				<td class="text-right"><a href="<?php echo JRoute::_('index.php?option=com_ccex&view=cost&layout=edit&cost_id=' . $cost->cost_id) ?>"><span class="glyphicon glyphicon-edit"></span></a></td>
+				<td class="text-right"><a href="<?php echo JRoute::_('index.php?option=com_ccex&view=cost&layout=edit&cost_id=' . $cost->cost_id) ?>"><span class="fa fa-edit"></span></a></td>
 			</tr>
         <?php } ?>
 	</tbody>

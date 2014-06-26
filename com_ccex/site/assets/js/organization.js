@@ -6,6 +6,13 @@ $(document).ready(function() {
         return !visible || value;
     }, "* This field is required.");
 
+    jQuery.validator.addMethod("orgType", function(value, element) {
+
+        var selected = $("#organisation_type_container input:checked").length;
+
+        return selected;
+    }, "* Select at least one type.");
+
     $('form#organizationForm').validate({
         rules: {
             'organization[name]': {
@@ -14,6 +21,15 @@ $(document).ready(function() {
             },
             'organization[other_org_type]': {
                 otherOrgType: true
+            },
+            'organization[country_id]': {
+                required: true
+            },
+            'organization[currency_id]': {
+                required: true
+            },
+            'org_type[]': {
+                orgType: true
             }
         },
         highlight: function(element) {
@@ -23,10 +39,12 @@ $(document).ready(function() {
             $(element).closest('.form-group').removeClass('has-error');
         },
         errorElement: 'span',
-        errorClass: 'help-block',
+        errorClass: 'error-block',
         errorPlacement: function(error, element) {
-            if (element.parent('.input-group').length) {
-                error.insertAfter(element.parent());
+            var group = element.closest('.input-group');
+
+            if (group.length) {
+                error.insertAfter(group);
             } else {
                 error.insertAfter(element);
             }
@@ -44,19 +62,3 @@ $(document).ready(function() {
         }
     });
 });
-
-function ccexSaveOrganization(info) {
-    if ($('input[name="organization[linked_cost_data]"]').is(':checked')) {
-        info['organization[linked_cost_data]'] = 1;
-    } else {
-        info['organization[linked_cost_data]'] = 0;
-    }
-
-    if ($('input[name="organization[linked_data_provider]"]').is(':checked')) {
-        info['organization[linked_data_provider]'] = 1;
-    } else {
-        info['organization[linked_data_provider]'] = 0;
-    }
-
-    return info;
-}

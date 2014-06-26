@@ -3,7 +3,7 @@
 		<h1>
 			<?php echo $this->organization->name ?> 
 			<small>
-				<a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
+				<a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>"><span class="fa fa-edit"></span></a>
 			</small>
 		</h1>
 		
@@ -17,16 +17,20 @@
 					<dd><?php echo $this->organization->currency()->name ?></dd>
 					<dt>Type(s)</dt>
 					<dd><?php echo $this->organization->typesToString() ?></dd>
+					<dt></dt>
+					<dd></dd>
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal" >
-					<dt>Global comparison</dt>
+					<dt class="dt-large">Include costs in global comparison</dt>
 					<dd><?php echo $this->organization->globalComparison() ?></dd>
-					<dt>Peer comparison</dt>
+					<dt class="dt-large">Include costs in peer comparison</dt>
 					<dd><?php echo $this->organization->peerComparison() ?></dd>
-					<dt>Publish my raw data</dt>
-					<dd><?php echo $this->organization->publishRawData() ?></dd>
+					<dt class="dt-large">Allow contact and share cost data</dt>
+					<dd><?php echo $this->organization->contactAndSharing() ?></dd>
+					<dt class="dt-large">Allow snapshots of cost data</dt>
+					<dd><?php echo $this->organization->snapshots() ?></dd>
 				</dl>
 			</div>
 		</div>

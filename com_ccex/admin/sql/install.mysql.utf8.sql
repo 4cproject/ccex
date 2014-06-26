@@ -18,7 +18,8 @@ CREATE TABLE `#__ccex_organizations` (
 
   `global_comparison` tinyint(1) NOT NULL DEFAULT 0,
   `peer_comparison` tinyint(1) NOT NULL DEFAULT 0,
-  `publish_raw_data` tinyint(1) NOT NULL DEFAULT 0,
+  `contact_and_sharing` tinyint(1) NOT NULL DEFAULT 0,
+  `snapshots` tinyint(1) NOT NULL DEFAULT 0,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,

@@ -7,3 +7,5 @@
 <?php echo $this->_showOrganization->render(); ?>
 <?php echo $this->_indexCollection->render(); ?>
 <?php echo $this->_summaryOrganization->render(); ?>
+
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare_costs.js') ?>"></script>

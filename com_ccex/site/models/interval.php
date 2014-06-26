@@ -77,14 +77,16 @@ class CCExModelsInterval extends CCExModelsDefault {
       }
     }
 
-    $row_cost = JTable::getInstance('interval','Table');
-    if (!$row_cost->bind($data)){ return false; }
+    $row_interval = JTable::getInstance('interval','Table');
+    if (!$row_interval->bind($data)){ return false; }
 
-    $row_cost->modified = $date;
-    if (!$row_cost->check()){ return false; }
-    if (!$row_cost->store()){ return false; }
+    $row_interval->modified = $date;
+    if (!$row_interval->check()){ return false; }
+    if (!$row_interval->store()){ return false; }
     
-    return true;
+    $return = array('interval_id' => $row_interval->interval_id);
+
+    return $return;
   }
 
   public function listItemsByCollection($collection_id){
@@ -94,7 +96,7 @@ class CCExModelsInterval extends CCExModelsDefault {
 
   public function collection() {
     $collectionModel = new CCExModelsCollection();
-    $collectionModel->set('collection_id', $this->collection_id);
+    $collectionModel->set('_collection_id', $this->collection_id);
     $collection = $collectionModel->getItem();
     
     return $collection;

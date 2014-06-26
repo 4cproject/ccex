@@ -162,7 +162,7 @@ Includes outsourcing, renting and leasing of hardware and software.">
 			<?php if(isset($this->cost->cost_id)){ ?>
 				<input type="hidden" name="cost[cost_id]" value="<?php echo $this->cost->cost_id; ?>">
 			<?php } ?>
-            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->cost->cost_id)){ echo 'ccexUpdate(\'cost\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; }else{ echo 'ccexCreate(\'cost\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; } ?>">Save</span></a>
+            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->cost->cost_id)){ echo 'ccexUpdate(\'cost\', \'' . JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '#collectionCosts') . '\')'; }else{ echo 'ccexCreate(\'cost\', \'' . JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '#collectionCosts') . '\')'; } ?>">Save</span></a>
 		</div>
 		<div class="col-sm-2">
 			<div class="alert alert-dismissable" id="_message_container" style="display: none;">
@@ -172,7 +172,7 @@ Includes outsourcing, renting and leasing of hardware and software.">
 	    	</div>
 	    </div>
 		<div class="col-sm-2 col-sm-offset-4">
-            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
+            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '#collectionCosts') ?>">Cancel</span></a>
 		</div>
 		<div class="col-sm-2">
             <a class="btn btn-danger btn-block" href="#">Delete</span></a>

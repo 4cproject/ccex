@@ -86,9 +86,14 @@ $(document).ready(function() {
     });
 });
 
-function ccexSaveUpdateURLCollection(data, redirect_url){
-    if(redirect_url && data.response){
-        return redirect_url + data.response;
+function ccexSaveUpdateURLCollection(data, redirect_url, addID){
+    if(redirect_url){
+        if(addID == "collection"){
+            return redirect_url + data.collection_id;
+        }else if(addID == "interval"){
+            return redirect_url + data.interval_id;
+        }
+        
     }
 
     return redirect_url;

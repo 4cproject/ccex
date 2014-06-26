@@ -1,5 +1,6 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
+    <li><a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>"><?php echo $this->organization->name ?></a></li>
     <li class="active">Add collection</li>
 </ol>
 

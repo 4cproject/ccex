@@ -61,8 +61,8 @@
     </div>
     <br/>
     <div class="form-group">
-        <div class="col-sm-2 text-right">
-            <h4>Asset types</h4>
+        <div class="col-sm-3">
+            <h3>Asset types</h3>
         </div>
     </div>
     <div class="row">
@@ -146,10 +146,29 @@
             </div>
         </div>
         <div class="col-md-6">
-            <canvas height="400" id="pieChart" style="margin: 20px 90px 0px;" width="400"></canvas>
+            <canvas height="400" id="pieChart" style="margin: 20px 50px 0px;" width="400"></canvas>
             <div class="caption text-center">
                 <h2 id="assetTotalFeedback"></h2>
             </div>
+        </div>
+    </div>
+    <a id="collectionCosts"></a>
+    <div class="form-group">
+        <div class="col-sm-3">
+            <h3>Collection costs</h3>
+        </div>
+        <div style="padding: 75px 15px;">
+            <?php if(isset($this->interval->interval_id)){ 
+                $this->_indexCost->editable = true;
+                $this->_indexCost->costs = $this->interval->costs();
+                $this->_indexCost->interval = $this->interval;
+                echo $this->_indexCost->render();
+            } else {
+                $this->_indexCost->editable = true;
+                $this->_indexCost->costs = array();
+                echo $this->_indexCost->render();           
+            }
+            ?>
         </div>
     </div>
     <div class="form-group">
