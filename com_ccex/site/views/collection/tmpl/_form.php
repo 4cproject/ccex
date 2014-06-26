@@ -32,12 +32,12 @@
                     <?php if(isset($this->new_interval) || $this->active_interval->interval_id != $interval->interval_id){ ?>
                         <li><a class="year-tab" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=' . $interval->interval_id ); ?>"><?php echo $interval->toString();?></a></li>
                     <?php } else { ?>
-                        <li class="active"><a href="#current"><?php echo $interval->toString();?> <span class="fa fa-times close-tab"></span></a></li>
+                        <li class="active"><a href="#"><?php echo $interval->toString();?> <span class="fa fa-times close-tab"></span></a></li>
                     <?php } ?>
                     
                 <?php } ?>
                 <?php if(isset($this->new_interval)) { ?>
-                    <li class="active"><a href="#current"><?php echo $this->new_interval->toString();?> <span class="fa fa-times close-tab"></span></a></a></li>
+                    <li class="active"><a href="#"><?php echo $this->new_interval->toString();?> <span class="fa fa-times close-tab"></span></a></a></li>
                 <?php } ?>
                 <?php if(isset($this->collection->collection_id)){ ?>
                     <li><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', true)'; ?>"><i class="fa fa-plus"></i></a></li>
@@ -63,7 +63,7 @@
             <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', false, false, false, true)'; }else{ echo 'ccexCreate(\'collection\', false, false, false, true)'; } ?>">Save</span></a>
         </div>
         <div class="col-sm-2">
-            <a class="btn btn-default btn-block btn-border" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+            <a class="btn btn-success btn-block btn-border" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
         </div>
         <div class="col-sm-2">
             <div class="alert alert-dismissable" id="_message_container" style="display: none;">
@@ -72,13 +72,21 @@
                 <p id="_description"></p>
             </div>
         </div>
-        <div class="col-sm-2 col-sm-offset-4">
-            <a class="btn btn-danger btn-block" href="#">Delete</span></a>
-        </div>
+        <?php if(isset($this->collection->collection_id)){ ?>
+            <div class="col-sm-2 col-sm-offset-4">
+                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) ?>" data-type="collection" data-id="<?php echo $this->collection->collection_id; ?>">Delete</span></a>
+            </div>
+        <?php } else { ?>
+            <div class="col-sm-2 col-sm-offset-4">
+                <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index')?>">Cancel</span></a>
+            </div>
+        <?php } ?>
     </div>
 </form>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/confirm-bootstrap.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/form.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/collection.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/interval.js') ?>"></script>

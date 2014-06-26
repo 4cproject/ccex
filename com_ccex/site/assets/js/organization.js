@@ -39,7 +39,7 @@ $(document).ready(function() {
             $(element).closest('.form-group').removeClass('has-error');
         },
         errorElement: 'span',
-        errorClass: 'error-block',
+        errorClass: 'help-block',
         errorPlacement: function(error, element) {
             var group = element.closest('.input-group');
 

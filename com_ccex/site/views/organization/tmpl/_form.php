@@ -32,7 +32,7 @@
         <label class="col-sm-2 control-label" for="organisation_type_other">Other type</label>
         <div class="col-sm-10">
             <input <?php if(isset($this->organization->other_org_type)){ echo "value=\"" . $this->organization->other_org_type . "\""; }?> class="form-control" id="organisation_type_other" name="organization[other_org_type]" type="text" >
-            <span class="help-block"><small>If you select the 'Other' type, describe your organisation type here.</small></span>
+            <span class="description-block"><small>If you select the 'Other' type, describe your organisation type here.</small></span>
         </div>
     </div>
     <div class="form-group">
@@ -44,7 +44,7 @@
                     <option <?php if(isset($this->organization->country_id) && $this->countries[$i]->country_id == $this->organization->country_id){ echo "selected=\"true\""; }?> value="<?php echo $this->countries[$i]->country_id; ?>"><?php echo $this->countries[$i]->name; ?></option>
                 <?php } ?>
             </select>
-            <span class="help-block"><small>Indicate in which country where the organisation's headquarters are located.</small></span>
+            <span class="description-block"><small>Indicate in which country where the organisation's headquarters are located.</small></span>
         </div>
     </div>
     <div class="form-group">
@@ -56,7 +56,7 @@
                     <option <?php if(isset($this->organization->currency_id) && $this->currencies[$i]->currency_id == $this->organization->currency_id){ echo "selected=\"true\""; }?> value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo $this->currencies[$i]->name; ?></option>
                 <?php } ?>
             </select>
-            <span class="help-block"><small>Indicate the currency in which you would prefer to provide costs.</small></span>
+            <span class="description-block"><small>Indicate the currency in which you would prefer to provide costs.</small></span>
         </div>
     </div>
     <br/>
@@ -68,7 +68,7 @@
                     <input name="organization[global_comparison]" <?php echo (!isset($this->organization->global_comparison) || $this->organization->global_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow the use of my anonymised cost data to calculate averages in the global comparison result.
                 </label>
-                <span class="help-block"><small>Averages will always have at least 5 organisations.</small></span>
+                <span class="description-block"><small>Averages will always have at least 5 organisations.</small></span>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">
@@ -77,7 +77,7 @@
                     <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow the use of my anonymised cost data for peer comparisons.
                 </label>
-                <span class="help-block"><small>Only mappings to the framework of comparable costs will be shown with this option.</small></span>
+                <span class="description-block"><small>Only mappings to the framework of comparable costs will be shown with this option.</small></span>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">
@@ -86,7 +86,7 @@
                     <input name="organization[contact_and_sharing]" <?php echo (isset($this->organization->contact_and_sharing) && $this->organization->contact_and_sharing ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow registered users to contact me and allow my cost data to be shared with them
                 </label>
-                <span class="help-block"><small>Your email is kept private at all times and contact requests can be ignored.</small></span>
+                <span class="description-block"><small>Your email is kept private at all times and contact requests can be ignored.</small></span>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">
@@ -95,7 +95,7 @@
                     <input name="organization[snapshots]" <?php echo (isset($this->organization->snapshots) && $this->organization->snapshots ? 'checked="true"' : '') ?> type="checkbox" value="1">
                     Allow snapshots of my anonymised cost data to be collected periodically.
                 </label>
-                <span class="help-block"><small>Snapshots are taken for the sole purpose of contributing towards the development future research and helping to improve and refine tools and services.</small></span>
+                <span class="description-block"><small>Snapshots are taken for the sole purpose of contributing towards the development future research and helping to improve and refine tools and services.</small></span>
             </div>
         </div>
     </div>

@@ -21,6 +21,9 @@ CREATE TABLE `#__ccex_organizations` (
   `contact_and_sharing` tinyint(1) NOT NULL DEFAULT 0,
   `snapshots` tinyint(1) NOT NULL DEFAULT 0,
 
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
@@ -34,6 +37,9 @@ CREATE TABLE `#__ccex_organization_types` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+
   PRIMARY KEY (`org_type_id`)
 );
 
@@ -45,6 +51,9 @@ CREATE TABLE `#__ccex_organization_org_types` (
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
+
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
   PRIMARY KEY (`organization_org_type_id`)
 );
@@ -59,6 +68,9 @@ CREATE TABLE `#__ccex_collections` (
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
+
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
   PRIMARY KEY (`collection_id`)
 );
@@ -87,6 +99,9 @@ CREATE TABLE `#__ccex_interval` (
   `asset_email` int(11) NOT NULL DEFAULT 0,
   `asset_database` int(11) NOT NULL DEFAULT 0,
   `asset_research_data` int(11) NOT NULL DEFAULT 0,
+
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
@@ -117,6 +132,9 @@ CREATE TABLE `#__ccex_costs` (
   `cat_storage` int(11) NOT NULL DEFAULT 0,
   `cat_access` int(11) NOT NULL DEFAULT 0,
 
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
@@ -130,6 +148,9 @@ CREATE TABLE `#__ccex_countries` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+
   PRIMARY KEY (`country_id`)
 );
 
@@ -140,6 +161,9 @@ CREATE TABLE `#__ccex_currencies` (
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
+
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
   PRIMARY KEY (`currency_id`)
 );

@@ -97,7 +97,8 @@ a:after {
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #ffffff;
-	background-color: #74cfae;
+    background-color: #5cb85c;
+	/*background-color: #74cfae;*/
 }
 
 .navbar-brand {
@@ -108,7 +109,8 @@ a:after {
 
 .btn-theme {
 	color: #ffffff;
-	background-color: #74cfae;
+    background-color: #5cb85c;
+    /*background-color: #74cfae;*/
 	border-color: transparent;
 }
 
@@ -137,7 +139,8 @@ a:after {
 	font-size: 90px;
 	font-weight: 700;
 	letter-spacing: 3px;
-	color: #74cfae;
+    color: #5cb85c;
+    /*color: #74cfae;*/
 }
 
 #hello h2 {
@@ -147,7 +150,8 @@ a:after {
 
 /* Green */
 #green {
-	background-color: #74cfae;
+    background-color: #5cb85c;
+    /*background-color: #74cfae;*/
 	padding-top: 50px;
 	margin-bottom: 0px;
 }
@@ -190,7 +194,8 @@ a:after {
 
 #social i {
 	font-size: 50px;
-	color: #74cfae;
+    color: #5cb85c;
+    /*color: #74cfae;*/
 }
 
 #social .col-md-3:hover {
@@ -204,7 +209,8 @@ a:after {
 /* Footer */
 #f {
 	padding-top: 20px;
-	background-color: #74cfae;
+    background-color: #5cb85c;
+    /*background-color: #74cfae;*/
 }
 
 #f p {

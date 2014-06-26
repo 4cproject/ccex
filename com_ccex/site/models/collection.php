@@ -10,6 +10,7 @@ class CCExModelsCollection extends CCExModelsDefault {
   var $_organization_id = null;
   var $_pagination      = null;
   var $_total           = null;
+  var $_deleted          = 0;
 
   function __construct() {
     $app = JFactory::getApplication();
@@ -54,6 +55,8 @@ class CCExModelsCollection extends CCExModelsDefault {
         $query->where("p.organization_id = '" . $this->_organization_id . "'");
       }
     }
+
+    $query->where('p.deleted = ' . (int) $this->_deleted);
     
     return $query;
   }
@@ -79,6 +82,23 @@ class CCExModelsCollection extends CCExModelsDefault {
     }
 
     return $return;
+  }
+
+
+  public function delete($id = null){
+    $app  = JFactory::getApplication();
+    $id   = $id ? $id : $app->input->get('collection_id');
+
+    $collection = JTable::getInstance('Collection','Table');
+    $collection->load($id);
+
+    $collection->deleted = 1;
+
+    if($collection->store()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public function organization() {

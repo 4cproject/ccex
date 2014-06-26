@@ -11,6 +11,7 @@ class CCExModelsCost extends CCExModelsDefault {
   var $_cost_id         = null;
   var $_pagination      = null;
   var $_total           = null;
+  var $_deleted           = 0;
 
   function __construct() {
     $app = JFactory::getApplication();
@@ -56,6 +57,8 @@ class CCExModelsCost extends CCExModelsDefault {
       }
     }
 
+    $query->where('c.deleted = ' . (int) $this->_deleted);
+
     return $query;
   }
 
@@ -73,6 +76,22 @@ class CCExModelsCost extends CCExModelsDefault {
     $return = array('cost_id' => $row_cost->cost_id);
 
     return $return;
+  }
+
+  public function delete($id = null){
+    $app  = JFactory::getApplication();
+    $id   = $id ? $id : $app->input->get('cost_id');
+
+    $cost = JTable::getInstance('Cost','Table');
+    $cost->load($id);
+
+    $cost->deleted = 1;
+
+    if($cost->store()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public function listItemsByInterval($interval_id){

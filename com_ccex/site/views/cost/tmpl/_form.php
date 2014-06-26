@@ -171,12 +171,18 @@ Includes outsourcing, renting and leasing of hardware and software.">
 	        	<p id="_description"></p>
 	    	</div>
 	    </div>
-		<div class="col-sm-2 col-sm-offset-4">
-            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '#collectionCosts') ?>">Cancel</span></a>
-		</div>
-		<div class="col-sm-2">
-            <a class="btn btn-danger btn-block" href="#">Delete</span></a>
-		</div>
+	    <?php if(isset($this->cost->cost_id)){ ?>
+			<div class="col-sm-2 col-sm-offset-4">
+	            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '#collectionCosts') ?>">Cancel</span></a>
+			</div>
+			<div class="col-sm-2">
+	            <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '#collectionCosts') ?>" data-type="cost" data-id="<?php echo $this->cost->cost_id; ?>">Delete</span></a>
+			</div>
+		<?php } else { ?>
+			<div class="col-sm-2 col-sm-offset-6">
+	            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '#collectionCosts') ?>">Cancel</span></a>
+			</div>
+		<?php } ?>
 	</div>
 </form>
 
@@ -230,5 +236,7 @@ $("#cost_value").change(function() {
 
 </script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/confirm-bootstrap.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/form.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/cost.js') ?>"></script>
