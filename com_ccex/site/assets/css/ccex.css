@@ -80,20 +80,9 @@
 }
 
 .utils .btn-border{
+    padding-top: 14px;
+    padding-bottom: 14px; 
     border: 1px solid #ccc;
-    padding: 14px 15px;
-}
-
-.collection-utils .btn-border{
-    border: 1px solid #ccc;
-}
-
-.collection-utils .btn{
-    padding: 10px 30px;
-    margin-bottom: 0;
-    font-size: 15px;
-    border-radius: 0px;
-    margin-top: 30px;
 }
 
 .close-tab{
@@ -122,4 +111,9 @@
     margin-top: 5px;
     margin-bottom: 10px;
     color: #737373;
+}
+
+.btn.btn-block {
+    padding-left: 0px;
+    padding-right: 0px;
 }

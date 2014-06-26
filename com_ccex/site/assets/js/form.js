@@ -1,12 +1,12 @@
-function ccexUpdate(model, redirect_url, silent, addID, success_message) {
-    ccexSave(model, 'edit', redirect_url, silent, false, success_message);
+function ccexUpdate(model, redirect_url, silent, update_redirect, success_message) {
+    ccexSave(model, 'edit', redirect_url, silent, update_redirect, success_message);
 }
 
-function ccexCreate(model, redirect_url, silent, addID, success_message) {
-    ccexSave(model, 'add', redirect_url, silent, addID, success_message);
+function ccexCreate(model, redirect_url, silent, update_redirect, success_message) {
+    ccexSave(model, 'add', redirect_url, silent, update_redirect, success_message);
 }
 
-function ccexSave(model, action, redirect_url, silent, addID, success_message) {
+function ccexSave(model, action, redirect_url, silent, update_redirect, success_message) {
     if (!ccexValidateForm(model, silent)) {
         return;
     }
@@ -43,16 +43,20 @@ function ccexSave(model, action, redirect_url, silent, addID, success_message) {
                 $("#_message_container").show();
             }
 
-            if (addID && typeof window["ccexSaveUpdateURL" + capitalize(model)] != 'undefined') {
-                redirect_url = window["ccexSaveUpdateURL" + capitalize(model)](data, redirect_url, addID);
+            if (update_redirect && typeof window["ccexSaveUpdateRedirect" + capitalize(model)] != 'undefined') {
+                redirect_url = window["ccexSaveUpdateRedirect" + capitalize(model)](data, redirect_url, update_redirect);
+            }
+
+            if (typeof window["ccexSaveUpdate" + capitalize(model)] != 'undefined') {
+                window["ccexSaveUpdate" + capitalize(model)]();
             }
 
             if (redirect_url) {
-                // var delay = 500;
-                // setTimeout(function() {
-                //     window.location.href = redirect_url;
-                // }, delay);
-                window.location.href = redirect_url;
+                if(redirect_url == 'reload'){
+                    window.location.reload();
+                }else{
+                    window.location.href = redirect_url;
+                }
             }
         }
     });

@@ -30,14 +30,26 @@
                     <?php $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval); ?>
                     
                     <?php if(isset($this->new_interval) || $this->active_interval->interval_id != $interval->interval_id){ ?>
-                        <li><a class="year-tab" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=' . $interval->interval_id ); ?>"><?php echo $interval->toString();?></a></li>
+                        <li><a class="year-tab" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=' . $interval->interval_id ); ?>"><?php echo $interval->toString();?>
+                            <?php if(count($this->intervals)>1) { ?>
+                                <span data-action="delete" data-type="interval" data-id="<?php echo $interval->interval_id; ?>" data-redirect="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id ); ?>" class="fa fa-times close-tab"></span>
+                            <?php } ?>
+                        </a></li>
                     <?php } else { ?>
-                        <li class="active"><a href="#"><?php echo $interval->toString();?> <span class="fa fa-times close-tab"></span></a></li>
+                        <li class="active"><a href="javascript:void(0)"><?php echo $interval->toString();?> 
+                            <?php if(count($this->intervals)>1) { ?>
+                                 <span data-action="delete" data-type="interval" data-id="<?php echo $interval->interval_id; ?>" data-redirect="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id ); ?>" class="fa fa-times close-tab"></span>
+                            <?php } ?>
+                        </a></li>
                     <?php } ?>
                     
                 <?php } ?>
                 <?php if(isset($this->new_interval)) { ?>
-                    <li class="active"><a href="#"><?php echo $this->new_interval->toString();?> <span class="fa fa-times close-tab"></span></a></a></li>
+                    <li class="active"><a href="javascript:void(0)"><?php echo $this->new_interval->toString();?>
+                            <?php if(count($this->intervals)>0) { ?>
+                                <span data-action="close" data-type="interval" data-id="<?php echo $interval->interval_id; ?>" data-redirect="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id ); ?>" class="fa fa-times close-tab"></span>
+                            <?php } ?>
+                        </a></a></li>
                 <?php } ?>
                 <?php if(isset($this->collection->collection_id)){ ?>
                     <li><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', true)'; ?>"><i class="fa fa-plus"></i></a></li>
@@ -60,10 +72,14 @@
             <?php if(isset($this->collection->collection_id)){ ?>
                 <input type="hidden" name="collection[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
             <?php } ?>
-            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', false, false, false, true)'; }else{ echo 'ccexCreate(\'collection\', false, false, false, true)'; } ?>">Save</span></a>
+            <?php if(isset($this->new_interval)) { ?>
+                <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+            <?php } else { ?>
+                <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+            <?php } ?>
         </div>
         <div class="col-sm-2">
-            <a class="btn btn-success btn-block btn-border" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
         </div>
         <div class="col-sm-2">
             <div class="alert alert-dismissable" id="_message_container" style="display: none;">

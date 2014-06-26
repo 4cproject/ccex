@@ -66,6 +66,12 @@ $(document).ready(function() {
                 blank: false,
                 number: true,
                 min: 1
+            },
+            'interval[staff]': {
+                required: true,
+                blank: false,
+                number: true,
+                min: 0.1
             }
         },
         highlight: function(element) {
@@ -86,7 +92,7 @@ $(document).ready(function() {
     });
 });
 
-function ccexSaveUpdateURLCollection(data, redirect_url, addID){
+function ccexSaveUpdateRedirectCollection(data, redirect_url, addID){
     if(redirect_url){
         if(addID == "collection"){
             return redirect_url + data.collection_id;

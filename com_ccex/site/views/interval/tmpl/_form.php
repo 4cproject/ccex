@@ -20,18 +20,12 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="interval_staff">Curation
-            staff in scope</label>
-        <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="Indicate the number of staff members working with digital curation within the scope defined above.">
-            <select class="form-control" id="interval_staff" name="interval[staff]">
-                <option <?php if(isset($this->interval->staff_max_size) && $this->interval->staff_max_size == 10){ echo "selected=\"true\""; }?> value="0|10">Less than 10 people</option>
-                <option <?php if(isset($this->interval->staff_max_size) && $this->interval->staff_max_size == 50){ echo "selected=\"true\""; }?> value="10|50">Less than 50 people</option>
-                <option <?php if(isset($this->interval->staff_max_size) && $this->interval->staff_max_size == 100){ echo "selected=\"true\""; }?> value="50|100">Less than 100 people</option>
-                <option <?php if(isset($this->interval->staff_max_size) && $this->interval->staff_max_size == 500){ echo "selected=\"true\""; }?> value="100|500">Less than 500 people</option>
-                <option <?php if(isset($this->interval->staff_max_size) && $this->interval->staff_max_size == 1000){ echo "selected=\"true\""; }?> value="500|1000">Less than 1000 people</option>
-                <option <?php if(isset($this->interval->staff_max_size) && $this->interval->staff_max_size == 10000){ echo "selected=\"true\""; }?> value="1000|10000">Less than 10000 people</option>
-                <option <?php if(isset($this->interval->staff_min_size) && $this->interval->staff_min_size == 10000){ echo "selected=\"true\""; }?> value="10000|0">More than 10000 people</option>
-            </select>
+        <label class="col-sm-2 control-label" for="interval_staff">Curation staff</label>
+        <div class="col-sm-2">
+            <div class="input-group">
+                <input id="interval_staff" type="number" min="0" class="form-control" name="interval[staff]" value="<?php if(isset($this->interval->staff)){ echo $this->interval->staff; }else{ echo 0; }?>">
+                <span class="input-group-addon">FTE</span>
+            </div>
         </div>
     </div>
     <div class="form-group">

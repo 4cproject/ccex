@@ -85,8 +85,7 @@ CREATE TABLE `#__ccex_interval` (
   `data_volume` int(11) NOT NULL DEFAULT 0,
   `number_copies` int(11) NOT NULL DEFAULT 0,
 
-  `staff_min_size` int(11) NOT NULL DEFAULT 0,
-  `staff_max_size` int(11) NOT NULL DEFAULT 0,
+  `staff` double NOT NULL DEFAULT 0,
 
   `asset_unformatted_text` int(11) NOT NULL DEFAULT 0,
   `asset_word_processing` int(11) NOT NULL DEFAULT 0,

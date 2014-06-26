@@ -31,3 +31,29 @@ $('#interval_begin_year').on('input', function() {
     }
     active.contents().get(0).nodeValue = new_value;
 });
+
+$('.close-tab').on('click', function(e){
+    e.stopPropagation();
+    e.preventDefault();
+
+    if($(this).data('action') == 'close'){
+        window.location.href = $(this).data('redirect');
+    }
+});
+
+$('.close-tab').exists(function() {
+    if($(this).data('action') != 'close'){
+        $(this).confirmModal({
+            confirmMessage   : 'Are you sure you want to delete this ' + $(this).data("type") + '? This action is irreversible.',
+            confirmCallback  : callClose
+        });
+    }
+});
+
+function callClose(button){
+    id = button.data("id");
+    type = button.data("type");
+    redirect = button.data("redirect");
+
+    ccexDelete(type, id, redirect);
+}

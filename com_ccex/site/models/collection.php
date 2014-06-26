@@ -222,7 +222,15 @@ class CCExModelsCollection extends CCExModelsDefault {
   public function newInterval() {
     $newInterval = new CCExModelsInterval();
     $newInterval->set('collection_id', $this->_collection_id);
-    $newInterval->set('begin_year', date("Y"));
+
+    if($this->numberIntervals()>1){
+      $lastInterval = $this->lastInterval();
+      $newYear = $lastInterval->begin_year + $lastInterval->duration;
+    }else{
+      $newYear = date("Y");
+    }
+
+    $newInterval->set('begin_year', $newYear);
 
     return $newInterval;
   }

@@ -10,6 +10,7 @@ class CCExModelsInterval extends CCExModelsDefault {
   var $_interval_id         = null;
   var $_pagination      = null;
   var $_total           = null;
+  var $_deleted = 0;
 
   function __construct() {
     $app = JFactory::getApplication();
@@ -35,7 +36,7 @@ class CCExModelsInterval extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('i.interval_id, i.collection_id, i.begin_year, i.duration, i.data_volume, i.number_copies, i.asset_unformatted_text, i.asset_word_processing, i.asset_spreadsheet, i.asset_graphics, i.asset_audio, i.asset_video, i.asset_hypertext, i.asset_geodata, i.asset_email, i.asset_database, i.asset_research_data, i.staff_min_size, i.staff_max_size');
+    $query->select('i.interval_id, i.collection_id, i.begin_year, i.duration, i.data_volume, i.number_copies, i.asset_unformatted_text, i.asset_word_processing, i.asset_spreadsheet, i.asset_graphics, i.asset_audio, i.asset_video, i.asset_hypertext, i.asset_geodata, i.asset_email, i.asset_database, i.asset_research_data, i.staff');
     $query->from('#__ccex_interval as i');
     $query->order('i.begin_year');
 
@@ -56,6 +57,8 @@ class CCExModelsInterval extends CCExModelsDefault {
       }
     }
 
+    $query->where('i.deleted = ' . (int) $this->_deleted);
+
     return $query;
   }
 
@@ -63,12 +66,6 @@ class CCExModelsInterval extends CCExModelsDefault {
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
-    if(isset($data['staff'])){
-      $scope_size = explode('|', $data['staff']);
-            
-      $data['staff_min_size'] = $scope_size[0];
-      $data['staff_max_size'] = $scope_size[1];
-    }
     if(isset($data['data_volume_number'])){
       if(isset($data['data_volume_unit'])){
         $data['data_volume'] = $data['data_volume_number'] * $data['data_volume_unit'];
@@ -87,6 +84,22 @@ class CCExModelsInterval extends CCExModelsDefault {
     $return = array('interval_id' => $row_interval->interval_id);
 
     return $return;
+  }
+
+  public function delete($id = null){
+    $app  = JFactory::getApplication();
+    $id   = $id ? $id : $app->input->get('interval_id');
+
+    $interval = JTable::getInstance('Interval','Table');
+    $interval->load($id);
+
+    $interval->deleted = 1;
+
+    if($interval->store()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public function listItemsByCollection($collection_id){
@@ -155,20 +168,7 @@ class CCExModelsInterval extends CCExModelsDefault {
   }
 
 public function formattedStaff(){
-    $staff = "";
-
-    if(is_numeric($this->staff_min_size) && is_numeric($this->staff_max_size)){
-      if ($this->staff_max_size == 0) {
-        $staff .= "More than ";
-        $staff .= $this->staff_min_size;
-      }else{
-        $staff .= "Less than ";
-        $staff .= $this->staff_max_size;
-      }
-      $staff .= " people";
-    }
-
-    return $staff;
+    return $this->staff . " people";
   }
 
   public function costs() {
