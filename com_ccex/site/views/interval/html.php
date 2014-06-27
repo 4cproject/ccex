@@ -6,11 +6,7 @@ class CCExViewsIntervalHtml extends JViewHtml {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
 
-    $intervalModel = new CCExModelsInterval();
-
     switch($layout) {
-      case "index":
-        break;
       default:
         break;
     }

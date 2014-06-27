@@ -6,19 +6,22 @@ class CCExModelsOrganizationtype extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_org_type_id = null;
-  var $_name        = null;
-  var $_pagination  = null;
-  var $_total       = null;
+  protected $_org_type_id = null;
+  protected $_name        = null;
+  protected $_pagination  = null;
+  protected $_total       = null;
+  protected $_deleted     = 0;
 
   function __construct() {
     $app = JFactory::getApplication();
-    $this->_org_type_id = $app->input->get('org_type_id', null);
-    
     parent::__construct();       
   }
  
   public function getItem() {
+    if(!is_numeric($this->_org_type_id)) {
+      return null;  
+    }
+
     $organizationType = parent::getItem();
 
     if($organizationType){
@@ -55,6 +58,8 @@ class CCExModelsOrganizationtype extends CCExModelsDefault {
       }
     }
     
+    $query->where('t.deleted = ' . (int) $this->_deleted);
+
     return $query;
   }
 }

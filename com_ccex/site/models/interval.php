@@ -6,26 +6,32 @@ class CCExModelsInterval extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_collection_id   = null;
-  var $_interval_id         = null;
-  var $_pagination      = null;
-  var $_total           = null;
-  var $_deleted = 0;
+  protected $_collection_id   = null;
+  protected $_interval_id     = null;
+  protected $_pagination      = null;
+  protected $_total           = null;
+  protected $_deleted         = 0;
 
   function __construct() {
-    $app = JFactory::getApplication();
-
-    $this->_interval_id = $app->input->get('interval_id', null);
-    
     parent::__construct();       
   }
  
   public function getItem() {
-    $interval = parent::getItem();
+    $interval = null;
 
-    if($interval){
-      return CCExHelpersCast::cast('CCExModelsInterval', $interval);
+    if(is_numeric($this->_interval_id)) {
+      $interval = parent::getItem();
+
+      if($interval){
+        $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+      }
     }
+
+    if($interval && $interval->havePermissions($this->_session_user_id)){
+      return $interval;
+    }
+
+    return null;
   }
 
   /**
@@ -62,6 +68,10 @@ class CCExModelsInterval extends CCExModelsDefault {
     return $query;
   }
 
+  /**
+  * Override the default store
+  *
+  */
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
@@ -75,17 +85,22 @@ class CCExModelsInterval extends CCExModelsDefault {
     }
 
     $row_interval = JTable::getInstance('interval','Table');
-    if (!$row_interval->bind($data)){ return false; }
+    if (!$row_interval->bind($data)){ return null; }
 
     $row_interval->modified = $date;
-    if (!$row_interval->check()){ return false; }
-    if (!$row_interval->store()){ return false; }
+    if (!$row_interval->check()){ return null; }
+    if (!$row_interval->store()){ return null; }
     
     $return = array('interval_id' => $row_interval->interval_id);
 
     return $return;
   }
 
+  /**
+  * Delete a interval
+  * @param int      ID of the interval to delete
+  * @return boolean True if successfully deleted
+  */
   public function delete($id = null){
     $app  = JFactory::getApplication();
     $id   = $id ? $id : $app->input->get('interval_id');
@@ -100,6 +115,14 @@ class CCExModelsInterval extends CCExModelsDefault {
     } else {
       return false;
     }
+  }
+
+  public function havePermissions($user_id) {
+    if($user_id && $this->collection() && $this->collection()->havePermissions($user_id)){
+      return true;
+    }
+
+    return false;
   }
 
   public function listItemsByCollection($collection_id){

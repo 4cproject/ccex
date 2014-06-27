@@ -3,15 +3,18 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
  
 class CCExModelsDefault extends JModelBase
 {
-  protected $__state_set  = null;
-  protected $_total       = null;
-  protected $_pagination  = null;
-  protected $_db          = null;
-  protected $id           = null;
-  protected $limitstart   = 0;
-  protected $limit        = 1000000;
- 
+  protected $__state_set      = null;
+  protected $_total           = null;
+  protected $_pagination      = null;
+  protected $_db              = null;
+  protected $id               = null;
+  protected $limitstart       = 0;
+  protected $limit            = 0;
+  protected $_session_user_id = null;
+
   function __construct() {
+    $this->_session_user_id = JFactory::getUser()->id;
+
     parent::__construct(); 
   }
 

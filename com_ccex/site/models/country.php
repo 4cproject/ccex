@@ -6,19 +6,21 @@ class CCExModelsCountry extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_country_id = null;
-  var $_name        = null;
-  var $_pagination  = null;
-  var $_total       = null;
+  protected $_country_id  = null;
+  protected $_name        = null;
+  protected $_pagination  = null;
+  protected $_total       = null;
+  protected $_deleted     = 0;
 
   function __construct() {
-    $app = JFactory::getApplication();
-    $this->_country_id = $app->input->get('country_id', null);
-    
     parent::__construct();       
   }
  
   public function getItem() {
+    if(!is_numeric($this->_country_id)) {
+      return null;  
+    }
+
     $country = parent::getItem();
 
     if($country){
@@ -50,6 +52,8 @@ class CCExModelsCountry extends CCExModelsDefault {
     if(is_numeric($this->_country_id)) {
       $query->where('c.country_id = ' . (int) $this->_country_id);
     }
+
+    $query->where('c.deleted = ' . (int) $this->_deleted);
 
     return $query;
   }

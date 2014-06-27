@@ -6,19 +6,21 @@ class CCExModelsCurrency extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_currency_id = null;
-  var $_name        = null;
-  var $_pagination  = null;
-  var $_total       = null;
+  protected $_currency_id = null;
+  protected $_name        = null;
+  protected $_pagination  = null;
+  protected $_total       = null;
+  protected $_deleted     = 0;
 
   function __construct() {
-    $app = JFactory::getApplication();
-    $this->_currency_id = $app->input->get('currency_id', null);
-    
     parent::__construct();       
   }
 
   public function getItem() {
+    if(!is_numeric($this->_currency_id)) {
+      return null;  
+    }
+
     $currency = parent::getItem();
 
     if($currency){
@@ -50,6 +52,8 @@ class CCExModelsCurrency extends CCExModelsDefault {
     if(is_numeric($this->_currency_id)) {
       $query->where('c.currency_id = ' . (int) $this->_currency_id);
     }
+
+    $query->where('c.deleted = ' . (int) $this->_deleted);
 
     return $query;
   }

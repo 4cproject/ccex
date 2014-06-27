@@ -6,25 +6,32 @@ class CCExModelsCollection extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_collection_id  = null;
-  var $_organization_id = null;
-  var $_pagination      = null;
-  var $_total           = null;
-  var $_deleted          = 0;
+  protected $_collection_id   = null;
+  protected $_organization_id = null;
+  protected $_pagination      = null;
+  protected $_total           = null;
+  protected $_deleted         = 0;
 
   function __construct() {
-    $app = JFactory::getApplication();
-    $this->_collection_id = $app->input->get('collection_id', null);
-    
     parent::__construct();       
   }
  
   public function getItem() {
-    $collection = parent::getItem();
+    $collection = null;
 
-    if($collection){
-      return CCExHelpersCast::cast('CCExModelsCollection', $collection);
+    if(is_numeric($this->_collection_id)) {
+      $collection = parent::getItem();
+
+      if($collection){
+        $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+      }
     }
+
+    if($collection && $collection->havePermissions($this->_session_user_id)){
+      return $collection;
+    }
+
+    return null;
   }
  
   /**
@@ -61,18 +68,23 @@ class CCExModelsCollection extends CCExModelsDefault {
     return $query;
   }
 
+  /**
+  * Override the default store
+  *
+  */
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
     $row_collection = JTable::getInstance('collection','Table');
-    if (!$row_collection->bind($data['collection'])){ return 0; }
+    if (!$row_collection->bind($data['collection'])){ return null; }
 
     $row_collection->modified = $date;
-    if (!$row_collection->check()){ return 0; }
-    if (!$row_collection->store()){ return 0; }
+    if (!$row_collection->check()){ return null; }
+    if (!$row_collection->store()){ return null; }
 
     $data['interval']['collection_id'] = $row_collection->collection_id;
+
     $intervalModel = new CCExModelsInterval();
     $result = $intervalModel->store($data['interval']);
     
@@ -84,7 +96,11 @@ class CCExModelsCollection extends CCExModelsDefault {
     return $return;
   }
 
-
+  /**
+  * Delete a collection
+  * @param int      ID of the collection to delete
+  * @return boolean True if successfully deleted
+  */
   public function delete($id = null){
     $app  = JFactory::getApplication();
     $id   = $id ? $id : $app->input->get('collection_id');
@@ -99,6 +115,14 @@ class CCExModelsCollection extends CCExModelsDefault {
     } else {
       return false;
     }
+  }
+
+  public function havePermissions($user_id) {
+    if($user_id && $this->organization() && $this->organization()->havePermissions($user_id)){
+      return true;
+    }
+
+    return false;
   }
 
   public function organization() {

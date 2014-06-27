@@ -6,27 +6,33 @@ class CCExModelsCost extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_user_id         = null;
-  var $_interval_id = null;
-  var $_cost_id         = null;
-  var $_pagination      = null;
-  var $_total           = null;
-  var $_deleted           = 0;
+  protected $_user_id         = null;
+  protected $_interval_id     = null;
+  protected $_cost_id         = null;
+  protected $_pagination      = null;
+  protected $_total           = null;
+  protected $_deleted         = 0;
 
   function __construct() {
-    $app = JFactory::getApplication();
-
-    $this->_cost_id = $app->input->get('cost_id', null);
-    
     parent::__construct();       
   }
  
   public function getItem() {
-    $cost = parent::getItem();
+    $cost = null;
 
-    if($cost){
-      return CCExHelpersCast::cast('CCExModelsCost', $cost);
+    if(is_numeric($this->_cost_id)) {
+      $cost = parent::getItem();
+
+      if($cost){
+        $cost = CCExHelpersCast::cast('CCExModelsCost', $cost);
+      }
     }
+
+    if($cost && $cost->havePermissions($this->_session_user_id)){
+      return $cost;
+    }
+
+    return null;
   }
 
   /**
@@ -62,22 +68,31 @@ class CCExModelsCost extends CCExModelsDefault {
     return $query;
   }
 
+  /**
+  * Override the default store
+  *
+  */
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
     $row_cost = JTable::getInstance('cost','Table');
-    if (!$row_cost->bind($data['cost'])){ return false; }
+    if (!$row_cost->bind($data['cost'])){ return null; }
 
     $row_cost->modified = $date;
-    if (!$row_cost->check()){ return false; }
-    if (!$row_cost->store()){ return false; }
+    if (!$row_cost->check()){ return null; }
+    if (!$row_cost->store()){ return null; }
     
     $return = array('cost_id' => $row_cost->cost_id);
 
     return $return;
   }
 
+  /**
+  * Delete a cost
+  * @param int      ID of the cost to delete
+  * @return boolean True if successfully deleted
+  */
   public function delete($id = null){
     $app  = JFactory::getApplication();
     $id   = $id ? $id : $app->input->get('cost_id');
@@ -94,6 +109,14 @@ class CCExModelsCost extends CCExModelsDefault {
     }
   }
 
+  public function havePermissions($user_id) {
+    if($user_id && $this->interval() &&  $this->interval()->havePermissions($user_id)){
+      return true;
+    }
+
+    return false;
+  }
+
   public function listItemsByInterval($interval_id){
     $this->set('_interval_id', $interval_id);
     return $this->listItems();
@@ -105,8 +128,7 @@ class CCExModelsCost extends CCExModelsDefault {
 
   public function interval() {
     $intervalModel = new CCExModelsInterval();
-    $intervalModel->set('_interval_id', $this->interval_id);
-    $interval = $intervalModel->getItem();
+    $interval = $intervalModel->getItemBy('_interval_id', $this->interval_id);
     
     return $interval;
   }

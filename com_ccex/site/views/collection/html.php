@@ -6,13 +6,14 @@ class CCExViewsCollectionHtml extends JViewHtml {
     $app = JFactory::getApplication();
     $layout = $app->input->get('layout');
     $new_year = $app->input->get('new_year');
-    $intervalID = $app->input->get('active_interval');
+    $active_interval = $app->input->get('active_interval');
 
-    $collectionModel = new CCExModelsCollection();
+    $collection_id = $app->input->get('collection_id', null);
+
     $userModel = new CCExModelsUser();
+    $collectionModel = new CCExModelsCollection();
 
     $organization = $userModel->organization();
-
     if (!$organization) {
         $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
         $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
@@ -30,11 +31,18 @@ class CCExViewsCollectionHtml extends JViewHtml {
           $this->_formView->intervals = $collection->intervals();
 
           $this->_formView->_intervalFormView = CCExHelpersView::load('Interval','_form','phtml');
-          $this->_formView->_intervalFormView->_indexCost = CCExHelpersView::load('Cost','_index','phtml');
           $this->_formView->_intervalFormView->interval = $this->_formView->new_interval;
+          
+          $this->_formView->_intervalFormView->_indexCost = CCExHelpersView::load('Cost','_index','phtml');
         break;
       case "edit":
-          $collection =  $collectionModel->getItem();
+          $collection =  $collectionModel->getItemBy("_collection_id", $collection_id);
+
+          if(!$collection){
+            $app->enqueueMessage(JText::_('COM_CCEX_ERROR_NOT_FOUND'), "error");
+            $app->redirect(JRoute::_('index.php?view=comparecosts&layout=index', false));
+          }
+
           $this->collection = $collection;
           $this->organization = $organization;
 
@@ -49,7 +57,7 @@ class CCExViewsCollectionHtml extends JViewHtml {
             $this->_formView->intervals = $collection->intervals();
             $this->_formView->_intervalFormView->interval = $this->_formView->new_interval;
           }else{
-            $this->_formView->active_interval = $collection->activeInterval($intervalID);    
+            $this->_formView->active_interval = $collection->activeInterval($active_interval);    
             $this->_formView->intervals = $collection->intervals();            
             $this->_formView->_intervalFormView->interval = $this->_formView->active_interval;        
           }      

@@ -6,25 +6,33 @@ class CCExModelsOrganization extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_organization_id = null;
-  var $_user_id         = null;
-  var $_name            = null;
-  var $_pagination      = null;
-  var $_total           = null;
+  protected $_organization_id = null;
+  protected $_user_id         = null;
+  protected $_name            = null;
+  protected $_pagination      = null;
+  protected $_total           = null;
+  protected $_deleted         = 0;
 
   function __construct() {
-    $app = JFactory::getApplication();
-    $this->_organization_id = $app->input->get('organization_id', null);
-    
     parent::__construct();  
   }
 
   public function getItem() {
-    $organization = parent::getItem();
+    $organization = null;
 
-    if($organization){
-      return CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+    if(is_numeric($this->_organization_id) || is_numeric($this->_user_id)) {
+      $organization = parent::getItem();
+
+      if($organization){
+        $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+      }
     }
+
+    if($organization && $organization->havePermissions($this->_session_user_id)){
+      return $organization;
+    }
+
+    return null;
   }
   
   /**
@@ -35,7 +43,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('o.organization_id, o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.global_comparison, o.peer_comparison, o.contact_and_sharing, o.snapshots');
+    $query->select('o.organization_id, o.user_id , o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.global_comparison, o.peer_comparison, o.contact_and_sharing, o.snapshots');
     $query->from('#__ccex_organizations as o');
 
     return $query;
@@ -50,34 +58,35 @@ class CCExModelsOrganization extends CCExModelsDefault {
 
     if(is_numeric($this->_organization_id)) {
       $query->where('o.organization_id = ' . (int) $this->_organization_id);
-    }
-
-    if(is_numeric($this->_user_id)) {
+    }elseif (is_numeric($this->_user_id)) {
       $query->where('o.user_id = ' . (int) $this->_user_id);
     }
+
+    $query->where('o.deleted = ' . (int) $this->_deleted);
 
     return $query;
   }
 
+  /**
+  * Override the default store
+  *
+  */
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
-    $userModel = new CCExModelsUser();
 
-    $data['organization']['user_id'] = $userModel->_user_id;
+    $userModel = new CCExModelsUser();
+    $data['organization']['user_id'] = $userModel->user_id;
 
     $row_organization = JTable::getInstance('organization','Table');
-    if (!$row_organization->bind($data['organization'])){ return false; }
+    if (!$row_organization->bind($data['organization'])){ return null; }
 
     $row_organization->modified = $date;
-    if (!$row_organization->check()){ return false; }
-    if (!$row_organization->store()){ return false; }
+    if (!$row_organization->check()){ return null; }
+    if (!$row_organization->store()){ return null; }
 
     $organizationModel = new CCExModelsOrganization();
     $organization = $organizationModel->getItemBy('_organization_id', $row_organization->organization_id);
-
-    $organization->set('_organization_id', $row_organization->organization_id);
-    $organization->set('organization_id', $row_organization->organization_id);
 
     $organization->removeAllTypes();
     if(array_key_exists('org_type', $data)){
@@ -87,6 +96,14 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $return = array('organization_id' => $row_organization->organization_id);
 
     return $return;
+  }
+
+  public function havePermissions($user_id) {
+    if($user_id && $this->user_id == $user_id){
+      return true;
+    }
+
+    return false;
   }
 
   public function currency() {
@@ -270,7 +287,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
     foreach ($typeIds as $typeId) {
       $data = array();
       $data['org_type_id'] = $typeId;
-      $data['organization_id'] = $this->_organization_id; 
+      $data['organization_id'] = $this->organization_id; 
 
       $organizationOrgTypeModel->store($data);
     }

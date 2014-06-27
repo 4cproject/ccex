@@ -6,20 +6,21 @@ class CCExModelsOrganizationorgtype extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  var $_org_type_id = null;
-  var $_organization_org_type_id = null;
-  var $_organization_id;
-  var $_pagination  = null;
-  var $_total       = null;
+  protected $_org_type_id              = null;
+  protected $_organization_org_type_id = null;
+  protected $_organization_id          = null;
+  protected $_pagination               = null;
+  protected $_total                    = null;
 
   function __construct() {
-    $app = JFactory::getApplication();
-    $this->_org_type_id = $app->input->get('organization_org_type_id', null);
-    
     parent::__construct();       
   }
  
   public function getItem() {
+    if(!is_numeric($this->_organization_org_type_id)) {
+      return null;  
+    }
+
     $organizationOrgType = parent::getItem();
 
     if($organizationOrgType){
@@ -52,26 +53,30 @@ class CCExModelsOrganizationorgtype extends CCExModelsDefault {
       $query->where('t.organization_org_type_id = ' . (int) $this->_organization_org_type_id);
     }else{
       if($this->_org_type_id) {
-        $query->where("t.org_type_id = '" . $this->_org_type_id . "'");
+        $query->where("t.org_type_id = '" . (int) $this->_org_type_id . "'");
       }
       if($this->_organization_id) {
-        $query->where("t.organization_id = '" . $this->_organization_id . "'");
+        $query->where("t.organization_id = '" . (int) $this->_organization_id . "'");
       }
     }
     
     return $query;
   }
 
+  /**
+  * Override the default store
+  *
+  */
   public function store($data=null) {    
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
     $row_organization_org_type = JTable::getInstance('organizationorgtype','Table');
-    if (!$row_organization_org_type->bind($data)){ return false; }
+    if (!$row_organization_org_type->bind($data)){ return null; }
 
     $row_organization_org_type->modified = $date;
-    if (!$row_organization_org_type->check()){ return false; }
-    if (!$row_organization_org_type->store()){ return false; }
+    if (!$row_organization_org_type->check()){ return null; }
+    if (!$row_organization_org_type->store()){ return null; }
     
     return true;
   }
