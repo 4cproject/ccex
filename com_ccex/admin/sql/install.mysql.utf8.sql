@@ -10,14 +10,14 @@ DROP TABLE IF EXISTS `#__ccex_costs`;
 CREATE TABLE `#__ccex_organizations` (
   `organization_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL,
   `other_org_type` varchar(255),
   `description` text,
   `country_id` int(11) NOT NULL,
   `currency_id` int(11) NOT NULL,
 
-  `global_comparison` tinyint(1) NOT NULL DEFAULT 0,
-  `peer_comparison` tinyint(1) NOT NULL DEFAULT 0,
+  `global_comparison` tinyint(1) NOT NULL DEFAULT 1,
+  `peer_comparison` tinyint(1) NOT NULL DEFAULT 1,
   `contact_and_sharing` tinyint(1) NOT NULL DEFAULT 0,
   `snapshots` tinyint(1) NOT NULL DEFAULT 0,
 
@@ -32,7 +32,7 @@ CREATE TABLE `#__ccex_organizations` (
 
 CREATE TABLE `#__ccex_organization_types` (
   `org_type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
@@ -61,10 +61,10 @@ CREATE TABLE `#__ccex_organization_org_types` (
 CREATE TABLE `#__ccex_collections` (
   `collection_id` int(11) NOT NULL AUTO_INCREMENT,
   `organization_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
 
-  `scope` varchar(255) NOT NULL DEFAULT '',
+  `scope` varchar(255) NOT NULL,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
@@ -82,10 +82,10 @@ CREATE TABLE `#__ccex_interval` (
   `begin_year` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
 
-  `data_volume` int(11) NOT NULL DEFAULT 0,
-  `number_copies` int(11) NOT NULL DEFAULT 0,
+  `data_volume` int(11) NOT NULL,
+  `number_copies` int(11) NOT NULL,
 
-  `staff` double NOT NULL DEFAULT 0,
+  `staff` double NOT NULL,
 
   `asset_unformatted_text` int(11) NOT NULL DEFAULT 0,
   `asset_word_processing` int(11) NOT NULL DEFAULT 0,
@@ -97,7 +97,6 @@ CREATE TABLE `#__ccex_interval` (
   `asset_geodata` int(11) NOT NULL DEFAULT 0,
   `asset_email` int(11) NOT NULL DEFAULT 0,
   `asset_database` int(11) NOT NULL DEFAULT 0,
-  `asset_research_data` int(11) NOT NULL DEFAULT 0,
 
   `published` tinyint(1) NOT NULL DEFAULT 0,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
@@ -111,10 +110,10 @@ CREATE TABLE `#__ccex_interval` (
 CREATE TABLE `#__ccex_costs` (
   `cost_id` int(11) NOT NULL AUTO_INCREMENT,
   `interval_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text NOT NULL DEFAULT '',
-  `cost` double NOT NULL DEFAULT 0,
-  `human_resources` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `cost` double NOT NULL,
+  `human_resources` int(11) NOT NULL,
 
   `cat_hardware` int(11) NOT NULL DEFAULT 0,
   `cat_software` int(11) NOT NULL DEFAULT 0,
@@ -155,8 +154,8 @@ CREATE TABLE `#__ccex_countries` (
 
 CREATE TABLE `#__ccex_currencies` (
   `currency_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `symbol` varchar(8) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL,
+  `symbol` varchar(8) NOT NULL,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,

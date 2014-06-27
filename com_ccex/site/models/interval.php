@@ -42,7 +42,7 @@ class CCExModelsInterval extends CCExModelsDefault {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('i.interval_id, i.collection_id, i.begin_year, i.duration, i.data_volume, i.number_copies, i.asset_unformatted_text, i.asset_word_processing, i.asset_spreadsheet, i.asset_graphics, i.asset_audio, i.asset_video, i.asset_hypertext, i.asset_geodata, i.asset_email, i.asset_database, i.asset_research_data, i.staff');
+    $query->select('i.interval_id, i.collection_id, i.begin_year, i.duration, i.data_volume, i.number_copies, i.asset_unformatted_text, i.asset_word_processing, i.asset_spreadsheet, i.asset_graphics, i.asset_audio, i.asset_video, i.asset_hypertext, i.asset_geodata, i.asset_email, i.asset_database, i.staff');
     $query->from('#__ccex_interval as i');
     $query->order('i.begin_year');
 
@@ -82,6 +82,17 @@ class CCExModelsInterval extends CCExModelsDefault {
       }else{
         $data['data_volume'] = $data['data_volume_number'];
       }
+    }
+
+    $collectionModel = new CCExModelsCollection();
+
+    if(!$data['begin_year'] ||
+       !$data['data_volume'] ||
+       !$data['duration'] ||
+       !$data['staff'] ||
+       !$data['collection_id'] ||
+       !$collectionModel->getItemBy("_collection_id", $data['collection_id'])){
+      return null;
     }
 
     $row_interval = JTable::getInstance('interval','Table');

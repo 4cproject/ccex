@@ -76,6 +76,15 @@ class CCExModelsCost extends CCExModelsDefault {
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
+    $intervalModel = new CCExModelsInterval();
+
+    if(!$data['cost']['name'] ||
+       !$data['cost']['cost'] ||
+       !$data['cost']['interval_id'] ||
+       !$intervalModel->getItemBy("_interval_id", $data['cost']['interval_id'])){
+      return null;
+    }
+
     $row_cost = JTable::getInstance('cost','Table');
     if (!$row_cost->bind($data['cost'])){ return null; }
 

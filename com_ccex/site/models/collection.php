@@ -76,6 +76,15 @@ class CCExModelsCollection extends CCExModelsDefault {
     $data = $data ? $data : JRequest::get('post');
     $date = date("Y-m-d H:i:s");
 
+    $organizationModel = new CCExModelsOrganization();
+
+    if(!$data['collection']['name'] ||
+       !$data['collection']['scope'] ||
+       !$data['collection']['organization_id'] ||
+       !$organizationModel->getItemBy("_organization_id", $data['collection']['organization_id'])){
+      return null;
+    }
+
     $row_collection = JTable::getInstance('collection','Table');
     if (!$row_collection->bind($data['collection'])){ return null; }
 
@@ -88,6 +97,10 @@ class CCExModelsCollection extends CCExModelsDefault {
     $intervalModel = new CCExModelsInterval();
     $result = $intervalModel->store($data['interval']);
     
+    if(!$result){
+      return null;
+    }
+
     $return = array('collection_id' => $row_collection->collection_id);
     foreach( $result as $key => $value ){
       $return[$key] = $value;

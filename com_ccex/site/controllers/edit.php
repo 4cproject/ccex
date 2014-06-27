@@ -4,7 +4,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 class CCExControllersEdit extends JControllerBase {
   public function execute() {
     $app      = JFactory::getApplication();
-    $return   = array("success"=>false);
+    $return   = array('success'=>false);
 
     $_model      = $app->input->get('model', 'Profile');
     $view       = $app->input->get('view', 'Profile');

@@ -78,6 +78,13 @@ class CCExModelsOrganization extends CCExModelsDefault {
     $userModel = new CCExModelsUser();
     $data['organization']['user_id'] = $userModel->user_id;
 
+    if(!$data['organization']['user_id'] ||
+       !$data['organization']['country_id'] ||
+       !$data['organization']['currency_id'] ||
+       !$data['organization']['name']){
+      return null;
+    }
+
     $row_organization = JTable::getInstance('organization','Table');
     if (!$row_organization->bind($data['organization'])){ return null; }
 

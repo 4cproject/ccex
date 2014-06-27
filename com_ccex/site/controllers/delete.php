@@ -5,7 +5,7 @@ class CCExControllersDelete extends JControllerBase{
   public function execute(){
     $app = JFactory::getApplication();
 
-    $return = array("success"=>false);
+    $return = array('success'=>false);
 
     $type = $app->input->get('type',null);
    

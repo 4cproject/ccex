@@ -90,7 +90,7 @@
         </div>
         <?php if(isset($this->collection->collection_id)){ ?>
             <div class="col-sm-2 col-sm-offset-4">
-                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) ?>" data-type="collection" data-id="<?php echo $this->collection->collection_id; ?>">Delete</span></a>
+                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" data-type="collection" data-id="<?php echo $this->collection->collection_id; ?>">Delete</span></a>
             </div>
         <?php } else { ?>
             <div class="col-sm-2 col-sm-offset-4">

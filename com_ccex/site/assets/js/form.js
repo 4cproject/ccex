@@ -17,7 +17,7 @@ function ccexSave(model, action, redirect_url, silent, update_redirect, success_
     }
 
     var form = $("#" + model + "Form");
-    var info = form.serialize();
+    var info = form.serializeArray();
 
     if (typeof window["ccexSave" + capitalize(model)] != 'undefined') {
         info = window["ccexSave" + capitalize(model)](info);
@@ -28,37 +28,39 @@ function ccexSave(model, action, redirect_url, silent, update_redirect, success_
         type: 'POST',
         data: info,
         dataType: 'JSON',
-        success: function(data) {
-            if (success_message) {
-                $("#_message_container").removeClass("alert-success alert-danger");
-
+        success: function(data) {            
                 if (data.success) {
-                    $("#_message_container").addClass("alert-success");
+                    if (success_message) {
+                        $("#_message_container").removeClass("alert-success alert-danger");
+                        $("#_message_container").addClass("alert-success");
+                        $("#_message_container #_message").text(data.message);
+                        $("#_message_container").show();
+                    }
+
+                    if (update_redirect && typeof window["ccexSaveUpdateRedirect" + capitalize(model)] != 'undefined') {
+                        redirect_url = window["ccexSaveUpdateRedirect" + capitalize(model)](data, redirect_url, update_redirect);
+                    }
+
+                    if (typeof window["ccexSaveUpdate" + capitalize(model)] != 'undefined') {
+                        window["ccexSaveUpdate" + capitalize(model)]();
+                    }
+
+                    if (redirect_url) {
+                        if(redirect_url == 'reload'){
+                            window.location.reload();
+                        }else{
+                            window.location.href = redirect_url;
+                        }
+                    }
+
                 } else {
+                    $("#_message_container").removeClass("alert-success alert-danger");
                     $("#_message_container").addClass("alert-danger");
-                    $("#_message_container #_description").text("Please check errors");
-                }
-
-                $("#_message_container #_message").text(data.message);
-                $("#_message_container").show();
-            }
-
-            if (update_redirect && typeof window["ccexSaveUpdateRedirect" + capitalize(model)] != 'undefined') {
-                redirect_url = window["ccexSaveUpdateRedirect" + capitalize(model)](data, redirect_url, update_redirect);
-            }
-
-            if (typeof window["ccexSaveUpdate" + capitalize(model)] != 'undefined') {
-                window["ccexSaveUpdate" + capitalize(model)]();
-            }
-
-            if (redirect_url) {
-                if(redirect_url == 'reload'){
-                    window.location.reload();
-                }else{
-                    window.location.href = redirect_url;
+                    $("#_message_container #_description").text("Please check errors.");
+                    $("#_message_container #_message").text(data.message);
+                    $("#_message_container").show();
                 }
             }
-        }
     });
 }
 

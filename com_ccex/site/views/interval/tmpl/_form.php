@@ -131,13 +131,6 @@
                     <span class="slider-feedback" id="asset_database_feedback"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Research data</label>
-                <div class="col-sm-8">
-                    <input class="slider" data-slider-id='asset_research_data' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="<?php echo (isset($this->interval->asset_research_data) ? $this->interval->asset_research_data : 0) ?>" id="asset_research_data" name="interval[asset_research_data]" type="text" value="<?php echo (isset($this->interval->asset_research_data) ? $this->interval->asset_research_data : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_research_data_feedback"></span>
-                </div>
-            </div>
         </div>
         <div class="col-md-6">
             <canvas height="400" id="pieChart" style="margin: 20px 50px 0px;" width="400"></canvas>
@@ -200,7 +193,6 @@ sliderUtils.addSlider("#asset_hypertext", "#11FFF7", "Hypertext", "#asset_hypert
 sliderUtils.addSlider("#asset_geodata", "#8DFF1E", "Geodata", "#asset_geodata_feedback");
 sliderUtils.addSlider("#asset_email", "#71A7FF", "E-mail", "#asset_email_feedback");
 sliderUtils.addSlider("#asset_database", "#FFF493", "Database", "#asset_database_feedback");
-sliderUtils.addSlider("#asset_research_data", "#FFB271", "Research data", "#asset_research_data_feedback");
 sliderUtils.init();
 sliderUtils.updateLabels();
 

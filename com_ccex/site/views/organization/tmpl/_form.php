@@ -127,5 +127,6 @@
     
 </form>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/form.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/organization.js') ?>"></script>
