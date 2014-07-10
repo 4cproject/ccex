@@ -63,6 +63,9 @@ $doc->addStyleSheet($tpath.'/assets/css/ccex.css');
       <meta name="author" content="4C project">
       <jdoc:include type="head" />
       <title><?php echo $sitename; ?></title>
+
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
     <body style="margin: 0; background-color: white;">
         <div class="jumbotron">

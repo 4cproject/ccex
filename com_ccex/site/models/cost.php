@@ -150,8 +150,31 @@ class CCExModelsCost extends CCExModelsDefault {
     return $this->cost / $this->interval()->duration;
   }
 
-    public function costPerGBPerYear(){
+  public function costPerGBPerYear(){
     return $this->costPerGB() / $this->interval()->duration;
+  }
+
+  public function costOfCategory($category){
+    if($category == "cat_other"){
+      $percentage = 100 - $this->cat_hardware - $this->cat_software - $this->cat_external - $this->cat_producer - $this->cat_it_developer - $this->cat_support - $this->cat_analyst - $this->cat_manager - $this->cat_overhead;
+    }else{
+      $percentage = $this->get($category, 0);
+    }
+
+    if($percentage){
+      return $this->cost * (100/$percentage);
+    }else{
+      return 0;
+    }
+    
+  }
+
+  public function costPerGBOfCategory($category){
+    return $this->costOfCategory($category) / $this->interval()->data_volume;
+  }
+
+  public function costPerGBPerYearOfCategory($category){
+    return $this->costPerGBOfCategory($category) / $this->interval()->duration;
   }
 
   public function formattedCostPerGB() {

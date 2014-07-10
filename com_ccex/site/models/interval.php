@@ -299,4 +299,15 @@ public function formattedStaff(){
   public function duration(){
     return $this->duration;
   }
+
+  public function costsPerGBPerYearOfCategory($category){
+    $result = 0;
+
+    foreach ($this->costs() as $cost) {
+      $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
+      $result += $cost->costPerGBPerYearOfCategory($category);
+    }
+
+    return $result;
+  }
 }

@@ -112,7 +112,7 @@ defined('_JEXEC') or die;
 					// The next item is deeper.
 					if ($item->deeper)
 					{
-						echo '<ul class="nav-child unstyled small">';
+						echo '<ul class="nav-child unstyled dropdown-menu" role="menu">';
 					}
 					elseif ($item->shallower)
 					{
