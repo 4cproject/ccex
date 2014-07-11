@@ -68,12 +68,14 @@ $doc->addStyleSheet($tpath.'/assets/css/ccex.css');
       <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
     <body style="margin: 0; background-color: white;">
-        <div class="jumbotron">
+        <div class="jumbotron"  style="background-color: #4e4e4e; color: #fafafa">
           <div class="container">
-            <a href="<?php echo JRoute::_('index.php?option=com_content&view=article&id=1'); ?>"><img src="<?php echo $tpath; ?>/images/CCEx_logo_125.png" class="pull-left" style="margin: 15px 45px 0 0;"/></a>
-              <h1><?php echo $sitename; ?></h1>
-              <p><?php echo $metadesc; ?></p>
-            </div>
+            <a href="<?php echo JRoute::_('index.php?option=com_content&view=article&id=1'); ?>">
+              <img src="<?php echo $tpath; ?>/images/CCEx_logo_125_white.png" class="pull-left" style="margin: 15px 45px 0 0;"/>
+            </a>
+            <h1 style="font-weight: 600;"><?php echo $sitename; ?></h1>
+            <p><?php echo $metadesc; ?></p>
+          </div>
         </div>
 
         <div class="container-fluid" style="background-color: white;">
@@ -88,5 +90,16 @@ $doc->addStyleSheet($tpath.'/assets/css/ccex.css');
 
     <script>
       $("[data-toggle='tooltip']").tooltip();
+    </script>
+    <script type="text/javascript">
+      (function() {
+      var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = '//api.usersnap.com/load/'+
+            '70f5a8e8-713e-4dd5-b907-e669bb6ed141.js';
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      })();
     </script>
 </html>

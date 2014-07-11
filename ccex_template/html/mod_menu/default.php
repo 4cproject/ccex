@@ -80,11 +80,15 @@ defined('_JEXEC') or die;
 						$class .= ' pull-right';
 					}
 
+                  	if ($item->deeper){ 
+                  		$class .= " dropdown";
+                  	}
+                  
 					if (!empty($class))
 					{
 						$class = ' class="' . trim($class) . '"';
 					}
-
+                  
 					echo '<li' . $class . '>';
 					
 					if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')){ ?>
@@ -112,7 +116,7 @@ defined('_JEXEC') or die;
 					// The next item is deeper.
 					if ($item->deeper)
 					{
-						echo '<ul class="nav-child unstyled dropdown-menu" role="menu">';
+						echo '<ul class="dropdown-menu width-auto" role="menu">';
 					}
 					elseif ($item->shallower)
 					{
