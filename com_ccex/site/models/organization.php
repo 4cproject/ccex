@@ -469,121 +469,235 @@ class CCExModelsOrganization extends CCExModelsDefault {
     return $positions;
   }
 
-  private function series($beginYear, $number, $range){
-    $series = array();
-    $data = $this->serieData($beginYear, $number, $range);
-
-    array_push($series, $this->hardwareSerie($data["cat_hardware"], $beginYear, $number, $range));
-    array_push($series, $this->softwareSerie($data["cat_software"], $beginYear, $number, $range));
-    array_push($series, $this->externalSerie($data["cat_external"], $beginYear, $number, $range));
-    array_push($series, $this->producerSerie($data["cat_producer"], $beginYear, $number, $range));
-    array_push($series, $this->itDeveloperSerie($data["cat_it_developer"], $beginYear, $number, $range));
-    array_push($series, $this->supportSerie($data["cat_support"], $beginYear, $number, $range));
-    array_push($series, $this->preservationAnalystSerie($data["cat_analyst"], $beginYear, $number, $range));
-    array_push($series, $this->managerSerie($data["cat_manager"], $beginYear, $number, $range));
-    array_push($series, $this->overheadSerie($data["cat_overhead"], $beginYear, $number, $range));
-    array_push($series, $this->otherSerie($data["cat_other"], $beginYear, $number, $range));
+  private function series($collections, $beginYear, $number, $range){
+    if(count($collections)){
+      $series = $this->collectionsSeries($collections, $beginYear, $number, $range);
+    }else{
+      $series = $this->organizationSeries($beginYear, $number, $range);
+    }
 
     return $series;
   }
 
-  private function hardwareSerie($data){
-    return array(
+  private function collectionsSeries($collections, $beginYear, $number, $range){
+    $series = array();
+    $linked = true;
+
+    foreach ($collections as $collectionID) {
+      $collectionModel = new CCExModelsCollection();
+      $collection = $collectionModel->getItemBy("_collection_id", $collectionID);
+
+      if($collection){
+        $data = $this->serieData($collection->intervals(), $beginYear, $number, $range);
+
+        array_push($series, $this->hardwareSerie($data["cat_hardware"], $collection->name, $linked));
+        array_push($series, $this->softwareSerie($data["cat_software"], $collection->name, $linked));
+        array_push($series, $this->externalSerie($data["cat_external"], $collection->name, $linked));
+        array_push($series, $this->producerSerie($data["cat_producer"], $collection->name, $linked));
+        array_push($series, $this->itDeveloperSerie($data["cat_it_developer"], $collection->name, $linked));
+        array_push($series, $this->supportSerie($data["cat_support"], $collection->name, $linked));
+        array_push($series, $this->preservationAnalystSerie($data["cat_analyst"], $collection->name, $linked));
+        array_push($series, $this->managerSerie($data["cat_manager"], $collection->name, $linked));
+        array_push($series, $this->overheadSerie($data["cat_overhead"], $collection->name, $linked));
+        array_push($series, $this->otherSerie($data["cat_other"], $collection->name, $linked));
+
+        $linked=false;
+      }
+    }
+
+    return $series;
+  }
+
+  private function organizationSeries($beginYear, $number, $range){
+    $series = array();
+
+    $data = $this->serieData($this->intervals(), $beginYear, $number, $range);
+
+    array_push($series, $this->hardwareSerie($data["cat_hardware"]));
+    array_push($series, $this->softwareSerie($data["cat_software"]));
+    array_push($series, $this->externalSerie($data["cat_external"]));
+    array_push($series, $this->producerSerie($data["cat_producer"]));
+    array_push($series, $this->itDeveloperSerie($data["cat_it_developer"]));
+    array_push($series, $this->supportSerie($data["cat_support"]));
+    array_push($series, $this->preservationAnalystSerie($data["cat_analyst"]));
+    array_push($series, $this->managerSerie($data["cat_manager"]));
+    array_push($series, $this->overheadSerie($data["cat_overhead"]));
+    array_push($series, $this->otherSerie($data["cat_other"]));
+
+    return $series;
+  }
+
+  private function hardwareSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Hardware",
       "data"      => $data,
       "color"     => "#00b050",
-      "category"  => "Procurements",
-      "borderTop" => "1px solid rgb(0, 176, 80)",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_hardware";
+    }else{
+      $serie["id"] = "cat_hardware";
+    }
+
+    return $serie;
   }
 
-  private function softwareSerie($data){
-    return array(
+  private function softwareSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Software",
       "data"      => $data,
       "color"     => "#006fc0",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_software";
+    }else{
+      $serie["id"] = "cat_software";
+    }
+
+    return $serie;
   }
 
-  private function externalSerie($data){
-    return array(
+  private function externalSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "External",
       "data"      => $data,
       "color"     => "#ff0000",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_external";
+    }else{
+      $serie["id"] = "cat_external";
+    }
+
+    return $serie;
   }
 
-  private function producerSerie($data){
-    return array(
+  private function producerSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Producer",
       "data"      => $data,
       "color"     => "#e46c0a",
-      "category"  => "Staff",
-      "borderTop" => "1px solid rgb(0, 176, 80)",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_producer";
+    }else{
+      $serie["id"] = "cat_producer";
+    }
+
+    return $serie;
   }
 
-  private function itDeveloperSerie($data){
-    return array(
+  private function itDeveloperSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "IT-developer",
       "data"      => $data,
       "color"     => "#E80796",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_it_developer";
+    }else{
+      $serie["id"] = "cat_it_developer";
+    }
+
+    return $serie;
   }
 
-  private function supportSerie($data){
-    return array(
+  private function supportSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Support/operations",
       "data"      => $data,
       "color"     => "#5D07E8",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_support";
+    }else{
+      $serie["id"] = "cat_support";
+    }
+
+    return $serie;
   }
 
-  private function preservationAnalystSerie($data){
-    return array(
+  private function preservationAnalystSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Preservation analyst",
       "data"      => $data,
       "color"     => "#11FFF7",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_analyst";
+    }else{
+      $serie["id"] = "cat_analyst";
+    }
+
+    return $serie;
   }
 
-  private function managerSerie($data){
-    return array(
+  private function managerSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Manager",
       "data"      => $data,
       "color"     => "#8dff1e",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_manager";
+    }else{
+      $serie["id"] = "cat_manager";
+    }
+
+    return $serie;
   }
 
-  private function overheadSerie($data){
-    return array(
+  private function overheadSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Overhead",
       "data"      => $data,
       "color"     => "#ffb271",
-      "borderTop" => "1px solid rgb(0, 176, 80)",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_overhead";
+    }else{
+      $serie["id"] = "cat_overhead";
+    }
+
+    return $serie;
   }
 
-  private function otherSerie($data){
-    return array(
+  private function otherSerie($data, $stack="All collections", $linked=false){
+    $serie = array(
       "name"      => "Other",
       "data"      => $data,
       "color"     => "#aaa",
-      "stack"     => "All collections"
+      "stack"     => $stack
     );
+
+    if($linked){
+      $serie["linkedTo"] = "cat_other";
+    }else{
+      $serie["id"] = "cat_other";
+    }
+
+    return $serie;
   }
 
-  private function serieData($beginYear, $number, $range){
-    $intervals = $this->intervals();
+  private function serieData($intervals, $beginYear, $number, $range){
     $data = array(
       "cat_hardware"     => array_fill(0, $number, 0),
       "cat_software"     => array_fill(0, $number, 0),
@@ -594,7 +708,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
       "cat_analyst"      => array_fill(0, $number, 0),
       "cat_manager"      => array_fill(0, $number, 0),
       "cat_overhead"     => array_fill(0, $number, 0),
-      "cat_other"        => array_fill(0, $number, 0),
+      "cat_other"        => array_fill(0, $number, 0)
     );
 
     foreach ($intervals as $interval) {
@@ -603,23 +717,23 @@ class CCExModelsOrganization extends CCExModelsDefault {
       $positionsToUpdate = $this->categoriesPositionsToUpdate($interval, $beginYear, $number, $range);
     
       foreach ($positionsToUpdate as $position) {
-        $data["cat_hardware"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_hardware"), 2);
-        $data["cat_software"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_software"), 2);
-        $data["cat_external"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_external"), 2);
-        $data["cat_producer"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_producer"), 2);
+        $data["cat_hardware"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_hardware"), 2);
+        $data["cat_software"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_software"), 2);
+        $data["cat_external"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_external"), 2);
+        $data["cat_producer"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_producer"), 2);
         $data["cat_it_developer"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_it_developer"), 2);
-        $data["cat_support"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_support"), 2);
-        $data["cat_analyst"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_analyst"), 2);
-        $data["cat_manager"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_manager"), 2);
-        $data["cat_overhead"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_overhead"), 2);
-        $data["cat_other"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_other"), 2);
+        $data["cat_support"][$position]      += round($interval->costsPerGBPerYearOfCategory("cat_support"), 2);
+        $data["cat_analyst"][$position]      += round($interval->costsPerGBPerYearOfCategory("cat_analyst"), 2);
+        $data["cat_manager"][$position]      += round($interval->costsPerGBPerYearOfCategory("cat_manager"), 2);
+        $data["cat_overhead"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_overhead"), 2);
+        $data["cat_other"][$position]        += round($interval->costsPerGBPerYearOfCategory("cat_other"), 2);
       }
     }
 
     return $data;
   }
 
-  public function financialAccounting(){
+  public function financialAccounting($collections = array()){
     $beginAndLastYear = $this->beginAndLastYear();
     $categoriesNumberandRange = $this->categoriesNumberandRange();
     $beginYear = $beginAndLastYear["begin_year"];
@@ -629,19 +743,27 @@ class CCExModelsOrganization extends CCExModelsDefault {
 
     $result = array(
       "categories" => $this->categories($beginYear, $number, $range),
-      "series" => $this->series($beginYear, $number, $range)
+      "series" => $this->series($collections, $beginYear, $number, $range)
     );
 
     return $result;
   }
 
-  public function financialAccountingCategoriesJSON(){
-    $financialAccounting = $this->financialAccounting();
-    return json_encode($financialAccounting["categories"]);
+  public function financialAccountingCategories($collections = array()){
+    $financialAccounting = $this->financialAccounting($collections);
+    return $financialAccounting["categories"];
   }
 
-  public function financialAccountingSeriesJSON(){
-    $financialAccounting = $this->financialAccounting();
-    return json_encode($financialAccounting["series"]);
+  public function financialAccountingSeries($collections = array()){
+    $financialAccounting = $this->financialAccounting($collections);
+    return $financialAccounting["series"];
+  }
+
+  public function financialAccountingCategoriesJSON($collections = array()){
+    return json_encode($this->financialAccountingCategories($collections));
+  }
+
+  public function financialAccountingSeriesJSON($collections = array()){
+    return json_encode($this->financialAccountingSeries($collections));
   }
 }
