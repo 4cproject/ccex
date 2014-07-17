@@ -52,6 +52,8 @@ $doc->addScript($tpath.'/libs/humanize.min.js');
 $doc->addScript($tpath.'/assets/js/ccex.js');
 $doc->addStyleSheet($tpath.'/assets/css/ccex.css');
 
+$doc->addScript($tpath.'/libs/pace/pace.min.js');
+$doc->addStyleSheet($tpath.'/libs/pace/pace-flash.css');
 ?>
 <!doctype html>
 <html>

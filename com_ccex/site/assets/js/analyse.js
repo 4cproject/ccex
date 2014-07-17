@@ -13,6 +13,9 @@ $(document).ready(function() {
                 dataType: 'JSON',
                 success: function(data) {            
                     if(data.success){
+                        financialAccountingChart.showLoading();
+                        financialAccountingMasterChart.showLoading(" ");                        
+
                         while(financialAccountingMasterChart.series.length > 0){
                             financialAccountingMasterChart.series[0].remove(false);
                         }
@@ -43,6 +46,9 @@ $(document).ready(function() {
 
                         financialAccountingChart.redraw();
                         financialAccountingMasterChart.redraw();
+
+                        financialAccountingChart.hideLoading();
+                        financialAccountingMasterChart.hideLoading();   
                     }                 
                 }
             });
