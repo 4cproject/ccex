@@ -34,7 +34,7 @@ $(document).ready(function() {
                              id: 'mask-before',
                              from: -1,
                              to:  data.masterCategories.length-5.5,
-                             color: 'rgba(0, 0, 0, 0.2)'
+                             color: 'rgba(0, 0, 0, 0.08)'
                         });
 
                         while(financialAccountingChart.series.length > 0){
@@ -63,7 +63,7 @@ $(document).ready(function() {
                              id: 'mask-before',
                              from: -1,
                              to:  data.masterCategories.length-5.5,
-                             color: 'rgba(0, 0, 0, 0.2)'
+                             color: 'rgba(0, 0, 0, 0.08)'
                         });
 
                         while(activitiesChart.series.length > 0){

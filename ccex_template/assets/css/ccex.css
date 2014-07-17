@@ -153,3 +153,11 @@ ul.dropdown-menu.width-auto{
 	padding: 0 400px 0 340px;
 	text-shadow: none;
 }
+
+.input-xs {
+    height: 22px;
+    padding: 1px 1px;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: 3px;
+}

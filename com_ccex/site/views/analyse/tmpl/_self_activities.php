@@ -135,7 +135,7 @@ $(function () {
                     column: {
                         stacking: 'normal',
                         pointPadding: 0.2,
-                        borderWidth: 2
+                        borderWidth: 1
                     },
                     series: {
                         events: {

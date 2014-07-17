@@ -18,34 +18,36 @@ class CCExViewsAnalyseHtml extends JViewHtml {
 
     switch($layout) {
       case "self":
-            $beginOfFirstInterval = $compareSelf->beginOfFirstInterval();
-            $begin = $beginOfFirstInterval["begin_of_first_interval"];
+        $beginOfFirstInterval = $compareSelf->beginOfFirstInterval();
+        $begin = $beginOfFirstInterval["begin_of_first_interval"];
 
-            $masterSeriesAndCategories = $compareSelf->seriesAndCategories();
-            $masterCategories = $masterSeriesAndCategories["categories"];
-            $masterSeries = $masterSeriesAndCategories["series"];
+        $masterSeriesAndCategories = $compareSelf->seriesAndCategories();
+        $masterCategories = $masterSeriesAndCategories["categories"];
+        $masterSeries = $masterSeriesAndCategories["series"];
 
-            $seriesAndCategories = $compareSelf->seriesAndCategories(array(), $begin);
-            $categories = $seriesAndCategories["categories"];
-            $series = $seriesAndCategories["series"];
+        $seriesAndCategories = $compareSelf->seriesAndCategories(array(), $begin);
+        $categories = $seriesAndCategories["categories"];
+        $series = $seriesAndCategories["series"];
 
-            $this->_financialAccounting = CCExHelpersView::load('Analyse','_self_financialaccounting','phtml');
-            $this->_financialAccounting->beginOfFirstInterval = $beginOfFirstInterval;
-            $this->_financialAccounting->masterCategories = json_encode($masterCategories);
-            $this->_financialAccounting->masterSeries = json_encode($masterSeries["financial_accounting"]);
-            $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
-            $this->_financialAccounting->categories = json_encode($categories);
+        $this->_financialAccounting = CCExHelpersView::load('Analyse','_self_financialaccounting','phtml');
+        $this->_financialAccounting->beginOfFirstInterval = $beginOfFirstInterval;
+        $this->_financialAccounting->masterCategories = json_encode($masterCategories);
+        $this->_financialAccounting->masterSeries = json_encode($masterSeries["financial_accounting"]);
+        $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
+        $this->_financialAccounting->categories = json_encode($categories);
 
-            $this->_activities = CCExHelpersView::load('Analyse','_self_activities','phtml');
-            $this->_activities->beginOfFirstInterval = $beginOfFirstInterval;
-            $this->_activities->masterCategories = json_encode($masterCategories);
-            $this->_activities->masterSeries = json_encode($masterSeries["activities"]);
-            $this->_activities->series = json_encode($series["activities"]);
-            $this->_activities->categories = json_encode($categories);
+        $this->_activities = CCExHelpersView::load('Analyse','_self_activities','phtml');
+        $this->_activities->beginOfFirstInterval = $beginOfFirstInterval;
+        $this->_activities->masterCategories = json_encode($masterCategories);
+        $this->_activities->masterSeries = json_encode($masterSeries["activities"]);
+        $this->_activities->series = json_encode($series["activities"]);
+        $this->_activities->categories = json_encode($categories);
 
-            $this->collections = $organization->collections();
+        $this->collections = $organization->collections();
         break;
-
+      case "global":
+        $this->collections = $organization->collections();
+        break;
       default:
         break;
     }

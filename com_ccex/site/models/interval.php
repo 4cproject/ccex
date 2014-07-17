@@ -323,7 +323,7 @@ public function formattedStaff(){
       $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
       
       foreach ($data as $key => $value) {
-        $data[$key] += $cost->costOfCategory($key);
+        $data[$key] += ($cost->costOfCategory($key)/$this->data_volume)/$this->duration;
       }
     }
 
