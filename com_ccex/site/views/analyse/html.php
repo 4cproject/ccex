@@ -16,8 +16,11 @@ class CCExViewsAnalyseHtml extends JViewHtml {
 
     switch($layout) {
       case "index":
-            $this->financialAccountingSeriesJSON = $organization->financialAccountingSeriesJSON();
-            $this->financialAccountingCategoriesJSON = $organization->financialAccountingCategoriesJSON();
+            $this->beginOfFirstInterval = $organization->financialAccountingBeginOfFirstInterval();
+            $this->financialAccountingMasterCategoriesJSON = $organization->financialAccountingCategoriesJSON();
+            $this->financialAccountingMasterSeriesJSON = $organization->financialAccountingSeriesJSON();
+            $this->financialAccountingSeriesJSON = $organization->financialAccountingSeriesJSON(array(), $this->beginOfFirstInterval["begin_of_first_interval"], true);
+            $this->financialAccountingCategoriesJSON = $organization->financialAccountingCategoriesJSON(array(), $this->beginOfFirstInterval["begin_of_first_interval"]);
             $this->collections = $organization->collections();
         break;
 

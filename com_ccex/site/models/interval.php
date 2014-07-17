@@ -300,14 +300,28 @@ public function formattedStaff(){
     return $this->duration;
   }
 
-  public function costsPerGBPerYearOfCategory($category){
-    $result = 0;
+  public function costsPerGBPerYearOfCategories(){
+    $data = array();
+
+    $data["cat_hardware"]     = 0;
+    $data["cat_software"]     = 0;
+    $data["cat_external"]     = 0;
+    $data["cat_producer"]     = 0;
+    $data["cat_it_developer"] = 0;
+    $data["cat_support"]      = 0;
+    $data["cat_analyst"]      = 0;
+    $data["cat_manager"]      = 0;
+    $data["cat_overhead"]     = 0;
+    $data["cat_other"]        = 0;
 
     foreach ($this->costs() as $cost) {
       $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
-      $result += $cost->costPerGBPerYearOfCategory($category);
+      
+      foreach ($data as $key => $value) {
+        $data[$key] += ($cost->costOfCategory($key)/$this->data_volume)/$this->duration;
+      }
     }
 
-    return $result;
+    return $data;
   }
 }

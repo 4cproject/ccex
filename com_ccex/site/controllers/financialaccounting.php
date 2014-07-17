@@ -17,16 +17,21 @@ class CCExControllersFinancialaccounting extends JControllerBase {
         $collections = array();
     }
 
+    $beginOfFirstInterval = $organization->financialAccountingBeginOfFirstInterval($collections);
+
     if($organization){
         $return['success'] = true;
 
-        $return['categories'] = $organization->financialAccountingCategories();
-
         if($mode=="separated"){
-            $return['series'] = $organization->financialAccountingSeries($collections);
+            $return['masterSeries'] = $organization->financialAccountingSeries($collections);
+            $return['masterCategories'] = $organization->financialAccountingCategories($collections);
+            $return['series'] = $organization->financialAccountingSeries($collections, $beginOfFirstInterval["begin_of_first_interval"], true);
+            $return['categories'] = $organization->financialAccountingCategories($collections, $beginOfFirstInterval["begin_of_first_interval"]);
         }else{
-            $return['series'] = $organization->financialAccountingSeries();
-        }
+            $return['masterSeries'] = $organization->financialAccountingSeries();
+            $return['masterCategories'] = $organization->financialAccountingCategories();
+            $return['series'] = $organization->financialAccountingSeries(array(), $beginOfFirstInterval["begin_of_first_interval"], true);
+            $return['categories'] = $organization->financialAccountingCategories(array(), $beginOfFirstInterval["begin_of_first_interval"]);        }
     }
     
     echo json_encode($return);

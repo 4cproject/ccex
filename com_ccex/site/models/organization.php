@@ -6,12 +6,13 @@ class CCExModelsOrganization extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  protected $_organization_id = null;
-  protected $_user_id         = null;
-  protected $_name            = null;
-  protected $_pagination      = null;
-  protected $_total           = null;
-  protected $_deleted         = 0;
+  protected $_organization_id     = null;
+  protected $_user_id             = null;
+  protected $_name                = null;
+  protected $_pagination          = null;
+  protected $_total               = null;
+  protected $_deleted             = 0;
+  protected $_financialAccounting = null;
 
   function __construct() {
     parent::__construct();  
@@ -379,154 +380,6 @@ class CCExModelsOrganization extends CCExModelsDefault {
   }
   // E
 
-  private function beginAndLastYear(){
-    $intervals = $this->intervals();
-    $firstInterval = array_shift($intervals);
-
-    $beginYear = $firstInterval->begin_year;
-    $lastYear = $beginYear + $firstInterval->duration-1;
-
-    foreach ($intervals as $interval) {
-      if($interval->begin_year < $beginYear){
-        $beginYear = $interval->begin_year;
-      }
-
-      if(($interval->begin_year + $interval->duration-1) > $lastYear){
-        $lastYear = $interval->begin_year + $interval->duration-1;
-      }
-    }
-
-    return array(
-      "begin_year" => $beginYear,
-      "last_year"  => $lastYear
-    );
-  }
-
-  private function categoriesNumberandRange(){
-    $beginAndLastYear = $this->beginAndLastYear();
-    $beginYear = $beginAndLastYear["begin_year"];
-    $lastYear = $beginAndLastYear["last_year"];
-
-    $numberOfYears = $lastYear-$beginYear+1;
-
-    if($numberOfYears > 10){
-      $indexRange = 2;
-
-      while(($numberOfYears / $indexRange) > 10){
-        $indexRange++;
-      }
-
-      $range = $indexRange;
-      $number = ceil($numberOfYears / $indexRange);
-    }else{
-      $number = $numberOfYears;
-      $range = 1;
-    }
-
-    return array(
-      "number" => $number,
-      "range"  => $range
-    );
-  }
-
-  private function categories($beginYear, $number, $range){
-    $categories = array();
-    $currentYear = $beginYear;
-    $currentNumber = $number;
-
-    while($currentNumber>0){
-      if($range>1) {
-        array_push($categories, $currentYear . "-" . ($currentYear+$range-1));
-        $currentYear += $range;
-      }else{
-        array_push($categories, strval($currentYear));
-        $currentYear++;
-      }
-      $currentNumber--;
-    }
-
-    return $categories;
-  }
-
-  private function categoriesPositionsToUpdate($interval, $beginYear, $number, $range){
-    $positions = array();
-
-    $currentYear = $beginYear;
-    $currentNumber = 0;
-
-    $interval_begin = $interval->begin_year;
-    $interval_end = $interval_begin + $interval->duration-1;
-
-    while($currentNumber<$number){
-      if(($currentYear >= $interval_begin && $currentYear <= $interval_end) || 
-         ($currentYear + $range-1 >= $interval_begin && $currentYear + $range-1 <= $interval_end)){
-          array_push($positions, $currentNumber);
-      }
-      $currentYear += $range;
-      $currentNumber++;
-    }
-
-    return $positions;
-  }
-
-  private function series($collections, $beginYear, $number, $range){
-    if(count($collections)){
-      $series = $this->collectionsSeries($collections, $beginYear, $number, $range);
-    }else{
-      $series = $this->organizationSeries($beginYear, $number, $range);
-    }
-
-    return $series;
-  }
-
-  private function collectionsSeries($collections, $beginYear, $number, $range){
-    $series = array();
-    $linked = true;
-
-    foreach ($collections as $collectionID) {
-      $collectionModel = new CCExModelsCollection();
-      $collection = $collectionModel->getItemBy("_collection_id", $collectionID);
-
-      if($collection){
-        $data = $this->serieData($collection->intervals(), $beginYear, $number, $range);
-
-        array_push($series, $this->hardwareSerie($data["cat_hardware"], $collection->name, $linked));
-        array_push($series, $this->softwareSerie($data["cat_software"], $collection->name, $linked));
-        array_push($series, $this->externalSerie($data["cat_external"], $collection->name, $linked));
-        array_push($series, $this->producerSerie($data["cat_producer"], $collection->name, $linked));
-        array_push($series, $this->itDeveloperSerie($data["cat_it_developer"], $collection->name, $linked));
-        array_push($series, $this->supportSerie($data["cat_support"], $collection->name, $linked));
-        array_push($series, $this->preservationAnalystSerie($data["cat_analyst"], $collection->name, $linked));
-        array_push($series, $this->managerSerie($data["cat_manager"], $collection->name, $linked));
-        array_push($series, $this->overheadSerie($data["cat_overhead"], $collection->name, $linked));
-        array_push($series, $this->otherSerie($data["cat_other"], $collection->name, $linked));
-
-        $linked=false;
-      }
-    }
-
-    return $series;
-  }
-
-  private function organizationSeries($beginYear, $number, $range){
-    $series = array();
-
-    $data = $this->serieData($this->intervals(), $beginYear, $number, $range);
-
-    array_push($series, $this->hardwareSerie($data["cat_hardware"]));
-    array_push($series, $this->softwareSerie($data["cat_software"]));
-    array_push($series, $this->externalSerie($data["cat_external"]));
-    array_push($series, $this->producerSerie($data["cat_producer"]));
-    array_push($series, $this->itDeveloperSerie($data["cat_it_developer"]));
-    array_push($series, $this->supportSerie($data["cat_support"]));
-    array_push($series, $this->preservationAnalystSerie($data["cat_analyst"]));
-    array_push($series, $this->managerSerie($data["cat_manager"]));
-    array_push($series, $this->overheadSerie($data["cat_overhead"]));
-    array_push($series, $this->otherSerie($data["cat_other"]));
-
-    return $series;
-  }
-
   private function hardwareSerie($data, $stack="All collections", $linked=false){
     $serie = array(
       "name"      => "Hardware",
@@ -697,7 +550,7 @@ class CCExModelsOrganization extends CCExModelsDefault {
     return $serie;
   }
 
-  private function serieData($intervals, $beginYear, $number, $range){
+  private function serieData($intervals, $beginYear, $number){
     $data = array(
       "cat_hardware"     => array_fill(0, $number, 0),
       "cat_software"     => array_fill(0, $number, 0),
@@ -714,56 +567,219 @@ class CCExModelsOrganization extends CCExModelsDefault {
     foreach ($intervals as $interval) {
       $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
 
-      $positionsToUpdate = $this->categoriesPositionsToUpdate($interval, $beginYear, $number, $range);
+      $start = $interval->begin_year - $beginYear;
+      $stop = ($interval->begin_year + $interval->duration) - $beginYear;
     
-      foreach ($positionsToUpdate as $position) {
-        $data["cat_hardware"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_hardware"), 2);
-        $data["cat_software"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_software"), 2);
-        $data["cat_external"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_external"), 2);
-        $data["cat_producer"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_producer"), 2);
-        $data["cat_it_developer"][$position] += round($interval->costsPerGBPerYearOfCategory("cat_it_developer"), 2);
-        $data["cat_support"][$position]      += round($interval->costsPerGBPerYearOfCategory("cat_support"), 2);
-        $data["cat_analyst"][$position]      += round($interval->costsPerGBPerYearOfCategory("cat_analyst"), 2);
-        $data["cat_manager"][$position]      += round($interval->costsPerGBPerYearOfCategory("cat_manager"), 2);
-        $data["cat_overhead"][$position]     += round($interval->costsPerGBPerYearOfCategory("cat_overhead"), 2);
-        $data["cat_other"][$position]        += round($interval->costsPerGBPerYearOfCategory("cat_other"), 2);
+      if($start<0){
+        $start = 0;
+      }
+
+      for($position = $start; $position < $stop; $position++) {
+        $costsPerGBPerYear = $interval->costsPerGBPerYearOfCategories();
+
+        foreach ($data as $key => $value) {
+          $data[$key][$position] += round($costsPerGBPerYear[$key], 2);;
+        }
       }
     }
 
     return $data;
   }
 
-  public function financialAccounting($collections = array()){
-    $beginAndLastYear = $this->beginAndLastYear();
-    $categoriesNumberandRange = $this->categoriesNumberandRange();
-    $beginYear = $beginAndLastYear["begin_year"];
-    $number = $categoriesNumberandRange["number"];
+  private function organizationBeginAndLastYear(){
+    $intervals = $this->intervals();
+    $firstInterval = array_shift($intervals);
 
-    $range = $categoriesNumberandRange["range"];
+    $beginYear = $firstInterval->begin_year;
+    $lastYear = $beginYear + $firstInterval->duration;
+
+    foreach ($intervals as $interval) {
+      if($interval->begin_year < $beginYear){
+        $beginYear = $interval->begin_year;
+      }
+
+      if(($interval->begin_year + $interval->duration-1) > $lastYear){
+        $lastYear = $interval->begin_year + $interval->duration;
+      }
+    }
+
+    return array(
+      "begin_year" => $beginYear,
+      "last_year"  => $lastYear
+    );
+  }
+
+  private function collectionsBeginAndLastYear($collections){
+    $firstCollectionID = array_shift($collections);
+    $collectionModel = new CCExModelsCollection();
+    $collection = $collectionModel->getItemBy("_collection_id", $firstCollectionID);
+
+    $beginAndLastYear = $collection->beginAndLastYear($collections);
+
+    $beginYear = $beginAndLastYear["begin_year"];
+    $lastYear = $beginAndLastYear["last_year"];
+
+    foreach ($collections as $collectionID) {
+      $collectionModel = new CCExModelsCollection();
+      $collection = $collectionModel->getItemBy("_collection_id", $collectionID);
+
+      if($collection){
+
+        $beginAndLastYear = $collection->beginAndLastYear();
+
+        if($beginAndLastYear["begin_year"] < $beginYear){
+          $beginYear = $beginAndLastYear["begin_year"];
+        }
+
+        if($beginAndLastYear["last_year"] > $lastYear){
+          $lastYear = $beginAndLastYear["last_year"];
+        }
+      }
+    }
+
+    return array(
+      "begin_year" => $beginYear,
+      "last_year"  => $lastYear
+    );  
+  }
+
+  private function beginAndLastYear($collections = array()){
+    if(count($collections)){
+      $beginAndLastYear = $this->collectionsBeginAndLastYear($collections);
+    }else{
+      $beginAndLastYear = $this->organizationBeginAndLastYear();
+    }
+
+    return $beginAndLastYear;
+  }
+
+  private function collectionsSeries($collections, $beginYear, $number){
+    $series = array();
+    $linked = true;
+
+    foreach ($collections as $collectionID) {
+      $collectionModel = new CCExModelsCollection();
+      $collection = $collectionModel->getItemBy("_collection_id", $collectionID);
+
+      if($collection){
+        $data = $this->serieData($collection->intervals(), $beginYear, $number);
+
+        array_push($series, $this->hardwareSerie($data["cat_hardware"], $collection->name, $linked));
+        array_push($series, $this->softwareSerie($data["cat_software"], $collection->name, $linked));
+        array_push($series, $this->externalSerie($data["cat_external"], $collection->name, $linked));
+        array_push($series, $this->producerSerie($data["cat_producer"], $collection->name, $linked));
+        array_push($series, $this->itDeveloperSerie($data["cat_it_developer"], $collection->name, $linked));
+        array_push($series, $this->supportSerie($data["cat_support"], $collection->name, $linked));
+        array_push($series, $this->preservationAnalystSerie($data["cat_analyst"], $collection->name, $linked));
+        array_push($series, $this->managerSerie($data["cat_manager"], $collection->name, $linked));
+        array_push($series, $this->overheadSerie($data["cat_overhead"], $collection->name, $linked));
+        array_push($series, $this->otherSerie($data["cat_other"], $collection->name, $linked));
+
+        $linked=false;
+      }
+    }
+
+    return $series;
+  }
+
+  private function organizationSeries($beginYear, $number){
+    $series = array();
+
+    $data = $this->serieData($this->intervals(), $beginYear, $number);
+
+    array_push($series, $this->hardwareSerie($data["cat_hardware"]));
+    array_push($series, $this->softwareSerie($data["cat_software"]));
+    array_push($series, $this->externalSerie($data["cat_external"]));
+    array_push($series, $this->producerSerie($data["cat_producer"]));
+    array_push($series, $this->itDeveloperSerie($data["cat_it_developer"]));
+    array_push($series, $this->supportSerie($data["cat_support"]));
+    array_push($series, $this->preservationAnalystSerie($data["cat_analyst"]));
+    array_push($series, $this->managerSerie($data["cat_manager"]));
+    array_push($series, $this->overheadSerie($data["cat_overhead"]));
+    array_push($series, $this->otherSerie($data["cat_other"]));
+
+    return $series;
+  }
+
+  private function series($collections, $beginYear, $number){
+    if(count($collections)){
+      $series = $this->collectionsSeries($collections, $beginYear, $number);
+    }else{
+      $series = $this->organizationSeries($beginYear, $number);
+    }
+
+    return $series;
+  }
+
+  private function categories($beginYear, $number){
+    $categories = array();
+
+    $currentYear = $beginYear;
+
+    for($i=0; $i<$number; $i++){
+      array_push($categories, strval($currentYear));
+      $currentYear++;
+    }
+
+    return $categories;
+  }
+
+  private function financialAccounting($collections, $startYear){
+    $beginAndLastYear = $this->beginAndLastYear($collections);
+    $beginYear = $beginAndLastYear["begin_year"];
+    $lastYear = $beginAndLastYear["last_year"];
+
+    if($startYear && $startYear > $beginYear){
+      $beginYear = $startYear;
+    }
+
+    $number = $lastYear - $beginYear;
 
     $result = array(
-      "categories" => $this->categories($beginYear, $number, $range),
-      "series" => $this->series($collections, $beginYear, $number, $range)
+      "categories" => $this->categories($beginYear, $number),
+      "series" => $this->series($collections, $beginYear, $number)
     );
 
     return $result;
   }
 
-  public function financialAccountingCategories($collections = array()){
-    $financialAccounting = $this->financialAccounting($collections);
-    return $financialAccounting["categories"];
+  public function financialAccountingCategories($collections = array(), $startYear = null, $forceRefresh=true){
+    if(!$this->_financialAccounting || $forceRefresh){
+      $this->_financialAccounting = $this->financialAccounting($collections, $startYear);
+    }
+
+    return $this->_financialAccounting["categories"];
   }
 
-  public function financialAccountingSeries($collections = array()){
-    $financialAccounting = $this->financialAccounting($collections);
-    return $financialAccounting["series"];
+  public function financialAccountingSeries($collections = array(), $startYear = null, $forceRefresh=true){
+    if(!$this->_financialAccounting || $forceRefresh){
+      $this->_financialAccounting = $this->financialAccounting($collections, $startYear);
+    }
+
+    return $this->_financialAccounting["series"];
   }
 
-  public function financialAccountingCategoriesJSON($collections = array()){
-    return json_encode($this->financialAccountingCategories($collections));
+  public function financialAccountingCategoriesJSON($collections = array(), $startYear = null, $forceRefresh=false){
+    return json_encode($this->financialAccountingCategories($collections, $startYear, $forceRefresh));
   }
 
-  public function financialAccountingSeriesJSON($collections = array()){
-    return json_encode($this->financialAccountingSeries($collections));
+  public function financialAccountingSeriesJSON($collections = array(), $startYear = null, $forceRefresh=false){
+    return json_encode($this->financialAccountingSeries($collections, $startYear, $forceRefresh));
+  }
+
+  public function financialAccountingBeginOfFirstInterval($collections = array()){
+    $beginAndLastYear = $this->beginAndLastYear($collections);
+    $beginYear = $beginAndLastYear["begin_year"];
+    $lastYear = $beginAndLastYear["last_year"];
+    $beginOfFirstInterval = $beginYear;
+
+    if($lastYear - $beginYear > 5){
+      $beginOfFirstInterval = $lastYear - 5;
+    }
+    
+    return array(
+      "begin_of_first_interval" => $beginOfFirstInterval,
+      "begin_year" => $beginYear
+    );
   }
 }

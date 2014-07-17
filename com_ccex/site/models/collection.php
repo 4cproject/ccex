@@ -280,4 +280,28 @@ class CCExModelsCollection extends CCExModelsDefault {
       return $this->lastInterval();
     }
   }
+
+  public function beginAndLastYear(){
+    $intervals = $this->intervals();
+    $firstInterval = array_shift($intervals);
+
+    $beginYear = $firstInterval->begin_year;
+    $lastYear = $beginYear + $firstInterval->duration;
+
+    foreach ($intervals as $interval) {
+      if($interval->begin_year < $beginYear){
+        $beginYear = $interval->begin_year;
+      }
+
+      if(($interval->begin_year + $interval->duration) > $lastYear){
+        $lastYear = $interval->begin_year + $interval->duration;
+      }
+    }
+
+    return array(
+      "begin_year" => $beginYear,
+      "last_year"  => $lastYear
+    );
+  }
+
 }
