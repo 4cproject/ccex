@@ -7,7 +7,9 @@ class CCExViewsAnalyseHtml extends JViewHtml {
     $layout = $app->input->get('layout');
 
     $userModel = new CCExModelsUser();
+    $financialAccounting = new CCExModelsFinancialaccounting();
     $organization = $userModel->organization();
+    $financialAccounting->set("_organization", $organization);
 
     if (!$organization) {
         $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
@@ -16,11 +18,12 @@ class CCExViewsAnalyseHtml extends JViewHtml {
 
     switch($layout) {
       case "index":
-            $this->beginOfFirstInterval = $organization->financialAccountingBeginOfFirstInterval();
-            $this->financialAccountingMasterCategoriesJSON = $organization->financialAccountingCategoriesJSON();
-            $this->financialAccountingMasterSeriesJSON = $organization->financialAccountingSeriesJSON();
-            $this->financialAccountingSeriesJSON = $organization->financialAccountingSeriesJSON(array(), $this->beginOfFirstInterval["begin_of_first_interval"], true);
-            $this->financialAccountingCategoriesJSON = $organization->financialAccountingCategoriesJSON(array(), $this->beginOfFirstInterval["begin_of_first_interval"]);
+            $this->_financialAccounting = CCExHelpersView::load('Analyse','_financialaccounting','phtml');
+            $this->_financialAccounting->beginOfFirstInterval = $financialAccounting->financialAccountingBeginOfFirstInterval();
+            $this->_financialAccounting->financialAccountingMasterCategoriesJSON = $financialAccounting->financialAccountingCategoriesJSON();
+            $this->_financialAccounting->financialAccountingMasterSeriesJSON = $financialAccounting->financialAccountingSeriesJSON();
+            $this->_financialAccounting->financialAccountingSeriesJSON = $financialAccounting->financialAccountingSeriesJSON(array(), $this->_financialAccounting->beginOfFirstInterval["begin_of_first_interval"], true);
+            $this->_financialAccounting->financialAccountingCategoriesJSON = $financialAccounting->financialAccountingCategoriesJSON(array(), $this->_financialAccounting->beginOfFirstInterval["begin_of_first_interval"]);
             $this->collections = $organization->collections();
         break;
 

@@ -34,8 +34,6 @@ $(document).ready(function() {
                              color: 'rgba(0, 0, 0, 0.2)'
                         });
 
-                        financialAccountingChart.xAxis[0].setCategories(data.categories);
-
                         while(financialAccountingChart.series.length > 0){
                             financialAccountingChart.series[0].remove(false);
                         }
@@ -43,6 +41,9 @@ $(document).ready(function() {
                         for(var i=0; i<data.series.length; i++){
                             financialAccountingChart.addSeries(data.series[i], false);
                         }
+
+                        financialAccountingChart.xAxis[0].setCategories(data.categories);
+                        financialAccountingMasterChart.xAxis[0].setCategories(data.masterCategories);
 
                         financialAccountingChart.redraw();
                         financialAccountingMasterChart.redraw();
