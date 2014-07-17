@@ -6,12 +6,13 @@ class CCExModelsOrganization extends CCExModelsDefault {
   /**
   * Protected fields
   **/
-  protected $_organization_id     = null;
-  protected $_user_id             = null;
-  protected $_name                = null;
-  protected $_pagination          = null;
-  protected $_total               = null;
-  protected $_deleted             = 0;
+  protected $_organization_id              = null;
+  protected $_user_id                      = null;
+  protected $_name                         = null;
+  protected $_pagination                   = null;
+  protected $_total                        = null;
+  protected $_deleted                      = 0;
+  protected $_organizationBeginAndLastYear = null;
 
   function __construct() {
     parent::__construct();  
@@ -376,5 +377,76 @@ class CCExModelsOrganization extends CCExModelsDefault {
     }else{
       return "No";
     }
+  }
+  // E
+
+  private function organizationBeginAndLastYear(){
+    $intervals = $this->intervals();
+    $firstInterval = array_shift($intervals);
+
+    $beginYear = $firstInterval->begin_year;
+    $lastYear = $beginYear + $firstInterval->duration;
+
+    foreach ($intervals as $interval) {
+      if($interval->begin_year < $beginYear){
+        $beginYear = $interval->begin_year;
+      }
+
+      if(($interval->begin_year + $interval->duration-1) > $lastYear){
+        $lastYear = $interval->begin_year + $interval->duration;
+      }
+    }
+
+    return array(
+      "begin_year" => $beginYear,
+      "last_year"  => $lastYear
+    );
+  }
+
+  private function collectionsBeginAndLastYear($collections){
+    $firstCollectionID = array_shift($collections);
+    $collectionModel = new CCExModelsCollection();
+    $collection = $collectionModel->getItemBy("_collection_id", $firstCollectionID);
+
+    $beginAndLastYear = $collection->beginAndLastYear($collections);
+
+    $beginYear = $beginAndLastYear["begin_year"];
+    $lastYear = $beginAndLastYear["last_year"];
+
+    foreach ($collections as $collectionID) {
+      $collectionModel = new CCExModelsCollection();
+      $collection = $collectionModel->getItemBy("_collection_id", $collectionID);
+
+      if($collection){
+
+        $beginAndLastYear = $collection->beginAndLastYear();
+
+        if($beginAndLastYear["begin_year"] < $beginYear){
+          $beginYear = $beginAndLastYear["begin_year"];
+        }
+
+        if($beginAndLastYear["last_year"] > $lastYear){
+          $lastYear = $beginAndLastYear["last_year"];
+        }
+      }
+    }
+
+    return array(
+      "begin_year" => $beginYear,
+      "last_year"  => $lastYear
+    );  
+  }
+
+  public function beginAndLastYear($collections = array()){
+    if(count($collections)){
+      $beginAndLastYear = $this->collectionsBeginAndLastYear($collections);
+    }else{
+      if(!$this->_organizationBeginAndLastYear){
+        $this->_organizationBeginAndLastYear = $this->organizationBeginAndLastYear();
+      }
+      $beginAndLastYear = $this->_organizationBeginAndLastYear;
+    }
+
+    return $beginAndLastYear;
   }
 }

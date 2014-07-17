@@ -36,7 +36,7 @@
         <div class="col-sm-2">
             <select class="form-control" id="interval_data_volume_unit" name="interval[data_volume_unit]" value="<?php echo $this->interval->dataVolume()->value; ?>">
                 <option <?php if($this->interval->dataVolume()->format == "Gigabytes"){ echo "selected=\"true\""; }?> value="1">Gigabytes</option>
-                <option <?php if($this->interval->dataVolume()->format == "Terabytes"){ echo "selected=\"true\""; }?> value="1024" selected="true">Terabytes</option>
+                <option <?php if($this->interval->dataVolume()->format == "Terabytes"){ echo "selected=\"true\""; }?> value="1024">Terabytes</option>
                 <option <?php if($this->interval->dataVolume()->format == "Petabytes"){ echo "selected=\"true\""; }?> value="1048576">Petabytes</option>
             </select>
         </div>

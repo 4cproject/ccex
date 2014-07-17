@@ -48,6 +48,7 @@
                 </form>
 
                 <?php echo $this->_financialAccounting->render(); ?>
+                <?php echo $this->_activities->render(); ?>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>
-<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/analyse.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare-self.js') ?>"></script>

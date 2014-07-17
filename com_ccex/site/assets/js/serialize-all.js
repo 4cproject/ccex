@@ -3,7 +3,9 @@
     var data = $(this).serializeArray();
           
     $(':disabled[name]', this).each(function () { 
-        data.push({ name: this.name, value: $(this).val() });
+        if($(this).is(':checkbox') && $(this).is(':checked')){
+            data.push({ name: this.name, value: $(this).val() });
+        }
     });
       
     return data;

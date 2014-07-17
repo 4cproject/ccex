@@ -17,8 +17,8 @@
 			<tr>
 				<td><?php echo $cost->name ?></td>
 				<td class="text-right"><?php echo $cost->formattedCost() ?></td>
-				<td class="text-right"><?php echo $cost->formattedCostPerYear() ?></td>
 				<td class="text-right"><?php echo $cost->formattedCostPerGB() ?></td>
+				<td class="text-right"><?php echo $cost->formattedCostPerYear() ?></td>
 				<td class="text-right"><?php echo $cost->formattedCostPerGBPerYear() ?></td>
 				<td class="text-right"><?php echo $cost->percentageActivityMapping() ?>% mapped</td>
 				<td class="text-right"><?php echo $cost->percentageFinancialAccountingMapping() ?>% mapped</td>
@@ -33,8 +33,8 @@
 			<?php if(count($this->costs) > 0) { ?>
 				<td></td>
 				<td class="text-right"><?php echo $this->interval->formattedSumCosts() ?></td>
-				<td class="text-right"><?php echo $this->interval->formattedSumCostsPerYear() ?></td>
 				<td class="text-right"><?php echo $this->interval->formattedSumCostsPerGB() ?></td>
+				<td class="text-right"><?php echo $this->interval->formattedSumCostsPerYear() ?></td>
 				<td class="text-right"><?php echo $this->interval->formattedSumCostsPerGBPerYear() ?></td>
 				<td class="text-right <?php if($this->interval->percentageActivityMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageActivityMapping() ?>% mapped</td>
 				<td class="text-right <?php if($this->interval->percentageFinancialAccountingMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageFinancialAccountingMapping() ?>% mapped</td>

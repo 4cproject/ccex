@@ -161,7 +161,7 @@ class CCExModelsInterval extends CCExModelsDefault {
         $result->format = "Petabytes";
         $result->value = round($datav/1048576);
       }elseif($datav >= 1024){
-        $result->value = "Terabytes";
+        $result->format = "Terabytes";
         $result->value = round($datav/1024);
       }else{
         $result->value = round($datav);
@@ -238,7 +238,7 @@ public function formattedStaff(){
     return $this->sumCosts() / $this->duration;
   }
 
-    public function sumCostsPerGBPerYear() {
+  public function sumCostsPerGBPerYear() {
     return $this->sumCostsPerGB() / $this->duration;
   }
 
@@ -303,22 +303,27 @@ public function formattedStaff(){
   public function costsPerGBPerYearOfCategories(){
     $data = array();
 
-    $data["cat_hardware"]     = 0;
-    $data["cat_software"]     = 0;
-    $data["cat_external"]     = 0;
-    $data["cat_producer"]     = 0;
-    $data["cat_it_developer"] = 0;
-    $data["cat_support"]      = 0;
-    $data["cat_analyst"]      = 0;
-    $data["cat_manager"]      = 0;
-    $data["cat_overhead"]     = 0;
-    $data["cat_other"]        = 0;
+    $data["cat_hardware"]                   = 0;
+    $data["cat_software"]                   = 0;
+    $data["cat_external"]                   = 0;
+    $data["cat_producer"]                   = 0;
+    $data["cat_it_developer"]               = 0;
+    $data["cat_support"]                    = 0;
+    $data["cat_analyst"]                    = 0;
+    $data["cat_manager"]                    = 0;
+    $data["cat_overhead"]                   = 0;
+    $data["cat_financial_accounting_other"] = 0;
+    $data["cat_production"]                 = 0;
+    $data["cat_ingest"]                     = 0;
+    $data["cat_storage"]                    = 0;
+    $data["cat_access"]                     = 0;
+    $data["cat_activities_other"]           = 0;
 
     foreach ($this->costs() as $cost) {
       $cost = CCExHelpersCast::cast('CCExModelsCost',  $cost);
       
       foreach ($data as $key => $value) {
-        $data[$key] += ($cost->costOfCategory($key)/$this->data_volume)/$this->duration;
+        $data[$key] += $cost->costOfCategory($key);
       }
     }
 

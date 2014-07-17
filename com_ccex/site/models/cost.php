@@ -155,14 +155,16 @@ class CCExModelsCost extends CCExModelsDefault {
   }
 
   public function costOfCategory($category){
-    if($category == "cat_other"){
+    if($category == "cat_financial_accounting_other"){
       $percentage = 100 - $this->cat_hardware - $this->cat_software - $this->cat_external - $this->cat_producer - $this->cat_it_developer - $this->cat_support - $this->cat_analyst - $this->cat_manager - $this->cat_overhead;
+    }else if($category == "cat_activities_other"){
+      $percentage = 100 - $this->cat_production - $this->cat_ingest - $this->cat_storage - $this->cat_access;
     }else{
       $percentage = $this->get($category, 0);
     }
 
     if($percentage){
-      return $this->cost * (100/$percentage);
+      return $this->cost * ($percentage/100);
     }else{
       return 0;
     }
@@ -189,11 +191,11 @@ class CCExModelsCost extends CCExModelsDefault {
     return sprintf('%s/GB·Y', CCExHelpersTag::formatCurrencyWithSymbol($this->costPerGBPerYear(), $this->interval()->collection()->organization()->currency()->symbol));
   }
 
-  public function percentageActivityMapping(){
+  public function percentageFinancialAccountingMapping(){
     return $this->cat_hardware + $this->cat_software + $this->cat_external + $this->cat_producer + $this->cat_it_developer + $this->cat_support + $this->cat_analyst + $this->cat_manager + $this->cat_overhead;
   }
 
-  public function percentageFinancialAccountingMapping(){
+  public function percentageActivityMapping(){
     return $this->cat_production + $this->cat_ingest + $this->cat_storage + $this->cat_access;
   }
 

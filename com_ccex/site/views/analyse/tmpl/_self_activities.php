@@ -1,7 +1,7 @@
 <div class="container">
-    <h3>Financial accounting</h3>
-    <div id="self_financial_accounting_chart" class="col-md-12" style="width: 1140px; height: 400px;"></div>
-    <div id="self_financial_accounting_master_chart" class="col-md-12" style="width: 1140px; height: 150px;"></div>
+    <h3>Activities</h3>
+    <div id="self_activities_chart" class="col-md-12" style="width: 1140px; height: 400px;"></div>
+    <div id="self_activities_master_chart" class="col-md-12" style="width: 1140px; height: 150px;"></div>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -20,7 +20,7 @@ $(function () {
     
         // create the master chart
         function createMaster() {
-            masterChart = $('#self_financial_accounting_master_chart').highcharts({
+            masterChart = $('#self_activities_master_chart').highcharts({
                 chart: {
                     reflow: false,
                     backgroundColor: null,
@@ -69,7 +69,7 @@ $(function () {
                                 id: 'mask-before',
                                 from: -1,
                                 to: min,
-                                color: 'rgba(0, 0, 0, 0.2)'
+                                color: 'rgba(0, 0, 0, 0.08)'
                             });
 
                             xAxis.removePlotBand('mask-after');
@@ -77,7 +77,7 @@ $(function () {
                                 id: 'mask-after',
                                 from: max,
                                 to: 100,
-                                color: 'rgba(0, 0, 0, 0.2)'
+                                color: 'rgba(0, 0, 0, 0.08)'
                             });
 
                             jQuery.each(detailChart.series, function (i, series) {
@@ -102,12 +102,12 @@ $(function () {
                         id: 'mask-before',
                         from: -1,
                         to: <?php echo ($this->beginOfFirstInterval["begin_of_first_interval"] - $this->beginOfFirstInterval["begin_year"] -0.5); ?>,
-                        color: 'rgba(0, 0, 0, 0.2)'
+                        color: 'rgba(0, 0, 0, 0.08)'
                     }],
                     title: {
                         text: null
                     },
-                    categories: <?php echo $this->financialAccountingMasterCategoriesJSON; ?>
+                    categories: <?php echo $this->masterCategories; ?>
                 },
                 yAxis: {
                     min: 0,
@@ -136,9 +136,16 @@ $(function () {
                         stacking: 'normal',
                         pointPadding: 0.2,
                         borderWidth: 2
+                    },
+                    series: {
+                        events: {
+                            legendItemClick: function(event) {
+                                return false;
+                            }
+                        }
                     }
                 },
-                series: <?php echo $this->financialAccountingMasterSeriesJSON; ?>,
+                series: <?php echo $this->masterSeries; ?>,
                 exporting: {
                     enabled: false
                 }
@@ -179,7 +186,7 @@ $(function () {
             });
     
             // create a detail chart referenced by a global variable
-            detailChart = $('#self_financial_accounting_chart').highcharts({
+            detailChart = $('#self_activities_chart').highcharts({
                 chart: {
                     reflow: false,
                     style: {
@@ -195,12 +202,15 @@ $(function () {
                     text: null
                 },
                 xAxis: {
-                    categories: <?php echo $this->financialAccountingCategoriesJSON; ?>
+                    categories: <?php echo $this->categories; ?>
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Relative cost (€/GB·Y)'
+                        text: 'Relative cost (€/GB·Y)',
+                        style: {
+                            color: 'rgba(0, 0, 0, 0)'
+                        }
                     },
                     stackLabels: {
                         enabled: true,
@@ -227,7 +237,7 @@ $(function () {
                         borderWidth: 2
                     }
                 },
-                series: <?php echo $this->financialAccountingSeriesJSON; ?>
+                series: <?php echo $this->series; ?>
             }).highcharts(); // return chart
         }
     

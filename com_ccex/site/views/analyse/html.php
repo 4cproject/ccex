@@ -7,9 +7,9 @@ class CCExViewsAnalyseHtml extends JViewHtml {
     $layout = $app->input->get('layout');
 
     $userModel = new CCExModelsUser();
-    $financialAccounting = new CCExModelsFinancialaccounting();
+    $compareSelf = new CCExModelsCompareself();
     $organization = $userModel->organization();
-    $financialAccounting->set("_organization", $organization);
+    $compareSelf->set("_organization", $organization);
 
     if (!$organization) {
         $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
@@ -17,13 +17,32 @@ class CCExViewsAnalyseHtml extends JViewHtml {
     }
 
     switch($layout) {
-      case "index":
-            $this->_financialAccounting = CCExHelpersView::load('Analyse','_financialaccounting','phtml');
-            $this->_financialAccounting->beginOfFirstInterval = $financialAccounting->financialAccountingBeginOfFirstInterval();
-            $this->_financialAccounting->financialAccountingMasterCategoriesJSON = $financialAccounting->financialAccountingCategoriesJSON();
-            $this->_financialAccounting->financialAccountingMasterSeriesJSON = $financialAccounting->financialAccountingSeriesJSON();
-            $this->_financialAccounting->financialAccountingSeriesJSON = $financialAccounting->financialAccountingSeriesJSON(array(), $this->_financialAccounting->beginOfFirstInterval["begin_of_first_interval"], true);
-            $this->_financialAccounting->financialAccountingCategoriesJSON = $financialAccounting->financialAccountingCategoriesJSON(array(), $this->_financialAccounting->beginOfFirstInterval["begin_of_first_interval"]);
+      case "self":
+            $beginOfFirstInterval = $compareSelf->beginOfFirstInterval();
+            $begin = $beginOfFirstInterval["begin_of_first_interval"];
+
+            $masterSeriesAndCategories = $compareSelf->seriesAndCategories();
+            $masterCategories = $masterSeriesAndCategories["categories"];
+            $masterSeries = $masterSeriesAndCategories["series"];
+
+            $seriesAndCategories = $compareSelf->seriesAndCategories(array(), $begin);
+            $categories = $seriesAndCategories["categories"];
+            $series = $seriesAndCategories["series"];
+
+            $this->_financialAccounting = CCExHelpersView::load('Analyse','_self_financialaccounting','phtml');
+            $this->_financialAccounting->beginOfFirstInterval = $beginOfFirstInterval;
+            $this->_financialAccounting->masterCategories = json_encode($masterCategories);
+            $this->_financialAccounting->masterSeries = json_encode($masterSeries["financial_accounting"]);
+            $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
+            $this->_financialAccounting->categories = json_encode($categories);
+
+            $this->_activities = CCExHelpersView::load('Analyse','_self_activities','phtml');
+            $this->_activities->beginOfFirstInterval = $beginOfFirstInterval;
+            $this->_activities->masterCategories = json_encode($masterCategories);
+            $this->_activities->masterSeries = json_encode($masterSeries["activities"]);
+            $this->_activities->series = json_encode($series["activities"]);
+            $this->_activities->categories = json_encode($categories);
+
             $this->collections = $organization->collections();
         break;
 
