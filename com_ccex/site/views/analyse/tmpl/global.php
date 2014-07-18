@@ -24,54 +24,33 @@
   
   <select class="form-control input-xs" style="margin-left: 5px;">
     <option>All years</option>
-    <option>2000</option>
-    <option>2001</option>
-    <option>2002</option>
-    <option>2003</option>
-    <option>2004</option>
-    <option>2005</option>
-    <option>2006</option>
-    <option>2007</option>
-    <option>2008</option>
-    <option>2009</option>
+    <?php foreach (array_keys($this->organization->years()) as $year) { ?>
+      <option><?php echo $year; ?></option>
+    <?php } ?>
   </select>
 
   <label class="radio-inline col-xs-12">
       <input type="radio" name="groupCollectionRadios" id="groupCollectionRadiosSep" value="sep" disabled="true">
       Separate and select collections:
   </label>
+
+  <?php $i = 1 ?>
+  <?php foreach ($this->collections as $collection) { 
+    $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
+    
     <div class="row" style="margin-left: 20px;">
-      <label class="checkbox-inline"><input type="checkbox" checked="true" disabled="true"> <span class="badge">#1</span> A Treatise on the Binomial Theorem</label>
-    <select class="form-control input-xs" disabled="true">
-      <option>All years</option>
-      <option>2000</option>
-      <option>2001</option>
-      <option>2002</option>
-      <option>2003</option>
-      <option>2004</option>
-      <option>2005</option>
-      <option>2006</option>
-      <option>2007</option>
-      <option>2008</option>
-      <option>2009</option>
-    </select>
+        <label class="checkbox-inline"><input type="checkbox" checked="true"> <span class="badge">#<?php echo $i; ?></span> <?php echo $collection->name; ?></label>
+      <select class="form-control input-xs">
+        <option>All years</option>
+          <?php foreach (array_keys($collection->years()) as $year) { ?>
+            <option><?php echo $year; ?></option>
+          <?php } ?>
+      </select>
   </div>
-  <div class="row" style="margin-left: 20px;">
-      <label class="checkbox-inline"><input type="checkbox" checked="true" disabled="true"> <span class="badge">#2</span> Plans for World Domination</label>
-    <select class="form-control input-xs" disabled="true">
-      <option>All years</option>
-      <option>2000</option>
-      <option>2001</option>
-      <option>2002</option>
-      <option>2003</option>
-      <option>2004</option>
-      <option>2005</option>
-      <option>2006</option>
-      <option>2007</option>
-      <option>2008</option>
-      <option>2009</option>
-    </select>
-  </div>
+
+  <?php $i++; ?>
+  <?php } ?>
+
 </div>
 <div class="col-md-6">
   <h4>Other organisations costs</h4>
@@ -136,81 +115,9 @@
   </div>
 </div>
 </div>
-<div class="container">
-<div class="caption" style="margin-top: 30px">
-  <h3>Financial accounting comparison</h3>
-</div>
-<div id="global_financial_accounting_chart" class="col-md-12" style="width: 1140px; height: 400px;"></div>
-<script type="text/javascript">
-$(function () {
-  $('#global_financial_accounting_chart').highcharts({
-        chart: {
-          style: {
-            fontFamily: 'Lato',
-          }
-        },
-        credits: {
-        enabled: false
-    },
-          title: {
-              text: '',
-          },
-          xAxis: {
-              categories: [
-                  'Hardware',
-                  'Software',
-                  'External',
-                  'Producer',
-                  'IT-developer',
-                  'Support / operations',
-                  'Preservation analyst',
-                  'Manager',
-                  'Overhead',
-                  'Other',
-              ]
-          },
-          yAxis: {
-              min: 0,
-              title: {
-                  text: 'Relative cost (€/GB·Y)'
-              },
-          },
-           plotOptions: {
-              column: {
-                dataLabels: {
-                  enabled: true,
-                  style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                  }
-                }
-              }
-          },
-          tooltip: {
-               pointFormat: '<span style="color: {series.color}">&#9679;</span> {series.name}: <b>{point.y:.1f} €/GB&sdot;Y</b>',
-               useHTML: true
-          },
-          legend: {
-            symbolWidth: 15,
-            symbolHeight: 15,
-            symbolRadius: 10,
-          },
-          series: [{
-            type: 'column',
-              name: 'You (all collections at all years)',
-              data: [21.4, 31.2, 13.5, 13.7, 21.6, 15.5, 15.4, 16.4, 41.6, 13.1],
-              color: '#00b050',           
-          }, {
-            type: 'column',
-              name: 'All organisations (139)',
-              data: [23.4, 13.2, 33.5, 13.7, 32.6, 15.5, 35.4, 36.4, 44.6, 13.1],
-              color: '#006fc0',
-  
-          }]
-      });
-});
-</script>
-</div>
+
+<?php echo $this->_financialAccounting->render(); ?>
+<?php echo $this->_activities->render(); ?>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare-global.js') ?>"></script>

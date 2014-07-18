@@ -1,10 +1,13 @@
-<?php // no direct access
-defined( '_JEXEC' ) or die( 'Restricted access' ); 
+<?php
+
+// no direct access
+defined('_JEXEC') or die('Restricted access');
 
 //Display partial views
-class CCExViewsComparecostsPhtml extends JViewHTML {
-
+class CCExViewsComparecostsPhtml extends JViewHTML
+{
+    
     function render() {
-    	return parent::render();
- 	}
+        return parent::render();
+    }
 }

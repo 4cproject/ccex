@@ -1,13 +1,12 @@
-<?php // no direct access
-defined( '_JEXEC' ) or die( 'Restricted access' ); 
+<?php
 
-function CCExBuildRoute(&$query)
-{
-	$segments = array();
-	return $segments;
+// no direct access
+defined('_JEXEC') or die('Restricted access');
+
+function CCExBuildRoute(&$query) {
+    $segments = array();
+    return $segments;
 }
 
-function CCExParseRoute($segments) 
-{
-
+function CCExParseRoute($segments) {
 }

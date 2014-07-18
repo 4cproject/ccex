@@ -13,11 +13,11 @@
 </div>
 
 <script type="text/javascript">
-$(function () {
-    var masterChart, detailChart;
-    
-    $(document).ready(function() {
-    
+    $(function () {
+        var masterChart, detailChart;
+
+        $(document).ready(function() {
+
         // create the master chart
         function createMaster() {
             masterChart = $('#self_financial_accounting_master_chart').highcharts({
@@ -30,16 +30,16 @@ $(function () {
                         fontFamily: 'Lato',
                     },
                     events: {
-    
+
                         // listen to the selection event on the master chart to update the
                         // extremes of the detail chart
                         selection: function (event) {
                             var extremesObject = event.xAxis[0],
-                                min = extremesObject.min,
-                                max = extremesObject.max,
-                                detailData = [],
-                                xAxis = this.xAxis[0],
-                                categories = {};
+                            min = extremesObject.min,
+                            max = extremesObject.max,
+                            detailData = [],
+                            xAxis = this.xAxis[0],
+                            categories = {};
 
                             // reverse engineer the last part of the data
                             jQuery.each(this.series, function (i, series) {
@@ -157,13 +157,13 @@ $(function () {
             })
             .highcharts(); // return chart instance
         }
-    
+
         // create the detail chart
         function createDetail(masterChart) {
-    
+
             // prepare the detail chart
             var detailData = [], detailStart = -1;
-    
+
             jQuery.each(masterChart.series, function (i, series) {
                 var data = [];
                 jQuery.each(series.data, function (i, point) {
@@ -187,7 +187,7 @@ $(function () {
                 });
 
             });
-    
+
             // create a detail chart referenced by a global variable
             detailChart = $('#self_financial_accounting_chart').highcharts({
                 chart: {
@@ -223,7 +223,7 @@ $(function () {
                 tooltip: {
                     headerFormat: '<div style="width:250px"><div style="float: left;">{series.options.stack}</div><div style="float: right; font-size:12px; margin-bottom: 5px;">Year {point.key}</div><table style="font-size:12px; white-space: nowrap; margin-top: 10px; width:100%;">',
                     pointFormat: '<tr><td style="padding:0"><span style="color: {series.color}">&#9679;</span>  {series.name}: </td>' +
-                        '<td style="padding:0 0 0 5px; text-align: right;">{point.y:.1f} €/GB&sdot;Y</td></tr>',
+                    '<td style="padding:0 0 0 5px; text-align: right;">{point.y:.1f} €/GB&sdot;Y</td></tr>',
                     footerFormat: '</table></div>',
                     useHTML: true
                 },
@@ -240,10 +240,10 @@ $(function () {
                 series: <?php echo $this->series; ?>
             }).highcharts(); // return chart
         }
-    
+
         // create master and in its callback, create the detail chart
         createMaster();
     });
-    
+
 });
 </script>
