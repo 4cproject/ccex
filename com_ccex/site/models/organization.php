@@ -333,6 +333,16 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return false;
     }
+
+    public function haveType($type) {
+        foreach ($this->types() as $orgType) {
+            if ($orgType->name == $type) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
     
     public function typesToString() {
         $string = "";
@@ -476,5 +486,27 @@ class CCExModelsOrganization extends CCExModelsDefault
         krsort($yearsHash, SORT_NUMERIC);
         
         return $yearsHash;
+    }
+
+    public function intervalsOfYear($year="all") {
+        $intervals = array();
+        $allIntervals = $this->intervals();
+
+        if($year=="all" || !is_numeric($year)){
+            $intervals = $allIntervals;
+        }else{
+            foreach ($allIntervals as $interval) {
+                $year = intval($year);
+
+                $beginYear = $interval->begin_year;
+                $endYear = $interval->begin_year + $interval->duration - 1; 
+
+                if($year >= $beginYear && $year <= $endYear){
+                    array_push($intervals, $interval);
+                }
+            }
+        }
+
+        return $intervals;
     }
 }

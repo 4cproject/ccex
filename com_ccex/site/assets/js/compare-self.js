@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(".updateChartsOnChange").on('change', function(){
-        var form = $("#collectionsSelectedForm");
+        var form = $("#selfComparisonForm");
         var info = form.serializeAll();
         var financialAccountingMasterChart = $("#self_financial_accounting_master_chart").highcharts();
         var financialAccountingChart = $("#self_financial_accounting_chart").highcharts();

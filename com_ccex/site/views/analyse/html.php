@@ -62,6 +62,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->_activities = CCExHelpersView::load('Analyse', '_global_activities', 'phtml');
                 $this->_activities->series = json_encode($series["activities"]);
 
+                $this->options = $compareGlobal->otherOrganizationCostsOptions();
                 $this->collections = $organization->collections();
                 $this->organization = $organization;
                 break;

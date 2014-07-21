@@ -15,7 +15,7 @@
 
 <p>Analyse how your collections perform throughout time and compare with each other can be a valuable insight.</p>
 
-<form id ="collectionsSelectedForm">
+<form id ="selfComparisonForm">
     <div class="radio">
       <label>
         <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>

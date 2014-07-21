@@ -328,4 +328,26 @@ class CCExModelsCollection extends CCExModelsDefault
         
         return $yearsHash;
     }
+
+    public function intervalsOfYear($year="all") {
+        $intervals = array();
+        $allIntervals = $this->intervals();
+
+        if($year=="all" || !is_numeric($year)){
+            $intervals = $allIntervals;
+        }else{
+            foreach ($allIntervals as $interval) {
+                $year = intval($year);
+
+                $beginYear = $interval->begin_year;
+                $endYear = $interval->begin_year + $interval->duration - 1; 
+
+                if($year >= $beginYear && $year <= $endYear){
+                    array_push($intervals, $interval);
+                }
+            }
+        }
+
+        return $intervals;
+    }
 }

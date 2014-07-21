@@ -60,7 +60,7 @@
                         style: {
                             fontWeight: 'bold',
                             color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
+                        }
                     }
                 }
             },
