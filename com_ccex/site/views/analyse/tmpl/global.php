@@ -62,17 +62,17 @@
     <div class="col-md-6">
       <h4>Other organisations costs</h4>
       <?php foreach ($this->options as $option) { ?>
-        <?php if($option["active"]) { ?>
+        <?php if($option["enable"]) { ?>
           <div class="radio">
             <label>
-              <input type="radio" name="" id="" value="" checked>
+              <input class="updateChartsOnChange" <?php if($option["active"]){ echo "checked"; } ?> type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>|<?php echo $option["title"]; ?>">
                 <?php echo $option["title"]; ?> <small>(<?php echo $option["number"]; ?>)</small>
             </label>
           </div>
         <?php } else { ?>
           <div class="radio">
             <label  style="color: #999" data-toggle="tooltip" data-placement="right" data-container="body" title="A filter cannot be displayed with size less than 5, to preserve anonimity for the intervinients.">
-              <input type="radio" name="" id="" value="" disabled>
+              <input class="updateChartsOnChange" type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>" disabled>
                 <?php echo $option["title"]; ?> <small>(<?php echo $option["number"]; ?>)</small>
             </label>
           </div>

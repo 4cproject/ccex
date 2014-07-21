@@ -55,7 +55,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $series = array();
 
         $label = "You :: " . $label;
-        $id = "your_collections";
+        $id = "self";
         $color = "#00b050";
         
         $series["financial_accounting"] = $this->serie($label, $data["financial_accounting"], $color, $id, $label, false);
@@ -64,14 +64,10 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    private function globalSeries() {
-        $organizationModel = new CCExModelsOrganization();
-        $organizationModel->set("_global_comparison", true);
-        $organizations = $organizationModel->listItems();
-
-        if(count($organizations) < 5){
-            $organizations = array();
-        }
+    private function otherOrganizationSeries($organizations, $label) {
+        // if(count($organizations) < 5){
+        //     $organizations = array();
+        // }
         
         $intervals = array();
         
@@ -84,9 +80,9 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $data = $this->seriesData($intervals);
         $series = array();
         
-        $label = "Other :: All organizations (" . count($organizations) . ")";
+        $label = "Other :: " . $label .  " (" . count($organizations) . ")";
         $color = "#006fc0";
-        $id = "all_organizations";
+        $id = "other";
         
         $series["financial_accounting"] = $this->serie($label, $data["financial_accounting"], $color, $id, $label, false);
         $series["activities"] = $this->serie($label, $data["activities"], $color, $id, $label, false);
@@ -94,7 +90,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    private function calculateMySeries($intervals, $organizations, $collections, $label) {
+    private function calculateMySeries($intervals, $label) {
         if (!count($intervals)) {
             $intervals = $this->_organization->intervals();
         } 
@@ -102,33 +98,31 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $this->mySeries($intervals, $label);
     }
     
-    private function calculateOtherSeries($intervals, $organizations, $collections, $label) {
+    private function calculateOtherSeries($organizations, $collections, $label) {
         if (count($organizations)) {
-            
-            // $series = $this->collectionsSeries($collections);
-            
-            
+            $series = $this->otherOrganizationSeries($organizations, $label);  
         } else if (count($collections)) {
-            
             // $series = $this->organizationsSeries($organizations);
-            
-            
         } else {
-            $series = $this->globalSeries();
+            $organizationModel = new CCExModelsOrganization();
+            $organizationModel->set("_global_comparison", true);
+            $organizations = $organizationModel->listItems();
+
+            $series = $this->otherOrganizationSeries($organizations, $label);
         }
         
         return $series;
     }
     
-    private function calculateSeries($intervals, $organizations, $collections, $label) {
+    private function calculateSeries($intervals, $organizations, $collections, $myLabel, $otherLabel) {
         $series = array("financial_accounting" => array(), "activities" => array());
         
-        $mySeries = $this->calculateMySeries($intervals, $organizations, $collections, $label);
+        $mySeries = $this->calculateMySeries($intervals, $myLabel);
         
         array_push($series["financial_accounting"], $mySeries["financial_accounting"]);
         array_push($series["activities"], $mySeries["activities"]);
         
-        $otherSeries = $this->calculateOtherSeries($intervals, $organizations, $collections, $label);
+        $otherSeries = $this->calculateOtherSeries($organizations, $collections, $otherLabel);
         
         array_push($series["financial_accounting"], $otherSeries["financial_accounting"]);
         array_push($series["activities"], $otherSeries["activities"]);
@@ -136,8 +130,8 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    public function series($intervals = array(), $organizations = array(), $collections = array(), $label = "All collections at all years") {
-        return $this->calculateSeries($intervals, $organizations, $collections, $label);
+    public function series($intervals = array(), $organizations = array(), $collections = array(), $myLabel = "All collections at all years", $otherLabel = "All organisations") {
+        return $this->calculateSeries($intervals, $organizations, $collections, $myLabel, $otherLabel);
     }
 
     public function otherOrganizationCostsOptions(){
@@ -148,24 +142,36 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $organizations_nr = count($organizations);
 
         $option = array();
-        $option["title"] = "List all organizations";
+        $option["title"]  = "List all organizations";
         $option["number"] = $organizations_nr;
-        
+        $option["type"]   = "organization";
+        $option["filter"] = "none";
+        $option["value"]  = "";
+        $option["active"] = true;
 
-        if($option["number"] < 5){
-            $option["active"] = false;
-        }
+        // if($option["number"] < 5){
+        //     $option["enable"] = false;
+        // }
+        $option["enable"] = true;
 
         array_push($options, $option);
 
+        $option["active"] = false;
+
         foreach ($this->_organization->types() as $type) {
             if($type->name != "Other"){
-                $option["title"] = "Only organizations of type " . $type->name;
-                $option["number"] = count($this->filterOrganizationsBy($organizations, "type", $type->name));
+                $filteredOrganizations = $this->filterOrganizationsBy("type", $type->org_type_id, $organizations);
 
-                if($option["number"] < 5){
-                    $option["active"] = false;
-                }
+                $option["title"]  = "Only organizations of type " . $type->name;
+                $option["number"] = count($filteredOrganizations);
+                $option["type"]   = "organization";
+                $option["filter"] = "type";
+                $option["value"]  = $type->org_type_id;
+
+                // if($option["number"] < 5){
+                //     $option["enable"] = false;
+                // }
+                $option["enable"] = true;
 
                 array_push($options, $option);
             }
@@ -174,7 +180,13 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $options;
     }
 
-    public function filterOrganizationsBy($organizations, $filter, $value){
+    public function filterOrganizationsBy($filter, $value, $organizations = array()){
+        if(!count($organizations)){
+            $organizationModel = new CCExModelsOrganization();
+            $organizationModel->set("_global_comparison", true);
+            $organizations = $organizationModel->listItems();
+        }
+
         $result = array();
 
         foreach ($organizations as $organization) {

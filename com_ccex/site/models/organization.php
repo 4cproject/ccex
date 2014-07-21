@@ -336,7 +336,7 @@ class CCExModelsOrganization extends CCExModelsDefault
 
     public function haveType($type) {
         foreach ($this->types() as $orgType) {
-            if ($orgType->name == $type) {
+            if ($orgType->org_type_id == $type) {
                 return true;
             }
         }

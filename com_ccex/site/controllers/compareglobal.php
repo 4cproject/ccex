@@ -14,28 +14,40 @@ class CCExControllersCompareglobal extends JControllerBase
         $compareGlobal = new CCExModelsCompareglobal();
         $compareGlobal->set("_organization", $organization);
         $intervals = array();
+        $collections = array();
+        $organizations = array();
 
         if (array_key_exists('collectionsSelected', $data) && array_key_exists('collectionsMode', $data) && $data["collectionsMode"] == "separated") {
             $collections = $data['collectionsSelected'];
             $result = $this->getCollectionsIntervals($collections, $data["yearsSelected"]);
 
             $intervals = $result["intervals"];
-            $label = $result["label"];
+            $myLabel = $result["myLabel"];
         } else {
             $organizationYear = $data['organizationYearSelected'];
-            $label = "All collections at ";
+            $myLabel = "All collections at ";
 
             if($organizationYear == "all"){
-                $label .= "all years";
+                $myLabel .= "all years";
             }else{
-                $label .= $organizationYear;
+                $myLabel .= $organizationYear;
             }
 
             $collections = array();
             $intervals = $organization->intervalsOfYear($organizationYear);
         }
 
-        $series = $compareGlobal->series($intervals, array(), array(), $label);
+        if (array_key_exists('otherOrganisationsCosts', $data)){
+            preg_match('/(?P<type>.*)\|(?P<filter>.*)\|(?P<value>.*)\|(?P<title>.*)/', $data["otherOrganisationsCosts"], $matches);
+            $otherLabel = $matches["title"];
+            if($matches["filter"] != "none"){
+                if($matches["type"] == "organization"){
+                    $organizations = $compareGlobal->filterOrganizationsBy($matches["filter"],$matches["value"]);
+                }
+            }
+        }
+
+        $series = $compareGlobal->series($intervals, $organizations, array(), $myLabel, $otherLabel);
         
         $return['success'] = true;            
         $return['series'] = $series;
@@ -45,7 +57,7 @@ class CCExControllersCompareglobal extends JControllerBase
 
     private function getCollectionsIntervals($collections, $yearsArray){
         $intervals = array();
-        $label = "Selected collections (";
+        $myLabel = "Selected collections (";
 
         foreach ($collections as $collectionID) {
             $collectionModel = new CCExModelsCollection();
@@ -58,11 +70,11 @@ class CCExControllersCompareglobal extends JControllerBase
             }
         }
 
-        $label .= count($collections) . ")";
+        $myLabel .= count($collections) . ")";
 
         return array(
             "intervals" => $intervals,
-            "label"     => $label
+            "myLabel"     => $myLabel
         );
     }
 }
