@@ -47,7 +47,16 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->_activities->masterCategories = json_encode($masterCategories);
                 $this->_activities->masterSeries = json_encode($masterSeries["activities"]);
                 $this->_activities->series = json_encode($series["activities"]);
-                $this->_activities->categories = json_encode($categories);                
+                $this->_activities->categories = json_encode($categories);       
+
+                if(count($masterCategories) > 5 ){ 
+                    $this->_financialAccounting->master = true;
+                    $this->_activities->master = true;
+                }else{
+                    $this->_financialAccounting->master = false;
+                    $this->_activities->master = false;
+                }
+
                 break;
 
             case "global":

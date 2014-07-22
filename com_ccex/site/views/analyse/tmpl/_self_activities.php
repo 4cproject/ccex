@@ -1,7 +1,7 @@
 <div class="container">
     <h3>Activities</h3>
-    <div id="self_activities_chart" class="col-md-12" style="width: 1140px; height: 400px;"></div>
-    <div id="self_activities_master_chart" class="col-md-12" style="width: 1140px; height: 150px;"></div>
+    <div id="self_activities_chart" class="col-md-12" style="width: 1140px; height: 400px;margin-top:20px"></div>
+    <div id="self_activities_master_chart" class="col-md-12" style="width: 1140px; height: 100px;margin-bottom:20px;<?php if(!$this->master){ echo 'display:none;'; } ?>"></div>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -36,8 +36,8 @@
                         // extremes of the detail chart
                         selection: function (event) {
                             var extremesObject = event.xAxis[0],
-                            min = extremesObject.min,
-                            max = extremesObject.max,
+                            min = Math.round(extremesObject.min) - 0.5,
+                            max = Math.round(extremesObject.max) + 0.5,
                             detailData = [],
                             xAxis = this.xAxis[0],
                             categories = {};
@@ -70,7 +70,7 @@
                                 id: 'mask-before',
                                 from: -1,
                                 to: min,
-                                color: 'rgba(0, 0, 0, 0.08)'
+                                color: 'rgba(0, 0, 0, 0.12)'
                             });
 
                             xAxis.removePlotBand('mask-after');
@@ -78,7 +78,7 @@
                                 id: 'mask-after',
                                 from: max,
                                 to: 100,
-                                color: 'rgba(0, 0, 0, 0.08)'
+                                color: 'rgba(0, 0, 0, 0.12)'
                             });
 
                             jQuery.each(detailChart.series, function (i, series) {
@@ -103,7 +103,7 @@
                         id: 'mask-before',
                         from: -1,
                         to: <?php echo ($this->beginOfFirstInterval["begin_of_first_interval"] - $this->beginOfFirstInterval["begin_year"] -0.5); ?>,
-                        color: 'rgba(0, 0, 0, 0.08)'
+                        color: 'rgba(0, 0, 0, 0.12)'
                     }],
                     title: {
                         text: null
@@ -128,9 +128,7 @@
                     }
                 },
                 legend: {
-                    symbolWidth: 15,
-                    symbolHeight: 15,
-                    symbolRadius: 10,
+                    enabled: false
                 },
                 credits: {
                     enabled: false
@@ -229,7 +227,10 @@
                     useHTML: true
                 },
                 legend: {
-                    enabled: false
+                    verticalAlign: 'top',
+                    symbolWidth: 15,
+                    symbolHeight: 15,
+                    symbolRadius: 10,
                 },
                 plotOptions: {
                     column: {
@@ -238,7 +239,15 @@
                         borderWidth: 2
                     }
                 },
-                series: <?php echo $this->series; ?>
+                series: <?php echo $this->series; ?>,
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            align: 'right',
+                            y: 40
+                        }
+                    }
+                }
             }).highcharts(); // return chart
 }
 

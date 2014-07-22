@@ -1,15 +1,16 @@
 <ol class="breadcrumb">
-  <li><a href="costs.html">Compare costs</a></li>
-  <li class="active">Analyse and compare costs</li>
+    <li><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
+    <li class="active">Analyse and compare costs</li>
 </ol>
+
 <h1>Analyse and compare costs</h1>
 <p>See the summary of your submitted costs and compare them with other organisations'.</p>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#">My costs</a></li>
-  <li><a href="#">Global comparison</a></li>
-  <li><a href="#">Peer comparison</a></li>
+  <li class="active"><a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>">My costs</a></li>
+  <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>">Global comparison</a></li>
+  <li><a href="javascript:void(0);">Peer comparison</a></li>
 </ul>
 <br/>
 
@@ -31,7 +32,7 @@
         <?php foreach ($this->collections as $collection) { ?>
             <div class="checkbox">
                 <label>
-                    <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>" <?php if($i<=3){echo "checked";} ?>>
+                    <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>" checked>
                     <span class="badge">
                         #<?php echo $i; ?>
                     </span> 

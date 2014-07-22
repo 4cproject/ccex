@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         if(!($("#separatedMode").is('checked') && $(".collectionCheck:checked").size() == 0) && 
            !($(this).hasClass("collectionSelect") && $(this).closest(".row").find(".collectionCheck:checked:not(:disabled)").size() == 0) &&
-           !($(this).hasClass("organizationSelect") && $("#combinedMode").not(":checked"))
+           !($(this).hasClass("organizationSelect") && $("#combinedMode").is(":not(:checked)"))
            ){
             financialAccountingChart.showLoading();
             activitiesChart.showLoading();
@@ -48,34 +48,26 @@ $(document).ready(function() {
 
     $("#separatedMode").on('change', function() {
         if(this.checked) {
-            $(".collectionCheck:checked").removeAttr("disabled");
+            $(".collectionCheck").removeAttr("disabled");
         }
     });
 
     $("#combinedMode").on('change', function() {
         if(this.checked) {
-            $(".collectionCheck").attr("disabled", true);
+            $(".collectionCheck").prop("disabled", true);
         }
     });
 
     $(".collectionCheck").on('change', function() {
         var checked = $(".collectionCheck:checked");
-        var notChecked = $(".collectionCheck:not(:checked)");
         var allChecks =  $(".collectionCheck");
 
         if(checked.size()==0){
             $("#separatedMode").removeAttr("checked");
             $("#combinedMode").prop('checked', true);
 
-           allChecks.each(function( index, element ) {
-                if(index < 3){
-                    $(this).prop('checked', true);
-                }
-            });
-
-            allChecks.attr("disabled", true);
-        }else if(checked.size()==3){
-            notChecked.attr("disabled", true);
+            allChecks.prop('checked', true);
+            allChecks.prop("disabled", true);
         }else{
             allChecks.removeAttr("disabled");
         }
