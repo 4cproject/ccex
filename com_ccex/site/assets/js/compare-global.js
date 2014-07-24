@@ -48,26 +48,34 @@ $(document).ready(function() {
 
     $("#separatedMode").on('change', function() {
         if(this.checked) {
-            $(".collectionCheck").removeAttr("disabled");
+            $(".collectionCheck:checked").removeAttr("disabled");
         }
     });
 
     $("#combinedMode").on('change', function() {
         if(this.checked) {
-            $(".collectionCheck").prop("disabled", true);
+            $(".collectionCheck").attr("disabled", true);
         }
     });
 
     $(".collectionCheck").on('change', function() {
         var checked = $(".collectionCheck:checked");
+        var notChecked = $(".collectionCheck:not(:checked)");
         var allChecks =  $(".collectionCheck");
 
         if(checked.size()==0){
             $("#separatedMode").removeAttr("checked");
             $("#combinedMode").prop('checked', true);
 
-            allChecks.prop('checked', true);
-            allChecks.prop("disabled", true);
+           allChecks.each(function( index, element ) {
+                if(index < 3){
+                    $(this).prop('checked', true);
+                }
+            });
+
+            allChecks.attr("disabled", true);
+        }else if(checked.size()==3){
+            notChecked.attr("disabled", true);
         }else{
             allChecks.removeAttr("disabled");
         }

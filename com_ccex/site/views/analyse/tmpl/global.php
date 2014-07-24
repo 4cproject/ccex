@@ -43,7 +43,7 @@
           
           <div class="row" style="margin-left: 20px;">
             <label class="checkbox-inline">
-              <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>" checked> 
+              <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
               <span class="badge">#<?php echo $i; ?></span> 
               <?php echo $collection->name; ?>
             </label>

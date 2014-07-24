@@ -13,10 +13,12 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     protected $_organization = null;
     protected $_organizationSeries = null;
     protected $_categories = null;
+    protected $_colors = null;
     
     function __construct() {
         $this->_categories = array("financial_accounting" => array("cat_hardware", "cat_software", "cat_external", "cat_producer", "cat_it_developer", "cat_support", "cat_analyst", "cat_manager", "cat_overhead", "cat_financial_accounting_other"), "activities" => array("cat_production", "cat_ingest", "cat_storage", "cat_access", "cat_activities_other"));
-        
+        $this->_colors = array("#00b050", "#ff0000", "#8DFF1E", "#11FFF7", "#FFB271", "#e46c0a", "#5D07E8", "#E80796");
+
         parent::__construct();
     }
     
@@ -50,17 +52,46 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
 
-    private function mySeries($intervals, $label) {
-        $data = $this->seriesData($intervals);
-        $series = array();
+    private function mySeries($collectionsIDs, $year, $intervals = array()) {
+        $collections = $this->_organization->collections();
+        $collectionsIdentifiers = array();
 
-        $label = "You :: " . $label;
-        $id = "self";
-        $color = "#00b050";
-        
-        $series["financial_accounting"] = $this->serie($label, $data["financial_accounting"], $color, $id, $label, false);
-        $series["activities"] = $this->serie($label, $data["activities"], $color, $id, $label, false);
-        
+        foreach ($collections as $index => $collection) {
+            $collectionsIdentifiers[$collection->collection_id] = $index+1;
+        }
+
+        $series = array(
+            "financial_accounting" => array(),
+            "activities"           => array()
+        );
+
+        if(count($collectionsIDs)){
+            foreach ($collectionsIDs as $index => $collectionID) {
+                $color = $this->_colors[$index % count($this->_colors)];
+                $collectionModel = new CCExModelsCollection();
+                $collection = $collectionModel->getItemBy("_collection_id", $collectionID);
+            
+                $id = "collection_" . $collection->collection_id;
+                $label = "Collection #" . $collectionsIdentifiers[$collectionID] . " at ";
+                if($year[$collection->collection_id] == "all"){$label .= "all years";}else{$label .= $year[$collection->collection_id];}
+
+                $data = $this->seriesData($collection->intervalsOfYear($year[$collection->collection_id]));
+                
+                array_push($series["financial_accounting"], $this->serie($label, $data["financial_accounting"], $color, $id, $label, false));
+                array_push($series["activities"], $this->serie($label, $data["activities"], $color, $id, $label, false));
+            }
+        }else{
+            $color = "#00b050";
+            $label = "You :: All collections at ";
+            $id = "self_all";
+
+            if($year == "all"){$label .= "all years";}else{$label .= $year;}
+
+            $data = $this->seriesData($intervals);
+            array_push($series["financial_accounting"], $this->serie($label, $data["financial_accounting"], $color, $id, $label, false));
+            array_push($series["activities"], $this->serie($label, $data["activities"], $color, $id, $label, false));
+        }
+
         return $series;
     }
     
@@ -90,12 +121,14 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    private function calculateMySeries($intervals, $label) {
-        if (!count($intervals)) {
-            $intervals = $this->_organization->intervals();
-        } 
+    private function calculateMySeries($collectionsIDs, $year) {
+        $intervals = array();
+
+        if (!count($collectionsIDs)) {
+            $intervals = $this->_organization->intervalsOfYear($year);
+        }
         
-        return $this->mySeries($intervals, $label);
+        return $this->mySeries($collectionsIDs, $year, $intervals);
     }
     
     private function calculateOtherSeries($organizations, $collections, $label) {
@@ -114,13 +147,13 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    private function calculateSeries($intervals, $organizations, $collections, $myLabel, $otherLabel) {
+    private function calculateSeries($myCollectionsIDs, $myYear, $organizations, $collections, $otherLabel) {
         $series = array("financial_accounting" => array(), "activities" => array());
         
-        $mySeries = $this->calculateMySeries($intervals, $myLabel);
+        $mySeries = $this->calculateMySeries($myCollectionsIDs, $myYear);
         
-        array_push($series["financial_accounting"], $mySeries["financial_accounting"]);
-        array_push($series["activities"], $mySeries["activities"]);
+        $series["financial_accounting"] = $mySeries["financial_accounting"];
+        $series["activities"]           = $mySeries["activities"];
         
         $otherSeries = $this->calculateOtherSeries($organizations, $collections, $otherLabel);
         
@@ -130,8 +163,8 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    public function series($intervals = array(), $organizations = array(), $collections = array(), $myLabel = "All collections at all years", $otherLabel = "All organisations") {
-        return $this->calculateSeries($intervals, $organizations, $collections, $myLabel, $otherLabel);
+    public function series($myCollectionsIDs = array(), $myYear = "all" ,$organizations = array(), $collections = array(), $otherLabel = "List all organizations") {
+        return $this->calculateSeries($myCollectionsIDs, $myYear, $organizations, $collections, $otherLabel);
     }
 
     public function otherOrganizationCostsOptions(){
@@ -139,45 +172,80 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $organizationModel = new CCExModelsOrganization();
         $organizationModel->set("_global_comparison", true);
         $organizations = $organizationModel->listItems();
-        $organizations_nr = count($organizations);
+
+        $options = $this->addOption($options, "List all organizations", "organization", "none", "", $organizations, true);
+
+        $typesIDs = array(); 
+        $typesNames = array(); 
+        foreach ($this->_organization->types() as $type) {
+            if($type->name != "Other"){
+                $options = $this->addOption($options,"Organizations of type " . $type->name, "organization", "type", $type->org_type_id, $organizations);
+
+                array_push($typesIDs, $type->org_type_id);
+                array_push($typesNames, $type->name);
+            }
+        }
+
+        if(count($typesIDs) > 1){
+            $options = $this->addOption($options,"Organizations of types " . implode(", ", $typesNames), "organization", implode(",", $typesIDs), "types", $organizations);
+        }
+
+        $options = $this->addOption($options, "Organizations of country " . $this->_organization->country()->name, "organization", "country", $this->_organization->country_id, $organizations);
+        $options = $this->addOption($options, "Organizations with around the same data volume", "organization", "dataVolume", $this->_organization->dataVolume(), $organizations);
+
+        return $options;
+    }
+
+    private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false){
+        $filtered = $this->filterBy($type, $filter, $value, $organizations);
 
         $option = array();
-        $option["title"]  = "List all organizations";
-        $option["number"] = $organizations_nr;
-        $option["type"]   = "organization";
-        $option["filter"] = "none";
-        $option["value"]  = "";
-        $option["active"] = true;
+        $option["title"]  = $title;
+        $option["number"] = count($filtered);
+        $option["type"]   = $type;
+        $option["filter"] = $filter;
+        $option["value"]  = $value;
+        $option["active"] = $active;
 
         // if($option["number"] < 5){
         //     $option["enable"] = false;
         // }
+
         $option["enable"] = true;
 
         array_push($options, $option);
 
-        $option["active"] = false;
+        return $options;
+    }
 
-        foreach ($this->_organization->types() as $type) {
-            if($type->name != "Other"){
-                $filteredOrganizations = $this->filterOrganizationsBy("type", $type->org_type_id, $organizations);
+    public function filterBy($type, $filter, $value, $organizations = array(), $collections = array()){
+        if($type == "organization"){
+            $filtered = $this->filterOrganizationsBy($filter, $value, $organizations);
+        }elseif($type == "collection") {
+            $filtered = $this->filterCollectionsBy($filter, $value, $organizations);
+        }
 
-                $option["title"]  = "Only organizations of type " . $type->name;
-                $option["number"] = count($filteredOrganizations);
-                $option["type"]   = "organization";
-                $option["filter"] = "type";
-                $option["value"]  = $type->org_type_id;
+        return $filtered;
+    }
 
-                // if($option["number"] < 5){
-                //     $option["enable"] = false;
-                // }
-                $option["enable"] = true;
+    public function filterCollectionsBy($filter, $value, $organizations = array(), $collections = array()){
+        if(!count($organizations)){
+            $organizationModel = new CCExModelsOrganization();
+            $organizationModel->set("_global_comparison", true);
+            $organizations = $organizationModel->listItems();
+        }
 
-                array_push($options, $option);
+        $result = array();
+
+        foreach ($organizations as $organization) {
+            $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+
+            if($filter == ""){
+
             }
         }
 
-        return $options;
+        return $result;
     }
 
     public function filterOrganizationsBy($filter, $value, $organizations = array()){
@@ -196,9 +264,35 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                 if($organization->haveType($value)){
                     array_push($result, $organization);
                 }
+            }elseif ($filter == "types") {
+                $list = explode(',', $value);
+                if($organization->haveTypes($list)){
+                    array_push($result, $organization);
+                }
+            }elseif($filter == "country"){
+                if($organization->country_id == $value){
+                    array_push($result, $organization);
+                }
+            }elseif($filter == "dataVolume") {
+                if($this->percentageDifference($organization->dataVolume(), $value) <= 20){
+                    array_push($result, $organization);
+                }
+            }elseif($filter == "none") {
+                array_push($result, $organization);
             }
         }
 
         return $result;
+    }
+
+    private function percentageDifference($first, $second){
+        $difference = abs($first - $second);
+        if($difference == 0){
+            $result = 0;
+        }else{
+            $average = ($first+$second)/$difference;
+            $result = $difference/$average;
+        }
+        return $result*100;
     }
 }

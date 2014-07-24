@@ -3,7 +3,7 @@
         <div class="caption" style="margin-top: 30px">
             <h3>Activities comparison</h3>
         </div>
-        <div id="global_activities_chart" class="col-md-12" style="width: 750px; height: 400px;"></div>
+        <div id="global_activities_chart" class="col-md-12" style="width: 750px; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
     </div>
     <div class="col-md-4">
         <br/>
@@ -69,6 +69,7 @@
                  useHTML: true
             },
             legend: {
+                verticalAlign: 'top',
                 symbolWidth: 15,
                 symbolHeight: 15,
                 symbolRadius: 10,

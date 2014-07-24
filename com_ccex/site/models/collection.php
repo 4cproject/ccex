@@ -350,4 +350,15 @@ class CCExModelsCollection extends CCExModelsDefault
 
         return $intervals;
     }
+
+    public function dataVolume(){
+        $dataVolume = 0;
+
+        foreach ($this->intervals() as $interval) {
+            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+            $dataVolume += $interval->data_volume;
+        }
+
+        return $dataVolume;
+    }
 }

@@ -2,7 +2,7 @@
     <div class="caption" style="margin-top: 30px">
         <h3>Financial accounting comparison</h3>
     </div>
-    <div id="global_financial_accounting_chart" class="col-md-12" style="width: 1140px; height: 400px;"></div>
+    <div id="global_financial_accounting_chart" class="col-md-12" style="width: 1140px; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -64,6 +64,7 @@
        useHTML: true
      },
      legend: {
+      verticalAlign: 'top',
       symbolWidth: 15,
       symbolHeight: 15,
       symbolRadius: 10,

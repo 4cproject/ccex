@@ -343,7 +343,19 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return false;
     }
-    
+
+    public function haveTypes($types) {
+        $result = true;
+
+        foreach ($types as $type) {
+            if(!$this->haveType($type)){
+                $push = false;
+            }
+        }
+
+        return $result;
+    }
+
     public function typesToString() {
         $string = "";
         $other = false;
@@ -508,5 +520,16 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
 
         return $intervals;
+    }
+
+    public function dataVolume(){
+        $dataVolume = 0;
+
+        foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $dataVolume += $collection->dataVolume();
+        }
+
+        return $dataVolume;
     }
 }
