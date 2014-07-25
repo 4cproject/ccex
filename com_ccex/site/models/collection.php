@@ -351,14 +351,42 @@ class CCExModelsCollection extends CCExModelsDefault
         return $intervals;
     }
 
-    public function dataVolume(){
-        $dataVolume = 0;
+    public function dataVolumePonderedAverage(){
+        $dividend = 0;
+        $divisor  = 0;
 
         foreach ($this->intervals() as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $dataVolume += $interval->data_volume;
+            $dividend += $interval->data_volume * $interval->duration;
+            $divisor += $interval->duration;
         }
 
-        return $dataVolume;
+        return $dividend/$divisor;
+    }
+
+    public function staffPonderedAverage(){
+        $dividend = 0;
+        $divisor  = 0;
+
+        foreach ($this->intervals() as $interval) {
+            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+            $dividend += $interval->staff * $interval->duration;
+            $divisor += $interval->duration;
+        }
+
+        return $dividend/$divisor;
+    }
+
+    public function numberOfCopiesPonderedAverage(){
+        $dividend = 0;
+        $divisor  = 0;
+
+        foreach ($this->intervals() as $interval) {
+            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+            $dividend += $interval->staff * $interval->number_copies;
+            $divisor += $interval->duration;
+        }
+
+        return $dividend/$divisor;
     }
 }

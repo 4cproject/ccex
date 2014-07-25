@@ -349,7 +349,7 @@ class CCExModelsOrganization extends CCExModelsDefault
 
         foreach ($types as $type) {
             if(!$this->haveType($type)){
-                $push = false;
+                $result = false;
             }
         }
 
@@ -522,14 +522,138 @@ class CCExModelsOrganization extends CCExModelsDefault
         return $intervals;
     }
 
-    public function dataVolume(){
-        $dataVolume = 0;
+    public function dataVolumePonderedAverage(){
+        $dividend = 0;
+        $divisor  = 0;
 
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
-            $dataVolume += $collection->dataVolume();
+            $nrYears = count($collection->years());
+
+            $dividend += $collection->dataVolumePonderedAverage() * $nrYears;
+            $divisor += $nrYears;
         }
 
-        return $dataVolume;
+        if($divisor>0){
+            return $dividend/$divisor;
+        }else{
+            return 0;
+        }
+    }
+
+    public function dataVolumePonderedStandardDeviation(){
+        $data = array();
+        $std_dev = 0;
+        $n = 0;
+
+        foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $nrYears = count($collection->years());
+
+            $data[$collection->dataVolumePonderedAverage()] = $nrYears;
+            $n += $nrYears;
+        }
+
+        foreach ($data as $value => $count) {
+            $std_dev += ($count * pow($value - $this->dataVolumePonderedAverage(), 2));
+        }
+
+        $std_dev = sqrt($std_dev/($n - 1));
+
+        return $std_dev;
+    }
+
+    public function validDataVolumePonderedAverage(){
+        return ($this->dataVolumePonderedStandardDeviation() / $this->dataVolumePonderedAverage()) <= 0.3;
+    }
+
+    public function staffPonderedAverage(){
+        $dividend = 0;
+        $divisor  = 0;
+
+        foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $nrYears = count($collection->years());
+
+            $dividend += $collection->staffPonderedAverage() * $nrYears;
+            $divisor += $nrYears;
+        }
+
+        if($divisor>0){
+            return $dividend/$divisor;
+        }else{
+            return 0;
+        }
+    }
+
+    public function staffPonderedStandardDeviation(){
+        $data = array();
+        $std_dev = 0;
+        $n = 0;
+
+        foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $nrYears = count($collection->years());
+
+            $data[$collection->staffPonderedAverage()] = $nrYears;
+            $n += $nrYears;
+        }
+
+        foreach ($data as $value => $count) {
+            $std_dev += ($count * pow($value - $this->staffPonderedAverage(), 2));
+        }
+
+        $std_dev = sqrt($std_dev/($n - 1));
+
+        return $std_dev;
+    }
+
+    public function validStaffPonderedAverage(){
+        return ($this->staffPonderedStandardDeviation() / $this->staffPonderedAverage()) <= 0.3;
+    }
+
+    public function numberOfCopiesPonderedAverage(){
+        $dividend = 0;
+        $divisor  = 0;
+
+        foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $nrYears = count($collection->years());
+
+            $dividend += $collection->numberOfCopiesPonderedAverage() * $nrYears;
+            $divisor += $nrYears;
+        }
+
+        if($divisor>0){
+            return $dividend/$divisor;
+        }else{
+            return 0;
+        }
+    }
+
+    public function numberOfCopiesPonderedStandardDeviation(){
+        $data = array();
+        $std_dev = 0;
+        $n = 0;
+
+        foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $nrYears = count($collection->years());
+
+            $data[$collection->numberOfCopiesPonderedAverage()] = $nrYears;
+            $n += $nrYears;
+        }
+
+        foreach ($data as $value => $count) {
+            $std_dev += ($count * pow($value - $this->numberOfCopiesPonderedAverage(), 2));
+        }
+
+        $std_dev = sqrt($std_dev/($n - 1));
+
+        return $std_dev;
+    }
+
+    public function validNumberOfCopiesPonderedAverage(){
+        return ($this->numberOfCopiesPonderedStandardDeviation() / $this->numberOfCopiesPonderedAverage()) <= 0.3;
     }
 }

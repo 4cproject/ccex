@@ -36,19 +36,30 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     
     private function seriesData($intervals) {
         $series = array("financial_accounting" => array_fill(0, 10, 0), "activities" => array_fill(0, 5, 0));
+        $sumIntervals = 0;
 
         foreach ($intervals as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
             $costsPerGBPerYear = $interval->costsPerGBPerYearOfCategories();
             
             foreach ($this->_categories["financial_accounting"] as $index => $category) {
-                $series["financial_accounting"][$index]+= round($costsPerGBPerYear[$category], 2);
+                $series["financial_accounting"][$index] += $costsPerGBPerYear[$category] * $interval->duration;
             }
             foreach ($this->_categories["activities"] as $index => $category) {
-                $series["activities"][$index]+= round($costsPerGBPerYear[$category], 2);
+                $series["activities"][$index] += $costsPerGBPerYear[$category] * $interval->duration;
             }
+
+            $sumIntervals += $interval->duration;
+        }
+
+        foreach ($series["financial_accounting"] as $key => $value) {
+           $series["financial_accounting"][$key] = round($value/$sumIntervals, 2);
         }
         
+        foreach ($series["activities"] as $key => $value) {
+           $series["activities"][$key] = round($value/$sumIntervals, 2);
+        }
+
         return $series;
     }
 
@@ -111,7 +122,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $data = $this->seriesData($intervals);
         $series = array();
         
-        $label = "Other :: " . $label .  " (" . count($organizations) . ")";
+        $label = "Other :: " . $label;
         $color = "#006fc0";
         $id = "other";
         
@@ -120,7 +131,34 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         
         return $series;
     }
+
     
+    private function otherCollectionsSeries($collections, $label) {
+        // if(count($organizations) < 5){
+        //     $organizations = array();
+        // }
+        
+        $intervals = array();
+        
+        foreach ($collections as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            
+            $intervals = array_merge($intervals, $collection->intervals());
+        }
+        
+        $data = $this->seriesData($intervals);
+        $series = array();
+        
+        $label = "Other :: " . $label;
+        $color = "#006fc0";
+        $id = "other";
+        
+        $series["financial_accounting"] = $this->serie($label, $data["financial_accounting"], $color, $id, $label, false);
+        $series["activities"] = $this->serie($label, $data["activities"], $color, $id, $label, false);
+        
+        return $series;
+    }
+
     private function calculateMySeries($collectionsIDs, $year) {
         $intervals = array();
 
@@ -135,7 +173,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         if (count($organizations)) {
             $series = $this->otherOrganizationSeries($organizations, $label);  
         } else if (count($collections)) {
-            // $series = $this->organizationsSeries($organizations);
+            $series = $this->otherCollectionsSeries($collections, $label);
         } else {
             $organizationModel = new CCExModelsOrganization();
             $organizationModel->set("_global_comparison", true);
@@ -187,16 +225,19 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         }
 
         if(count($typesIDs) > 1){
-            $options = $this->addOption($options,"Organizations of types " . implode(", ", $typesNames), "organization", implode(",", $typesIDs), "types", $organizations);
+            $options = $this->addOption($options,"Organizations of types " . implode(", ", $typesNames), "organization",  "types", implode(",", $typesIDs), $organizations);
         }
 
         $options = $this->addOption($options, "Organizations of country " . $this->_organization->country()->name, "organization", "country", $this->_organization->country_id, $organizations);
-        $options = $this->addOption($options, "Organizations with around the same data volume", "organization", "dataVolume", $this->_organization->dataVolume(), $organizations);
+        $options = $this->addOption($options, "Organizations with around the same data volume", "organization", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations);
+        $options = $this->addOption($options, "Collections with around the same data volume", "collection", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations, false, $this->_organization->validDataVolumePonderedAverage());
+        $options = $this->addOption($options, "Collections with around the same staff", "collection", "staff", $this->_organization->staffPonderedAverage(), $organizations, false, $this->_organization->validStaffPonderedAverage());
+        $options = $this->addOption($options, "Collections with the same number of copies", "collection", "numberOfCopies", $this->_organization->numberOfCopiesPonderedAverage(), $organizations, false, $this->_organization->validNumberOfCopiesPonderedAverage());
 
         return $options;
     }
 
-    private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false){
+    private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false, $enable=true){
         $filtered = $this->filterBy($type, $filter, $value, $organizations);
 
         $option = array();
@@ -211,7 +252,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         //     $option["enable"] = false;
         // }
 
-        $option["enable"] = true;
+        $option["enable"] = $enable;
 
         array_push($options, $option);
 
@@ -239,9 +280,25 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
         foreach ($organizations as $organization) {
             $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+            $collections = $organization->collections();
 
-            if($filter == ""){
 
+            foreach ($collections as $collection) {
+                $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+
+                if($filter == "dataVolume"){
+                    if($this->percentageDifference($value, $collection->dataVolumePonderedAverage()) <= 0.3){
+                        array_push($result, $collection);
+                    }
+                }elseif($filter == "staff"){
+                    if($this->percentageDifference($value, $collection->staffPonderedAverage()) <= 0.3){
+                        array_push($result, $collection);
+                    }
+                }elseif($filter == "numberOfCopies"){
+                    if($this->percentageDifference($value, $collection->numberOfCopiesPonderedAverage()) <= 0.3){
+                        array_push($result, $collection);
+                    }
+                }
             }
         }
 
@@ -254,7 +311,6 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             $organizationModel->set("_global_comparison", true);
             $organizations = $organizationModel->listItems();
         }
-
         $result = array();
 
         foreach ($organizations as $organization) {
@@ -266,6 +322,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                 }
             }elseif ($filter == "types") {
                 $list = explode(',', $value);
+
                 if($organization->haveTypes($list)){
                     array_push($result, $organization);
                 }
@@ -274,7 +331,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                     array_push($result, $organization);
                 }
             }elseif($filter == "dataVolume") {
-                if($this->percentageDifference($organization->dataVolume(), $value) <= 20){
+                if($this->percentageDifference($organization->dataVolumePonderedAverage(), $value) <= 0.3){
                     array_push($result, $organization);
                 }
             }elseif($filter == "none") {
@@ -293,6 +350,6 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             $average = ($first+$second)/$difference;
             $result = $difference/$average;
         }
-        return $result*100;
+        return $result;
     }
 }

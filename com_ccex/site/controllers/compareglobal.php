@@ -33,7 +33,7 @@ class CCExControllersCompareglobal extends JControllerBase
                 if($matches["type"] == "organization"){
                     $organizations = $compareGlobal->filterOrganizationsBy($matches["filter"],$matches["value"]);
                 }elseif($matches["type"] == "collection"){
-                    $collections = $compareGlobal->filterCollectionsSSSBy($matches["filter"],$matches["value"]);
+                    $collections = $compareGlobal->filterCollectionsBy($matches["filter"],$matches["value"]);
                 }
             }
         }
