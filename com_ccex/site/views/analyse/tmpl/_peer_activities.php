@@ -3,7 +3,7 @@
         <div class="caption" style="margin-top: 30px">
             <h3>Activities comparison</h3>
         </div>
-        <div id="global_activities_chart" class="col-md-12" style="width: 750px; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
+        <div id="peer_activities_chart" class="col-md-12" style="width: 750px; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
     </div>
     <div class="col-md-4">
         <br/>
@@ -25,7 +25,7 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#global_activities_chart').highcharts({
+        $('#peer_activities_chart').highcharts({
             chart: {
                 type: 'column',
                 style: {

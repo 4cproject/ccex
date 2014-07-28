@@ -9,16 +9,17 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
   <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>">My costs</a></li>
-  <li class="active"><a href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>">Global comparison</a></li>
-  <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison</a></li>
+  <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>">Global comparison</a></li>
+  <li class="active"><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison</a></li>
 </ul>
 <br/>
 
-<p>Comparing your costs with a group of organisations shows how well you are performing against the average. You can filter the comparison to show only organisations which have similar characteristics to yours.</p>
+<p>Compare your costs with another organisation to pin-point challenges and get in contact with organizations that can help you learn from their experiences.</p>
+
 <div class="row">
-  <form id ="globalComparisonForm">
+  <form id ="peerComparisonForm">
     <div class="form-inline col-md-6">
-      <h4>My costs</h4>
+      <h3>My costs</h3>
       <label class="radio-inline">
         <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
         All collections combined <small>(<?php echo count($this->collections); ?>)</small>
@@ -61,30 +62,37 @@
 
     </div>
     <div class="col-md-6">
-      <h4>Other organisations costs</h4>
-      <?php foreach ($this->options as $option) { ?>
-        <?php if($option["enable"]) { ?>
-          <div class="radio">
-            <label>
-              <input class="updateChartsOnChange" <?php if($option["active"]){ echo "checked"; } ?> type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>|<?php echo $option["title"]; ?>">
-                <?php echo $option["title"]; ?> <small>(<?php echo $option["number"]; ?>)</small>
-            </label>
-          </div>
-        <?php } else { ?>
-          <div class="radio">
-            <label  style="color: #999" data-toggle="tooltip" data-placement="right" data-container="body" title="<?php echo $option["tooltip"]; ?>">
-              <input class="updateChartsOnChange" type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>" disabled>
-                <?php echo $option["title"]; ?> <small>(<?php echo $option["number"]; ?>)</small>
-            </label>
-          </div>
-        <?php } ?>
-      <?php } ?>
+      <h3>Universidade do Minho</h3>
+      <p>
+        The Universidade do Minho is a <b>University</b> from <b>Portugal</b> with a digital curation staff of <b>less than 50 people</b> and a data volume of more than <b>10 Terabytes</b>. It has mainly <b>Unformatted text</b>, <b>word processing</b> and <b>research data</b> assets and has a number of copies policy of <b>one replica</b>.
+      </p>
     </div>
   </form>
 </div>
 
+<div class="row">
+<h2>Analysis</h2>
+
 <?php echo $this->_financialAccounting->render(); ?>
 <?php echo $this->_activities->render(); ?>
+</div>
+
+<div class="row">
+<h2>More information</h2>
+<p>If you want to know more about Universidade do Minho you can request direct contact to exchange information, experiences and more details about their curation costs.</p>
+<button style="margin-bottom: 20px" class="btn btn-primary">Request contact with Universidade do Minho</button>
+<br/>
+
+<h4>Other peers like you</h4>
+<ul>
+  <li><a href="#">INESC, University, Portugal</a></li>
+  <li><a href="#">University of Edinburg, University, United Kingdom</a></li>
+  <li><a href="#">University of Glagow, University, United Kingdom</a></li>
+  <li><a href="#">University of Essex, University, United Kingdom</a></li>
+</ul> 
+
+<p>Choose from the <a href="#">complete list of peers</a> which have allowed sharing of their information.</p>
+</div>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>
-<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare-global.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare-peer.js') ?>"></script>

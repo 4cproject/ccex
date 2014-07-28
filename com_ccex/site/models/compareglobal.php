@@ -234,10 +234,19 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $options = $this->addOption($options, "Collections with around the same staff", "collection", "staff", $this->_organization->staffPonderedAverage(), $organizations, false, $this->_organization->validStaffPonderedAverage());
         $options = $this->addOption($options, "Collections with the same number of copies", "collection", "numberOfCopies", $this->_organization->numberOfCopiesPonderedAverage(), $organizations, false, $this->_organization->validNumberOfCopiesPonderedAverage());
 
+        $scopes = array();
+        foreach ($this->_organization->collections() as $collection) {
+            if(!array_key_exists($collection->scope, $scopes)){
+                $options = $this->addOption($options, "Collections of scope: " . $collection->scope, "collection", "scope", $collection->scope, $organizations);
+            }
+            
+            $sciopes[$collection->scope] = true;
+        }
+
         return $options;
     }
 
-    private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false, $enable=true){
+    private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false, $enable=true, $tooltip="This filter cannot be used, because your collections are very different in this field."){
         $filtered = $this->filterBy($type, $filter, $value, $organizations);
 
         $option = array();
@@ -250,8 +259,10 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
         // if($option["number"] < 5){
         //     $option["enable"] = false;
+        //     $tooltip="A filter cannot be displayed with size less than 5, to preserve anonimity for the intervinients.");
         // }
 
+        $option["tooltip"] = $tooltip;
         $option["enable"] = $enable;
 
         array_push($options, $option);
@@ -296,6 +307,10 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                     }
                 }elseif($filter == "numberOfCopies"){
                     if($this->percentageDifference($value, $collection->numberOfCopiesPonderedAverage()) <= 0.3){
+                        array_push($result, $collection);
+                    }
+                }elseif($filter == "scope"){
+                    if($collection->scope == $value){
                         array_push($result, $collection);
                     }
                 }

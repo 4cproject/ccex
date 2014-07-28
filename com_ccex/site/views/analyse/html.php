@@ -76,6 +76,22 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->organization = $organization;
                 break;
 
+            case "peer":
+                $comparePeer = new CCExModelsComparepeer();
+                $comparePeer->set("_organization", $organization);
+
+                $series = $comparePeer->series(1);
+
+                $this->_financialAccounting = CCExHelpersView::load('Analyse', '_peer_financialaccounting', 'phtml');
+                $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
+
+                $this->_activities = CCExHelpersView::load('Analyse', '_peer_activities', 'phtml');
+                $this->_activities->series = json_encode($series["activities"]);
+
+                $this->collections = $organization->collections();
+                $this->organization = $organization;
+                break;
+
             default:
                 break;
         }

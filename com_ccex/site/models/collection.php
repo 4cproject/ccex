@@ -383,7 +383,7 @@ class CCExModelsCollection extends CCExModelsDefault
 
         foreach ($this->intervals() as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $dividend += $interval->staff * $interval->number_copies;
+            $dividend += $interval->number_copies * $interval->duration;
             $divisor += $interval->duration;
         }
 

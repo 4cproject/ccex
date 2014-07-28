@@ -10,7 +10,7 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>">My costs</a></li>
   <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>">Global comparison</a></li>
-  <li><a href="javascript:void(0);">Peer comparison</a></li>
+  <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison</a></li>
 </ul>
 <br/>
 
