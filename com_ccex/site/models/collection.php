@@ -15,8 +15,11 @@ class CCExModelsCollection extends CCExModelsDefault
     protected $_pagination = null;
     protected $_total = null;
     protected $_deleted = 0;
+    protected $_assetTypes = null;
     
     function __construct() {
+        $this->_assetTypes = array("asset_unformatted_text", "asset_word_processing", "asset_spreadsheet", "asset_graphics", "asset_audio", "asset_video", "asset_hypertext", "asset_geodata", "asset_email", "asset_database");
+
         parent::__construct();
     }
     
@@ -388,5 +391,37 @@ class CCExModelsCollection extends CCExModelsDefault
         }
 
         return $dividend/$divisor;
+    }
+
+    public function mainAsset(){
+        $assetTypes = array();
+        $divisor  = 0;
+        $mainValue = 0;
+        $main = null;
+
+        foreach ($this->_assetTypes as $assetType) {
+            $assetTypes[$assetType] = 0;
+        }
+
+        foreach ($this->intervals() as $interval) {
+            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+
+            foreach ($this->_assetTypes as $assetType) {
+                $assetTypes[$assetType] += $interval->get($assetType, 0) * $interval->duration;
+            }
+
+            $divisor += $interval->duration;
+        }
+
+        foreach ($assetTypes as $assetType => $value) {
+            $realValue = $value/$divisor;
+
+            if($realValue > $mainValue){
+                $mainValue = $realValue;
+                $main = $assetType;
+            }
+        }
+
+        return $main;
     }
 }

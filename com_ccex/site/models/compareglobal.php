@@ -240,7 +240,23 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                 $options = $this->addOption($options, "Collections of scope: " . $collection->scope, "collection", "scope", $collection->scope, $organizations);
             }
             
-            $sciopes[$collection->scope] = true;
+            $scopes[$collection->scope] = true;
+        }
+
+        $mainAssets = array();
+        foreach ($this->_organization->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+
+            $mainAsset = $collection->mainAsset();
+
+            if($mainAsset && !array_key_exists($mainAsset, $mainAssets)){
+                $assetWords = explode("_", $mainAsset);
+                array_shift($assetWords);
+
+                $options = $this->addOption($options, "Collections with mainly " . implode(" ", $assetWords) . " assets", "collection", "asset", $mainAsset, $organizations);
+
+                $mainAssets[$mainAsset] = true;
+            }
         }
 
         return $options;
@@ -311,6 +327,10 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                     }
                 }elseif($filter == "scope"){
                     if($collection->scope == $value){
+                        array_push($result, $collection);
+                    }
+                }elseif($filter == "asset"){
+                    if($collection->mainAsset() == $value){
                         array_push($result, $collection);
                     }
                 }

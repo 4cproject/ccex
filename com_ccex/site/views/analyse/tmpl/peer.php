@@ -62,11 +62,12 @@
 
     </div>
     <div class="col-md-6">
-      <h3>Universidade do Minho</h3>
+      <h3><?php echo $this->currentPeer->name; ?></h3>
       <p>
-        The Universidade do Minho is a <b>University</b> from <b>Portugal</b> with a digital curation staff of <b>less than 50 people</b> and a data volume of more than <b>10 Terabytes</b>. It has mainly <b>Unformatted text</b>, <b>word processing</b> and <b>research data</b> assets and has a number of copies policy of <b>one replica</b>.
+        The <?php echo $this->currentPeer->name ?> is a <b><?php echo $this->currentPeer->typesToString() ?></b> from <b><?php echo $this->currentPeer->country()->name ?></b> with a digital curation staff of <b>XXXX people</b> and a data volume of <b>XXXX</b>. It has mainly <b>XXXX</b>, <b>XXXX</b> and <b>XXXX</b> assets and has a number of copies policy of <b>XXXX replica</b>.
       </p>
     </div>
+    <input type="hidden" name="currentPeer" value="<?php echo $this->currentPeer->organization_id; ?>"/>
   </form>
 </div>
 
@@ -79,16 +80,15 @@
 
 <div class="row">
 <h2>More information</h2>
-<p>If you want to know more about Universidade do Minho you can request direct contact to exchange information, experiences and more details about their curation costs.</p>
-<button style="margin-bottom: 20px" class="btn btn-primary">Request contact with Universidade do Minho</button>
+<p>If you want to know more about <?php echo $this->currentPeer->name ?> you can request direct contact to exchange information, experiences and more details about their curation costs.</p>
+<button style="margin-bottom: 20px" class="btn btn-primary">Request contact with <?php echo $this->currentPeer->name ?></button>
 <br/>
 
 <h4>Other peers like you</h4>
 <ul>
-  <li><a href="#">INESC, University, Portugal</a></li>
-  <li><a href="#">University of Edinburg, University, United Kingdom</a></li>
-  <li><a href="#">University of Glagow, University, United Kingdom</a></li>
-  <li><a href="#">University of Essex, University, United Kingdom</a></li>
+  <?php foreach ($this->peersLikeYou as $peer) { ?>
+    <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>"><?php echo $peer->name ?>, <?php echo $peer->typesToString() ?>, <?php echo $peer->country()->name ?></a></li>
+  <?php } ?>
 </ul> 
 
 <p>Choose from the <a href="#">complete list of peers</a> which have allowed sharing of their information.</p>

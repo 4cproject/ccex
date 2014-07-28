@@ -656,4 +656,24 @@ class CCExModelsOrganization extends CCExModelsDefault
     public function validNumberOfCopiesPonderedAverage(){
         return ($this->numberOfCopiesPonderedStandardDeviation() / $this->numberOfCopiesPonderedAverage()) <= 0.3;
     }
+
+    public function typeMatch($types){
+        $match = 0;
+        $total = 0;
+
+        foreach ($types as $type) {
+            if($type->name != "Other"){
+                if($this->haveType($type)){
+                    $match++;
+                }
+                $total++;
+            }
+        }
+
+        if($total == 0){
+            return 1;
+        }else{
+            return $match/(float)$total;
+        }
+    }
 }

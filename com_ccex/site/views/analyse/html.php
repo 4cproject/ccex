@@ -8,6 +8,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
     function render() {
         $app = JFactory::getApplication();
         $layout = $app->input->get('layout');
+        $organizationID = $app->input->get('organization', null);
         
         $userModel = new CCExModelsUser();
         $organization = $userModel->organization();
@@ -80,7 +81,10 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $comparePeer = new CCExModelsComparepeer();
                 $comparePeer->set("_organization", $organization);
 
-                $series = $comparePeer->series(1);
+                $peersLikeYou = $comparePeer->peersLikeYou($organizationID);
+
+                $currentPeer = $peersLikeYou["current"];
+                $series = $comparePeer->series($currentPeer);
 
                 $this->_financialAccounting = CCExHelpersView::load('Analyse', '_peer_financialaccounting', 'phtml');
                 $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
@@ -90,6 +94,8 @@ class CCExViewsAnalyseHtml extends JViewHtml
 
                 $this->collections = $organization->collections();
                 $this->organization = $organization;
+                $this->currentPeer = $currentPeer;
+                $this->peersLikeYou = $peersLikeYou["others"];
                 break;
 
             default:

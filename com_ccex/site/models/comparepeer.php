@@ -49,12 +49,14 @@ class CCExModelsComparepeer extends CCExModelsDefault
             $sumIntervals += $interval->duration;
         }
 
-        foreach ($series["financial_accounting"] as $key => $value) {
-           $series["financial_accounting"][$key] = round($value/$sumIntervals, 2);
-        }
-        
-        foreach ($series["activities"] as $key => $value) {
-           $series["activities"][$key] = round($value/$sumIntervals, 2);
+        if($sumIntervals > 0){
+            foreach ($series["financial_accounting"] as $key => $value) {
+               $series["financial_accounting"][$key] = round($value/$sumIntervals, 2);
+            }
+            
+            foreach ($series["activities"] as $key => $value) {
+               $series["activities"][$key] = round($value/$sumIntervals, 2);
+            }
         }
 
         return $series;
@@ -127,15 +129,13 @@ class CCExModelsComparepeer extends CCExModelsDefault
         return $this->mySeries($collectionsIDs, $year, $intervals);
     }
     
-    private function calculateOtherSeries($organizationID) {
-        $organizationModel = new CCExModelsOrganization();
-        $organization = $organizationModel->getItemBy('_organization_id', $organizationID);
-
+    private function calculateOtherSeries($organization) {
+        $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
         $series = $this->otherSeries($organization);
         return $series;
     }
     
-    private function calculateSeries($myCollectionsIDs, $myYear, $organizationID) {
+    private function calculateSeries($myCollectionsIDs, $myYear, $organization) {
         $series = array("financial_accounting" => array(), "activities" => array());
         
         $mySeries = $this->calculateMySeries($myCollectionsIDs, $myYear);
@@ -143,7 +143,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
         $series["financial_accounting"] = $mySeries["financial_accounting"];
         $series["activities"]           = $mySeries["activities"];
         
-        $otherSeries = $this->calculateOtherSeries($organizationID);
+        $otherSeries = $this->calculateOtherSeries($organization);
         
         array_push($series["financial_accounting"], $otherSeries["financial_accounting"]);
         array_push($series["activities"], $otherSeries["activities"]);
@@ -151,7 +151,55 @@ class CCExModelsComparepeer extends CCExModelsDefault
         return $series;
     }
     
-    public function series($organizationID, $myCollectionsIDs = array(), $myYear = "all") {
-        return $this->calculateSeries($myCollectionsIDs, $myYear, $organizationID);
+    public function series($organization, $myCollectionsIDs = array(), $myYear = "all") {
+        return $this->calculateSeries($myCollectionsIDs, $myYear, $organization);
+    }
+
+    public function peersLikeYou($currentOrganizationID = null){
+        $typeScore = 50;
+        $dataVolumeScore = 40;
+        $mainAssetScore = 30;
+        $numberOfCopiesScore = 20;
+        $staffScore = 10;
+
+        $organizationsScore = array();
+        $organizationsHash = array();
+
+        $organizationModel = new CCExModelsOrganization();
+        $organizationModel->set("_global_comparison", true);
+        $organizations = $organizationModel->listItems();
+
+        foreach ($organizations as $organization) {
+            $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+            $organizationID = $organization->organization_id;
+
+            if($organizationID != $this->_organization->organization_id){
+                $organizationsScore[$organizationID] = 0;
+                $organizationsScore[$organizationID] += $typeScore * $organization->typeMatch($this->_organization->types());
+                
+                $organizationsHash[$organizationID] = $organization;
+            }
+        }
+
+        arsort($organizationsScore);
+        $result = array();
+        $currentOrganizationExists = false;
+
+        foreach ($organizationsScore as $organizationID => $score) {
+            if(!$currentOrganizationID || $currentOrganizationID != $organizationID){
+                array_push($result, $organizationsHash[$organizationID]);
+            }
+        }
+
+        if($currentOrganizationID && array_key_exists($currentOrganizationID, $organizationsHash)){
+            $current = $organizationsHash[$currentOrganizationID];
+        }else{
+            $current = array_shift($result);
+        }
+
+        return array(
+            "current" => $current,
+            "others" => $result
+        );
     }
 }
