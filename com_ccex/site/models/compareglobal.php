@@ -53,11 +53,19 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         }
 
         foreach ($series["financial_accounting"] as $key => $value) {
-           $series["financial_accounting"][$key] = round($value/$sumIntervals, 2);
+            if($sumIntervals>0){
+                $series["financial_accounting"][$key] = round($value/$sumIntervals, 2);
+            }else{
+                $series["financial_accounting"][$key] = 0;
+            }
         }
         
         foreach ($series["activities"] as $key => $value) {
-           $series["activities"][$key] = round($value/$sumIntervals, 2);
+            if($sumIntervals>0){
+                $series["activities"][$key] = round($value/$sumIntervals, 2);
+            }else{
+                $series["activities"][$key] = 0;
+            }
         }
 
         return $series;

@@ -578,13 +578,21 @@ class CCExModelsOrganization extends CCExModelsDefault
             $std_dev += ($count * pow($value - $this->dataVolumePonderedAverage(), 2));
         }
 
-        $std_dev = sqrt($std_dev/($n - 1));
+        if($n < 2){
+            $std_dev = 0;
+        }else{
+            $std_dev = sqrt($std_dev/($n - 1));
+        }
 
         return $std_dev;
     }
 
     public function validDataVolumePonderedAverage(){
-        return ($this->dataVolumePonderedStandardDeviation() / $this->dataVolumePonderedAverage()) <= 0.3;
+        if($this->dataVolumePonderedAverage()){
+            return ($this->dataVolumePonderedStandardDeviation() / $this->dataVolumePonderedAverage()) <= 0.3;
+        }else{
+            return true;
+        }
     }
 
     public function staffPonderedAverage(){
@@ -623,13 +631,21 @@ class CCExModelsOrganization extends CCExModelsDefault
             $std_dev += ($count * pow($value - $this->staffPonderedAverage(), 2));
         }
 
-        $std_dev = sqrt($std_dev/($n - 1));
+        if($n < 2){
+            $std_dev = 0;
+        }else{
+            $std_dev = sqrt($std_dev/($n - 1));
+        }
 
         return $std_dev;
     }
 
     public function validStaffPonderedAverage(){
-        return ($this->staffPonderedStandardDeviation() / $this->staffPonderedAverage()) <= 0.3;
+        if($this->staffPonderedAverage()){
+            return ($this->staffPonderedStandardDeviation() / $this->staffPonderedAverage()) <= 0.3;
+        }else{
+            return true;
+        }
     }
 
     public function numberOfCopiesPonderedAverage(){
@@ -668,13 +684,21 @@ class CCExModelsOrganization extends CCExModelsDefault
             $std_dev += ($count * pow($value - $this->numberOfCopiesPonderedAverage(), 2));
         }
 
-        $std_dev = sqrt($std_dev/($n - 1));
+        if($n < 2){
+            $std_dev = 0;
+        }else{
+            $std_dev = sqrt($std_dev/($n - 1));
+        }
 
         return $std_dev;
     }
 
     public function validNumberOfCopiesPonderedAverage(){
-        return ($this->numberOfCopiesPonderedStandardDeviation() / $this->numberOfCopiesPonderedAverage()) <= 0.3;
+        if($this->numberOfCopiesPonderedAverage()){
+            return ($this->numberOfCopiesPonderedStandardDeviation() / $this->numberOfCopiesPonderedAverage()) <= 0.3;
+        }else{
+            return true;
+        }
     }
 
     public function typeMatch($types){
