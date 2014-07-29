@@ -522,6 +522,26 @@ class CCExModelsOrganization extends CCExModelsDefault
         return $intervals;
     }
 
+    public function dataVolumeToString() {
+        $result = new stdClass();
+        $result->format = "Gigabytes";
+        $result->value = 0;
+        
+        $datav = $this->dataVolumePonderedAverage();
+        
+        if ($datav >= 1048576) {
+            $result->format = "Petabytes";
+            $result->value = round($datav / 1048576);
+        } elseif ($datav >= 1024) {
+            $result->format = "Terabytes";
+            $result->value = round($datav / 1024);
+        } else {
+            $result->value = round($datav);
+        }
+        
+        return $result->value . " " . $result->format;
+    }
+
     public function dataVolumePonderedAverage(){
         $dividend = 0;
         $divisor  = 0;
@@ -676,4 +696,66 @@ class CCExModelsOrganization extends CCExModelsDefault
             return $match/(float)$total;
         }
     }
+
+    public function scopesMatch($scopes){
+        $match = 0;
+        $total = 0;
+        $myScopes = $this->scopes();
+
+        foreach ($scopes as $scope) {
+            if(in_array($scope, $myScopes)){
+                $match++;
+            }
+            $total++;
+        }
+
+        if($total == 0){
+            return 1;
+        }else{
+            return $match/(float)$total;
+        }
+    }
+
+    public function mainAssetsMatch($mainAssets){
+        $match = 0;
+        $total = 0;
+        $myMainAssets = $this->mainAssets();
+
+        foreach ($mainAssets as $mainAsset) {
+            if(in_array($mainAsset, $myMainAssets)){
+                $match++;
+            }
+            $total++;
+        }
+
+        if($total == 0){
+            return 1;
+        }else{
+            return $match/(float)$total;
+        }
+    }
+
+    public function scopes(){
+        $scopes = array();
+
+        foreach ($this->collections() as $collection) {
+            $scopes[$collection->scope] = true;
+        }
+
+        return array_keys($scopes);
+    }
+
+    public function mainAssets(){
+        $mainAssets = array();
+
+        foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+
+            $mainAssets[$collection->mainAsset()] = true;
+        }
+
+        return array_keys($mainAssets);
+    }
+
+
 }

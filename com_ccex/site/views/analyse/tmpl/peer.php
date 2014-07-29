@@ -64,7 +64,7 @@
     <div class="col-md-6">
       <h3><?php echo $this->currentPeer->name; ?></h3>
       <p>
-        The <?php echo $this->currentPeer->name ?> is a <b><?php echo $this->currentPeer->typesToString() ?></b> from <b><?php echo $this->currentPeer->country()->name ?></b> with a digital curation staff of <b>XXXX people</b> and a data volume of <b>XXXX</b>. It has mainly <b>XXXX</b>, <b>XXXX</b> and <b>XXXX</b> assets and has a number of copies policy of <b>XXXX replica</b>.
+        The <?php echo $this->currentPeer->name ?> is a <b><?php echo $this->currentPeer->typesToString() ?></b> from <b><?php echo $this->currentPeer->country()->name ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
       </p>
     </div>
     <input type="hidden" name="currentPeer" value="<?php echo $this->currentPeer->organization_id; ?>"/>

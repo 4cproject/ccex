@@ -155,7 +155,9 @@ CREATE TABLE `#__ccex_countries` (
 CREATE TABLE `#__ccex_currencies` (
   `currency_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+
   `symbol` varchar(8) NOT NULL,
+  `code` varchar(8) NOT NULL,
 
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,

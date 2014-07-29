@@ -234,29 +234,15 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $options = $this->addOption($options, "Collections with around the same staff", "collection", "staff", $this->_organization->staffPonderedAverage(), $organizations, false, $this->_organization->validStaffPonderedAverage());
         $options = $this->addOption($options, "Collections with the same number of copies", "collection", "numberOfCopies", $this->_organization->numberOfCopiesPonderedAverage(), $organizations, false, $this->_organization->validNumberOfCopiesPonderedAverage());
 
-        $scopes = array();
-        foreach ($this->_organization->collections() as $collection) {
-            if(!array_key_exists($collection->scope, $scopes)){
-                $options = $this->addOption($options, "Collections of scope: " . $collection->scope, "collection", "scope", $collection->scope, $organizations);
-            }
-            
-            $scopes[$collection->scope] = true;
+        foreach ($this->_organization->scopes() as $scope) {
+            $options = $this->addOption($options, "Collections of scope: " . $scope, "collection", "scope", $scope, $organizations);
         }
 
-        $mainAssets = array();
-        foreach ($this->_organization->collections() as $collection) {
-            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+        foreach ($this->_organization->mainAssets() as $mainAsset) {
+            $assetWords = explode("_", $mainAsset);
+            array_shift($assetWords);
 
-            $mainAsset = $collection->mainAsset();
-
-            if($mainAsset && !array_key_exists($mainAsset, $mainAssets)){
-                $assetWords = explode("_", $mainAsset);
-                array_shift($assetWords);
-
-                $options = $this->addOption($options, "Collections with mainly " . implode(" ", $assetWords) . " assets", "collection", "asset", $mainAsset, $organizations);
-
-                $mainAssets[$mainAsset] = true;
-            }
+            $options = $this->addOption($options, "Collections with mainly " . implode(" ", $assetWords) . " asset", "collection", "asset", $mainAsset, $organizations);
         }
 
         return $options;

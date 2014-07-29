@@ -158,9 +158,10 @@ class CCExModelsComparepeer extends CCExModelsDefault
     public function peersLikeYou($currentOrganizationID = null){
         $typeScore = 50;
         $dataVolumeScore = 40;
-        $mainAssetScore = 30;
+        $mainAssetScore = 20;
         $numberOfCopiesScore = 20;
-        $staffScore = 10;
+        $staffScore = 20;
+        $scopeScore = 10;
 
         $organizationsScore = array();
         $organizationsHash = array();
@@ -176,7 +177,12 @@ class CCExModelsComparepeer extends CCExModelsDefault
             if($organizationID != $this->_organization->organization_id){
                 $organizationsScore[$organizationID] = 0;
                 $organizationsScore[$organizationID] += $typeScore * $organization->typeMatch($this->_organization->types());
-                
+                $organizationsScore[$organizationID] += $dataVolumeScore * max((1 - $this->percentageDifference($organization->dataVolumePonderedAverage(), $this->_organization->dataVolumePonderedAverage())), 0);
+                $organizationsScore[$organizationID] += $numberOfCopiesScore * max((1 - $this->percentageDifference($organization->numberOfCopiesPonderedAverage(), $this->_organization->numberOfCopiesPonderedAverage())), 0);
+                $organizationsScore[$organizationID] += $staffScore * max((1 - $this->percentageDifference($organization->staffPonderedAverage(), $this->_organization->staffPonderedAverage())), 0);
+                $organizationsScore[$organizationID] += $mainAssetScore * $organization->mainAssetsMatch($this->_organization->mainAssets());
+                $organizationsScore[$organizationID] += $scopeScore * $organization->scopesMatch($this->_organization->scopes());
+
                 $organizationsHash[$organizationID] = $organization;
             }
         }
@@ -199,7 +205,18 @@ class CCExModelsComparepeer extends CCExModelsDefault
 
         return array(
             "current" => $current,
-            "others" => $result
+            "others" => array_slice($result, 0, 5)
         );
+    }
+
+    private function percentageDifference($first, $second){
+        $difference = abs($first - $second);
+        if($difference == 0){
+            $result = 0;
+        }else{
+            $average = ($first+$second)/$difference;
+            $result = $difference/$average;
+        }
+        return $result;
     }
 }
