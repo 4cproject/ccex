@@ -148,8 +148,9 @@ class CCExModelsInterval extends CCExModelsDefault
     
     public function collection() {
         $collectionModel = new CCExModelsCollection();
-        $collectionModel->set('_collection_id', $this->collection_id);
-        $collection = $collectionModel->getItem();
+        $collections = $collectionModel->listItemsBy('_collection_id', $this->collection_id);
+        $collection = array_shift($collections);
+        $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
         
         return $collection;
     }
@@ -230,9 +231,13 @@ class CCExModelsInterval extends CCExModelsDefault
         
         return $sum;
     }
+
+    public function currency(){
+        return $this->collection()->organization()->currency();
+    }
     
     public function formattedSumCosts() {
-        return CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->collection()->organization()->currency()->symbol);
+        return CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->currency()->symbol);
     }
     
     public function sumCostsPerGB() {
@@ -248,15 +253,15 @@ class CCExModelsInterval extends CCExModelsDefault
     }
     
     public function formattedSumCostsPerGB() {
-        return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGB(), $this->collection()->organization()->currency()->symbol));
+        return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGB(), $this->currency()->symbol));
     }
     
     public function formattedSumCostsPerYear() {
-        return sprintf('%s/Y', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerYear(), $this->collection()->organization()->currency()->symbol));
+        return sprintf('%s/Y', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerYear(), $this->currency()->symbol));
     }
     
     public function formattedSumCostsPerGBPerYear() {
-        return sprintf('%s/GB·Y', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGBPerYear(), $this->collection()->organization()->currency()->symbol));
+        return sprintf('%s/GB·Y', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCostsPerGBPerYear(), $this->currency()->symbol));
     }
     
     public function percentageActivityMapping() {

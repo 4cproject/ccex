@@ -194,7 +194,7 @@ var formatter = function(total) {
 	if(isNaN(cost) || cost <= 0) {
 		return total + "%";
 	} else {
-		return Humanize.formatNumber((cost * total) / 100.0, 0) +" € &nbsp; <small>| "+total+"%</small>";
+		return Humanize.formatNumber((cost * total) / 100.0, 0) +" "+ <?php echo '"' . $this->currency->symbol . '"'; ?>  + " &nbsp; <small>| "+total+"%</small>";
 	}
 
 	return total + "%";

@@ -104,7 +104,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Relative cost (€/GB·Y)',
+                        text: 'Relative cost (' + <?php echo "'" . $this->currency->symbol . "'"; ?>  + '/GB·Y)',
                         style: {
                             color: 'rgba(0, 0, 0, 0)'
                         }
@@ -200,7 +200,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Relative cost (€/GB·Y)'
+                        text: 'Relative cost (' + <?php echo "'" . $this->currency->symbol . "'"; ?>  + '/GB·Y)'
                     },
                     stackLabels: {
                         enabled: true,
@@ -213,7 +213,7 @@
                 tooltip: {
                     headerFormat: '<div style="width:250px"><div style="float: left;">{series.options.stack}</div><div style="float: right; font-size:12px; margin-bottom: 5px;">Year {point.key}</div><table style="font-size:12px; white-space: nowrap; margin-top: 10px; width:100%;">',
                     pointFormat: '<tr><td style="padding:0"><span style="color: {series.color}">&#9679;</span>  {series.name}: </td>' +
-                    '<td style="padding:0 0 0 5px; text-align: right;">{point.y:.1f} €/GB&sdot;Y</td></tr>',
+                    '<td style="padding:0 0 0 5px; text-align: right;">{point.y:.1f} ' + <?php echo "'" . $this->currency->symbol . "'"; ?>  + '/GB&sdot;Y</td></tr>',
                     footerFormat: '</table></div>',
                     useHTML: true
                 },

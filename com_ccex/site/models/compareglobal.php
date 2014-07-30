@@ -37,16 +37,23 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     private function seriesData($intervals) {
         $series = array("financial_accounting" => array_fill(0, 10, 0), "activities" => array_fill(0, 5, 0));
         $sumIntervals = 0;
+        $euc = new CCExModelsEuroconvertionrate();
 
         foreach ($intervals as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
             $costsPerGBPerYear = $interval->costsPerGBPerYearOfCategories();
-            
+
+            $currencyCode = $interval->currency()->code;
+            $beginYear = $interval->begin_year;
+            $duration = $interval->duration;
+
+            $tax = $euc->taxOnInterval($currencyCode, $beginYear, $duration);
+
             foreach ($this->_categories["financial_accounting"] as $index => $category) {
-                $series["financial_accounting"][$index] += $costsPerGBPerYear[$category] * $interval->duration;
+                $series["financial_accounting"][$index] += $costsPerGBPerYear[$category] * $tax * $interval->duration;
             }
             foreach ($this->_categories["activities"] as $index => $category) {
-                $series["activities"][$index] += $costsPerGBPerYear[$category] * $interval->duration;
+                $series["activities"][$index] += $costsPerGBPerYear[$category] * $tax * $interval->duration;
             }
 
             $sumIntervals += $interval->duration;

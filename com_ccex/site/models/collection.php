@@ -150,7 +150,9 @@ class CCExModelsCollection extends CCExModelsDefault
     
     public function organization() {
         $organizationModel = new CCExModelsOrganization();
-        $organization = $organizationModel->getItemBy('_organization_id', $this->organization_id);
+        $organizations = $organizationModel->listItemsBy('_organization_id', $this->organization_id);
+        $organization = array_shift($organizations);
+        $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
         
         return $organization;
     }

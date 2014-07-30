@@ -42,13 +42,15 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->_financialAccounting->masterSeries = json_encode($masterSeries["financial_accounting"]);
                 $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
                 $this->_financialAccounting->categories = json_encode($categories);
+                $this->_financialAccounting->currency = $organization->currency();
                 
                 $this->_activities = CCExHelpersView::load('Analyse', '_self_activities', 'phtml');
                 $this->_activities->beginOfFirstInterval = $beginOfFirstInterval;
                 $this->_activities->masterCategories = json_encode($masterCategories);
                 $this->_activities->masterSeries = json_encode($masterSeries["activities"]);
                 $this->_activities->series = json_encode($series["activities"]);
-                $this->_activities->categories = json_encode($categories);       
+                $this->_activities->categories = json_encode($categories);     
+                $this->_activities->currency = $organization->currency();  
 
                 if(count($masterCategories) > 5 ){ 
                     $this->_financialAccounting->master = true;

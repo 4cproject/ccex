@@ -39,7 +39,7 @@ class CCExModelsEuroconvertionrate extends CCExModelsDefault
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
         
-        $query->select('t.euro_convertion_id, t.code, t.year', 't.tax');
+        $query->select('t.euro_convertion_id, t.code, t.year, t.tax');
         $query->from('#__ccex_euro_convertion_rates as t');
         $query->order('t.year');
         
@@ -53,7 +53,7 @@ class CCExModelsEuroconvertionrate extends CCExModelsDefault
      */
     protected function _buildWhere(&$query) {
         
-        if (is_numeric($this->_org_type_id)) {
+        if (is_numeric($this->_euro_convertion_id)) {
             $query->where('t.euro_convertion_id = ' . (int)$this->_euro_convertion_id);
         }
         
@@ -124,8 +124,12 @@ class CCExModelsEuroconvertionrate extends CCExModelsDefault
             if(array_key_exists($year, $this->_hash[$code])){
                 $tax = $this->_hash[$code][$year];
             }else{
-                $firstYear = key(reset($this->_hash[$code]));
-                $lastYear = key(end($this->_hash[$code]));
+                $codeHash = $this->_hash[$code];
+
+                reset($codeHash);
+                $firstYear = key($codeHash);
+                end($codeHash);
+                $lastYear = key($codeHash);
 
                 if($year < $firstYear){
                     $tax = $this->_hash[$code][$firstYear];
