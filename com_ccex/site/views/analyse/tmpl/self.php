@@ -23,27 +23,29 @@
         All collections combined <small>(<?php echo count($this->collections); ?>)</small>
       </label>
     </div>
-    <div class="radio">
-      <label>
-        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-        Separate and select collections:
-        <div class="radio" id="collectionsRadios">
-        <?php $i = 1 ?>
-        <?php foreach ($this->collections as $collection) { ?>
-            <div class="checkbox">
-                <label>
-                    <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>" checked>
-                    <span class="badge">
-                        #<?php echo $i; ?>
-                    </span> 
-                    <?php echo $collection->name; ?>
-                </label>
-            </div>
-        <?php $i++; ?>
-        <?php } ?>
-        </div>
-      </label>
-    </div>
+    <?php if(count($this->collections)) { ?>
+      <div class="radio">
+        <label>
+          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
+          Separate and select collections:
+          <div class="radio" id="collectionsRadios">
+          <?php $i = 1 ?>
+          <?php foreach ($this->collections as $collection) { ?>
+              <div class="checkbox">
+                  <label>
+                      <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>" checked>
+                      <span class="badge">
+                          #<?php echo $i; ?>
+                      </span> 
+                      <?php echo $collection->name; ?>
+                  </label>
+              </div>
+          <?php $i++; ?>
+          <?php } ?>
+          </div>
+        </label>
+      </div>
+    <?php } ?>
 </form>
 
 <?php echo $this->_financialAccounting->render(); ?>

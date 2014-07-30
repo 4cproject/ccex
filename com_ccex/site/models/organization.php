@@ -419,17 +419,22 @@ class CCExModelsOrganization extends CCExModelsDefault
         $intervals = $this->intervals();
         $firstInterval = array_shift($intervals);
         
-        $beginYear = $firstInterval->begin_year;
-        $lastYear = $beginYear + $firstInterval->duration;
-        
-        foreach ($intervals as $interval) {
-            if ($interval->begin_year < $beginYear) {
-                $beginYear = $interval->begin_year;
-            }
+        if($firstInterval){
+            $beginYear = $firstInterval->begin_year;
+            $lastYear = $beginYear + $firstInterval->duration;
             
-            if (($interval->begin_year + $interval->duration - 1) > $lastYear) {
-                $lastYear = $interval->begin_year + $interval->duration;
+            foreach ($intervals as $interval) {
+                if ($interval->begin_year < $beginYear) {
+                    $beginYear = $interval->begin_year;
+                }
+                
+                if (($interval->begin_year + $interval->duration - 1) > $lastYear) {
+                    $lastYear = $interval->begin_year + $interval->duration;
+                }
             }
+        }else{
+            $beginYear = date("Y");
+            $lastYear = date("Y") + 1;
         }
         
         return array("begin_year" => $beginYear, "last_year" => $lastYear);

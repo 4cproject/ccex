@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `#__ccex_contacts`;
+DROP TABLE IF EXISTS `#__ccex_euro_convertion_rates`;
 DROP TABLE IF EXISTS `#__ccex_interval`;
 DROP TABLE IF EXISTS `#__ccex_organization_org_types`;
 DROP TABLE IF EXISTS `#__ccex_organization_types`;
@@ -175,7 +177,33 @@ CREATE TABLE `#__ccex_euro_convertion_rates` (
   `year` int(11) NOT NULL,
   `tax` double NOT NULL,
 
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL,
+
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+
   PRIMARY KEY (`euro_convertion_id`)
+);
+
+CREATE TABLE `#__ccex_contacts` (
+  `contact_id` int(11) NOT NULL AUTO_INCREMENT,
+
+  `message` text NOT NULL,
+  `sender_email` varchar(255) NOT NULL,
+  `recipient_email` varchar(255) NOT NULL,
+  `sender_organization_id` int(11) NOT NULL,
+  `recipient_organization_id` int(11) NOT NULL,
+  `sender_user_id` int(11) NOT NULL,
+  `recipient_user_id` int(11) NOT NULL,
+
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL,
+
+  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+
+  PRIMARY KEY (`contact_id`)
 );
 
 INSERT INTO `#__ccex_organization_types` (`name`) VALUES ('University'), ('Memory institution or content holder'), ('Government agency'), ('Publisher or content producer'), ('Big data science'), ('Research funder'), ('Digital preservation vendor'), ('Industry'), ('Small or medium enterprise'), ('Other');

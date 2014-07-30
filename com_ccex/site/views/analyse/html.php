@@ -86,14 +86,17 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $peersLikeYou = $comparePeer->peersLikeYou($organizationID);
 
                 $currentPeer = $peersLikeYou["current"];
-                $series = $comparePeer->series($currentPeer);
+                
+                if($currentPeer){
+                    $series = $comparePeer->series($currentPeer);
 
-                $this->_financialAccounting = CCExHelpersView::load('Analyse', '_peer_financialaccounting', 'phtml');
-                $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
+                    $this->_financialAccounting = CCExHelpersView::load('Analyse', '_peer_financialaccounting', 'phtml');
+                    $this->_financialAccounting->series = json_encode($series["financial_accounting"]);
 
-                $this->_activities = CCExHelpersView::load('Analyse', '_peer_activities', 'phtml');
-                $this->_activities->series = json_encode($series["activities"]);
-
+                    $this->_activities = CCExHelpersView::load('Analyse', '_peer_activities', 'phtml');
+                    $this->_activities->series = json_encode($series["activities"]);
+                }
+                
                 $this->collections = $organization->collections();
                 $this->organization = $organization;
                 $this->currentPeer = $currentPeer;

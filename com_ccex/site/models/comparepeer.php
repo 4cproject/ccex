@@ -174,7 +174,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
         $organizationsHash = array();
 
         $organizationModel = new CCExModelsOrganization();
-        $organizationModel->set("_global_comparison", true);
+        $organizationModel->set("_peer_comparison", true);
         $organizations = $organizationModel->listItems();
 
         foreach ($organizations as $organization) {

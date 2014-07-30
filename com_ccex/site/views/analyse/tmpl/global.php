@@ -30,34 +30,36 @@
           <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
         <?php } ?>
       </select>
+      <br/>
+      <?php if(count($this->collections)) { ?>
+        <label class="radio-inline col-xs-12">
+            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
+            Separate and select collections:
+        </label>
 
-      <label class="radio-inline col-xs-12">
-          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-          Separate and select collections:
-      </label>
+        <div class="radio" id="collectionsRadios">
+          <?php $i = 1 ?>
+          <?php foreach ($this->collections as $collection) { 
+            $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
+            
+            <div class="row" style="margin-left: 20px;">
+              <label class="checkbox-inline">
+                <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
+                <span class="badge">#<?php echo $i; ?></span> 
+                <?php echo $collection->name; ?>
+              </label>
+              <select class="form-control input-xs updateChartsOnChange collectionSelect" name="yearsSelected[<?php echo $collection->collection_id ?>]">
+                <option value="all">All years</option>
+                  <?php foreach (array_keys($collection->years()) as $year) { ?>
+                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                  <?php } ?>
+              </select>
+            </div>
 
-      <div class="radio" id="collectionsRadios">
-        <?php $i = 1 ?>
-        <?php foreach ($this->collections as $collection) { 
-          $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
-          
-          <div class="row" style="margin-left: 20px;">
-            <label class="checkbox-inline">
-              <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
-              <span class="badge">#<?php echo $i; ?></span> 
-              <?php echo $collection->name; ?>
-            </label>
-            <select class="form-control input-xs updateChartsOnChange collectionSelect" name="yearsSelected[<?php echo $collection->collection_id ?>]">
-              <option value="all">All years</option>
-                <?php foreach (array_keys($collection->years()) as $year) { ?>
-                  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                <?php } ?>
-            </select>
-          </div>
-
-        <?php $i++; ?>
-        <?php } ?>
-      </div>
+          <?php $i++; ?>
+          <?php } ?>
+        </div>
+      <?php } ?>
 
     </div>
     <div class="col-md-6">
