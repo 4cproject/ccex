@@ -101,6 +101,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->organization = $organization;
                 $this->currentPeer = $currentPeer;
                 $this->peersLikeYou = $peersLikeYou["others"];
+                $this->complete = $peersLikeYou["complete"];
                 break;
 
             default:

@@ -196,12 +196,14 @@ class CCExModelsComparepeer extends CCExModelsDefault
 
         arsort($organizationsScore);
         $result = array();
+        $complete = array();
         $currentOrganizationExists = false;
 
         foreach ($organizationsScore as $organizationID => $score) {
             if(!$currentOrganizationID || $currentOrganizationID != $organizationID){
                 array_push($result, $organizationsHash[$organizationID]);
             }
+            array_push($complete, $organizationsHash[$organizationID]);
         }
 
         if($currentOrganizationID && array_key_exists($currentOrganizationID, $organizationsHash)){
@@ -212,7 +214,8 @@ class CCExModelsComparepeer extends CCExModelsDefault
 
         return array(
             "current" => $current,
-            "others" => array_slice($result, 0, 5)
+            "others" => array_slice($result, 0, 5),
+            "complete" => $complete
         );
     }
 

@@ -122,15 +122,13 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     }
     
     private function otherOrganizationSeries($organizations, $label) {
-        // if(count($organizations) < 5){
-        //     $organizations = array();
-        // }
+        if(count($organizations) < 5){
+            $organizations = array();
+        }
         
         $intervals = array();
         
         foreach ($organizations as $organization) {
-            $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-            
             $intervals = array_merge($intervals, $organization->intervals());
         }
         
@@ -149,9 +147,9 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
     
     private function otherCollectionsSeries($collections, $label) {
-        // if(count($organizations) < 5){
-        //     $organizations = array();
-        // }
+        if(count($organizations) < 5){
+            $organizations = array();
+        }
         
         $intervals = array();
         
@@ -191,8 +189,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             $series = $this->otherCollectionsSeries($collections, $label);
         } else {
             $organizationModel = new CCExModelsOrganization();
-            $organizationModel->set("_global_comparison", true);
-            $organizations = $organizationModel->listItems();
+            $organizationModel->organizationsForGlobalComparison();
 
             $series = $this->otherOrganizationSeries($organizations, $label);
         }
@@ -223,8 +220,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     public function otherOrganizationCostsOptions(){
         $options = array();
         $organizationModel = new CCExModelsOrganization();
-        $organizationModel->set("_global_comparison", true);
-        $organizations = $organizationModel->listItems();
+        $organizations = $organizationModel->organizationsForGlobalComparison();
 
         $options = $this->addOption($options, "List all organizations", "organization", "none", "", $organizations, true);
 
@@ -274,14 +270,17 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $option["value"]  = $value;
         $option["active"] = $active;
 
-        // if($option["number"] < 5){
-        //     $option["enable"] = false;
-        //     $tooltip="A filter cannot be displayed with size less than 5, to preserve anonimity for the intervinients.");
+        if($option["number"] < 5){
+            $option["enable"] = false;
+            $option["tooltip"] = "A filter cannot be displayed with size less than 5, to preserve anonimity for the intervinients.";
+        }else{
+            $option["tooltip"] = $tooltip;
+            $option["enable"] = $enable;
+        }
+
+        // if($option["enable"]){
+        //     array_push($options, $option);
         // }
-
-        $option["tooltip"] = $tooltip;
-        $option["enable"] = $enable;
-
         array_push($options, $option);
 
         return $options;
@@ -300,16 +299,13 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     public function filterCollectionsBy($filter, $value, $organizations = array(), $collections = array()){
         if(!count($organizations)){
             $organizationModel = new CCExModelsOrganization();
-            $organizationModel->set("_global_comparison", true);
-            $organizations = $organizationModel->listItems();
+            $organizations = $organizationModel->organizationsForGlobalComparison();
         }
 
         $result = array();
 
         foreach ($organizations as $organization) {
-            $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
             $collections = $organization->collections();
-
 
             foreach ($collections as $collection) {
                 $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
@@ -344,14 +340,11 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     public function filterOrganizationsBy($filter, $value, $organizations = array()){
         if(!count($organizations)){
             $organizationModel = new CCExModelsOrganization();
-            $organizationModel->set("_global_comparison", true);
-            $organizations = $organizationModel->listItems();
+            $organizations = $organizationModel->organizationsForGlobalComparison();
         }
         $result = array();
 
         foreach ($organizations as $organization) {
-            $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-
             if($filter == "type"){
                 if($organization->haveType($value)){
                     array_push($result, $organization);

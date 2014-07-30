@@ -83,7 +83,7 @@
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
-                    <input name="organization[contact_and_sharing]" <?php echo (isset($this->organization->contact_and_sharing) && $this->organization->contact_and_sharing ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                    <input name="organization[contact_and_sharing]" <?php echo (!isset($this->organization->contact_and_sharing) || $this->organization->contact_and_sharing ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow registered users to contact me and allow my cost data to be shared with them
                 </label>
                 <span class="description-block"><small>Your email is kept private at all times and contact requests can be ignored.</small></span>
@@ -92,7 +92,7 @@
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
-                    <input name="organization[snapshots]" <?php echo (isset($this->organization->snapshots) && $this->organization->snapshots ? 'checked="true"' : '') ?> type="checkbox" value="1">
+                    <input name="organization[snapshots]" <?php echo (!isset($this->organization->snapshots) || $this->organization->snapshots ? 'checked="true"' : '') ?> type="checkbox" value="1">
                     Allow snapshots of my anonymised cost data to be collected periodically.
                 </label>
                 <span class="description-block"><small>Snapshots are taken for the sole purpose of contributing towards the development future research and helping to improve and refine tools and services.</small></span>

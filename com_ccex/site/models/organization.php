@@ -786,5 +786,23 @@ class CCExModelsOrganization extends CCExModelsDefault
         return array_keys($mainAssets);
     }
 
+    public function organizationsForGlobalComparison(){
+        $organizationModel = new CCExModelsOrganization();
+        $organizationModel->set("_global_comparison", true);
+        $organizations = $organizationModel->listItems();
+        $userModel = new CCExModelsUser();
+        $userOrganization = $userModel->organization();
+        $result = array();
+
+        foreach ($organizations as $organization) {
+            if($userOrganization->organization_id != $organization->organization_id){
+                $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+                array_push($result, $organization);
+            }
+        }
+
+        return $result;
+    }
+
 
 }
