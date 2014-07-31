@@ -131,3 +131,10 @@
 .other-filters{
     margin-top: -5px;
 }
+
+.tooltip-button{
+    background: none;
+    border: none;
+    color: #f85c37;
+    outline: none;
+}

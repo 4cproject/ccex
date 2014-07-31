@@ -19,6 +19,11 @@
 				<span class="input-group-addon"><?php echo $this->currency->symbol ?></span>
 			</div>
 		</div>
+		<?php if($this->currency->code != "EUR"){ ?>
+			<div class="col-sm-6" id="cost-converted" style="padding-top: 5px;<?php if(!isset($this->cost->cost)){ echo "display: none;"; } ?>">
+				<small>This cost will be converted to <strong id="cost-euro"><?php if(isset($this->cost->cost)){ echo number_format($this->cost->cost * $this->tax, 2); } ?></strong><strong> €</strong> for global and peer comparison. <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Currency convertion" data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."><i class="fa fa-info-circle"></i></button></small>
+			</div>
+		<?php } ?>
 	</div>
 	<br/>
 	<h2>Financial accounting mapping</h2>
@@ -158,6 +163,7 @@ Includes outsourcing, renting and leasing of hardware and software.">
 	<br/>
 	<div class="form-group utils" style="margin-top:30px">
 		<div class="col-sm-2">
+			<input type="hidden" name="tax" id="tax" value="<?php echo $this->tax; ?>">
 			<input type="hidden" name="cost[interval_id]" value="<?php echo $this->interval->interval_id; ?>">
 			<?php if(isset($this->cost->cost_id)){ ?>
 				<input type="hidden" name="cost[cost_id]" value="<?php echo $this->cost->cost_id; ?>">
@@ -232,6 +238,11 @@ $("#cost_value").keyup(function() {
 $("#cost_value").change(function() {
 	faSliderUtils.updateLabels();
 	activitiesSliderUtils.updateLabels();
+});
+
+$('.popover-dismiss').popover({
+  trigger: 'focus',
+  template: '<div class="popover" role="tooltip" style="width: 500px;"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"><div class="data-content"></div></div></div>'
 });
 
 </script>

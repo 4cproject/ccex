@@ -28,6 +28,21 @@ $(document).ready(function() {
             }
         }
     });
+
+    $("#cost_value").on("input", function(){
+        var value = $(this).val();
+        var tax = parseFloat($("#tax").val());
+
+        if($("#cost-converted").length){
+            if(value != "" && !isNaN(value)){
+                value = parseFloat(value) * tax;
+                $("#cost-euro").text(value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+                $("#cost-converted").show();
+            }else{
+                $("#cost-converted").hide();
+            }
+        }
+    });
 });
 
 function updateCost(redirect_url) {

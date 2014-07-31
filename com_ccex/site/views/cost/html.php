@@ -15,6 +15,7 @@ class CCExViewsCostHtml extends JViewHtml
         $intervalModel = new CCExModelsInterval();
         $costModel = new CCExModelsCost();
         $userModel = new CCExModelsUser();
+        $euc = new CCExModelsEuroconvertionrate();
         
         $organization = $userModel->organization();
         if (!$organization) {
@@ -41,6 +42,7 @@ class CCExViewsCostHtml extends JViewHtml
                 $this->_formView = CCExHelpersView::load('Cost', '_form', 'phtml');
                 $this->_formView->currency = $currency;
                 $this->_formView->interval = $interval;
+                $this->_formView->tax = $euc->taxOnInterval($interval->currency()->code, $interval->begin_year, $interval->duration);
                 break;
 
             case "edit":
@@ -64,6 +66,7 @@ class CCExViewsCostHtml extends JViewHtml
                 $this->_formView->cost = $cost;
                 $this->_formView->currency = $currency;
                 $this->_formView->interval = $interval;
+                $this->_formView->tax = $euc->taxOnInterval($interval->currency()->code, $interval->begin_year, $interval->duration);
                 break;
 
             default:
