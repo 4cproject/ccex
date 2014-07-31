@@ -14,20 +14,20 @@
 </ul>
 <br/>
 
-<p>Analyse how your collections perform throughout time and compare with each other can be a valuable insight.</p>
+<p>Analyse how your cost data sets perform throughout time and compare with each other can be a valuable insight.</p>
 
 <form id ="selfComparisonForm">
     <div class="radio">
       <label>
         <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
-        All collections combined <small>(<?php echo count($this->collections); ?>)</small>
+        All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
       </label>
     </div>
     <?php if(count($this->collections)) { ?>
       <div class="radio">
         <label>
           <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-          Separate and select collections:
+          Separate and select cost data sets:
           <div class="radio" id="collectionsRadios">
           <?php $i = 1 ?>
           <?php foreach ($this->collections as $collection) { ?>

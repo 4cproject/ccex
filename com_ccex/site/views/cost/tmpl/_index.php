@@ -40,9 +40,9 @@
 				<td class="text-right <?php if($this->interval->percentageFinancialAccountingMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageFinancialAccountingMapping() ?>% mapped</td>
 			<?php } else { ?>
                 <?php if(isset($this->editable) && $this->editable) { ?>
-				    <td class="text-right" colspan="7">Click here to add curation costs to this collection &nbsp; &rarr;</td>
+				    <td class="text-right" colspan="7">Click here to add curation costs to this cost data set &nbsp; &rarr;</td>
                 <?php } else { ?>
-                <td class="text-left" colspan="7">To add costs, please <a href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id) ?>">edit collection</a>.</td>
+                <td class="text-left" colspan="7">To add costs, please <a href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id) ?>">edit cost data sets</a>.</td>
                 <?php } ?>
 			<?php } ?>
             <?php if(isset($this->editable) && $this->editable) { ?>

@@ -142,7 +142,7 @@
     <a id="collectionCosts"></a>
     <div class="form-group">
         <div class="col-sm-3">
-            <h3>Collection costs</h3>
+            <h3>Cost data set costs</h3>
         </div>
         <div style="padding: 75px 15px;">
             <?php if(isset($this->interval->interval_id)){ 

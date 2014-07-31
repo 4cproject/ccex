@@ -23,7 +23,7 @@
         <h3>My costs</h3>
         <label class="radio-inline">
           <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
-          All collections combined <small>(<?php echo count($this->collections); ?>)</small>
+          All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
         </label>
         
         <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelected">
@@ -36,7 +36,7 @@
         <?php if(count($this->collections)) { ?>
           <label class="radio-inline col-xs-12">
               <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-              Separate and select collections:
+              Separate and select cost data sets:
           </label>
 
           <div class="radio" id="collectionsRadios">

@@ -58,7 +58,7 @@ Includes outsourcing, renting and leasing of hardware and software.">
 					<h3>Staff</h3>
 				</div>
 			</div>
-			<div class="form-group" data-toggle="tooltip" data-placement="left" data-container="body" title="Any individual involved in creating digital content. This may include for example researchers generating and managing digital research data or aggregating new subsets of existing data for new analysis; government employees undertaking data collection and analysis. Producers may also include software developers and vendors who are producing code to enable analysis, manipulation and visualisation of digital content.">
+			<div class="form-group" data-toggle="tooltip" data-placement="left" data-container="body" title="Any individual involved in creating digital content. This may include for example researchers generating and managing digital research data or aggregating new subsets of existing data for new analysis; government employees undertaking data cost data set and analysis. Producers may also include software developers and vendors who are producing code to enable analysis, manipulation and visualisation of digital content.">
 				<label for="cat_producer" class="col-sm-4 control-label">Producer</label>
 				<div class="col-sm-8">
 					<input id="cat_producer" name="cost[cat_producer]" class="slider" data-slider-id='cat_producer' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<?php if(isset($this->cost->cat_producer)){ echo $this->cost->cat_producer; } ?>" value="<?php if(isset($this->cost->cat_producer)){ echo $this->cost->cat_producer; } ?>" data-slider-tooltip="hide"/>

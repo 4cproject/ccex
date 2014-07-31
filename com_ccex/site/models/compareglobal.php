@@ -108,7 +108,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             }
         }else{
             $color = "#00b050";
-            $label = "You :: All collections at ";
+            $label = "You :: All data sets at ";
             $id = "self_all";
 
             if($year == "all"){$label .= "all years";}else{$label .= $year;}
@@ -259,7 +259,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $options;
     }
 
-    private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false, $enable=true, $tooltip="This filter cannot be used, because your collections are very different in this field."){
+    private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false, $enable=true, $tooltip="This filter cannot be used, because your cost data sets are very different in this field."){
         $filtered = $this->filterBy($type, $filter, $value, $organizations);
 
         $option = array();

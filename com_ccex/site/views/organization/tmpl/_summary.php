@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6">
                 <dl class="dl-horizontal" >
-                    <dt>Number of collections</dt>
+                    <dt>Number of cost data sets</dt>
                     <dd><?php echo $this->organization->numberCollections() ?></dd>          
                     <dt>Number of year spans</dt>
                     <dd><?php echo $this->organization->numberIntervals() ?></dd>
@@ -25,7 +25,7 @@
                 </dl>
             </div>
             <div class="col-md-6">
-                <a href="<?php echo JRoute::_('index.php?view=collection&layout=add') ?>" class="btn btn-success btn-block">Add new collection</a>
+                <a href="<?php echo JRoute::_('index.php?view=collection&layout=add') ?>" class="btn btn-success btn-block">Add new cost data set</a>
                 <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="btn btn-default btn-block">Analyse and compare costs</a>
             </div>
         </div>

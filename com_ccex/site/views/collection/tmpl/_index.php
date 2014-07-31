@@ -1,7 +1,7 @@
 <div class="row collections">
     <?php if(count($this->collections) == 0) { ?>
         <div class="container">
-            <div class="collections-empty">There are no collections, please add some in the button below.</div>
+            <div class="collections-empty">There are no cost data sets, please add some in the button below.</div>
         </div>
     <?php } else { 
     

@@ -99,7 +99,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
             }
         }else{
             $color = "#00b050";
-            $label = "You :: All collections at ";
+            $label = "You :: All data sets at ";
             $id = "self_all";
 
             if($year == "all"){$label .= "all years";}else{$label .= $year;}

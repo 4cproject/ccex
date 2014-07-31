@@ -60,7 +60,7 @@ class CCExModelsCompareself extends CCExModelsDefault
         return $data;
     }
     
-    private function pushSeries($series, $data, $collection = "All collections", $linked = false) {
+    private function pushSeries($series, $data, $collection = "All data sets", $linked = false) {
         array_push($series["financial_accounting"], $this->serie("Hardware", $data["cat_hardware"], "#00b050", "cat_hardware", $collection, $linked));
         array_push($series["financial_accounting"], $this->serie("Software", $data["cat_software"], "#006fc0", "cat_software", $collection, $linked));
         array_push($series["financial_accounting"], $this->serie("External", $data["cat_external"], "#ff0000", "cat_external", $collection, $linked));

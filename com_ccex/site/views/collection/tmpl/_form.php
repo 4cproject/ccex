@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="collection_scope">Scope</label>
-        <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="You may not want to give cost information about the whole organisation, but just for a single department, project or even collection. Please describe the scope here.">
+        <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="You may not want to give cost information about the whole organisation, but just for a single department, project or even cost data set. Please describe the scope here.">
             <select class="form-control" id="collection_scope" name="collection[scope]">
                 <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'The whole organisation'){ echo "selected=\"true\""; }?> value="The whole organisation">The whole organisation</option>
                 <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'A department'){ echo "selected=\"true\""; }?> value="A department">A department</option>
