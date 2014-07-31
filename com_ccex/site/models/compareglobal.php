@@ -61,7 +61,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
         foreach ($series["financial_accounting"] as $key => $value) {
             if($sumIntervals>0){
-                $series["financial_accounting"][$key] = round($value/$sumIntervals, 2);
+                $series["financial_accounting"][$key] = $value/$sumIntervals;
             }else{
                 $series["financial_accounting"][$key] = 0;
             }
@@ -69,7 +69,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         
         foreach ($series["activities"] as $key => $value) {
             if($sumIntervals>0){
-                $series["activities"][$key] = round($value/$sumIntervals, 2);
+                $series["activities"][$key] = $value/$sumIntervals;
             }else{
                 $series["activities"][$key] = 0;
             }
@@ -219,10 +219,11 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
     public function otherOrganizationCostsOptions(){
         $options = array();
+        $listall = array();
         $organizationModel = new CCExModelsOrganization();
         $organizations = $organizationModel->organizationsForGlobalComparison();
 
-        $options = $this->addOption($options, "List all organizations", "organization", "none", "", $organizations, true);
+        $listall = $this->addOption($listall, "List all organizations", "organization", "none", "", $organizations, true);
 
         $typesIDs = array(); 
         $typesNames = array(); 
@@ -256,7 +257,13 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             $options = $this->addOption($options, "Collections with mainly " . implode(" ", $assetWords) . " asset", "collection", "asset", $mainAsset, $organizations);
         }
 
-        return $options;
+        function compareOption($a, $b){
+            return $b["number"] - $a["number"];
+        }
+
+        usort($options, "compareOption");
+
+        return array_merge($listall, $options);
     }
 
     private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false, $enable=true, $tooltip="This filter cannot be used, because your cost data sets are very different in this field."){

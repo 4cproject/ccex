@@ -16,6 +16,7 @@ class CCExControllersCompareglobal extends JControllerBase
         $myCollectionsIDs = array();
         $organizations = array(); 
         $collections = array();
+        $otherLabel = "List all organizations";
 
 
         if (array_key_exists('collectionsSelected', $data) && array_key_exists('collectionsMode', $data) && $data["collectionsMode"] == "separated") {

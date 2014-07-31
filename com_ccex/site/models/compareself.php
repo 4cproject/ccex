@@ -52,7 +52,7 @@ class CCExModelsCompareself extends CCExModelsDefault
             
             for ($position = $start; $position < $stop; $position++) {
                 foreach ($data as $key => $value) {
-                    $data[$key][$position]+= round($costsPerGBPerYear[$key], 2);;
+                    $data[$key][$position]+= $costsPerGBPerYear[$key];
                 }
             }
         }

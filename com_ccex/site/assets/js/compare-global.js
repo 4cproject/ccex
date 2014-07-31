@@ -81,6 +81,11 @@ $(document).ready(function() {
         }
     });
 
+    $("#see-all-filters").on("click", function(){
+        $("#other-filters").slideToggle();
+        $("#see-all-filters").children("i").toggleClass("fa-angle-down").toggleClass("fa-angle-up");
+    });
+
 });
 
 

@@ -58,11 +58,10 @@ class CCExModelsComparepeer extends CCExModelsDefault
 
         if($sumIntervals > 0){
             foreach ($series["financial_accounting"] as $key => $value) {
-               $series["financial_accounting"][$key] = round($value/$sumIntervals, 2);
+               $series["financial_accounting"][$key] = $value/$sumIntervals;
             }
-            
             foreach ($series["activities"] as $key => $value) {
-               $series["activities"][$key] = round($value/$sumIntervals, 2);
+               $series["activities"][$key] = $value/$sumIntervals;
             }
         }
 

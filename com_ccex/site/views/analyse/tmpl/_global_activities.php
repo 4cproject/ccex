@@ -43,13 +43,26 @@
                         style: {
                             fontWeight: 'bold',
                             color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        },
+                        formatter: function() {
+                            var value=0;
+                            if(this.y == 0){value = "0";}else if(this.y < 0.01){value = this.y.toPrecision(2);}else{value = this.y.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');}
+                        
+                            return value;
                         }
                     }
                 }
             },
             tooltip: {
-                 pointFormat: '<span style="color: {series.color}">&#9679;</span> {series.name}: <b>{point.y:.1f} €/GB&sdot;Y</b>',
-                 useHTML: true
+                formatter: function(){
+                    var value=0;
+                    if(this.y == 0){value = "0";}else if(this.y < 0.01){value = this.y.toPrecision(2);}else{value = this.y.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');}
+
+                    var tooltip = '<span style="color: ' + this.series.color + '">&#9679;</span> ' + this.series.name + ': <b>' + value + ' €/GB&sdot;Y</b>'; 
+
+                    return tooltip;
+                },
+                useHTML: true
             },
             legend: {
                 verticalAlign: 'top',

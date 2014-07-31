@@ -64,7 +64,7 @@
     </div>
     <div class="col-md-6">
       <h4>Other organisations costs</h4>
-      <?php foreach ($this->options as $option) { ?>
+      <?php foreach (array_slice($this->options, 0, count($this->collections) + 2) as $option) { ?>
         <?php if($option["enable"]) { ?>
           <div class="radio">
             <label>
@@ -80,6 +80,31 @@
             </label>
           </div>
         <?php } ?>
+      <?php } ?>
+      <?php if(count($this->options) > count($this->collections) + 2) { ?>
+        <div id="other-filters" class="other-filters" style="display:none">
+          <?php foreach (array_slice($this->options, count($this->collections) + 2) as $option) { ?>
+            <?php if($option["enable"]) { ?>
+              <div class="radio">
+                <label>
+                  <input class="updateChartsOnChange" <?php if($option["active"]){ echo "checked"; } ?> type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>|<?php echo $option["title"]; ?>">
+                    <?php echo $option["title"]; ?> <small>(<?php echo $option["number"]; ?>)</small>
+                </label>
+              </div>
+            <?php } else { ?>
+              <div class="radio">
+                <label  style="color: #999" data-toggle="tooltip" data-placement="right" data-container="body" title="<?php echo $option["tooltip"]; ?>">
+                  <input class="updateChartsOnChange" type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>" disabled>
+                    <?php echo $option["title"]; ?> <small>(<?php echo $option["number"]; ?>)</small>
+                </label>
+              </div>
+            <?php } ?>
+          <?php } ?>
+        </div>
+        <div id="see-all-filters" class="see-all-filters">
+          <i class="fa fa-angle-down"></i> 
+          <small>See all filters</small>
+        </div>
       <?php } ?>
     </div>
   </form>

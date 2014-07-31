@@ -2,6 +2,16 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
+
+$redirect_url = JRoute::_('/ccex/');
+
+$app = JFactory::getApplication();
+$redirect = $app->input->get('redirect_url', null);
+
+if($redirect && $redirect == "comparecosts"){
+	$redirect_url = JRoute::_('/ccex/index.php/compare-costs');
+}
+
 ?>
 <div class="col-md-offset-1 col-md-10">
 	<h1>Sign In</h1>
@@ -29,7 +39,7 @@ JHtml::_('behavior.keepalive');
 	        <div class="col-md-offset-5 col-sm-3">
 	            <input class="btn btn-success btn-block" type="submit" value="<?php echo JText::_('JLOGIN'); ?>"/>
 	    </div>
-	    <input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('/ccex/')); ?>" />
+	    <input type="hidden" name="return" value="<?php echo base64_encode($redirect_url); ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
 </div>
