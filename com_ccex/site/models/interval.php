@@ -311,7 +311,7 @@ class CCExModelsInterval extends CCExModelsDefault
     }
     
     public function costsPerGBPerYearOfCategories() {
-        $categories = array("cat_hardware", "cat_software", "cat_external", "cat_producer", "cat_it_developer", "cat_support", "cat_analyst", "cat_manager", "cat_overhead", "cat_financial_accounting_other", "cat_production", "cat_ingest", "cat_storage", "cat_access", "cat_activities_other");
+        $categories = array("cat_hardware", "cat_software", "cat_external", "cat_producer", "cat_it_developer", "cat_operations", "cat_specialist", "cat_manager", "cat_overhead", "cat_financial_accounting_other", "cat_pre_ingest", "cat_ingest", "cat_storage", "cat_access", "cat_activities_other");
         $data = array();
         
         foreach ($categories as $category) {

@@ -69,13 +69,13 @@ $doc->addStyleSheet($tpath.'/libs/pace/pace-flash.css');
       <script src="http://code.highcharts.com/highcharts.js"></script>
       <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
-    <body style="margin: 0; background-color: white;">
-        <div class="jumbotron"  style="background-color: #4e4e4e; color: #fafafa">
+    <body>
+        <div class="jumbotron"  style="background-color: #4e4e4e; color: #fafafa;padding: 20px;">
           <div class="container">
-            <a href="<?php echo JRoute::_('index.php?option=com_content&view=article&id=1'); ?>">
-              <img src="<?php echo $tpath; ?>/images/CCEx_logo_125_white.png" class="pull-left" style="margin: 15px 45px 0 0;"/>
+            <a href="<?php echo JRoute::_('/ccex/'); ?>">
+              <img src="<?php echo $tpath; ?>/images/CCEx_logo_125_white.png" class="pull-left" style="margin: 15px 45px 0 0;width: 100px;"/>
             </a>
-            <h1 style="font-weight: 600;"><?php echo $sitename; ?></h1>
+            <h1 style="font-weight: 600;font-size: 53px;margin-bottom: 2px;"><?php echo $sitename; ?></h1>
             <p><?php echo $metadesc; ?></p>
           </div>
         </div>
@@ -86,6 +86,20 @@ $doc->addStyleSheet($tpath.'/libs/pace/pace-flash.css');
 
             <jdoc:include type="message" />
             <jdoc:include type="component" />
+          </div>
+        </div>
+        <div id="skills" class="footer">
+          <div class="container">
+            <span class="pull-left" style="padding-top: 10px"><a class="footer-link" href="#">Privacy policy</a> | <a class="footer-link" href="mailto:info@4cproject.eu">Contact</a></span>
+            <div class="polaroid pull-right">
+              <img src="<?php echo $tpath; ?>/images/logos/jaune.jpg" height="30">
+            </div>
+            <div class="polaroid pull-right">
+              <img style="padding: 0px 3.5px;" src="<?php echo $tpath; ?>/images/logos/4c.png" height="30">
+            </div>
+            <div class="pull-right small footer-logos">
+              This project has received funding from the European Union’s Seventh Framework Programme for research, technological development and demonstration under grant agreement no 600471
+            </div>
           </div>
         </div>
     </body>

@@ -50,13 +50,14 @@
     padding: 15px 0 5px; 
     color: #333; */
 
-    background-color: #4e4e4e;
+    background-color: #f2f2f2;
     padding: 15px 0 5px; 
-    color: #fff; 
+    color: #333; 
+    margin-bottom: -40px;
 }
 
 .summary h2 {
-    color: #fff; 
+    color: #333; 
 }
 
 .interval-tab-content{
@@ -135,6 +136,11 @@
 .tooltip-button{
     background: none;
     border: none;
-    color: #f85c37;
     outline: none;
+    padding: 0;
+}
+
+.popover{
+    font-weight: 200;
+    font-size: 13px
 }

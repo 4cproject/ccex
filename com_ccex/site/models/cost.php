@@ -47,7 +47,7 @@ class CCExModelsCost extends CCExModelsDefault
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
         
-        $query->select('c.cost_id, c.interval_id, c.name, c.description, c.cost, c.human_resources, c.cat_hardware, c.cat_software, c.cat_external, c.cat_producer, c.cat_it_developer, c.cat_support, c.cat_analyst, c.cat_manager, c.cat_overhead, c.cat_production, c.cat_ingest, c.cat_storage, c.cat_access');
+        $query->select('c.cost_id, c.interval_id, c.name, c.description, c.cost, c.human_resources, c.cat_hardware, c.cat_software, c.cat_external, c.cat_producer, c.cat_it_developer, c.cat_operations, c.cat_specialist, c.cat_manager, c.cat_overhead, c.cat_pre_ingest, c.cat_ingest, c.cat_storage, c.cat_access');
         $query->from('#__ccex_costs as c');
         
         return $query;
@@ -163,9 +163,9 @@ class CCExModelsCost extends CCExModelsDefault
     
     public function costOfCategory($category) {
         if ($category == "cat_financial_accounting_other") {
-            $percentage = 100 - $this->cat_hardware - $this->cat_software - $this->cat_external - $this->cat_producer - $this->cat_it_developer - $this->cat_support - $this->cat_analyst - $this->cat_manager - $this->cat_overhead;
+            $percentage = 100 - $this->cat_hardware - $this->cat_software - $this->cat_external - $this->cat_producer - $this->cat_it_developer - $this->cat_operations - $this->cat_specialist - $this->cat_manager - $this->cat_overhead;
         } else if ($category == "cat_activities_other") {
-            $percentage = 100 - $this->cat_production - $this->cat_ingest - $this->cat_storage - $this->cat_access;
+            $percentage = 100 - $this->cat_pre_ingest - $this->cat_ingest - $this->cat_storage - $this->cat_access;
         } else {
             $percentage = $this->get($category, 0);
         }
@@ -198,10 +198,10 @@ class CCExModelsCost extends CCExModelsDefault
     }
     
     public function percentageFinancialAccountingMapping() {
-        return $this->cat_hardware + $this->cat_software + $this->cat_external + $this->cat_producer + $this->cat_it_developer + $this->cat_support + $this->cat_analyst + $this->cat_manager + $this->cat_overhead;
+        return $this->cat_hardware + $this->cat_software + $this->cat_external + $this->cat_producer + $this->cat_it_developer + $this->cat_operations + $this->cat_specialist + $this->cat_manager + $this->cat_overhead;
     }
     
     public function percentageActivityMapping() {
-        return $this->cat_production + $this->cat_ingest + $this->cat_storage + $this->cat_access;
+        return $this->cat_pre_ingest + $this->cat_ingest + $this->cat_storage + $this->cat_access;
     }
 }

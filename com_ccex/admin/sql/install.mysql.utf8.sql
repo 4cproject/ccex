@@ -64,7 +64,7 @@ CREATE TABLE `#__ccex_collections` (
   `collection_id` int(11) NOT NULL AUTO_INCREMENT,
   `organization_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` text NOT NULL,
 
   `scope` varchar(255) NOT NULL,
 
@@ -122,12 +122,12 @@ CREATE TABLE `#__ccex_costs` (
   `cat_external` int(11) NOT NULL DEFAULT 0,
   `cat_producer` int(11) NOT NULL DEFAULT 0,
   `cat_it_developer` int(11) NOT NULL DEFAULT 0,
-  `cat_support` int(11) NOT NULL DEFAULT 0,
-  `cat_analyst` int(11) NOT NULL DEFAULT 0,
+  `cat_operations` int(11) NOT NULL DEFAULT 0,
+  `cat_specialist` int(11) NOT NULL DEFAULT 0,
   `cat_manager` int(11) NOT NULL DEFAULT 0,
   `cat_overhead` int(11) NOT NULL DEFAULT 0,
 
-  `cat_production` int(11) NOT NULL DEFAULT 0,
+  `cat_pre_ingest` int(11) NOT NULL DEFAULT 0,
   `cat_ingest` int(11) NOT NULL DEFAULT 0,
   `cat_storage` int(11) NOT NULL DEFAULT 0,
   `cat_access` int(11) NOT NULL DEFAULT 0,

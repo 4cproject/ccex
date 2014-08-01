@@ -15,7 +15,7 @@ class CCExModelsCompareself extends CCExModelsDefault
     protected $_categories = null;
     
     function __construct() {
-        $this->_categories = array("cat_hardware", "cat_software", "cat_external", "cat_producer", "cat_it_developer", "cat_support", "cat_analyst", "cat_manager", "cat_overhead", "cat_financial_accounting_other", "cat_production", "cat_ingest", "cat_storage", "cat_access", "cat_activities_other");
+        $this->_categories = array("cat_hardware", "cat_software", "cat_external", "cat_producer", "cat_it_developer", "cat_operations", "cat_specialist", "cat_manager", "cat_overhead", "cat_financial_accounting_other", "cat_pre_ingest", "cat_ingest", "cat_storage", "cat_access", "cat_activities_other");
         
         parent::__construct();
     }
@@ -66,13 +66,13 @@ class CCExModelsCompareself extends CCExModelsDefault
         array_push($series["financial_accounting"], $this->serie("External", $data["cat_external"], "#ff0000", "cat_external", $collection, $linked));
         array_push($series["financial_accounting"], $this->serie("Producer", $data["cat_producer"], "#e46c0a", "cat_producer", $collection, $linked));
         array_push($series["financial_accounting"], $this->serie("IT-developer", $data["cat_it_developer"], "#E80796", "cat_it_developer", $collection, $linked));
-        array_push($series["financial_accounting"], $this->serie("Support/operations", $data["cat_support"], "#5D07E8", "cat_support", $collection, $linked));
-        array_push($series["financial_accounting"], $this->serie("Preservation analyst", $data["cat_analyst"], "#11FFF7", "cat_analyst", $collection, $linked));
+        array_push($series["financial_accounting"], $this->serie("Operations", $data["cat_operations"], "#5D07E8", "cat_operations", $collection, $linked));
+        array_push($series["financial_accounting"], $this->serie("Preservation specialist", $data["cat_specialist"], "#11FFF7", "cat_specialist", $collection, $linked));
         array_push($series["financial_accounting"], $this->serie("Manager", $data["cat_manager"], "#8DFF1E", "cat_manager", $collection, $linked));
         array_push($series["financial_accounting"], $this->serie("Overhead", $data["cat_overhead"], "#FFB271", "cat_overhead", $collection, $linked));
         array_push($series["financial_accounting"], $this->serie("Other", $data["cat_financial_accounting_other"], "#aaaaaa", "cat_financial_accounting_other", $collection, $linked));
         
-        array_push($series["activities"], $this->serie("Production", $data["cat_production"], "#00b050", "cat_production", $collection, $linked));
+        array_push($series["activities"], $this->serie("Pre-Ingest", $data["cat_pre_ingest"], "#00b050", "cat_pre_ingest", $collection, $linked));
         array_push($series["activities"], $this->serie("Ingest", $data["cat_ingest"], "#006fc0", "cat_ingest", $collection, $linked));
         array_push($series["activities"], $this->serie("Archival storage", $data["cat_storage"], "#ff0000", "cat_storage", $collection, $linked));
         array_push($series["activities"], $this->serie("Access", $data["cat_access"], "#e46c0a", "cat_access", $collection, $linked));

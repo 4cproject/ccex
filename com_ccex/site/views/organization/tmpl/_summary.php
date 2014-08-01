@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-6">
                 <a href="<?php echo JRoute::_('index.php?view=collection&layout=add') ?>" class="btn btn-success btn-block">Add new cost data set</a>
-                <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="btn btn-default btn-block">Analyse and compare costs</a>
+                <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="btn btn-info btn-block">Analyse and compare costs</a>
             </div>
         </div>
     </div>
