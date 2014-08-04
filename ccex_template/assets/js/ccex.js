@@ -1,9 +1,17 @@
-function SliderUtils(chartElemId, chartWidth, chartHeight, totalFeedbackElemId, formatter) {
+function SliderUtils(chartElemId, chartWidth, chartHeight, totalFeedbackElemId, valueFormatter, symbolFormatter, editable) {
 	this.chartElemId = chartElemId;
 	this.chartWidth = chartWidth;
 	this.chartHeight = chartHeight;
 	this.totalFeedbackElemId = totalFeedbackElemId;
-	this.formatter = formatter;
+
+	this.simpleFormatter = typeof symbolFormatter !== 'undefined' ? false : true;
+
+	if(this.simpleFormatter){
+		this.formatter = valueFormatter;
+	}else{
+		this.valueFormatter = valueFormatter;
+		this.symbolFormatter = symbolFormatter;
+	}
 
 	this.sliderIds = new Array();
 	this.sliderElems = new Array();
@@ -12,6 +20,7 @@ function SliderUtils(chartElemId, chartWidth, chartHeight, totalFeedbackElemId, 
 	this.sliders = new Array();
 	this.sliderFeedbackIds = new Array();
 	this.total = 0;
+	this.editable = typeof editable !== 'undefined' ? editable : false;
 
 	if (window === this) {
 		return new SliderUtils(chartElemId);
@@ -104,19 +113,96 @@ SliderUtils.prototype = {
 	},
 	updateLabels: function() {
 		if(this.totalFeedbackElemId !== undefined) {
-			$(this.totalFeedbackElemId).html(this.formatter(this.total));
+			if(this.simpleFormatter){
+				$(this.totalFeedbackElemId).html(this.formatter(this.total));
+			}else{
+				$(this.totalFeedbackElemId).children(".feedback-value").html(this.valueFormatter(this.total));
+				$(this.totalFeedbackElemId).children(".feedback-symbol").html(this.symbolFormatter(this.total));
+			}
 		}
 
 		for (var i = 0; i < this.sliders.length; i++) {
 			var sliderFeedbackId = this.sliderFeedbackIds[i];
 			if(sliderFeedbackId !== undefined) {
 				var sliderValue = this.sliders[i].slider('getValue');
-				$(sliderFeedbackId).html(this.formatter(sliderValue));
+
+				if(this.simpleFormatter){
+					$(sliderFeedbackId).html(this.formatter(sliderValue));
+				}else{
+					$(sliderFeedbackId).children(".feedback-value").html(this.valueFormatter(sliderValue));
+					$(sliderFeedbackId).children(".feedback-symbol").html(this.symbolFormatter(sliderValue));
+				}
 			}
 		}
 
-	}
+		if(this.editable){
+			this.editable.editable({
+				type: 'text',
+				defaultValue: '',
+				emptytext: 0,
+				value: '',
+			    success: function(response, newValue) {
+			    	var category = $(this).parent().data('category');
+			    	var selector = "#" + $(this).parent().prev().attr('id');
+					var cost = $("#cost_value").val();
 
+					if(isNaN(newValue) || newValue == ""){
+						newValue = 0;
+					}else{
+						newValue = parseFloat(newValue);
+					}
+					var percentValue = newValue;
+
+			    	if(category == 'financial-accounting'){
+			    		var utils = faSliderUtils;
+			    	}else{
+			    		var utils = activitiesSliderUtils;
+			    	}
+
+			    	if(isNaN(cost) || cost <= 0) {
+						percentValue = newValue;
+					} else {
+						cost = parseFloat(cost);
+						percentValue = (newValue/cost)*100;
+					}
+
+					if(percentValue > 100){
+						percentValue = 100;
+					}
+
+			    	var slider = utils.getSlider(selector);
+			    	slider.slider('setValue', percentValue);
+
+					if(utils.total > 100) {
+						percentValue = percentValue - (utils.total - 100);
+						slider.slider('setValue', percentValue);
+					}
+
+					return {newValue: ''};
+			    },
+			    display: function(value) {
+			    	Humanize.formatNumber(value, 0);
+	    		},
+	    		validate: function(value) {
+	            	var regex = /^[0-9]+$/;
+				    if(isNaN(value) || !regex.test(value) ){
+				    	return 'Invalid value';
+				    }
+				}
+			});
+		}
+	},
+	getSlider: function(selector) {
+		var result;
+
+		this.sliders.forEach(function(slider) {
+    		if(slider.selector == selector){
+    			result = slider;
+    		}
+		});
+
+		return result;
+	}
 };
 
 

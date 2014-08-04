@@ -144,3 +144,19 @@
     font-weight: 200;
     font-size: 13px
 }
+
+.editable-buttons .btn{
+    padding: 5px 10px;
+    margin-bottom: 0;
+    font-size: 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.editable-buttons .btn-default{
+    border-color: #ccc;
+}
+
+.editable-container .popover-content {
+    padding: 10px 25px;
+}

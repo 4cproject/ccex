@@ -54,6 +54,9 @@ $doc->addStyleSheet($tpath.'/assets/css/ccex.css');
 
 $doc->addScript($tpath.'/libs/pace/pace.min.js');
 $doc->addStyleSheet($tpath.'/libs/pace/pace-flash.css');
+
+$doc->addStyleSheet($tpath.'/assets/css/bootstrap-editable.css');
+$doc->addScript($tpath.'/libs/bootstrap3-editable/js/bootstrap-editable.min.js');
 ?>
 <!doctype html>
 <html>

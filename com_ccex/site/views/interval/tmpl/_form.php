@@ -177,7 +177,7 @@ var sliderUtils = new SliderUtils("#pieChart", 400, 400, "#assetTotalFeedback", 
             var volume = volume_number * volume_unit * 1073741824 * total / 100.0;
             
             if(volume>0){
-                return humanFileSize(volume) + " &nbsp; <small>| " + total + "%</small>";
+                return humanFileSize(volume);
             }
         }
 
