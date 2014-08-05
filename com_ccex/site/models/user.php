@@ -13,13 +13,16 @@ class CCExModelsUser extends CCExModelsDefault
     protected $_user_id = null;
     protected $_pagination = null;
     protected $_total = null;
+    protected $user = null;
     
     function __construct() {
         $app = JFactory::getApplication();
         
-        $this->_user_id = JFactory::getUser()->id;
+        $this->user = JFactory::getUser();
+
+        $this->_user_id = $this->user->id;
         $this->user_id = $this->_user_id;
-        
+
         parent::__construct();
     }
     
@@ -66,5 +69,13 @@ class CCExModelsUser extends CCExModelsDefault
             return true;
         }
         return false;
+    }
+
+    public function isAdmin(){
+        return $this->user->get('isRoot');
+    }
+
+    public function user(){
+        return $this->user;
     }
 }

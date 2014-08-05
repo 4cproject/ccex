@@ -57,6 +57,16 @@ $doc->addStyleSheet($tpath.'/libs/pace/pace-flash.css');
 
 $doc->addStyleSheet($tpath.'/assets/css/bootstrap-editable.css');
 $doc->addScript($tpath.'/libs/bootstrap3-editable/js/bootstrap-editable.min.js');
+
+$doc->addStyleSheet($tpath.'/libs/datatables/css/jquery.dataTables.css');
+$doc->addScript($tpath.'/libs/datatables/js/jquery.dataTables.min.js');
+
+$doc->addStyleSheet($tpath.'/libs/datatables/extensions/TableTools/css/dataTables.tableTools.css');
+$doc->addScript($tpath.'/libs/datatables/extensions/TableTools/js/dataTables.tableTools.min.js');
+
+$doc->addStyleSheet($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.bootstrap.css');
+$doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.bootstrap.js');
+
 ?>
 <!doctype html>
 <html>

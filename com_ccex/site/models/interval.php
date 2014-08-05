@@ -127,12 +127,25 @@ class CCExModelsInterval extends CCExModelsDefault
         $interval->deleted = 1;
         
         if ($interval->store()) {
+            $this->deleteCosts($id);
             return true;
         } else {
             return false;
         }
     }
     
+    public function deleteCosts($id) {
+        if($id){
+            $this->_interval_id = $id;
+        }
+
+        $costModel = new CCExModelsCost();
+
+        foreach ($this->costs() as $cost) {
+            $costModel->delete($cost->cost_id);
+        }
+    }
+
     public function havePermissions($user_id) {
         if ($user_id && $this->collection() && $this->collection()->havePermissions($user_id)) {
             return true;
@@ -149,8 +162,7 @@ class CCExModelsInterval extends CCExModelsDefault
     public function collection() {
         $collectionModel = new CCExModelsCollection();
         $collections = $collectionModel->listItemsBy('_collection_id', $this->collection_id);
-        $collection = array_shift($collections);
-        $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+        $collection = CCExHelpersCast::cast('CCExModelsCollection', array_shift($collections));
         
         return $collection;
     }

@@ -144,7 +144,8 @@ class CCExModelsCost extends CCExModelsDefault
     
     public function interval() {
         $intervalModel = new CCExModelsInterval();
-        $interval = $intervalModel->getItemBy('_interval_id', $this->interval_id);
+        $intervals = $intervalModel->listItemsBy('_interval_id', $this->interval_id);
+        $interval = CCExHelpersCast::cast('CCExModelsInterval', array_shift($intervals));
         
         return $interval;
     }

@@ -128,7 +128,8 @@ class CCExModelsOrganization extends CCExModelsDefault
     
     public function currency() {
         $currencyModel = new CCExModelsCurrency();
-        $currency = $currencyModel->getItemBy('_currency_id', $this->currency_id);
+        $currencies = $currencyModel->listItemsBy('_currency_id', $this->currency_id);
+        $currency = CCExHelpersCast::cast('CCExModelsCurrency', array_shift($currencies));
         
         return $currency;
     }

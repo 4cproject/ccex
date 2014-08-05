@@ -134,9 +134,22 @@ class CCExModelsCollection extends CCExModelsDefault
         $collection->deleted = 1;
         
         if ($collection->store()) {
+            $this->deleteIntervals($id);
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function deleteIntervals($id) {
+        if($id){
+            $this->_collection_id = $id;
+        }
+
+        $intervalModel = new CCExModelsInterval();
+
+        foreach ($this->intervals() as $interval) {
+            $intervalModel->delete($interval->interval_id);
         }
     }
     
@@ -151,8 +164,7 @@ class CCExModelsCollection extends CCExModelsDefault
     public function organization() {
         $organizationModel = new CCExModelsOrganization();
         $organizations = $organizationModel->listItemsBy('_organization_id', $this->organization_id);
-        $organization = array_shift($organizations);
-        $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+        $organization = CCExHelpersCast::cast('CCExModelsOrganization', array_shift($organizations));
         
         return $organization;
     }

@@ -160,3 +160,45 @@
 .editable-container .popover-content {
     padding: 10px 25px;
 }
+
+.table-legend.dl-horizontal dt{
+    width: 60px;
+}
+
+.table-legend.dl-horizontal dd{
+    margin-left: 80px;
+}
+
+.admin-container{
+    margin: 0 40px;
+}
+
+.table-font-small{
+    font-size: 13px;
+}
+
+#tableCosts_wrapper .DTTT.btn-group{
+    float: right;
+}
+
+#tableCosts_wrapper .dataTables_filter{
+    padding-right: 25px;
+}
+
+#tableCosts_wrapper .DTTT.btn-group .btn{
+    padding: 6px 12px;
+    border: 1px solid #ccc;;
+}
+
+#tableCosts_wrapper.dataTables_wrapper .dataTables_paginate .paginate_button{
+    padding: 0; 
+    margin-left: 0; 
+    margin-right: 0; 
+    font-size: 13px;
+    border: none;
+}
+
+#tableCosts_wrapper table.dataTable thead > tr > th {
+    padding-left: 5px;
+    padding-right: 5px;
+}
