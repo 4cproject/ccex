@@ -34,6 +34,7 @@ class CCExModelsCompareself extends CCExModelsDefault
     
     private function seriesData($intervals, $beginYear, $number) {
         $data = array();
+        $sumDataVolumes = 0;
         
         foreach ($this->_categories as $category) {
             $data[$category] = array_fill(0, $number, 0);
@@ -42,6 +43,7 @@ class CCExModelsCompareself extends CCExModelsDefault
         foreach ($intervals as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
             $costsPerGBPerYear = $interval->costsPerGBPerYearOfCategories();
+            $dataVolume = $interval->data_volume;
             
             $start = $interval->begin_year - $beginYear;
             $stop = ($interval->begin_year + $interval->duration) - $beginYear;
@@ -52,7 +54,17 @@ class CCExModelsCompareself extends CCExModelsDefault
             
             for ($position = $start; $position < $stop; $position++) {
                 foreach ($data as $key => $value) {
-                    $data[$key][$position]+= $costsPerGBPerYear[$key];
+                    $data[$key][$position]+= $costsPerGBPerYear[$key] * $dataVolume;
+                }
+            }
+
+            $sumDataVolumes += $dataVolume;
+        }
+
+        if($sumDataVolumes){
+            foreach ($data as $dataKey => $dataValue) {
+                foreach ($data[$dataKey] as $key => $value) {
+                    $data[$dataKey][$key]= $value / $sumDataVolumes;
                 }
             }
         }
@@ -102,7 +114,7 @@ class CCExModelsCompareself extends CCExModelsDefault
     private function organizationSeries($beginYear, $number) {
         $series = array("financial_accounting" => array(), "activities" => array());
         
-        $data = $this->seriesData($this->_organization->intervals(), $beginYear, $number);
+        $data = $this->seriesData($this->_organization->finalIntervals(), $beginYear, $number);
         $series = $this->pushSeries($series, $data);
         
         return $series;
@@ -140,7 +152,7 @@ class CCExModelsCompareself extends CCExModelsDefault
             $beginYear = $startYear;
         }
         
-        $number = $lastYear - $beginYear;
+        $number = $lastYear - $beginYear + 1;
         
         $result = array("categories" => $this->categories($beginYear, $number), "series" => $this->series($collections, $beginYear, $number));
         
@@ -164,8 +176,8 @@ class CCExModelsCompareself extends CCExModelsDefault
         $lastYear = $beginAndLastYear["last_year"];
         $beginOfFirstInterval = $beginYear;
         
-        if ($lastYear - $beginYear > 5) {
-            $beginOfFirstInterval = $lastYear - 5;
+        if ($lastYear - $beginYear > 4) {
+            $beginOfFirstInterval = $lastYear - 4;
         }
         
         return array("begin_of_first_interval" => $beginOfFirstInterval, "begin_year" => $beginYear);

@@ -1,7 +1,19 @@
-<h1>Administration</h1>
-<h2>All costs</h2>
+<ol class="breadcrumb">
+    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=index') ?>">Administration</a></li>
+    <li class="active">Costs</li>
+</ol>
 
-<div class="" style="padding: 30px 0">
+<h1>Costs</h1>
+<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<div style="padding: 30px 0">
     <table id="tableCosts" class="table table-condensed table-font-small">
         <thead>
             <th>Organisation</th>
@@ -29,11 +41,11 @@
             <?php foreach ($this->costs as $cost) { ?>
                 <?php $cost = CCExHelpersCast::cast('CCExModelsCost', $cost); ?>
                 <tr>
-                    <td><?php echo $cost->interval()->collection()->organization()->name ?></td>
-                    <td><?php echo $cost->interval()->collection()->name ?></td>
-                    <td><?php echo $cost->interval()->begin_year ?></td>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $cost->interval()->collection()->organization()->organization_id) ?>"><?php echo $cost->interval()->collection()->organization()->name ?></a></td>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $cost->interval()->collection()->collection_id) ?>"><?php echo $cost->interval()->collection()->name ?></a></td>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=interval&interval_id=' . $cost->interval()->interval_id) ?>"><?php echo $cost->interval()->begin_year ?></a></td>
                     <td><?php echo $cost->interval()->duration ?></td>
-                    <td><?php echo $cost->name ?></td>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=cost&cost_id=' . $cost->cost_id) ?>"><?php echo $cost->name ?></a></td>
                     <td><?php echo $cost->cost ?></td>
                     <td><?php echo $cost->interval()->collection()->organization()->currency()->code ?></td>
                     <td><?php echo $cost->cat_hardware ?></td>
@@ -96,7 +108,7 @@ $(document).ready( function () {
     $('#tableCosts').dataTable( {
         "dom": 'T<"clear">lfrtip',
         "tableTools": {
-            "sSwfPath": "/4c/templates/ccextemplate/libs/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
+            "sSwfPath": "/ccex/templates/ccextemplate/libs/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
         }
     } );
 } );

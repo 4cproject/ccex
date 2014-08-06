@@ -15,6 +15,7 @@ class CCExModelsCollection extends CCExModelsDefault
     protected $_pagination = null;
     protected $_total = null;
     protected $_deleted = 0;
+    protected $_final = null;
     protected $_assetTypes = null;
     
     function __construct() {
@@ -49,7 +50,7 @@ class CCExModelsCollection extends CCExModelsDefault
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
         
-        $query->select('p.collection_id, p.organization_id, p.name, p.description, p.scope');
+        $query->select('p.collection_id, p.organization_id, p.name, p.description, p.scope, p.final');
         $query->from('#__ccex_collections as p');
         
         return $query;
@@ -68,6 +69,10 @@ class CCExModelsCollection extends CCExModelsDefault
             if ($this->_organization_id) {
                 $query->where("p.organization_id = '" . $this->_organization_id . "'");
             }
+        }
+
+        if($this->_final){
+            $query->where('p.final = 1');
         }
         
         $query->where('p.deleted = ' . (int)$this->_deleted);
@@ -135,6 +140,22 @@ class CCExModelsCollection extends CCExModelsDefault
         
         if ($collection->store()) {
             $this->deleteIntervals($id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function switchFinal($final) {
+        $app = JFactory::getApplication();
+        $id = $this->collection_id;
+        
+        $collection = JTable::getInstance('Collection', 'Table');
+        $collection->load($id);
+        
+        $collection->final = $final;
+        
+        if ($collection->store()) {
             return true;
         } else {
             return false;
@@ -310,7 +331,7 @@ class CCExModelsCollection extends CCExModelsDefault
         $firstInterval = array_shift($intervals);
         
         $beginYear = $firstInterval->begin_year;
-        $lastYear = $beginYear + $firstInterval->duration;
+        $lastYear = $beginYear + $firstInterval->duration - 1;
         
         foreach ($intervals as $interval) {
             if ($interval->begin_year < $beginYear) {
@@ -318,7 +339,7 @@ class CCExModelsCollection extends CCExModelsDefault
             }
             
             if (($interval->begin_year + $interval->duration) > $lastYear) {
-                $lastYear = $interval->begin_year + $interval->duration;
+                $lastYear = $interval->begin_year + $interval->duration - 1;
             }
         }
         

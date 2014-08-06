@@ -23,7 +23,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $compareSelf = new CCExModelsCompareself();
                 $compareSelf->set("_organization", $organization);
 
-                $this->collections = $organization->collections();
+                $this->collections = $organization->finalCollections();
                 
                 $beginOfFirstInterval = $compareSelf->beginOfFirstInterval();
                 $begin = $beginOfFirstInterval["begin_of_first_interval"];
@@ -75,7 +75,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->_activities->series = json_encode($series["activities"]);
 
                 $this->options = $compareGlobal->otherOrganizationCostsOptions();
-                $this->collections = $organization->collections();
+                $this->collections = $organization->finalCollections();
                 $this->organization = $organization;
                 break;
 
@@ -97,7 +97,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                     $this->_activities->series = json_encode($series["activities"]);
                 }
                 
-                $this->collections = $organization->collections();
+                $this->collections = $organization->finalCollections();
                 $this->organization = $organization;
                 $this->currentPeer = $currentPeer;
                 $this->peersLikeYou = $peersLikeYou["others"];

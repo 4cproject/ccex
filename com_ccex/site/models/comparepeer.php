@@ -69,7 +69,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
     }
 
     private function mySeries($collectionsIDs, $year, $intervals = array()) {
-        $collections = $this->_organization->collections();
+        $collections = $this->_organization->finalCollections();
         $collectionsIdentifiers = array();
 
         foreach ($collections as $index => $collection) {
@@ -112,7 +112,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
     }
     
     private function otherSeries($organization) {
-        $data = $this->seriesData($organization->intervals());
+        $data = $this->seriesData($organization->finalIntervals());
         $series = array();
         
         $label = $organization->name;
@@ -129,7 +129,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
         $intervals = array();
 
         if (!count($collectionsIDs)) {
-            $intervals = $this->_organization->intervalsOfYear($year);
+            $intervals = $this->_organization->finalIntervalsOfYear($year);
         }
         
         return $this->mySeries($collectionsIDs, $year, $intervals);

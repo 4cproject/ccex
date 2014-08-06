@@ -16,12 +16,12 @@
         	<?php $cost = CCExHelpersCast::cast('CCExModelsCost', $this->costs[$i]); ?>
 			<tr>
 				<td><?php echo $cost->name ?></td>
-				<td class="text-right"><?php echo $cost->formattedCost() ?></td>
-				<td class="text-right"><?php echo $cost->formattedCostPerGB() ?></td>
-				<td class="text-right"><?php echo $cost->formattedCostPerYear() ?></td>
-				<td class="text-right"><?php echo $cost->formattedCostPerGBPerYear() ?></td>
-				<td class="text-right"><?php echo $cost->percentageActivityMapping() ?>% mapped</td>
-				<td class="text-right"><?php echo $cost->percentageFinancialAccountingMapping() ?>% mapped</td>
+				<td class="text-right nowrap"><?php echo $cost->formattedCost() ?></td>
+				<td class="text-right nowrap"><?php echo $cost->formattedCostPerGB() ?></td>
+				<td class="text-right nowrap"><?php echo $cost->formattedCostPerYear() ?></td>
+				<td class="text-right nowrap"><?php echo $cost->formattedCostPerGBPerYear() ?></td>
+				<td class="text-right nowrap"><?php echo $cost->percentageActivityMapping() ?>%</td>
+				<td class="text-right nowrap"><?php echo $cost->percentageFinancialAccountingMapping() ?>%</td>
                 <?php if(isset($this->editable) && $this->editable) { ?>
 				    <td class="text-center"><a href="<?php echo JRoute::_('index.php?option=com_ccex&view=cost&layout=edit&cost_id=' . $cost->cost_id) ?>"><span class="fa fa-edit"></span></a></td>
 			    <?php } ?>
@@ -32,12 +32,12 @@
 		<tr style="color: #999">
 			<?php if(count($this->costs) > 0) { ?>
 				<td></td>
-				<td class="text-right"><?php echo $this->interval->formattedSumCosts() ?></td>
-				<td class="text-right"><?php echo $this->interval->formattedSumCostsPerGB() ?></td>
-				<td class="text-right"><?php echo $this->interval->formattedSumCostsPerYear() ?></td>
-				<td class="text-right"><?php echo $this->interval->formattedSumCostsPerGBPerYear() ?></td>
-				<td class="text-right <?php if($this->interval->percentageActivityMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageActivityMapping() ?>% mapped</td>
-				<td class="text-right <?php if($this->interval->percentageFinancialAccountingMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageFinancialAccountingMapping() ?>% mapped</td>
+				<td class="text-right nowrap"><?php echo $this->interval->formattedSumCosts() ?></td>
+				<td class="text-right nowrap"><?php echo $this->interval->formattedSumCostsPerGB() ?></td>
+				<td class="text-right nowrap"><?php echo $this->interval->formattedSumCostsPerYear() ?></td>
+				<td class="text-right nowrap"><?php echo $this->interval->formattedSumCostsPerGBPerYear() ?></td>
+				<td class="text-right nowrap <?php if($this->interval->percentageActivityMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageActivityMapping() ?>%</td>
+				<td class="text-right nowrap <?php if($this->interval->percentageFinancialAccountingMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageFinancialAccountingMapping() ?>%</td>
 			<?php } else { ?>
                 <?php if(isset($this->editable) && $this->editable) { ?>
 				    <td class="text-right" colspan="7">Click here to add curation costs to this cost data set &nbsp; &rarr;</td>

@@ -140,6 +140,14 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $collections;
     }
+
+    public function finalCollections() {
+        $collectionModel = new CCExModelsCollection();
+        $collectionModel->set("_final", true);
+        $collections = $collectionModel->listItemsBy('_organization_id', $this->organization_id);
+        
+        return $collections;
+    }
     
     public function numberCollections() {
         return count($this->collections());
@@ -220,6 +228,17 @@ class CCExModelsOrganization extends CCExModelsDefault
         $intervals = array();
         
         foreach ($this->collections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $intervals = array_merge($intervals, $collection->intervals());
+        }
+        
+        return $intervals;
+    }
+
+    public function finalIntervals() {
+        $intervals = array();
+        
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $intervals = array_merge($intervals, $collection->intervals());
         }
@@ -422,7 +441,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         if($firstInterval){
             $beginYear = $firstInterval->begin_year;
-            $lastYear = $beginYear + $firstInterval->duration;
+            $lastYear = $beginYear + $firstInterval->duration - 1;
             
             foreach ($intervals as $interval) {
                 if ($interval->begin_year < $beginYear) {
@@ -430,7 +449,7 @@ class CCExModelsOrganization extends CCExModelsDefault
                 }
                 
                 if (($interval->begin_year + $interval->duration - 1) > $lastYear) {
-                    $lastYear = $interval->begin_year + $interval->duration;
+                    $lastYear = $interval->begin_year + $interval->duration - 1;
                 }
             }
         }else{
@@ -509,6 +528,28 @@ class CCExModelsOrganization extends CCExModelsDefault
     public function intervalsOfYear($year="all") {
         $intervals = array();
         $allIntervals = $this->intervals();
+
+        if($year=="all" || !is_numeric($year)){
+            $intervals = $allIntervals;
+        }else{
+            foreach ($allIntervals as $interval) {
+                $year = intval($year);
+
+                $beginYear = $interval->begin_year;
+                $endYear = $interval->begin_year + $interval->duration - 1; 
+
+                if($year >= $beginYear && $year <= $endYear){
+                    array_push($intervals, $interval);
+                }
+            }
+        }
+
+        return $intervals;
+    }
+
+    public function finalIntervalsOfYear($year="all") {
+        $intervals = array();
+        $allIntervals = $this->finalIntervals();
 
         if($year=="all" || !is_numeric($year)){
             $intervals = $allIntervals;

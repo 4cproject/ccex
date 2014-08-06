@@ -18,8 +18,10 @@ class CCExHelpersTag
         // return $currency;
         if($value < 0.01 || $value > 99999999){
             return sprintf('%.2e', $value);          
-        }else{
+        }else if(is_float($value)){
             return number_format($value, 2);
+        }else{
+            return number_format($value);
         }
     }
     

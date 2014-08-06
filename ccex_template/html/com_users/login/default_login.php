@@ -38,6 +38,7 @@ if($redirect && $redirect == "comparecosts"){
 	    <div class="form-group">
 	        <div class="col-md-offset-5 col-sm-3">
 	            <input class="btn btn-success btn-block" type="submit" value="<?php echo JText::_('JLOGIN'); ?>"/>
+	    	</div>
 	    </div>
 	    <input type="hidden" name="return" value="<?php echo base64_encode($redirect_url); ?>" />
 		<?php echo JHtml::_('form.token'); ?>

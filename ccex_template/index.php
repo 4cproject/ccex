@@ -34,7 +34,6 @@ unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']);
 
 $doc->addScript($tpath.'/libs/Chart.min.js');
 
-$doc->addScript($tpath.'/libs/jquery/2.1.0/jquery.min.js');
 $doc->addStyleSheet($tpath.'/libs/bootstrap/3.1.1/css/bootstrap.min.css');
 $doc->addScript($tpath.'/libs/bootstrap/3.1.1/js/bootstrap.min.js');
 
@@ -76,6 +75,7 @@ $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.boots
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="Curation Cost Exchange Platform">
       <meta name="author" content="4C project">
+      <script src="<?php echo $tpath ?>/libs/jquery/2.1.0/jquery.min.js"></script>
       <jdoc:include type="head" />
       <title><?php echo $sitename; ?></title>
 
@@ -103,15 +103,19 @@ $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.boots
         </div>
         <div id="skills" class="footer">
           <div class="container">
-            <span class="pull-left" style="padding-top: 10px"><a class="footer-link" href="#">Privacy policy</a> | <a class="footer-link" href="mailto:info@4cproject.eu">Contact</a></span>
-            <div class="polaroid pull-right">
-              <img src="<?php echo $tpath; ?>/images/logos/jaune.jpg" height="30">
-            </div>
-            <div class="polaroid pull-right">
-              <img style="padding: 0px 3.5px;" src="<?php echo $tpath; ?>/images/logos/4c.png" height="30">
-            </div>
+            <span class="pull-left" style="padding-top: 10px"><a href="<?php echo JRoute::_('/ccex/index.php/60-privacy-policy'); ?>">Privacy policy</a> | <a href="mailto:info@4cproject.eu">Contact</a></span>
+            <a href="http://ec.europa.eu/" target="_blank">
+              <div class="polaroid pull-right">
+                <img src="<?php echo $tpath; ?>/images/logos/jaune.jpg" height="30">
+              </div>
+            </a>
+            <a href="http://www.4cproject.eu/" target="_blank">
+              <div class="polaroid pull-right">
+                <img style="padding: 0px 3.5px;" src="<?php echo $tpath; ?>/images/logos/4c.png" height="30">
+              </div>
+            </a>
             <div class="pull-right small footer-logos">
-              This project has received funding from the European Union’s Seventh Framework Programme for research, technological development and demonstration under grant agreement no 600471
+              This project has received funding from the <a target="_blank" href="http://cordis.europa.eu/fp7/home_en.html">European Union’s Seventh Framework Programme</a> for research, technological development and demonstration under grant agreement no 600471
             </div>
           </div>
         </div>

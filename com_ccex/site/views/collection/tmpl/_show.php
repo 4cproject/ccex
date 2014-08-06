@@ -13,6 +13,18 @@
             </h2>
             <p><?php echo $this->collection->description ?></p>
         </div>
+        <div class="pull-right">
+            <form class="switchCollection">
+                <div class="onoffswitch">
+                    <input <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?> type="checkbox" name="final" class="onoffswitch-checkbox" id="onoffswitch<?php echo $this->collection->collection_id ?>">
+                    <label class="onoffswitch-label" for="onoffswitch<?php echo $this->collection->collection_id ?>">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+                <input type="hidden" name="collection_id" value="<?php echo $this->collection->collection_id ?>">
+            </form>
+        </div>
         <div class="clearfix"></div>
         <?php
             $this->_indexInterval->intervals = $this->collection->intervals();

@@ -79,7 +79,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     }
 
     private function mySeries($collectionsIDs, $year, $intervals = array()) {
-        $collections = $this->_organization->collections();
+        $collections = $this->_organization->finalCollections();
         $collectionsIdentifiers = array();
 
         foreach ($collections as $index => $collection) {
@@ -129,7 +129,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $intervals = array();
         
         foreach ($organizations as $organization) {
-            $intervals = array_merge($intervals, $organization->intervals());
+            $intervals = array_merge($intervals, $organization->finalIntervals());
         }
         
         $data = $this->seriesData($intervals);
@@ -147,7 +147,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
     
     private function otherCollectionsSeries($collections, $label) {
-        if(count($organizations) < 5){
+        if(count($collections) < 5){
             $organizations = array();
         }
         
@@ -176,7 +176,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $intervals = array();
 
         if (!count($collectionsIDs)) {
-            $intervals = $this->_organization->intervalsOfYear($year);
+            $intervals = $this->_organization->finalIntervalsOfYear($year);
         }
         
         return $this->mySeries($collectionsIDs, $year, $intervals);
@@ -189,7 +189,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             $series = $this->otherCollectionsSeries($collections, $label);
         } else {
             $organizationModel = new CCExModelsOrganization();
-            $organizationModel->organizationsForGlobalComparison();
+            $organizations = $organizationModel->organizationsForGlobalComparison();
 
             $series = $this->otherOrganizationSeries($organizations, $label);
         }
@@ -225,7 +225,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
         $listall = $this->addOption($listall, "List all organizations", "organization", "none", "", $organizations, true);
 
-        $typesIDs = array(); 
+        $typesIDs = array();
         $typesNames = array(); 
         foreach ($this->_organization->types() as $type) {
             if($type->name != "Other"){
@@ -279,7 +279,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
         if($option["number"] < 5){
             $option["enable"] = false;
-            $option["tooltip"] = "A filter cannot be displayed with size less than 5, to preserve anonimity for the intervinients.";
+            $option["tooltip"] = "A filter cannot be displayed with size less than 5, to preserve anonimity for the participants.";
         }else{
             $option["tooltip"] = $tooltip;
             $option["enable"] = $enable;
@@ -312,7 +312,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $result = array();
 
         foreach ($organizations as $organization) {
-            $collections = $organization->collections();
+            $collections = $organization->finalCollections();
 
             foreach ($collections as $collection) {
                 $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);

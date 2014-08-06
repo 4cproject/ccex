@@ -228,7 +228,7 @@
                 tooltip: {
                     formatter: function(){
                         var value=0;
-                        if(this.total){value = this.total;}
+                        if(this.point.y){value = this.point.y;}
                         if(value == 0){value = "0";}else if(value < 0.01){value = value.toPrecision(2);}else{value = value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');}
 
                         var header = '<div style="width:250px"><div style="float: left;">' + this.series.options.stack + '</div><div style="float: right; font-size:12px; margin-bottom: 5px;">Year ' + this.point.category + '</div><table style="font-size:12px; white-space: nowrap; margin-top: 10px; width:100%;">'; 
