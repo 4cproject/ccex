@@ -61,6 +61,26 @@ $(document).ready(function() {
             }
         }
     });
+
+    function clearAllData() {
+        $.ajax({
+            url: 'index.php?option=com_ccex&controller=clearalldata&format=raw',
+            type: 'POST',
+            dataType: 'JSON',
+            success: function(data) {
+                if (data.success) {
+                    window.location.href = '/ccex/';
+                }
+            }
+        });
+    }
+
+    $('#clear-all-data').exists(function() {
+        $(this).confirmModal({
+            confirmMessage: 'Are you sure you want to clear all data including your Organisation, Cost data sets, Years and Costs? This action is irreversible.',
+            confirmCallback: clearAllData
+        });
+    });
 });
 
 function ccexSaveOrganization(info) {

@@ -129,7 +129,7 @@
                 <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
             </div>
             <div class="col-sm-2">
-                <button class="btn btn-danger btn-block" disabled>Clear all data</button>
+                <button type="button" class="btn btn-danger btn-block" id="clear-all-data">Clear all data</button>
             </div>
         <?php } ?>
     </div>
@@ -137,5 +137,6 @@
 </form>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/confirm-bootstrap.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/form.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/organization.js') ?>"></script>

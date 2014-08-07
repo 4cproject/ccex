@@ -117,7 +117,41 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $return;
     }
+
+    /**
+     * Delete a organization
+     * @param int      ID of the organization to delete
+     * @return boolean True if successfully deleted
+     */
+    public function delete($id = null, $update = true) {
+        $app = JFactory::getApplication();
+        $id = $id ? $id : $app->input->get('organization_id');
+        
+        $organizationModel = new CCExModelsOrganization();
+        $organization = $organizationModel->getItemBy("_organization_id", $id);
+
+        $organizationTable = JTable::getInstance('Organization', 'Table');
+        $organizationTable->load($id);
+        
+        $organizationTable->deleted = 1;
+        
+        if ($organizationTable->store()) {
+            $organization->deleteCollections();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
     
+    public function deleteCollections($update = true) {
+        $collectionModel = new CCExModelsCollection();
+
+        foreach ($this->collections() as $collection) {
+            $collectionModel->delete($collection->collection_id, $update);
+        }
+    }
+
     public function havePermissions($user_id) {
         if ($user_id && $this->user_id == $user_id) {
             return true;
