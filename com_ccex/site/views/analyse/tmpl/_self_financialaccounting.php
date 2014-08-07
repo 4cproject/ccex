@@ -2,14 +2,13 @@
     <h3>Financial accounting</h3>
     <div id="self_financial_accounting_chart" class="col-md-12" style="width: 1140px; height: 400px;margin-top:20px"></div>
     <div id="self_financial_accounting_master_chart" class="col-md-12" style="width: 1140px; height: 100px;margin-bottom:20px;<?php if(!$this->master){ echo 'display:none;'; } ?>"></div>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+
+<p>This graph provides an overview of your aggregated costs from the data sets you selected. Hover on each section of the bar or use the key to identify the areas in which you have invested, in terms of a financial accounting breakdown. The figure at the head of the bar for each year shows your total spend per year. Use the grey slider beneath the graph to select and display results for up to five years at a time.<!--  Learn more about how these results are calculated. --></p>
+<!-- If it looks like your investments are weighted towards:
+Procurements or purchases, this may mean your organisation has a focus on >>>. If not, you may want to consider >>>>
+Staff, this may mean your organisation has a focus on >>>. If not, you may want to consider >>>> -->
+<p>You can export your data by clicking the icon in the top right hand corner of this graph.</p>
+
 </div>
 
 <script type="text/javascript">

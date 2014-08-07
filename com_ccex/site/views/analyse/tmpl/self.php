@@ -14,7 +14,9 @@
 </ul>
 <br/>
 
-<p>Analyse how your cost data sets perform throughout time and compare with each other can be a valuable insight.</p>
+
+<p>The graphs below represent a summary of your submitted costs. Analyse and compare your own cost data sets to see how they vary over time and understand spending patterns within your organisation.</p>
+<p class="small" style="margin-bottom: 0px">Select which data sets to analyse:</p>
 
 <form id ="selfComparisonForm">
     <div class="radio">

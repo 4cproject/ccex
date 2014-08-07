@@ -14,11 +14,13 @@
 </ul>
 <br/>
 
-<p>Comparing your costs with a group of organisations shows how well you are performing against the average. You can filter the comparison to show only organisations which have similar characteristics to yours.</p>
+<p>The global comparison enables you to see how your costs compare to the average of all other organisations who have submitted cost data sets to the CCEx.</p>
+
 <div class="row">
   <form id ="globalComparisonForm">
     <div class="form-inline col-md-6">
       <h4>My costs</h4>
+      <p class="small" style="margin-bottom: 5px">Select which data sets to analyse:</p>
       <label class="radio-inline">
         <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
         All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
@@ -64,6 +66,7 @@
     </div>
     <div class="col-md-6">
       <h4>Other organisations costs</h4>
+      <p class="small" style="margin-bottom: 0px; line-height: 15px;">You can filter the characteristics of the organisations or data sets against which your data sets are compared, by selecting the options below:</p>
       <?php foreach (array_slice($this->options, 0, count($this->collections) + 2) as $option) { ?>
         <?php if($option["enable"]) { ?>
           <div class="radio">

@@ -14,13 +14,14 @@
 </ul>
 <br/>
 
-<p>Compare your costs with another organisation to pin-point challenges and get in contact with organizations that can help you learn from their experiences.</p>
+<p>The peer comparison enables you to see how your costs compare to cost data sets from organisations similar to yours. Use this comparison to pin-point challenges and get in contact with organizations that can help you learn from their experiences.</p>
 
 <?php if($this->currentPeer){ ?>
   <div class="row">
     <form id ="peerComparisonForm">
       <div class="form-inline col-md-6">
         <h3>My costs</h3>
+        <p class="small" style="margin-bottom: 0px">Select which data sets to analyse:</p>
         <label class="radio-inline">
           <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
           All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
@@ -65,7 +66,9 @@
 
       </div>
       <div class="col-md-6">
-        <h3><?php echo $this->currentPeer->name; ?></h3>
+        <h3>Your closest peer</h3>
+        <p class="small" style="margin-bottom: 0px">Based on your profile information, the closest match to your organisation is:</p>
+        <h4><?php echo $this->currentPeer->name; ?></h4>
         <p style="margin-bottom:10px">
           The <?php echo $this->currentPeer->name ?> is a <b><?php echo $this->currentPeer->typesToString() ?></b> from <b><?php echo $this->currentPeer->country()->name ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
         </p>
@@ -84,7 +87,7 @@
 
   <div class="row">
   <h2>More information</h2>
-  <p>If you want to know more about <?php echo $this->currentPeer->name ?> you can request direct contact to exchange information, experiences and more details about their curation costs.</p>
+  <p>If you want to know more about <?php echo $this->currentPeer->name ?> you can request direct contact through the CCEx, to exchange information, experiences and more details about their curation costs.</p>
   <?php if($this->currentPeer->contact_and_sharing) { ?>
     <a href="#contactModal" style="margin-bottom: 20px" class="btn btn-primary" data-toggle="modal">Request contact with <?php echo $this->currentPeer->name ?></a>
   <?php }else{ ?>
@@ -109,7 +112,7 @@
   <?php }else{ ?>
     <p>There are no more peers available for comparison. Please, try again later.</p>
   <?php } ?>
-
+<!--   <p>Not quite right? Learn more about how your closest peers are matched with you.</p> -->
   <p>Choose from the <a href="#completeListPeers" data-toggle="modal">complete list of peers</a> which have allowed sharing of their information.</p>
   </div>
 

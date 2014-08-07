@@ -83,6 +83,7 @@ $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.boots
       <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
     <body>
+        <jdoc:include type="modules" name="cookie" />
         <div class="jumbotron"  style="background-color: #4e4e4e; color: #fafafa;padding: 20px;">
           <div class="container">
             <a href="<?php echo JRoute::_('/ccex/'); ?>">

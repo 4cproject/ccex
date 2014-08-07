@@ -4,12 +4,7 @@
     </div>
     <div id="peer_activities_chart" class="col-md-12" style="width: 1140px; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with cost data sets shared by the organisation most similar to yours.. Hover on each bar or use the key to identify your relative cost per gigabyte for the total period of each cost data set, in terms of a financial accounting breakdown. The figure at the head of the bar for each year also shows your relative cost per gigabyte for the total period of each cost data set.
     </p>
 </div>
 <br/>
