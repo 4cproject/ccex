@@ -75,9 +75,18 @@
             <div class="checkbox">
                 <label>
                     <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                    Allow the use of my anonymised cost data for peer comparisons.
+                    Allow the use of my cost data for peer comparisons.
                 </label>
                 <span class="description-block"><small>Only mappings to the framework of comparable costs will be shown with this option.</small></span>
+            </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input name="organization[organization_linked]" <?php echo (!isset($this->organization->organization_linked) || $this->organization->organization_linked ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                     Allow my organisation to be linked to the cost data I provide
+                </label>
+                <span class="description-block"><small>Your organisation name will be shown linked to your cost data in peer comparisons.</small></span>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">

@@ -65,27 +65,63 @@ $(document).ready(function() {
 
 function ccexSaveOrganization(info) {
     if ($('input[name="organization[global_comparison]"]').is(':checked')) {
-        info.push({name: "organization[global_comparison]", value: 1});
+        info.push({
+            name: "organization[global_comparison]",
+            value: 1
+        });
     } else {
-        info.push({name: "organization[global_comparison]", value: 0});
+        info.push({
+            name: "organization[global_comparison]",
+            value: 0
+        });
     }
 
     if ($('input[name="organization[peer_comparison]"]').is(':checked')) {
-        info.push({name: "organization[peer_comparison]", value: 1});
+        info.push({
+            name: "organization[peer_comparison]",
+            value: 1
+        });
     } else {
-        info.push({name: "organization[peer_comparison]", value: 0});
+        info.push({
+            name: "organization[peer_comparison]",
+            value: 0
+        });
+    }
+
+    if ($('input[name="organization[organization_linked]"]').is(':checked')) {
+        info.push({
+            name: "organization[organization_linked]",
+            value: 1
+        });
+    } else {
+        info.push({
+            name: "organization[organization_linked]",
+            value: 0
+        });
     }
 
     if ($('input[name="organization[contact_and_sharing]"]').is(':checked')) {
-        info.push({name: "organization[contact_and_sharing]", value: 1});
+        info.push({
+            name: "organization[contact_and_sharing]",
+            value: 1
+        });
     } else {
-        info.push({name: "organization[contact_and_sharing]", value: 0});
+        info.push({
+            name: "organization[contact_and_sharing]",
+            value: 0
+        });
     }
 
     if ($('input[name="organization[snapshots]"]').is(':checked')) {
-        info.push({name: "organization[snapshots]", value: 1});
+        info.push({
+            name: "organization[snapshots]",
+            value: 1
+        });
     } else {
-        info.push({name: "organization[snapshots]", value: 0});
+        info.push({
+            name: "organization[snapshots]",
+            value: 0
+        });
     }
 
     return info;

@@ -220,9 +220,8 @@
 }
 
 .onoffswitch-inner:before, .onoffswitch-inner:after {
-    font-family: "Raleway" !important;
+    font-family: "Lato" !important;
     font-weight: 600 !important;
-    padding-top: 1px !important;
 }
 
 /* Generated */
@@ -236,7 +235,7 @@
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #C0C0C0; border-radius: 50px;
+    border: 2px solid #CCC; border-radius: 50px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -262,7 +261,7 @@
 .onoffswitch-switch {
     display: block; width: 30px; margin: 0px;
     background: #FFFFFF;
-    border: 2px solid #C0C0C0; border-radius: 50px;
+    border: 2px solid #CCC; border-radius: 50px;
     position: absolute; top: 0; bottom: 0; right: 56px;
     -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
     -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 

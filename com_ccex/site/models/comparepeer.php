@@ -115,7 +115,12 @@ class CCExModelsComparepeer extends CCExModelsDefault
         $data = $this->seriesData($organization->finalIntervals());
         $series = array();
         
-        $label = $organization->name;
+        if($organization->organization_linked){
+            $label = $organization->name;
+        }else{
+            $label = "Anonymous Organisation";
+        }
+
         $color = "#006fc0";
         $id = "other";
         

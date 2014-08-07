@@ -142,10 +142,15 @@ class CCExModelsContact extends CCExModelsDefault
         $mailer->setSender($sender);
         $mailer->addRecipient($recipientUser->email);
 
-        $body = "<h2>Curation Cost Exchange</h2>" 
-              . "<h3>Contact Request</h3>"
-              . "<p><strong>" . $senderUser->name . "</strong> from <strong>" . $senderOrganization->name . "</strong> requested direct contact to exchange information, experiences and more details about your curation costs. </p>"
-              . "<dl><dt><strong>Name:</strong></dt><dd>" . $senderUser->name . "</dd><dt><strong>E-Mail:</strong></dt><dd>" . $senderUser->email . "</dd><dt><strong>Organization:</strong></dt><dd>" . $senderOrganization->name . "</dd><br/><dt><strong>Personal note:</strong></dt><dd>" . nl2br($message) . "</dd></dl>";
+        $body = '<p>Dear ' . $recipientUser->name . ',</p>'
+              . '<p>' . $senderUser->name . ' from ' . $senderOrganization->name . ' has indicated that they would like to make contact with you through the <a href="curationexchange.org">Curation Costs Exchange (CCEx)</a>.</p>'
+              . '<p>' . $senderUser->name . ' has sent you the following personal message:</p>'
+              . '<p><cite>' . nl2br($message) . '<cite></p>'
+              . '<p>Your name and contact details have not been shared. If you would like to make contact with ' . $senderUser->name . ' please email them directly using this address: <a href="mailto:' . $senderUser->email . '">' . $senderUser->email . '</a>'
+              . '<br>All further contact with ' . $senderUser->name . ' shall be outside the CCEx, and once you reply your contacts details will be visible to ' . $senderUser->name . '.'
+              . '<br>To decline this request please email the CCEx at: <a href="mailto:info@curationexchange.org">info@curationexchange.org</a> to let us know.</p>'
+              . '<p>Kind regards'
+              . '<br>The CCEx team.</p>';
 
         $mailer->setSubject('[CCEx] ' . $senderOrganization->name . ' Contact Request');
         $mailer->isHTML(true);

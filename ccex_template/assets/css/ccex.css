@@ -261,3 +261,17 @@ tr.accordion-body {
     width: 148px;
     margin: -10px 0;
 }
+
+/* Komento */
+
+#section-kmt .kmt-form-editor > div {
+  padding: 0 0 0 0 !important;
+}
+
+#section-kmt + div {
+  display: none !important;
+}
+
+#section-kmt .kmt-form-author ul li.kmt-form-website > div {
+  margin: 0 0 0 0 !important;
+}

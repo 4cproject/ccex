@@ -20,6 +20,7 @@ CREATE TABLE `#__ccex_organizations` (
 
   `global_comparison` tinyint(1) NOT NULL DEFAULT 1,
   `peer_comparison` tinyint(1) NOT NULL DEFAULT 1,
+  `organization_linked` tinyint(1) NOT NULL DEFAULT 1,
   `contact_and_sharing` tinyint(1) NOT NULL DEFAULT 1,
   `snapshots` tinyint(1) NOT NULL DEFAULT 1,
 

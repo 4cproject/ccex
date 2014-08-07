@@ -19,6 +19,8 @@
 					<dd><?php echo $this->organization->typesToString() ?></dd>
 					<dt></dt>
 					<dd></dd>
+					<dt></dt>
+					<dd></dd>
 				</dl>
 			</div>
 			<div class="col-md-6">
@@ -27,6 +29,8 @@
 					<dd><?php echo $this->organization->globalComparison() ?></dd>
 					<dt class="dt-large">Include costs in peer comparison</dt>
 					<dd><?php echo $this->organization->peerComparison() ?></dd>
+					<dt class="dt-large">Allow organisation to be linked to the cost data</dt>
+					<dd><?php echo $this->organization->organizationLinked() ?></dd>
 					<dt class="dt-large">Allow contact and share cost data</dt>
 					<dd><?php echo $this->organization->contactAndSharing() ?></dd>
 					<dt class="dt-large">Allow snapshots of cost data</dt>

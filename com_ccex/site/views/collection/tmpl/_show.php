@@ -2,7 +2,7 @@
     <a name="collection<?php echo $this->collection->collection_id ?>"></a>
     <div class="container">
         <div class="row">
-            <div class="col-md-11">
+            <div class="col-xs-11">
                 <h2>
                     <div class="index">
                         #<?php echo $this->index ?>
@@ -14,7 +14,7 @@
                 </h2>
                 <p><?php echo $this->collection->description ?></p>
             </div>
-            <div class="col-md-1">
+            <div class="col-xs-1">
                 <form class="switchCollection">
                     <?php if($this->collection->haveCosts()){ ?>
                         <div class="onoffswitch">

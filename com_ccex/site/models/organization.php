@@ -49,7 +49,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
         
-        $query->select('o.organization_id, o.user_id , o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.global_comparison, o.peer_comparison, o.contact_and_sharing, o.snapshots');
+        $query->select('o.organization_id, o.user_id , o.name, o.other_org_type, o.description, o.country_id, o.currency_id, o.global_comparison, o.organization_linked, o.peer_comparison, o.contact_and_sharing, o.snapshots');
         $query->from('#__ccex_organizations as o');
         
         return $query;
@@ -439,6 +439,14 @@ class CCExModelsOrganization extends CCExModelsDefault
     
     public function peerComparison() {
         if ($this->peer_comparison) {
+            return "Yes";
+        } else {
+            return "No";
+        }
+    }
+
+    public function organizationLinked() {
+        if ($this->organization_linked) {
             return "Yes";
         } else {
             return "No";
