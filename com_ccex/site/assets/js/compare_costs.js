@@ -24,6 +24,14 @@ $(".onoffswitch-checkbox").on("change", function() {
             if (!data.success) {
                 checkbox.prop("checked", !checked);
             }
+
+            if (data.readyForComparison) {
+                $("#analyse-btn-ready").show();
+                $("#analyse-btn-not-ready").hide();
+            } else {
+                $("#analyse-btn-ready").hide();
+                $("#analyse-btn-not-ready").show();
+            }
         },
         error: function(xhr, ajaxOptions, thrownError) {
             checkbox.prop("checked", !checked);

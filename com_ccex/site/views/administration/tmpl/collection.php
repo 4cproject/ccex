@@ -18,4 +18,10 @@
             <dd><?php echo $this->collection->scope ?></dd>
         </dl>
     </div>
+    <div class="col-md-6">
+        <dl class="dl-horizontal" >
+            <dt>Status</dt>
+            <dd><?php if($this->collection->final){ echo "Final"; }else{ echo "Draft"; } ?></dd>
+        </dl>
+    </div>
 </div>

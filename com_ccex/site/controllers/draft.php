@@ -25,6 +25,8 @@ class CCExControllersDraft extends JControllerBase
         }else{
             $return['success'] = false;  
         }
+
+        $return['readyForComparison'] = $collection->organization()->readyForComparison();
         
         echo json_encode($return);
     }

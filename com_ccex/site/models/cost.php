@@ -109,16 +109,26 @@ class CCExModelsCost extends CCExModelsDefault
      * @param int      ID of the cost to delete
      * @return boolean True if successfully deleted
      */
-    public function delete($id = null) {
+    public function delete($id = null, $update = true) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('cost_id');
         
-        $cost = JTable::getInstance('Cost', 'Table');
-        $cost->load($id);
+        $costModel = new CCExModelsCost();
+        $costs = $costModel->listItemsBy("_cost_id", $id);
+        $cost = array_shift($costs);
+        $cost = CCExHelpersCast::cast('CCExModelsCost', $cost);
+
+        $costTable = JTable::getInstance('Cost', 'Table');
+        $costTable->load($id);
         
-        $cost->deleted = 1;
+        $costTable->deleted = 1;
         
-        if ($cost->store()) {
+        if ($costTable->store()) {
+            
+            if($update){
+                $cost->interval()->collection()->updateFinalStatus();
+            }
+
             return true;
         } else {
             return false;

@@ -148,12 +148,25 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $collections;
     }
+
+    public function finalAndNonEmptyCollections() {
+        $collections = array();
+
+        foreach ($this->finalCollections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            if($collection->haveCosts()){
+                array_push($collections, $collection);
+            }
+        }
+
+        return $collections;
+    }
     
     public function numberCollections() {
         return count($this->collections());
     }
     
-    public function totalCost() {
+/*    public function totalCost() {
         $cost = 0;
         
         foreach ($this->collections() as $collection) {
@@ -222,7 +235,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
         
         return $duration;
-    }
+    }*/
     
     public function intervals() {
         $intervals = array();
@@ -244,6 +257,21 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
         
         return $intervals;
+    }
+
+    public function finalAndNonEmptyIntervals() {
+        $intervals = array();
+        
+        foreach ($this->finalCollections() as $collection) {
+            $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            $intervals = array_merge($intervals, $collection->nonEmptyInvervals());
+        }
+        
+        return $intervals;
+    }
+
+    public function readyForComparison(){
+        return count($this->finalAndNonEmptyIntervals());
     }
     
     public function numberIntervals() {
@@ -837,9 +865,33 @@ class CCExModelsOrganization extends CCExModelsDefault
         $result = array();
 
         foreach ($organizations as $organization) {
-            if($userOrganization->organization_id != $organization->organization_id){
+            if($userOrganization->organization_id != $organization->organization_id ){
                 $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-                array_push($result, $organization);
+
+                if($organization->readyForComparison()){
+                    array_push($result, $organization);
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    public function organizationsForPeerComparison(){
+        $organizationModel = new CCExModelsOrganization();
+        $organizationModel->set("_peer_comparison", true);
+        $organizations = $organizationModel->listItems();
+        $userModel = new CCExModelsUser();
+        $userOrganization = $userModel->organization();
+        $result = array();
+
+        foreach ($organizations as $organization) {
+            if($userOrganization->organization_id != $organization->organization_id ){
+                $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+
+                if($organization->readyForComparison()){
+                    array_push($result, $organization);
+                }
             }
         }
 

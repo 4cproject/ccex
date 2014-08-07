@@ -173,24 +173,20 @@ class CCExModelsComparepeer extends CCExModelsDefault
         $organizationsHash = array();
 
         $organizationModel = new CCExModelsOrganization();
-        $organizationModel->set("_peer_comparison", true);
-        $organizations = $organizationModel->listItems();
+        $organizations = $organizationModel->organizationsForPeerComparison();
 
         foreach ($organizations as $organization) {
-            $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
             $organizationID = $organization->organization_id;
 
-            if($organizationID != $this->_organization->organization_id){
-                $organizationsScore[$organizationID] = 0;
-                $organizationsScore[$organizationID] += $typeScore * $organization->typeMatch($this->_organization->types());
-                $organizationsScore[$organizationID] += $dataVolumeScore * max((1 - $this->percentageDifference($organization->dataVolumePonderedAverage(), $this->_organization->dataVolumePonderedAverage())), 0);
-                $organizationsScore[$organizationID] += $numberOfCopiesScore * max((1 - $this->percentageDifference($organization->numberOfCopiesPonderedAverage(), $this->_organization->numberOfCopiesPonderedAverage())), 0);
-                $organizationsScore[$organizationID] += $staffScore * max((1 - $this->percentageDifference($organization->staffPonderedAverage(), $this->_organization->staffPonderedAverage())), 0);
-                $organizationsScore[$organizationID] += $mainAssetScore * $organization->mainAssetsMatch($this->_organization->mainAssets());
-                $organizationsScore[$organizationID] += $scopeScore * $organization->scopesMatch($this->_organization->scopes());
+            $organizationsScore[$organizationID] = 0;
+            $organizationsScore[$organizationID] += $typeScore * $organization->typeMatch($this->_organization->types());
+            $organizationsScore[$organizationID] += $dataVolumeScore * max((1 - $this->percentageDifference($organization->dataVolumePonderedAverage(), $this->_organization->dataVolumePonderedAverage())), 0);
+            $organizationsScore[$organizationID] += $numberOfCopiesScore * max((1 - $this->percentageDifference($organization->numberOfCopiesPonderedAverage(), $this->_organization->numberOfCopiesPonderedAverage())), 0);
+            $organizationsScore[$organizationID] += $staffScore * max((1 - $this->percentageDifference($organization->staffPonderedAverage(), $this->_organization->staffPonderedAverage())), 0);
+            $organizationsScore[$organizationID] += $mainAssetScore * $organization->mainAssetsMatch($this->_organization->mainAssets());
+            $organizationsScore[$organizationID] += $scopeScore * $organization->scopesMatch($this->_organization->scopes());
 
-                $organizationsHash[$organizationID] = $organization;
-            }
+            $organizationsHash[$organizationID] = $organization;
         }
 
         arsort($organizationsScore);

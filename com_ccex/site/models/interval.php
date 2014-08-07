@@ -117,32 +117,38 @@ class CCExModelsInterval extends CCExModelsDefault
      * @param int      ID of the interval to delete
      * @return boolean True if successfully deleted
      */
-    public function delete($id = null) {
+    public function delete($id = null, $update = true) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('interval_id');
         
-        $interval = JTable::getInstance('Interval', 'Table');
-        $interval->load($id);
+        $intervalModel = new CCExModelsInterval();
+        $intervals = $intervalModel->listItemsBy("_interval_id", $id);
+        $interval = array_shift($intervals);
+        $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+
+        $intervalTable = JTable::getInstance('Interval', 'Table');
+        $intervalTable->load($id);
         
-        $interval->deleted = 1;
+        $intervalTable->deleted = 1;
         
-        if ($interval->store()) {
-            $this->deleteCosts($id);
+        if ($intervalTable->store()) {
+            $interval->deleteCosts(false);
+
+            if($update){
+                $interval->collection()->updateFinalStatus();
+            }
+
             return true;
         } else {
             return false;
         }
     }
     
-    public function deleteCosts($id) {
-        if($id){
-            $this->_interval_id = $id;
-        }
-
+    public function deleteCosts($update = true) {
         $costModel = new CCExModelsCost();
 
         foreach ($this->costs() as $cost) {
-            $costModel->delete($cost->cost_id);
+            $costModel->delete($cost->cost_id, $update);
         }
     }
 
@@ -233,6 +239,10 @@ class CCExModelsInterval extends CCExModelsDefault
         } else {
             return array();
         }
+    }
+
+    public function haveCosts(){
+        return count($this->costs());
     }
     
     public function sumCosts() {

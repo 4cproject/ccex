@@ -129,17 +129,27 @@ class CCExModelsCollection extends CCExModelsDefault
      * @param int      ID of the collection to delete
      * @return boolean True if successfully deleted
      */
-    public function delete($id = null) {
+    public function delete($id = null, $update = true) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('collection_id');
         
-        $collection = JTable::getInstance('Collection', 'Table');
-        $collection->load($id);
+        $collectionModel = new CCExModelsInterval();
+        $collections = $collectionModel->listItemsBy("_collection_id", $id);
+        $collection = array_shift($collections);
+        $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+
+        $collectionTable = JTable::getInstance('Collection', 'Table');
+        $collectionTable->load($id);
         
-        $collection->deleted = 1;
+        $collectionTable->deleted = 1;
         
-        if ($collection->store()) {
-            $this->deleteIntervals($id);
+        if ($collectionTable->store()) {
+            $collection->deleteIntervals(false);
+
+            if($update){
+                $collection->updateFinalStatus();
+            }
+
             return true;
         } else {
             return false;
@@ -150,27 +160,26 @@ class CCExModelsCollection extends CCExModelsDefault
         $app = JFactory::getApplication();
         $id = $this->collection_id;
         
-        $collection = JTable::getInstance('Collection', 'Table');
-        $collection->load($id);
+        $collectionModel = new CCExModelsCollection();
+        $collection = $collectionModel->getItemBy("_collection_id", $id);
+
+        $collectionTable = JTable::getInstance('Collection', 'Table');
+        $collectionTable->load($id);
         
-        $collection->final = $final;
+        $collectionTable->final = $final;
         
-        if ($collection->store()) {
+        if ($collectionTable->store()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function deleteIntervals($id) {
-        if($id){
-            $this->_collection_id = $id;
-        }
-
+    public function deleteIntervals($update = true) {
         $intervalModel = new CCExModelsInterval();
 
         foreach ($this->intervals() as $interval) {
-            $intervalModel->delete($interval->interval_id);
+            $intervalModel->delete($interval->interval_id, $update);
         }
     }
     
@@ -201,12 +210,37 @@ class CCExModelsCollection extends CCExModelsDefault
             return array();
         }
     }
+
+    public function nonEmptyInvervals() {
+        $intervals = array();
+
+        foreach ($this->intervals() as $interval) {
+            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+            if($interval->haveCosts()){
+                array_push($intervals, $interval);
+            }
+        }
+
+        return $intervals;
+    }
+
+    public function haveCosts() {
+        return count($this->nonEmptyInvervals());
+    }
+
+    public function updateFinalStatus() {
+        if($this->haveCosts()){
+            $this->switchFinal(1);
+        }else{
+            $this->switchFinal(0);
+        }
+    }
     
     public function numberIntervals() {
         return count($this->intervals());
     }
     
-    public function totalDuration() {
+/*    public function totalDuration() {
         $duration = 0;
         
         foreach ($this->intervals() as $interval) {
@@ -291,7 +325,7 @@ class CCExModelsCollection extends CCExModelsDefault
         } else {
             return 0;
         }
-    }
+    }*/
     
     public function intervalsWithoutLast() {
         return array_slice($this->intervals(), 0, -1);
@@ -305,7 +339,7 @@ class CCExModelsCollection extends CCExModelsDefault
         $newInterval = new CCExModelsInterval();
         $newInterval->set('collection_id', $this->_collection_id);
         
-        if ($this->numberIntervals() > 1) {
+        if ($this->numberIntervals()) {
             $lastInterval = $this->lastInterval();
             $newYear = $lastInterval->begin_year + $lastInterval->duration;
         } else {

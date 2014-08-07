@@ -20,6 +20,8 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <th>Cost data set</th>
             <th>BY</th>
             <th>D</th>
+            <th>DV</th>
+            <th>F</th>
             <th>Cost</th>
             <th>Value</th>
             <th>C</th>
@@ -45,6 +47,8 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $cost->interval()->collection()->collection_id) ?>"><?php echo $cost->interval()->collection()->name ?></a></td>
                     <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=interval&interval_id=' . $cost->interval()->interval_id) ?>"><?php echo $cost->interval()->begin_year ?></a></td>
                     <td><?php echo $cost->interval()->duration ?></td>
+                    <td><?php echo $cost->interval()->data_volume ?></td>
+                    <td><?php if($cost->interval()->collection()->final){ echo "&#x2713;"; }else{ echo "&#xd7;"; } ?></td>
                     <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=cost&cost_id=' . $cost->cost_id) ?>"><?php echo $cost->name ?></a></td>
                     <td><?php echo $cost->cost ?></td>
                     <td><?php echo $cost->interval()->collection()->organization()->currency()->code ?></td>
@@ -73,6 +77,10 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <dd>Begin Year</dd>
     <dt>D</dt>
         <dd>Duration</dd>
+    <dt>DV</dt>
+        <dd>Data Volume (GB)</dd>
+    <dt>F</dt>
+        <dd>Final</dd>
     <dt>C</dt>
         <dd>Currency code</dd>
     <dt>H</dt>
@@ -101,6 +109,11 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <dd>% Archival storage</dd>
     <dt>A</dt>
         <dd>% Access</dd>
+<br/>
+    <dt>&#x2713;</dt>
+        <dd>Yes</dd>
+    <dt>&#xd7;</dt>
+        <dd>No</dd>
 </dl>
 
 <script type="text/javascript">
