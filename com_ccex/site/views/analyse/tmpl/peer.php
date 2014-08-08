@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-    <li><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
+    <li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
     <li class="active">Analyse and compare costs</li>
 </ol>
 
@@ -14,7 +14,7 @@
 </ul>
 <br/>
 
-<p>The peer comparison enables you to see how your costs compare to cost data sets from organisations similar to yours. Use this comparison to pin-point challenges and get in contact with organizations that can help you learn from their experiences.</p>
+<p>The peer comparison enables you to see how your costs compare to cost data sets from organisations similar to yours. Use this comparison to pin-point challenges and get in contact with organisations that can help you learn from their experiences.</p>
 
 <?php if($this->currentPeer){ ?>
   <div class="row">
@@ -66,9 +66,7 @@
 
       </div>
       <div class="col-md-6">
-        <h3>Your closest peer</h3>
-        <p class="small" style="margin-bottom: 0px">Based on your profile information, the closest match to your organisation is:</p>
-        <h4><?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?></h4>
+        <h3><?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?></h3>
         <p style="margin-bottom:10px">
           The <?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo $this->currentPeer->typesToString() ?></b> from <b><?php echo $this->currentPeer->country()->name ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
         </p>

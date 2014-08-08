@@ -24,7 +24,7 @@
         <div class="col-sm-2">
             <div class="input-group">
                 <input id="interval_staff" type="number" min="0" class="form-control" name="interval[staff]" value="<?php if(isset($this->interval->staff)){ echo $this->interval->staff; }else{ echo 0; }?>">
-                <span class="input-group-addon">FTE</span>
+                <span class="input-group-addon" data-toggle="tooltip" data-placement="right" title="Full Time Equivalents">FTE</span>
             </div>
         </div>
     </div>
@@ -62,70 +62,78 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Unformatted text</label>
+                <label class="col-sm-4 control-label" for="asset_unformatted_text">Unformatted text</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_unformatted_text' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_unformatted_text) ? $this->interval->asset_unformatted_text : 0) ?>" id="asset_unformatted_text" name="interval[asset_unformatted_text]" type="text" value="<?php echo (isset($this->interval->asset_unformatted_text) ? $this->interval->asset_unformatted_text : 0) ?>"/>
                     <span class="slider-feedback" id="asset_unformatted_text_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Word processing</label>
+                <label class="col-sm-4 control-label" for="asset_word_processing">Word processing</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_word_processing' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_word_processing) ? $this->interval->asset_word_processing : 0) ?>" id="asset_word_processing" name="interval[asset_word_processing]" type="text" value="<?php echo (isset($this->interval->asset_word_processing) ? $this->interval->asset_word_processing : 0) ?>"/>
                     <span class="slider-feedback" id="asset_word_processing_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Spreadsheet</label>
+                <label class="col-sm-4 control-label" for="asset_spreadsheet">Spreadsheet</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_spreadsheet' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_spreadsheet) ? $this->interval->asset_spreadsheet : 0) ?>" id="asset_spreadsheet" name="interval[asset_spreadsheet]" type="text" value="<?php echo (isset($this->interval->asset_spreadsheet) ? $this->interval->asset_spreadsheet : 0) ?>"/>
                     <span class="slider-feedback" id="asset_spreadsheet_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Graphics</label>
+                <label class="col-sm-4 control-label" for="asset_graphics">
+                <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Graphics" data-content="For example .jpg, .png, .bmp">Graphics </button>
+                </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_graphics' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_graphics) ? $this->interval->asset_graphics : 0) ?>" id="asset_graphics" name="interval[asset_graphics]" type="text" value="<?php echo (isset($this->interval->asset_graphics) ? $this->interval->asset_graphics : 0) ?>"/>
                     <span class="slider-feedback" id="asset_graphics_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Audio</label>
+                <label class="col-sm-4 control-label" for="asset_audio">
+                    <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Audio" data-content="For example .mp3, .wav, .m4a">Audio </button>
+                </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_audio' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_audio) ? $this->interval->asset_audio : 0) ?>" id="asset_audio" name="interval[asset_audio]" type="text" value="<?php echo (isset($this->interval->asset_audio) ? $this->interval->asset_audio : 0) ?>"/>
                     <span class="slider-feedback" id="asset_audio_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Video</label>
+                <label class="col-sm-4 control-label" for="asset_video">
+                    <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Video" data-content="For example .mov, .avi, .wmv">Video </button>
+                </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_video' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_video) ? $this->interval->asset_video : 0) ?>" id="asset_video" name="interval[asset_video]" type="text" value="<?php echo (isset($this->interval->asset_video) ? $this->interval->asset_video : 0) ?>"/>
                     <span class="slider-feedback" id="asset_video_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Hypertext</label>
+                <label class="col-sm-4 control-label" for="asset_hypertext">Hypertext</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_hypertext' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_hypertext) ? $this->interval->asset_hypertext : 0) ?>" id="asset_hypertext" name="interval[asset_hypertext]" type="text" value="<?php echo (isset($this->interval->asset_hypertext) ? $this->interval->asset_hypertext : 0) ?>"/>
                     <span class="slider-feedback" id="asset_hypertext_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Geodata</label>
+                <label class="col-sm-4 control-label" for="asset_geodata">Geodata</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_geodata' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_geodata) ? $this->interval->asset_geodata : 0) ?>" id="asset_geodata" name="interval[asset_geodata]" type="text" value="<?php echo (isset($this->interval->asset_geodata) ? $this->interval->asset_geodata : 0) ?>"/>
                     <span class="slider-feedback" id="asset_geodata_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">E-mail</label>
+                <label class="col-sm-4 control-label" for="asset_email">E-mail</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_email' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_email) ? $this->interval->asset_email : 0) ?>" id="asset_email" name="interval[asset_email]" type="text" value="<?php echo (isset($this->interval->asset_email) ? $this->interval->asset_email : 0) ?>"/>
                     <span class="slider-feedback" id="asset_email_feedback"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="interval_data_volume">Database</label>
+                <label class="col-sm-4 control-label" for="asset_database_feedback">
+                    <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Database" data-content="For example .fp7, .mdb, .sql">Database </button>
+                </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_database' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_database) ? $this->interval->asset_database : 0) ?>" id="asset_database" name="interval[asset_database]" type="text" value="<?php echo (isset($this->interval->asset_database) ? $this->interval->asset_database : 0) ?>"/>
                     <span class="slider-feedback" id="asset_database_feedback"></span>
@@ -142,7 +150,7 @@
     <a id="collectionCosts"></a>
     <div class="form-group">
         <div class="col-sm-3">
-            <h3>Cost data set costs</h3>
+            <h3>Cost units</h3>
         </div>
         <div style="padding: 75px 15px;">
             <?php if(isset($this->interval->interval_id)){ 
@@ -205,4 +213,10 @@ $("#interval_data_volume_number").change(function () {
 $("#interval_data_volume_unit").change(function () {
     sliderUtils.updateLabels();
 });
+
+$('.popover-dismiss').popover({
+  trigger: 'focus',
+  template: '<div class="popover" role="tooltip" style="width: 500px;"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"><div class="data-content"></div></div></div>'
+});
+
 </script>

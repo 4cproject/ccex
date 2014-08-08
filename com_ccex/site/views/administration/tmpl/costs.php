@@ -121,7 +121,7 @@ $(document).ready( function () {
     $('#tableCosts').dataTable( {
         "dom": 'T<"clear">lfrtip',
         "tableTools": {
-            "sSwfPath": "/ccex/templates/ccextemplate/libs/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
+            "sSwfPath": "/templates/ccextemplate/libs/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
         }
     } );
 } );

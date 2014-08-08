@@ -2,12 +2,12 @@
     <div class="caption" style="margin-top: 30px">
         <h3>Financial accounting comparison</h3>
     </div>
-    <div id="global_financial_accounting_chart" class="col-md-12" style="width: 1140px; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
+    <div id="global_financial_accounting_chart" class="col-md-12" style="width: 100%; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
     
     <p>
       This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with other cost data sets shared with the CCEx. Hover on each bar or use the key to identify your relative cost per gigabyte for the total period of each cost data set, in terms of a financial accounting breakdown. The figure at the head of the bar for each year also shows your relative cost per gigabyte for the total period of each cost data set.
       <br/>
-      <a target="_blank" href="<?php echo JRoute::_('/ccex/index.php/62-analyse-and-compare-costs#global_financial_accounting'); ?>">Learn more about how these results are calculated.</a>
+      <a target="_blank" href="<?php echo JRoute::_('/index.php/62-analyse-and-compare-costs#global_financial_accounting'); ?>">Learn more about how these results are calculated.</a>
       <br/>
       You can export your data by clicking the icon in the top right hand corner of this graph.
     </p>

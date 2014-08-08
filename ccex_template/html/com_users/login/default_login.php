@@ -3,13 +3,13 @@ defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
 
-$redirect_url = JRoute::_('/ccex/');
+$redirect_url = JRoute::_('/');
 
 $app = JFactory::getApplication();
 $redirect = $app->input->get('redirect_url', null);
 
 if($redirect && $redirect == "comparecosts"){
-	$redirect_url = JRoute::_('/ccex/index.php/compare-costs');
+	$redirect_url = JRoute::_('/index.php/compare-costs');
 }
 
 ?>

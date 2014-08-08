@@ -213,7 +213,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    public function series($myCollectionsIDs = array(), $myYear = "all" ,$organizations = array(), $collections = array(), $otherLabel = "List all organizations") {
+    public function series($myCollectionsIDs = array(), $myYear = "all" ,$organizations = array(), $collections = array(), $otherLabel = "List all organisations") {
         return $this->calculateSeries($myCollectionsIDs, $myYear, $organizations, $collections, $otherLabel);
     }
 
@@ -223,13 +223,13 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $organizationModel = new CCExModelsOrganization();
         $organizations = $organizationModel->organizationsForGlobalComparison();
 
-        $listall = $this->addOption($listall, "List all organizations", "organization", "none", "", $organizations, true);
+        $listall = $this->addOption($listall, "List all organisations", "organization", "none", "", $organizations, true);
 
         $typesIDs = array();
         $typesNames = array(); 
         foreach ($this->_organization->types() as $type) {
             if($type->name != "Other"){
-                $options = $this->addOption($options,"Organizations of type " . $type->name, "organization", "type", $type->org_type_id, $organizations);
+                $options = $this->addOption($options,"Organisations of type " . $type->name, "organization", "type", $type->org_type_id, $organizations);
 
                 array_push($typesIDs, $type->org_type_id);
                 array_push($typesNames, $type->name);
@@ -237,11 +237,11 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         }
 
         if(count($typesIDs) > 1){
-            $options = $this->addOption($options,"Organizations of types " . implode(", ", $typesNames), "organization",  "types", implode(",", $typesIDs), $organizations);
+            $options = $this->addOption($options,"Organisations of types " . implode(", ", $typesNames), "organization",  "types", implode(",", $typesIDs), $organizations);
         }
 
-        $options = $this->addOption($options, "Organizations of country " . $this->_organization->country()->name, "organization", "country", $this->_organization->country_id, $organizations);
-        $options = $this->addOption($options, "Organizations with around the same data volume", "organization", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations);
+        $options = $this->addOption($options, "Organisations of country " . $this->_organization->country()->name, "organization", "country", $this->_organization->country_id, $organizations);
+        $options = $this->addOption($options, "Organisations with around the same data volume", "organization", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations);
         $options = $this->addOption($options, "Collections with around the same data volume", "collection", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations, false, $this->_organization->validDataVolumePonderedAverage());
         $options = $this->addOption($options, "Collections with around the same staff", "collection", "staff", $this->_organization->staffPonderedAverage(), $organizations, false, $this->_organization->validStaffPonderedAverage());
         $options = $this->addOption($options, "Collections with the same number of copies", "collection", "numberOfCopies", $this->_organization->numberOfCopiesPonderedAverage(), $organizations, false, $this->_organization->validNumberOfCopiesPonderedAverage());

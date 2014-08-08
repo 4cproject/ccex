@@ -1,18 +1,18 @@
 <form class="form-horizontal" id="organizationForm" role="form">
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="organisation_name">Name</label>
+        <label  data-toggle="tooltip" data-placement="right" title="Is your organisation for example a National Library, an archive or a data centre? You can also add a mission statement or other background information you would like to share/provide" class="col-sm-2 control-label" for="organisation_name">Name</label>
         <div class="col-sm-10">
             <input class="form-control" id="organisation_name" name="organization[name]" type="text" value="<?php if(isset($this->organization->name)){ echo $this->organization->name; } ?>">
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="organisation_description">Description, purpose and mission</label>
+        <label data-toggle="tooltip" data-placement="right" title="Please add the name of your organisation, institution, employer here" class="col-sm-2 control-label" for="organisation_description">Description, purpose and mission</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="organisation_description" name="organization[description]" rows="3" type="text"><?php if(isset($this->organization->description)){ echo $this->organization->description; }?></textarea>
         </div>
     </div>
     <div class="form-group" id="organisation_type_container">
-        <label class="col-sm-2 control-label" for="organization_type">Type</label>
+        <label data-toggle="tooltip" data-placement="right" title="Please select your organization types" class="col-sm-2 control-label" for="organization_type">Type</label>
         <div class="col-sm-10">
             <div class="input-group">
                 <?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="collection_data_volume">Currency</label>
+        <label data-toggle="tooltip" data-placement="right" title="For global and peer-to-peer comparison all information on this website will be expressed in Euro. This is done by using the average exchange rate for the year the expenditures were made" class="col-sm-2 control-label" for="collection_data_volume">Currency</label>
         <div class="col-sm-10">
             <select class="form-control" id="organization_currency" name="organization[currency_id]">
                 <option <?php if(!isset($this->organization->currency_id)){ echo "selected=\"true\""; }?> value="">Select your currency</option>
@@ -75,16 +75,16 @@
             <div class="checkbox">
                 <label>
                     <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                    Allow the use of my cost data for peer comparisons.
+                    Allow the use of my anonymised cost data for peer comparisons.
                 </label>
-                <span class="description-block"><small>Only mappings to the framework of comparable costs will be shown with this option.</small></span>
+                <span class="description-block"><small>Only mappings to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others. Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a> will be shown with this option.</small></span>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
                     <input name="organization[organization_linked]" <?php echo (!isset($this->organization->organization_linked) || $this->organization->organization_linked ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                     Allow my organisation to be linked to the cost data I provide
+                     Allow my organisation to be linked to the cost data I provide.
                 </label>
                 <span class="description-block"><small>Your organisation name will be shown linked to your cost data in peer comparisons.</small></span>
             </div>
@@ -93,7 +93,7 @@
             <div class="checkbox">
                 <label>
                     <input name="organization[contact_and_sharing]" <?php echo (!isset($this->organization->contact_and_sharing) || $this->organization->contact_and_sharing ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                    Allow registered users to contact me and allow my cost data to be shared with them
+                    Allow registered users to contact me and allow my cost data to be shared with them.
                 </label>
                 <span class="description-block"><small>Your email is kept private at all times and contact requests can be ignored.</small></span>
             </div>

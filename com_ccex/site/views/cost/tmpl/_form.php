@@ -27,7 +27,7 @@
 	</div>
 	<br/>
 	<h2>Financial accounting mapping</h2>
-	<p>Map this cost to financial accounting categories from our framework of comparable costs. This will enable you to compare your costs with others.</p>
+	<p>Map this cost to financial accounting categories from our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others. Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>. This will enable you to compare your costs with others.</p>
 
 	<div class="row">
 		<div class="col-md-6">
@@ -119,7 +119,7 @@
 	</div>
 	<br/>
 	<h2>Activities mapping</h2>
-	<p>Map this cost to activity categories from our framework of comparable costs. This will enable you to compare your costs with others.</p>
+	<p>Map this cost to activity categories from our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others. Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>. This will enable you to compare your costs with others.</p>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">

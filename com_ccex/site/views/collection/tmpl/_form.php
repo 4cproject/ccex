@@ -52,9 +52,9 @@
                         </a></a></li>
                 <?php } ?>
                 <?php if(isset($this->collection->collection_id)){ ?>
-                    <li><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', true)'; ?>"><i class="fa fa-plus"></i></a></li>
+                    <li><a data-toggle="tooltip" data-placement="top" data-container="body" title="Click here to add new years to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id ) . '\', true)'; ?>"><i class="fa fa-plus"></i></a></li>
                 <?php } else { ?>
-                    <li><a id="" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' ) . '\', true, \'collection\')'; ?>"><i class="fa fa-plus"></i></a></li>
+                    <li><a data-toggle="tooltip" data-placement="top" data-container="body" title="Click here to add new years to this cost data set" id="" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' ) . '\', true, \'collection\')'; ?>"><i class="fa fa-plus"></i></a></li>
                 <?php } ?>
             </ul>
         </div>
@@ -73,13 +73,13 @@
                 <input type="hidden" name="collection[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
             <?php } ?>
             <?php if(isset($this->new_interval)) { ?>
-                <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
             <?php } else { ?>
-                <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
             <?php } ?>
         </div>
         <div class="col-sm-2">
-            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+            <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
         </div>
         <div class="col-sm-2">
             <div class="alert alert-dismissable" id="_message_container" style="display: none;">

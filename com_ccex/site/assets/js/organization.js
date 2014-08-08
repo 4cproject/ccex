@@ -69,7 +69,7 @@ $(document).ready(function() {
             dataType: 'JSON',
             success: function(data) {
                 if (data.success) {
-                    window.location.href = '/ccex/';
+                    window.location.href = '/';
                 }
             }
         });

@@ -86,7 +86,7 @@ $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.boots
         <jdoc:include type="modules" name="cookie" />
         <div class="jumbotron"  style="background-color: #4e4e4e; color: #fafafa;padding: 20px;">
           <div class="container">
-            <a href="<?php echo JRoute::_('/ccex/'); ?>">
+            <a href="<?php echo JRoute::_('/'); ?>">
               <img src="<?php echo $tpath; ?>/images/CCEx_logo_125_white.png" class="pull-left" style="margin: 15px 45px 0 0;width: 100px;"/>
             </a>
             <h1 style="font-weight: 600;font-size: 53px;margin-bottom: 2px;"><?php echo $sitename; ?></h1>
@@ -104,7 +104,7 @@ $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.boots
         </div>
         <div id="skills" class="footer">
           <div class="container">
-            <span class="pull-left" style="padding-top: 10px"><a href="<?php echo JRoute::_('/ccex/index.php/60-privacy-policy'); ?>">Privacy policy</a> | <a href="mailto:info@4cproject.eu">Contact</a></span>
+            <span class="pull-left" style="padding-top: 10px"><a href="<?php echo JRoute::_('/index.php/60-privacy-policy'); ?>">Privacy policy</a> | <a href="mailto:info@4cproject.eu">Contact</a></span>
             <a href="http://ec.europa.eu/" target="_blank">
               <div class="polaroid pull-right">
                 <img src="<?php echo $tpath; ?>/images/logos/jaune.jpg" height="30">
