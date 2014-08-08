@@ -32,6 +32,32 @@ defined('_JEXEC') or die;
 						continue;
 					}
 
+					if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')) {
+						continue;
+					}
+
+					if ($item->link == "index.php?option=com_users&view=profile") {
+						if (JFactory::getUser()->get('guest')){
+							continue;
+						}else{
+							$name = JFactory::getUser()->get('name', "Profile");
+							$words = preg_split('/\s+/', $name);
+
+							function empty_test($val) {
+							    return !empty($val);
+							}
+
+							$words = array_filter($words, 'empty_test');
+
+							if(count($words) > 2){
+								$name = reset($words) . " " . end($words);
+							}
+
+							$item->title = $name;
+							$item->anchor_css .= "nav-name-ellipsis";
+						}
+					}
+
 					$class = 'item-' . $item->id;
 
 					if ($item->id == $active_id)
@@ -69,7 +95,7 @@ defined('_JEXEC') or die;
 
 					if ($item->parent)
 					{
-						$class .= ' parent';
+						$class .= ' dropdown parent';
 					}
 
 					if ($item->link == "index.php?option=com_users&view=login"){
@@ -77,6 +103,10 @@ defined('_JEXEC') or die;
 					}
 
 					if ($item->link == "index.php?option=com_users&view=registration"){
+						$class .= ' pull-right';
+					}
+
+					if ($item->link == "index.php?option=com_users&view=profile"){
 						$class .= ' pull-right';
 					}
 
@@ -91,27 +121,19 @@ defined('_JEXEC') or die;
                   
 					echo '<li' . $class . '>';
 					
-					if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')){ ?>
-						<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.logout'); ?>" method="post" class="form-horizontal">
-							<input type="submit" value="Logout"></input>
-							<input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('index.php?option=com_users&view=login')); ?>" />
-							<?php echo JHtml::_('form.token'); ?>
-						</form> <?php
-					}else{
-						// Render the menu item.
-						switch ($item->type) :
-							case 'separator':
-							case 'url':
-							case 'component':
-							case 'heading':
-								require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
-								break;
+					// Render the menu item.
+					switch ($item->type) :
+						case 'separator':
+						case 'url':
+						case 'component':
+						case 'heading':
+							require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
+							break;
 
-							default:
-								require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
-								break;
-						endswitch;
-					}
+						default:
+							require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
+							break;
+					endswitch;
 
 					// The next item is deeper.
 					if ($item->deeper)
