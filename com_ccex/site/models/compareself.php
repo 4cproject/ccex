@@ -103,7 +103,7 @@ class CCExModelsCompareself extends CCExModelsDefault
             
             if ($collection) {
                 $data = $this->seriesData($collection->intervals(), $beginYear, $number);
-                $series = $this->pushSeries($series, $data, $collection->name, $linked);
+                $series = $this->pushSeries($series, $data, htmlspecialchars($collection->name), $linked);
                 $linked = true;
             }
         }

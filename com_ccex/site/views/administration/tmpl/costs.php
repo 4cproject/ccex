@@ -43,13 +43,13 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <?php foreach ($this->costs as $cost) { ?>
                 <?php $cost = CCExHelpersCast::cast('CCExModelsCost', $cost); ?>
                 <tr>
-                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $cost->interval()->collection()->organization()->organization_id) ?>"><?php echo $cost->interval()->collection()->organization()->name ?></a></td>
-                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $cost->interval()->collection()->collection_id) ?>"><?php echo $cost->interval()->collection()->name ?></a></td>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $cost->interval()->collection()->organization()->organization_id) ?>"><?php echo htmlspecialchars($cost->interval()->collection()->organization()->name ) ?></a></td>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $cost->interval()->collection()->collection_id) ?>"><?php echo htmlspecialchars($cost->interval()->collection()->name ) ?></a></td>
                     <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=interval&interval_id=' . $cost->interval()->interval_id) ?>"><?php echo $cost->interval()->begin_year ?></a></td>
                     <td><?php echo $cost->interval()->duration ?></td>
                     <td><?php echo $cost->interval()->data_volume ?></td>
                     <td><?php if($cost->interval()->collection()->final){ echo "&#x2713;"; }else{ echo "&#xd7;"; } ?></td>
-                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=cost&cost_id=' . $cost->cost_id) ?>"><?php echo $cost->name ?></a></td>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=cost&cost_id=' . $cost->cost_id) ?>"><?php echo htmlspecialchars($cost->name ) ?></a></td>
                     <td><?php echo $cost->cost ?></td>
                     <td><?php echo $cost->interval()->collection()->organization()->currency()->code ?></td>
                     <td><?php echo $cost->cat_hardware ?></td>

@@ -49,7 +49,7 @@
                 <label class="checkbox-inline">
                   <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
                   <span class="badge">#<?php echo $i; ?></span> 
-                  <?php echo $collection->name; ?>
+                  <?php echo htmlspecialchars($collection->name) ; ?>
                 </label>
                 <select class="form-control input-xs updateChartsOnChange collectionSelect" name="yearsSelected[<?php echo $collection->collection_id ?>]">
                   <option value="all">All years</option>
@@ -66,9 +66,9 @@
 
       </div>
       <div class="col-md-6">
-        <h3><?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?></h3>
+        <h3><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
         <p style="margin-bottom:10px">
-          The <?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo $this->currentPeer->typesToString() ?></b> from <b><?php echo $this->currentPeer->country()->name ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
+          The <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo htmlspecialchars($this->currentPeer->typesToString() ) ?></b> from <b><?php echo htmlspecialchars($this->currentPeer->country()->name ) ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
         </p>
         <small>Compare with <a href="javaScript:void(0);" id="otherPeersLikeYou">other peers</a>.</small>
       </div>
@@ -85,9 +85,9 @@
 
   <div class="row">
   <h2>More information</h2>
-  <p>If you want to know more about <?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?> you can request direct contact through the CCEx, to exchange information, experiences and more details about their curation costs.</p>
+  <p>If you want to know more about <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> you can request direct contact through the CCEx, to exchange information, experiences and more details about their curation costs.</p>
   <?php if($this->currentPeer->contact_and_sharing) { ?>
-    <a href="#contactModal" style="margin-bottom: 20px" class="btn btn-primary" data-toggle="modal">Request contact with <?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?></a>
+    <a href="#contactModal" style="margin-bottom: 20px" class="btn btn-primary" data-toggle="modal">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></a>
   <?php }else{ ?>
     <div class="row">
       <div class="col-md-6">
@@ -104,7 +104,7 @@
   <?php if(count($this->peersLikeYou)){ ?>
     <ul>
       <?php foreach ($this->peersLikeYou as $peer) { ?>
-        <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>"><?php if($peer->organization_linked){ echo $peer->name; }else{ echo "Anonymous Organisation"; } ?>, <?php echo $peer->typesToString() ?>, <?php echo $peer->country()->name ?></a></li>
+        <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>"><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?>, <?php echo htmlspecialchars($peer->typesToString() ) ?>, <?php echo htmlspecialchars($peer->country()->name ) ?></a></li>
       <?php } ?>
     </ul> 
   <?php }else{ ?>
@@ -121,7 +121,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h3 id="contactModalLabel">Request contact with <?php if($this->currentPeer->organization_linked){ echo $this->currentPeer->name; }else{ echo "Anonymous Organisation"; } ?></h3>
+              <h3 id="contactModalLabel">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -129,7 +129,7 @@
                   <textarea name="message" rows="5" class="form-control">
 I'd like to contact you to exchange information, experiences and more details about your organisation curation costs.
 
-- <?php echo JFactory::getUser()->name ?>
+- <?php echo htmlspecialchars(JFactory::getUser()->name ) ?>
                   </textarea>
                   <input type="hidden" name="recipient_organization_id" value="<?php echo $this->currentPeer->organization_id ?>">
                 </div>
@@ -154,7 +154,7 @@ I'd like to contact you to exchange information, experiences and more details ab
         <div class="modal-body">
           <ul>
             <?php foreach ($this->complete as $peer) { ?>
-              <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>"><?php if($peer->organization_linked){ echo $peer->name; }else{ echo "Anonymous Organisation"; } ?>, <?php echo $peer->typesToString() ?>, <?php echo $peer->country()->name ?></a></li>
+              <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>"><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?>, <?php echo htmlspecialchars($peer->typesToString() ) ?>, <?php echo htmlspecialchars($peer->country()->name ) ?></a></li>
             <?php } ?>
           </ul> 
         </div>

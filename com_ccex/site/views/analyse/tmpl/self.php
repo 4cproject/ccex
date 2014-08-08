@@ -39,7 +39,7 @@
                       <span class="badge">
                           #<?php echo $i; ?>
                       </span> 
-                      <?php echo $collection->name; ?>
+                      <?php echo htmlspecialchars($collection->name) ; ?>
                   </label>
               </div>
           <?php $i++; ?>

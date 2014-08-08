@@ -7,12 +7,12 @@
                     <div class="index">
                         #<?php echo $this->index ?>
                     </div>
-                    <?php echo $this->collection->name ?> 
+                    <?php echo htmlspecialchars($this->collection->name ) ?> 
                     <small><a href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id) ?>"><span class="fa fa-edit"></span></a></small>
                     <br>
                     <small><?php echo $this->collection->scope ?></small>
                 </h2>
-                <p><?php echo $this->collection->description ?></p>
+                <p><?php echo htmlspecialchars($this->collection->description ) ?></p>
             </div>
             <div class="col-md-1 col-sm-2 col-xs-3">
                 <form class="switchCollection">

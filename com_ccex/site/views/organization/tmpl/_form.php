@@ -2,13 +2,13 @@
     <div class="form-group">
         <label  data-toggle="tooltip" data-placement="right" title="Is your organisation for example a National Library, an archive or a data centre? You can also add a mission statement or other background information you would like to share/provide" class="col-sm-2 control-label" for="organisation_name">Name</label>
         <div class="col-sm-10">
-            <input class="form-control" id="organisation_name" name="organization[name]" type="text" value="<?php if(isset($this->organization->name)){ echo $this->organization->name; } ?>">
+            <input class="form-control" id="organisation_name" name="organization[name]" type="text" value="<?php if(isset($this->organization->name)){ echo htmlspecialchars($this->organization->name) ; } ?>">
         </div>
     </div>
     <div class="form-group">
         <label data-toggle="tooltip" data-placement="right" title="Please add the name of your organisation, institution, employer here" class="col-sm-2 control-label" for="organisation_description">Description, purpose and mission</label>
         <div class="col-sm-10">
-            <textarea class="form-control" id="organisation_description" name="organization[description]" rows="3" type="text"><?php if(isset($this->organization->description)){ echo $this->organization->description; }?></textarea>
+            <textarea class="form-control" id="organisation_description" name="organization[description]" rows="3" type="text"><?php if(isset($this->organization->description)){ echo htmlspecialchars($this->organization->description) ; }?></textarea>
         </div>
     </div>
     <div class="form-group" id="organisation_type_container">
@@ -20,7 +20,7 @@
                         <div class="checkbox">
                             <label>
                               <input class="org-type-checkbox" <?php if(isset($this->organization->organization_id) && $this->organization->isOfType($this->orgTypes[$i]->org_type_id)){ echo 'checked'; } ?> type="checkbox" name="org_type[]" value="<?php echo $this->orgTypes[$i]->org_type_id; ?>">
-                                <?php echo $this->orgTypes[$i]->name ?>
+                                <?php echo htmlspecialchars($this->orgTypes[$i]->name ) ?>
                             </label>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
     <div class="form-group has-feedback" id="organisation_type_other_container" <?php if(!$this->organization->haveOtherType()){ echo "style=\"display: none;\""; } ?>>
         <label class="col-sm-2 control-label" for="organisation_type_other">Other type</label>
         <div class="col-sm-10">
-            <input <?php if(isset($this->organization->other_org_type)){ echo "value=\"" . $this->organization->other_org_type . "\""; }?> class="form-control" id="organisation_type_other" name="organization[other_org_type]" type="text" >
+            <input value="<?php if(isset($this->organization->other_org_type)){ echo htmlspecialchars($this->organization->other_org_type) ; }?>" class="form-control" id="organisation_type_other" name="organization[other_org_type]" type="text" >
             <span class="description-block"><small>If you select the 'Other' type, describe your organisation type here.</small></span>
         </div>
     </div>
@@ -41,7 +41,7 @@
             <select class="form-control" id="organization_country" name="organization[country_id]">
                 <option <?php if(!isset($this->organization->country_id)){ echo "selected=\"true\""; }?> value="">Select your country</option>
                 <?php for($i=0, $n = count($this->countries);$i<$n;$i++) { ?>
-                    <option <?php if(isset($this->organization->country_id) && $this->countries[$i]->country_id == $this->organization->country_id){ echo "selected=\"true\""; }?> value="<?php echo $this->countries[$i]->country_id; ?>"><?php echo $this->countries[$i]->name; ?></option>
+                    <option <?php if(isset($this->organization->country_id) && $this->countries[$i]->country_id == $this->organization->country_id){ echo "selected=\"true\""; }?> value="<?php echo $this->countries[$i]->country_id; ?>"><?php echo htmlspecialchars($this->countries[$i]->name) ; ?></option>
                 <?php } ?>
             </select>
             <span class="description-block"><small>Indicate in which country where the organisation's headquarters are located.</small></span>
@@ -53,7 +53,7 @@
             <select class="form-control" id="organization_currency" name="organization[currency_id]">
                 <option <?php if(!isset($this->organization->currency_id)){ echo "selected=\"true\""; }?> value="">Select your currency</option>
                 <?php for($i=0, $n = count($this->currencies);$i<$n;$i++) { ?>
-                    <option <?php if(isset($this->organization->currency_id) && $this->currencies[$i]->currency_id == $this->organization->currency_id){ echo "selected=\"true\""; }?> value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo $this->currencies[$i]->name; ?></option>
+                    <option <?php if(isset($this->organization->currency_id) && $this->currencies[$i]->currency_id == $this->organization->currency_id){ echo "selected=\"true\""; }?> value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo htmlspecialchars($this->currencies[$i]->name) ; ?></option>
                 <?php } ?>
             </select>
             <span class="description-block"><small>Indicate the currency in which you would prefer to provide costs.</small></span>

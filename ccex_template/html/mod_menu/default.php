@@ -14,6 +14,15 @@ defined('_JEXEC') or die;
 <?php // The menu class is deprecated. Use nav instead. ?>
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ccex-navbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+    </div>
+
+  
     <div class="collapse navbar-collapse" id="ccex-navbar">
 			<ul class="nav navbar-nav menu<?php echo $class_sfx;?>"
 				<?php
@@ -99,15 +108,15 @@ defined('_JEXEC') or die;
 					}
 
 					if ($item->link == "index.php?option=com_users&view=login"){
-						$class .= ' pull-right';
+						$class .= ' navbar-right';
 					}
 
 					if ($item->link == "index.php?option=com_users&view=registration"){
-						$class .= ' pull-right';
+						$class .= ' navbar-right';
 					}
 
 					if ($item->link == "index.php?option=com_users&view=profile"){
-						$class .= ' pull-right';
+						$class .= ' navbar-right';
 					}
 
                   	if ($item->deeper){ 

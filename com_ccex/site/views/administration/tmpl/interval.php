@@ -1,13 +1,13 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=index') ?>">Administration</a></li>
     <li><a href="javascript:void(0)">Organisations</a></li>
-    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $this->interval->collection()->organization_id) ?>"><?php echo $this->interval->collection()->organization()->name; ?></a></li>
-    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->interval->collection()->collection_id) ?>"><?php echo $this->interval->collection()->name; ?></a></li>
+    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $this->interval->collection()->organization_id) ?>"><?php echo htmlspecialchars($this->interval->collection()->organization()->name) ; ?></a></li>
+    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->interval->collection()->collection_id) ?>"><?php echo htmlspecialchars($this->interval->collection()->name) ; ?></a></li>
     <li class="active"><?php echo $this->interval->toString(); ?></li>
 </ol>
 
 <h1>
-    <?php echo $this->interval->collection()->name ?> <?php echo $this->interval->toString(); ?>
+    <?php echo htmlspecialchars($this->interval->collection()->name ) ?> <?php echo $this->interval->toString(); ?>
 </h1>
 <br/>
 <div class="row">

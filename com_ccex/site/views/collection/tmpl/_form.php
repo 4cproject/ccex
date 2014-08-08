@@ -2,13 +2,13 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="organisation_name">Name</label>
         <div class="col-sm-10">
-            <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo $this->collection->name; } ?>">
+            <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo htmlspecialchars($this->collection->name) ; } ?>">
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="collection_description">Description</label>
         <div class="col-sm-10">
-            <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo $this->collection->description; }?></textarea>
+            <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo htmlspecialchars($this->collection->description) ; }?></textarea>
         </div>
     </div>
     <div class="form-group">

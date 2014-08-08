@@ -15,7 +15,7 @@
         <?php for($i=0, $n = count($this->costs);$i<$n;$i++) { ?>
         	<?php $cost = CCExHelpersCast::cast('CCExModelsCost', $this->costs[$i]); ?>
 			<tr>
-				<td><?php echo $cost->name ?></td>
+				<td><?php echo htmlspecialchars($cost->name ) ?></td>
 				<td class="text-right nowrap"><?php echo $cost->formattedCost() ?></td>
 				<td class="text-right nowrap" data-toggle="tooltip" data-placement="right" data-container="body" title="You have defined your data volume to be 10 Terabytes"><?php echo $cost->formattedCostPerGB() ?></td>
 				<td class="text-right nowrap"><?php echo $cost->percentageActivityMapping() ?>%</td>

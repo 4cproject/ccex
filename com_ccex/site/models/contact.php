@@ -142,17 +142,17 @@ class CCExModelsContact extends CCExModelsDefault
         $mailer->setSender($sender);
         $mailer->addRecipient($recipientUser->email);
 
-        $body = '<p>Dear ' . $recipientUser->name . ',</p>'
-              . '<p>' . $senderUser->name . ' from ' . $senderOrganization->name . ' has indicated that they would like to make contact with you through the <a href="curationexchange.org">Curation Costs Exchange (CCEx)</a>.</p>'
-              . '<p>' . $senderUser->name . ' has sent you the following personal message:</p>'
-              . '<p><cite>' . nl2br($message) . '<cite></p>'
-              . '<p>Your name and contact details have not been shared. If you would like to make contact with ' . $senderUser->name . ' please email them directly using this address: <a href="mailto:' . $senderUser->email . '">' . $senderUser->email . '</a>'
-              . '<br>All further contact with ' . $senderUser->name . ' shall be outside the CCEx, and once you reply your contacts details will be visible to ' . $senderUser->name . '.'
+        $body = '<p>Dear ' . htmlspecialchars($recipientUser->name) . ',</p>'
+              . '<p>' . htmlspecialchars($senderUser->name) . ' from ' . htmlspecialchars($senderOrganization->name) . ' has indicated that they would like to make contact with you through the <a href="curationexchange.org">Curation Costs Exchange (CCEx)</a>.</p>'
+              . '<p>' . htmlspecialchars($senderUser->name) . ' has sent you the following personal message:</p>'
+              . '<p><cite>' . nl2br(htmlspecialchars($message)) . '<cite></p>'
+              . '<p>Your name and contact details have not been shared. If you would like to make contact with ' . htmlspecialchars($senderUser->name) . ' please email them directly using this address: <a href="mailto:' . htmlspecialchars($senderUser->email) . '">' . htmlspecialchars($senderUser->email) . '</a>'
+              . '<br>All further contact with ' . htmlspecialchars($senderUser->name) . ' shall be outside the CCEx, and once you reply your contacts details will be visible to ' . htmlspecialchars($senderUser->name) . '.'
               . '<br>To decline this request please email the CCEx at: <a href="mailto:info@curationexchange.org">info@curationexchange.org</a> to let us know.</p>'
               . '<p>Kind regards'
               . '<br>The CCEx team.</p>';
 
-        $mailer->setSubject('[CCEx] ' . $senderOrganization->name . ' Contact Request');
+        $mailer->setSubject('[CCEx] ' . htmlspecialchars($senderOrganization->name) . ' Contact Request');
         $mailer->isHTML(true);
         $mailer->Encoding = 'base64';
         $mailer->setBody($body);

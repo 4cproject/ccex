@@ -116,7 +116,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
         $series = array();
         
         if($organization->organization_linked){
-            $label = $organization->name;
+            $label = htmlspecialchars($organization->name);
         }else{
             $label = "Anonymous Organisation";
         }

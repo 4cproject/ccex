@@ -21,7 +21,7 @@ defined('_JEXEC') or die;
 			Name
 		</dt>
 		<dd>
-			<?php echo $this->data->name; ?>
+			<?php echo htmlspecialchars($this->data->name) ; ?>
 		</dd>
 		<dt>
 			Username

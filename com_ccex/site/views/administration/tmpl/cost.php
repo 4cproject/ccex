@@ -1,14 +1,14 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=index') ?>">Administration</a></li>
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=costs') ?>">Costs</a></li>
-    <li class="active"><?php echo $this->cost->name; ?></li>
+    <li class="active"><?php echo htmlspecialchars($this->cost->name) ; ?></li>
 </ol>
 
 <h1>
-    <?php echo $this->cost->name ?> 
+    <?php echo htmlspecialchars($this->cost->name ) ?> 
 </h1>
 
-<p class="description"><?php echo $this->cost->description ?></p>
+<p class="description"><?php echo htmlspecialchars($this->cost->description ) ?></p>
 
 <div class="row">
     <div class="col-md-6">

@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
 	<li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
-	<li class="active"><?php echo $this->organization->name ?></li>
+	<li class="active"><?php echo htmlspecialchars($this->organization->name ) ?></li>
 </ol>
 
 <h1>Organisation profile</h1>

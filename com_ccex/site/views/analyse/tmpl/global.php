@@ -48,7 +48,7 @@
               <label class="checkbox-inline">
                 <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
                 <span class="badge">#<?php echo $i; ?></span> 
-                <?php echo $collection->name; ?>
+                <?php echo htmlspecialchars($collection->name) ; ?>
               </label>
               <select class="form-control input-xs updateChartsOnChange collectionSelect" name="yearsSelected[<?php echo $collection->collection_id ?>]">
                 <option value="all">All years</option>
