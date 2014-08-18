@@ -1,17 +1,17 @@
 /*  Slider */
 
 .slider-selection {
-	background: #515151;
+    background: #515151;
 }
 
 .slider {
-	margin-top: 7px;
+    margin-top: 7px;
 }
 
 .slider-feedback {
-	position: relative;
-	top: 5px;
-	left: 10px;
+    position: relative;
+    top: 5px;
+    left: 10px;
 }
 
 /* Mockup Badge */
@@ -38,73 +38,75 @@
 }
 
 .mockup-badge{
-	display:table;	
-	background:black;
-	opacity:0.3;
-	-webkit-animation: opacity_pulse 20s infinite;
-	-moz-animation: opacity_pulse 20s infinite;
-	-o-animation: opacity_pulse 20s infinite;
-	animation-timing-function:ease-in-out;
-	-webkit-animation-timing-function:ease-in-out;
-	-moz-animation-timing-function:ease-in-out;
-	-o-animation-timing-function:ease-in-out;
-	animation: opacity_pulse 20s infinite;
-	width:200px;
-	margin:20px;
-	height:200px;
-	border-radius:100px;
-	text-align:center;
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	z-index: 1000;
+    display:table;  
+    background:black;
+    opacity:0.3;
+    -webkit-animation: opacity_pulse 20s infinite;
+    -moz-animation: opacity_pulse 20s infinite;
+    -o-animation: opacity_pulse 20s infinite;
+    animation-timing-function:ease-in-out;
+    -webkit-animation-timing-function:ease-in-out;
+    -moz-animation-timing-function:ease-in-out;
+    -o-animation-timing-function:ease-in-out;
+    animation: opacity_pulse 20s infinite;
+    width:200px;
+    margin:20px;
+    height:200px;
+    border-radius:100px;
+    text-align:center;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 1000;
 }
 .mockup-badge .inner{
-	display:table-cell;
-	color:white;
-	vertical-align:middle;
-	height:40px;
+    display:table-cell;
+    color:white;
+    vertical-align:middle;
+    height:40px;
 }
 
 .mockup-badge .inner h2{
-	font-family: 'Raleway'; 
-	border-bottom:1px solid #fff;
-	display:inline-block;
-	margin:0;
-	font-size:40px;
-	font-weight:bold;
-	color: white;
-	line-height: 70px;
+    font-family: 'Raleway'; 
+    border-bottom:1px solid #fff;
+    display:inline-block;
+    margin:0;
+    font-size:40px;
+    font-weight:bold;
+    color: white;
+    line-height: 70px;
 }
 .mockup-badge .inner p {
-	font-family: 'Lato'; 
-	margin:10px auto; 
-	font-size:18px; 
-	letter-spacing:2px; 
-	font-weight:300;
+    font-family: 'Lato'; 
+    margin:10px auto; 
+    font-size:18px; 
+    letter-spacing:2px; 
+    font-weight:300;
 }
+
+/* Navigation bar */
 
 #ccex-navbar ul{
-	width: 100%;
+    width: 100%;
 }
 
 .navbar-nav>li input {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
 
-	border: none;
-	background: none;
-	outline-color: #fff;
+    border: none;
+    background: none;
+    outline-color: #fff;
 }
 
 .navbar-nav>li input {
-	padding-top: 15px;
-	padding-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .navbar-default .navbar-nav>li input {
-	color: #777;
+    color: #777;
 }
 
 ul.dropdown-menu.width-auto{
@@ -113,16 +115,29 @@ ul.dropdown-menu.width-auto{
 
 /*.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {*/
 .navbar-default .navbar-nav > .active, .navbar-default .navbar-nav > .active:hover, .navbar-default .navbar-nav > .active:focus {
-	background-color: #5cb85c;
+    background-color: #5cb85c;
+}
+
+.navbar-collapse {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.navbar {
+    font-size: 13px;
+}
+
+.nav>li>a {
+    padding: 10px 10px;
 }
 
 #green {
-	background-color: #5cb85c;
+    background-color: #5cb85c;
 }
 
 #green h1, #green h2, #green h3, #green h4, #green h5, #green h6 {
-	color: white;
-	font-weight: 600;
+    color: white;
+    font-weight: 600;
 }
 
 .input-xs {
@@ -234,12 +249,21 @@ tr.accordion-body {
 .carousel-control {
     color: #999;
     opacity: 1;
+    /* lfaria removing controls for now as they are on top of logos */
+    /* display: none; */
+  
+    width: 5%;
 }
 
 .carousel-control:hover, .carousel-control:focus {
     color: #999;
     opacity: 0.8;           
 }
+
+.carousel-indicators {
+  bottom: -45px;
+}
+
 .carousel-indicators li {
     border-color: #ccc;
 }
@@ -447,3 +471,87 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 .navbar-collapse{
     border: 1px solid #e7e7e7 !important;
 }
+
+/* Beta ribbon */
+.ccex_beta_ribbon {
+  background-color: #a00;
+  overflow: hidden;
+  white-space: nowrap;
+  /* top right corner */
+  position: absolute;
+  right: -50px;
+  top: 40px;
+  /* 45 deg cw rotation */
+  -webkit-transform: rotate(45deg);
+     -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+  /* shadow */
+  -webkit-box-shadow: 0 0 10px #888;
+     -moz-box-shadow: 0 0 10px #888;
+          box-shadow: 0 0 10px #888;
+}
+.ccex_beta_ribbon a {
+  border: 1px solid #faa;
+  color: #fff;
+  display: block;
+  font: 'Lato';
+  font-weight: 900;
+  margin: 1px 0;
+  padding: 10px 60px;
+  text-align: center;
+  text-decoration: none;
+  /* shadow */
+  text-shadow: 0 0 5px #444;
+}
+
+/* Survey */
+
+.bfsurvey_plusIntro p {
+  line-height: inherit;
+}
+
+.bfsurvey_plusOptions textarea {
+  width: 100%;
+}
+
+#survey .button {
+  margin-bottom: 5px;
+}
+
+/* Survey link */
+#beta_survey_link {
+    cursor: pointer;
+    position: fixed;
+    bottom: 0px;
+    right: 150px;
+    background-color: #ccc;
+    border-top: 2px solid #d9d9d9;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    height: 32px;
+    padding: 0 10px;
+    line-height: 26px;
+    border-radius: 3px 3px 0 0;
+    color: black;
+    transition: background-color 0.2s ease-in-out;
+    text-shadow: none;
+    z-index: 2147483636;
+
+}
+#beta_survey_link:hover {
+    background-color: #bfbfbf;
+    border-top: 2px solid #ccc;
+    height: 33px;
+}
+
+#beta_survey_link span:before {
+    font-family: FontAwesome;
+    content: "\f059";
+    font-size: 18px;
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+}
+

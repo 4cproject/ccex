@@ -3,7 +3,6 @@ $('form#contactForm').validate({
         'message': {
             required: true,
             blank: false,
-            minlength: 50
         }
     },
     highlight: function(element) {

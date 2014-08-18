@@ -60,3 +60,4 @@ JHtml::_('behavior.keepalive');
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
 </div>
+</div>
