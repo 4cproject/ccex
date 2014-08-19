@@ -109,11 +109,18 @@ class CCExModelsContact extends CCExModelsDefault
 
         $organizations = $organizationModel->listItemsBy("_organization_id", $senderOrganizationID);
         $senderOrganization = array_shift($organizations);
+        $senderOrganization = CCExHelpersCast::cast('CCExModelsOrganization', $senderOrganization);
+
         $organizations = $organizationModel->listItemsBy("_organization_id", $recipientOrganizationID);
         $recipientOrganization = array_shift($organizations);
+        $recipientOrganization = CCExHelpersCast::cast('CCExModelsOrganization', $recipientOrganization);
 
-        $senderUser = JFactory::getUser($senderOrganization->user_id);
-        $recipientUser = JFactory::getUser($recipientOrganization->user_id);
+        if($senderOrganization->user() && $recipientOrganization->user()){
+          $senderUser = JFactory::getUser($sendSSerOrganization->user_id);
+          $recipientUser = JFactory::getUser($recipientOrganization->user_id);
+        } else {
+          return false;
+        }
 
         $data["sender_organization_id"] = $senderOrganizationID;
         $data["recipient_organization_id"] = $recipientOrganizationID;

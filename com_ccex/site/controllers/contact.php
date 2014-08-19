@@ -21,6 +21,10 @@ class CCExControllersContact extends JControllerBase
             $app->enqueueMessage(JText::_('COM_CCEX_CONTACT_FAILURE'), "error");
         }
         
-        $app->redirect(JRoute::_('index.php?view=analyse&layout=peer', false));
+        if(array_key_exists("recipient_organization_id", $data)){
+            $app->redirect(JRoute::_('/compare-costs?view=analyse&layout=peer&organization=' . $data["recipient_organization_id"], false));
+        }else{
+            $app->redirect(JRoute::_('/compare-costs?view=analyse&layout=peer', false));
+        }
     }
 }

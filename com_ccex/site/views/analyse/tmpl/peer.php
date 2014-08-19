@@ -86,9 +86,7 @@
   <div class="row">
   <h2>More information</h2>
   <p>If you want to know more about <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> you can request direct contact through the CCEx, to exchange information, experiences and more details about their curation costs.</p>
-  <?php if($this->currentPeer->contact_and_sharing) { ?>
-    <a href="#contactModal" style="margin-bottom: 20px" class="btn btn-primary" data-toggle="modal">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></a>
-  <?php }else{ ?>
+  <?php if(!$this->currentPeer->contact_and_sharing) { ?>
     <div class="row">
       <div class="col-md-6">
         <div class="alert alert-danger">
@@ -96,6 +94,16 @@
         </div>
       </div>
     </div>
+  <?php }else if(!$this->currentPeer->user()){ ?>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="alert alert-danger">
+          The user responsible for this organization isn't available for contact requests.
+        </div>
+      </div>
+    </div>
+  <?php }else{ ?>
+    <a href="#contactModal" style="margin-bottom: 20px" class="btn btn-primary" data-toggle="modal">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></a>
   <?php } ?>
   <a name="otherPeersLikeYou"></a>
   <br/>
@@ -114,7 +122,7 @@
   <p>Choose from the <a href="#completeListPeers" data-toggle="modal">complete list of peers</a> which have allowed sharing of their information.</p>
   </div>
 
-  <?php if($this->currentPeer->contact_and_sharing) { ?>
+  <?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
     <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <form id="contactForm" action="index.php?option=com_ccex&controller=contact" method="post">

@@ -211,6 +211,17 @@ class CCExModelsCollection extends CCExModelsDefault
         }
     }
 
+    public function costs() {
+        $costs = array();
+        
+        foreach ($this->intervals() as $interval) {
+            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
+            $costs = array_merge($costs, $interval->costs());
+        }
+        
+        return $costs;
+    }
+
     public function nonEmptyInvervals() {
         $intervals = array();
 
@@ -239,93 +250,6 @@ class CCExModelsCollection extends CCExModelsDefault
     public function numberIntervals() {
         return count($this->intervals());
     }
-    
-/*    public function totalDuration() {
-        $duration = 0;
-        
-        foreach ($this->intervals() as $interval) {
-            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $duration+= $interval->duration();
-        }
-        
-        return $duration;
-    }
-    
-    public function totalCost() {
-        $cost = 0;
-        
-        foreach ($this->intervals() as $interval) {
-            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $cost+= $interval->sumCosts();
-        }
-        
-        return $cost;
-    }
-    
-    public function totalCostPerGB() {
-        $cost = 0;
-        
-        foreach ($this->intervals() as $interval) {
-            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $cost+= $interval->sumCostsPerGB();
-        }
-        
-        return $cost;
-    }
-    
-    public function totalCostPerYear() {
-        $cost = 0;
-        
-        foreach ($this->intervals() as $interval) {
-            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $cost+= $interval->sumCostsPerYear();
-        }
-        
-        return $cost;
-    }
-    
-    public function totalCostPerGBPerYear() {
-        $cost = 0;
-        
-        foreach ($this->intervals() as $interval) {
-            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $cost+= $interval->sumCostsPerGBPerYear();
-        }
-        
-        return $cost;
-    }
-    
-    public function percentageActivityMapping() {
-        $sum = 0;
-        $size = 0;
-        foreach ($this->intervals() as $interval) {
-            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $sum+= $interval->percentageActivityMapping();
-            $size++;
-        }
-        
-        if ($size) {
-            return intval($sum / $size);
-        } else {
-            return 0;
-        }
-    }
-    
-    public function percentageFinancialAccountingMapping() {
-        $sum = 0;
-        $size = 0;
-        foreach ($this->intervals() as $interval) {
-            $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $sum+= $interval->percentageFinancialAccountingMapping();
-            $size++;
-        }
-        
-        if ($size) {
-            return intval($sum / $size);
-        } else {
-            return 0;
-        }
-    }*/
     
     public function intervalsWithoutLast() {
         return array_slice($this->intervals(), 0, -1);

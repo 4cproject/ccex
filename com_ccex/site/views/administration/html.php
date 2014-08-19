@@ -24,6 +24,11 @@ class CCExViewsAdministrationHtml extends JViewHtml
 
                 $this->costs = $costModel->listItems();
                 break;
+            case "organizations":
+                $organizationModel = new CCExModelsOrganization();
+
+                $this->organizations = $organizationModel->listItems();
+                break;
             case "organization":
                 $organization_id = $app->input->get('organization_id', null);
                 $organizationModel = new CCExModelsOrganization();

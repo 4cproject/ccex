@@ -19,25 +19,25 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <th>Organisation</th>
             <th>Cost data set</th>
             <th>BY</th>
-            <th>D</th>
+            <th>Du</th>
             <th>DV</th>
-            <th>F</th>
+            <th>Fl</th>
             <th>Cost</th>
             <th>Value</th>
-            <th>C</th>
-            <th>H</th>
-            <th>S</th>
-            <th>E</th>
-            <th>P</th>
+            <th>CC</th>
+            <th>Hw</th>
+            <th>Sw</th>
+            <th>ES</th>
+            <th>Pr</th>
             <th>IT</th>
-            <th>O</th>
+            <th>Op</th>
             <th>PS</th>
-            <th>M</th>
+            <th>Ma</th>
             <th>Ov</th>
             <th>PI</th>
-            <th>I</th>
+            <th>In</th>
             <th>AS</th>
-            <th>A</th>
+            <th>Ac</th>
         </thead>
         <tbody>
             <?php foreach ($this->costs as $cost) { ?>
@@ -75,41 +75,42 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <dl class="dl-horizontal table-legend">
     <dt>BY</dt>
         <dd>Begin Year</dd>
-    <dt>D</dt>
+    <dt>Du</dt>
         <dd>Duration</dd>
     <dt>DV</dt>
         <dd>Data Volume (GB)</dd>
-    <dt>F</dt>
+    <dt>Fl</dt>
         <dd>Final</dd>
-    <dt>C</dt>
+    <dt>CC</dt>
         <dd>Currency code</dd>
-    <dt>H</dt>
+    <br/>
+    <dt>Hw</dt>
         <dd>% Hardware</dd>
-    <dt>S</dt>
+    <dt>Sw</dt>
         <dd>% Software</dd>
-    <dt>E</dt>
+    <dt>ES</dt>
         <dd>% External or 3rd party services</dd>
-    <dt>P</dt>
+    <dt>Pr</dt>
         <dd>% Producer</dd>
     <dt>IT</dt>
         <dd>% IT-developer</dd>
-    <dt>O</dt>
+    <dt>Op</dt>
         <dd>% Operations</dd>
     <dt>PS</dt>
         <dd>% Preservation specialist</dd>
-    <dt>M</dt>
+    <dt>Ma</dt>
         <dd>% Manager</dd>
     <dt>Ov</dt>
         <dd>% Overhead</dd>
     <dt>PI</dt>
         <dd>% Pre-Ingest</dd>
-    <dt>I</dt>
+    <dt>In</dt>
         <dd>% Ingest</dd>
     <dt>AS</dt>
         <dd>% Archival storage</dd>
-    <dt>A</dt>
+    <dt>Ac</dt>
         <dd>% Access</dd>
-<br/>
+    <br/>
     <dt>&#x2713;</dt>
         <dd>Yes</dd>
     <dt>&#xd7;</dt>

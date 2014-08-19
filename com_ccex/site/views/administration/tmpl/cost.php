@@ -15,12 +15,18 @@
         <dl class="dl-horizontal" >
             <dt>Value</dt>
             <dd><?php echo $this->cost->cost ?> <?php echo $this->currency->symbol ?></dd>
+            <dt>Organisation</dt>
+            <dd><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $this->cost->interval()->collection()->organization()->organization_id) ?>"><?php echo htmlspecialchars($this->cost->interval()->collection()->organization()->name ) ?></a></dd>
+            <dt>Years</dt>
+            <dd><a href="<?php echo JRoute::_('index.php?view=administration&layout=interval&interval_id=' . $this->cost->interval()->interval_id) ?>"><?php echo htmlspecialchars($this->cost->interval()->toString() ) ?></a></dd>
         </dl>
     </div>
     <div class="col-md-6">
         <dl class="dl-horizontal" >
             <dt>Human Resources</dt>
             <dd><?php echo $this->cost->human_resources ?></dd>
+            <dt>Cost data set</dt>
+            <dd><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->cost->interval()->collection()->collection_id) ?>"><?php echo htmlspecialchars($this->cost->interval()->collection()->name ) ?></a></dd>
         </dl>
     </div>
 </div>
@@ -158,6 +164,18 @@
         </div>
     </div>
 </form>
+
+<br/>
+<div class="row">
+    <div class="col-sm-2 col-md-offset-10">
+        <input type="hidden" value="<?php echo $this->cost->cost_id ?>" name="cost_id">
+        <button type="button" class="btn btn-danger btn-block" id="delete-button" data-id="<?php echo $this->cost->cost_id ?>" data-type="cost" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=interval&interval_id=' . $this->cost->interval_id ) ?>">Delete</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/confirm-bootstrap.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/administration.js') ?>"></script>
 
 <script>
 $("[data-toggle='tooltip']").tooltip();

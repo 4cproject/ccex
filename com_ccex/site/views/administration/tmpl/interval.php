@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=index') ?>">Administration</a></li>
-    <li><a href="javascript:void(0)">Organisations</a></li>
+    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=organizations') ?>">Organisations</a></li>
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $this->interval->collection()->organization_id) ?>"><?php echo htmlspecialchars($this->interval->collection()->organization()->name) ; ?></a></li>
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->interval->collection()->collection_id) ?>"><?php echo htmlspecialchars($this->interval->collection()->name) ; ?></a></li>
     <li class="active"><?php echo $this->interval->toString(); ?></li>
@@ -18,7 +18,9 @@
             <dt>Data volume</dt>
             <dd><?php echo $this->interval->formattedDataVolume() ?></dd>           
             <dt>Number of copies</dt>
-            <dd><?php echo $this->interval->formattedNumberOfCopies() ?></dd>        
+            <dd><?php echo $this->interval->formattedNumberOfCopies() ?></dd>      
+            <dt>Organisation</dt>
+            <dd><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $this->interval->collection()->organization()->organization_id) ?>"><?php echo htmlspecialchars($this->interval->collection()->organization()->name ) ?></a></dd>
          </dl>
     </div>
     <div class="col-md-6">
@@ -28,7 +30,9 @@
             <dt>Curation staff in scope</dt>
             <dd><?php echo $this->interval->formattedStaff() ?></dd>
             <dt>Years</dt>
-            <dd><?php echo $this->interval->toString() ?></dd>        
+            <dd><?php echo $this->interval->toString() ?></dd>  
+            <dt>Cost data set</dt>
+            <dd><a href="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->interval->collection()->collection_id) ?>"><?php echo htmlspecialchars($this->interval->collection()->name ) ?></a></dd>
          </dl>
     </div>
 </div>
@@ -115,6 +119,118 @@
         </div>
     </div>
 </form>
+
+<h2>Costs</h2>
+
+<div style="padding: 20px 0">
+    <table id="tableCosts" class="table table-condensed table-font-small">
+        <thead>
+            <th>Cost</th>
+            <th>Value</th>
+            <th>CC</th>
+            <th>Hw</th>
+            <th>Sw</th>
+            <th>ES</th>
+            <th>Pr</th>
+            <th>IT</th>
+            <th>Op</th>
+            <th>PS</th>
+            <th>Ma</th>
+            <th>Ov</th>
+            <th>PI</th>
+            <th>In</th>
+            <th>AS</th>
+            <th>Ac</th>
+        </thead>
+        <tbody>
+            <?php foreach ($this->interval->costs() as $cost) { ?>
+                <?php $cost = CCExHelpersCast::cast('CCExModelsCost', $cost); ?>
+                <tr>
+                    <td><a href="<?php echo JRoute::_('index.php?view=administration&layout=cost&cost_id=' . $cost->cost_id) ?>"><?php echo htmlspecialchars($cost->name ) ?></a></td>
+                    <td><?php echo $cost->cost ?></td>
+                    <td><?php echo $cost->interval()->collection()->organization()->currency()->code ?></td>
+                    <td><?php echo $cost->cat_hardware ?></td>
+                    <td><?php echo $cost->cat_software ?></td>
+                    <td><?php echo $cost->cat_external ?></td>
+                    <td><?php echo $cost->cat_producer ?></td>
+                    <td><?php echo $cost->cat_it_developer ?></td>
+                    <td><?php echo $cost->cat_operations ?></td>
+                    <td><?php echo $cost->cat_specialist ?></td>
+                    <td><?php echo $cost->cat_manager ?></td>
+                    <td><?php echo $cost->cat_overhead ?></td>
+                    <td><?php echo $cost->cat_pre_ingest ?></td>
+                    <td><?php echo $cost->cat_ingest ?></td>
+                    <td><?php echo $cost->cat_storage ?></td>
+                    <td><?php echo $cost->cat_access ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+<h4>Legend</h4>
+<div class="row">
+    <div class="col-md-4">
+        <dl class="dl-horizontal table-legend">
+            <dt>Hw</dt>
+                <dd>% Hardware</dd>
+            <dt>Sw</dt>
+                <dd>% Software</dd>
+            <dt>ES</dt>
+                <dd>% External or 3rd party services</dd>
+            <dt>Pr</dt>
+                <dd>% Producer</dd>
+            <dt>IT</dt>
+                <dd>% IT-developer</dd>
+            <dt>Op</dt>
+                <dd>% Operations</dd>
+            <dt>PS</dt>
+                <dd>% Preservation specialist</dd>
+            <dt>Ma</dt>
+                <dd>% Manager</dd>
+            <dt>Ov</dt>
+                <dd>% Overhead</dd>
+            <dt>PI</dt>
+                <dd>% Pre-Ingest</dd>
+            <dt>In</dt>
+                <dd>% Ingest</dd>
+            <dt>AS</dt>
+                <dd>% Archival storage</dd>
+            <dt>Ac</dt>
+                <dd>% Access</dd>
+            <br/>
+            <dt>&#x2713;</dt>
+                <dd>Yes</dd>
+            <dt>&#xd7;</dt>
+                <dd>No</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2 col-md-offset-10">
+        <input type="hidden" value="<?php echo $this->interval->interval_id ?>" name="interval_id">
+        <button type="button" class="btn btn-danger btn-block" id="delete-button" data-id="<?php echo $this->interval->interval_id ?>" data-type="interval" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->interval->collection_id ) ?>">Delete</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#tableCosts').dataTable( {
+        "dom": 'T<"clear">lfrtip',
+        "tableTools": {
+            "sSwfPath": "/templates/ccextemplate/libs/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
+        }
+    } );
+} );
+
+
+</script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/confirm-bootstrap.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/administration.js') ?>"></script>
+
+
 <script>
 $("[data-toggle='tooltip']").tooltip();
 
