@@ -77,7 +77,12 @@ class CCExModelsEuroconvertionrate extends CCExModelsDefault
         if (!$row_euro_convertion_rate->check()) {
             return null;
         }
-        if (!$row_euro_convertion_rate->store()) {
+        
+        try {
+            if (!$row_euro_convertion_rate->store()) {
+                return null;
+            }
+        } catch (Exception $e) {
             return null;
         }
         

@@ -1,3 +1,7 @@
+<?php
+    $configurationModel = new CCExModelsConfiguration();
+?>
+
 <form class="form-horizontal" id="organizationForm" role="form">
     <div class="form-group">
         <label  data-toggle="tooltip" data-placement="right" title="Is your organisation for example a National Library, an archive or a data centre? You can also add a mission statement or other background information you would like to share/provide" class="col-sm-2 control-label" for="organisation_name">Name</label>
@@ -68,7 +72,7 @@
                     <input name="organization[global_comparison]" <?php echo (!isset($this->organization->global_comparison) || $this->organization->global_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow the use of my anonymised cost data to calculate averages in the global comparison result.
                 </label>
-                <span class="description-block"><small>Averages will always have at least 5 organisations.</small></span>
+                <span class="description-block"><small>Averages will always have at least <?php echo $configurationModel->configurationValue("minimum_organizations_global_comparison", 5) ?> organisations.</small></span>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">

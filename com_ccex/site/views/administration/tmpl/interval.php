@@ -210,7 +210,13 @@
 <div class="row">
     <div class="col-sm-2 col-md-offset-10">
         <input type="hidden" value="<?php echo $this->interval->interval_id ?>" name="interval_id">
-        <button type="button" class="btn btn-danger btn-block" id="delete-button" data-id="<?php echo $this->interval->interval_id ?>" data-type="interval" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->interval->collection_id ) ?>">Delete</button>
+        <?php if(count($this->interval->collection()->intervals())>1) { ?>
+            <button type="button" class="btn btn-danger btn-block" id="delete-button" data-id="<?php echo $this->interval->interval_id ?>" data-type="interval" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=collection&collection_id=' . $this->interval->collection_id ) ?>">Delete</button>
+        <?php } else { ?>
+            <div data-toggle="tooltip" data-placement="top" title="You can't delete this year, because is the only year of their collection and all collections need at least one year">
+                <button type="button" disabled class="btn btn-danger btn-block" >Delete</button>
+            </div>
+        <?php } ?>
     </div>
 </div>
 

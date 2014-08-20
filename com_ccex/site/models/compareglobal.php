@@ -122,7 +122,9 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     }
     
     private function otherOrganizationSeries($organizations, $label) {
-        if(count($organizations) < 5){
+        $configurationModel = new CCExModelsConfiguration();
+
+        if(count($organizations) < $configurationModel->configurationValue("minimum_organizations_global_comparison", 5)){
             $organizations = array();
         }
         
@@ -147,7 +149,9 @@ class CCExModelsCompareglobal extends CCExModelsDefault
 
     
     private function otherCollectionsSeries($collections, $label) {
-        if(count($collections) < 5){
+        $configurationModel = new CCExModelsConfiguration();
+
+        if(count($collections) < $configurationModel->configurationValue("minimum_organizations_global_comparison", 5)){
             $organizations = array();
         }
         
@@ -267,6 +271,8 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     }
 
     private function addOption($options, $title, $type, $filter, $value, $organizations, $active=false, $enable=true, $tooltip="This filter cannot be used, because your cost data sets are very different in this field."){
+        $configurationModel = new CCExModelsConfiguration();
+
         $filtered = $this->filterBy($type, $filter, $value, $organizations);
 
         $option = array();
@@ -277,9 +283,9 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         $option["value"]  = $value;
         $option["active"] = $active;
 
-        if($option["number"] < 5){
+        if($option["number"] < $configurationModel->configurationValue("minimum_organizations_global_comparison", 5)){
             $option["enable"] = false;
-            $option["tooltip"] = "A filter cannot be displayed with size less than 5, to preserve anonimity for the participants.";
+            $option["tooltip"] = "A filter cannot be displayed with size less than " . $configurationModel->configurationValue("minimum_organizations_global_comparison", 5) . ", to preserve anonimity for the participants.";
         }else{
             $option["tooltip"] = $tooltip;
             $option["enable"] = $enable;

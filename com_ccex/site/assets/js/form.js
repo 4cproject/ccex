@@ -11,10 +11,8 @@ function ccexSave(model, action, redirect_url, silent, update_redirect, success_
         return;
     }
 
-    if (!silent) {
-        $("#_message_container").hide();
-        $("#_message_container").children().empty();
-    }
+    $("#_message_container").hide();
+    $("#_message_container").children().empty();
 
     var form = $("#" + model + "Form");
     var info = form.serializeArray();
@@ -56,7 +54,6 @@ function ccexSave(model, action, redirect_url, silent, update_redirect, success_
                 } else {
                     $("#_message_container").removeClass("alert-success alert-danger");
                     $("#_message_container").addClass("alert-danger");
-                    $("#_message_container #_description").text("Please check errors.");
                     $("#_message_container #_message").text(data.message);
                     $("#_message_container").show();
                 }

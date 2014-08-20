@@ -34,6 +34,19 @@ class CCExViewsAdministrationHtml extends JViewHtml
 
                 $this->conversions = $euroConvertionRateModel->listItems();
                 break;
+            case "configurations":
+                $configurationModel = new CCExModelsConfiguration();
+
+                $this->configurations = $configurationModel->listItems();
+                break;
+            case "configuration":
+                $configuration_id = $app->input->get('configuration_id', null);
+
+                if($configuration_id){
+                    $configurationModel = new CCExModelsConfiguration();
+                    $this->configuration = $configurationModel->getItemBy("_configuration_id", $configuration_id);
+                }
+                break;
             case "conversion":
                 $conversion_id = $app->input->get('conversion_id', null);
 
@@ -41,7 +54,9 @@ class CCExViewsAdministrationHtml extends JViewHtml
                     $conversionModel = new CCExModelsEuroconvertionrate();
                     $this->conversion = $conversionModel->getItemBy("_euro_convertion_id", $conversion_id);
                 }
-                
+
+                $currencyModel = new CCExModelsCurrency();
+                $this->currencies = $currencyModel->listItems();
                 break;
             case "organization":
                 $organization_id = $app->input->get('organization_id', null);
