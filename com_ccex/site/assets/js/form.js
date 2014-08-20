@@ -106,7 +106,7 @@ function capitalize(string) {
 
 $('#delete-button').exists(function() {
     $(this).confirmModal({
-        confirmMessage   : 'Are you sure you want to delete this ' + $(this).data("type") + '? This action is irreversible.',
+        confirmMessage   : 'Are you sure you want to delete this ' + ($(this).attr("data-name") ? $(this).data("name") : $(this).data("type")) + '? This action is irreversible.',
         confirmCallback  : callDelete
     });
 });

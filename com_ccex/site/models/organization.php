@@ -128,7 +128,9 @@ class CCExModelsOrganization extends CCExModelsDefault
         $id = $id ? $id : $app->input->get('organization_id');
         
         $organizationModel = new CCExModelsOrganization();
-        $organization = $organizationModel->getItemBy("_organization_id", $id);
+        $organizations = $organizationModel->listItemsBy("_organization_id", $id);
+        $organization = array_shift($organizations);
+        $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
 
         $organizationTable = JTable::getInstance('Organization', 'Table');
         $organizationTable->load($id);

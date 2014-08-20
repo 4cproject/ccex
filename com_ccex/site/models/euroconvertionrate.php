@@ -69,7 +69,7 @@ class CCExModelsEuroconvertionrate extends CCExModelsDefault
         $date = date("Y-m-d H:i:s");
         
         $row_euro_convertion_rate = JTable::getInstance('euroconvertionrate', 'Table');
-        if (!$row_euro_convertion_rate->bind($data)) {
+        if (!$row_euro_convertion_rate->bind($data["conversion"])) {
             return null;
         }
         
@@ -81,7 +81,9 @@ class CCExModelsEuroconvertionrate extends CCExModelsDefault
             return null;
         }
         
-        return true;
+        $return = array('euro_convertion_id' => $row_euro_convertion_rate->euro_convertion_id);
+        
+        return $return;
     }
     
     /**
@@ -91,7 +93,7 @@ class CCExModelsEuroconvertionrate extends CCExModelsDefault
      */
     public function delete($id = null) {
         $app = JFactory::getApplication();
-        $id = $id ? $id : $app->input->get('euro_convertion_id');
+        $id = $id ? $id : $app->input->get('euroconvertionrate_id');
         
         if ($id) {
             $euroConvertionRate = JTable::getInstance('euroconvertionrate', 'Table');

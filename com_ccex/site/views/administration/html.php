@@ -29,6 +29,20 @@ class CCExViewsAdministrationHtml extends JViewHtml
 
                 $this->organizations = $organizationModel->listItems();
                 break;
+            case "conversions":
+                $euroConvertionRateModel = new CCExModelsEuroconvertionrate();
+
+                $this->conversions = $euroConvertionRateModel->listItems();
+                break;
+            case "conversion":
+                $conversion_id = $app->input->get('conversion_id', null);
+
+                if($conversion_id){
+                    $conversionModel = new CCExModelsEuroconvertionrate();
+                    $this->conversion = $conversionModel->getItemBy("_euro_convertion_id", $conversion_id);
+                }
+                
+                break;
             case "organization":
                 $organization_id = $app->input->get('organization_id', null);
                 $organizationModel = new CCExModelsOrganization();

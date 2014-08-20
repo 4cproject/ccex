@@ -1,30 +1,37 @@
-function ccexDelete(type, id, redirect){
-    $.ajax({
-        url: 'index.php?option=com_ccex&controller=delete&format=raw&tmpl=component',
-        type: 'POST',
-        data: type+'_id='+id+'&type='+type,
-        dataType: 'JSON',
-        success:function(data){
-            if(data.success){
-                window.location.href = redirect;
+$(document).ready(function() {
+    $('form#euroconvertionrateForm').validate({
+        rules: {
+            'conversion[year]': {
+                required: true,
+                blank: false,
+                number: true
+            },
+            'conversion[tax]': {
+                required: true,
+                blank: false,
+                number: true
+            },
+            'conversion[code]': {
+                required: true,
+                blank: false,
+            }
+        },
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            var group = element.closest('.input-group');
+
+            if (group.length) {
+                error.insertAfter(group);
+            } else {
+                error.insertAfter(element);
             }
         }
     });
-}
-
-$('#delete-button').exists(function() {
-    $(this).confirmModal({
-        confirmMessage   : 'Are you sure you want to delete this ' + $(this).data("type") + '? This action is irreversible.',
-        confirmCallback  : callDelete
-    });
 });
-
-function callDelete(){
-    button = $('#delete-button');
-
-    id = button.data("id");
-    type = button.data("type");
-    redirect = button.data("redirect");
-
-    ccexDelete(type, id, redirect);
-}

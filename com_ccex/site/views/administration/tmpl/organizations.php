@@ -4,14 +4,7 @@
 </ol>
 
 <h1>Organisations</h1>
-<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<br/>
 
 <?php 
 $orgWithoutResponsible = array();
@@ -67,7 +60,7 @@ foreach ($this->organizations as $organization) {
                     <td><?php if($organization->user()){ echo "&#x2713;"; }else{ echo "&#xd7;"; } ?></td>
                     <td><?php echo $organization->country()->name ?></td>
                     <td><?php echo $organization->currency()->code ?></td>
-                    <td><?php echo $organization->typesToString() ?></td>
+                    <td><?php echo htmlspecialchars($organization->typesToString()) ?></td>
                     <td><?php if($organization->global_comparison){ echo "&#x2713;"; }else{ echo "&#xd7;"; } ?></td>
                     <td><?php if($organization->peer_comparison){ echo "&#x2713;"; }else{ echo "&#xd7;"; } ?></td>
                     <td><?php if($organization->organization_linked){ echo "&#x2713;"; }else{ echo "&#xd7;"; } ?></td>
