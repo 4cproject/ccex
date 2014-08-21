@@ -9,7 +9,7 @@
 <h1>
     <?php echo htmlspecialchars($this->interval->collection()->name ) ?> <?php echo $this->interval->toString(); ?>
 </h1>
-<br/>
+
 <div class="row">
     <div class="col-md-6">
         <dl class="dl-horizontal">

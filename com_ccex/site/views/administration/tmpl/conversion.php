@@ -13,7 +13,6 @@
 <?php } else { ?>
     <h1>New exchange rate</h1>
 <?php } ?>
-<br/>
 
 <form class="form-horizontal" id="euroconvertionrateForm" role="form">
     <div class="row">
@@ -75,21 +74,6 @@
         <?php } ?>
     </div>
 </form>
-
-<script type="text/javascript">
-$(document).ready( function () {
-    $('#tableConversions').dataTable( {
-        "dom": 'T<"clear">lfrtip',
-        "tableTools": {
-            "sSwfPath": "/templates/ccextemplate/libs/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-        },
-        "aoColumnDefs" : [ {
-            "bSortable" : false,
-            "aTargets" : [ "no-sort" ]
-        } ]
-    } );
-} );
-</script>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>

@@ -4,7 +4,6 @@
 </ol>
 
 <h1>Configurations</h1>
-<br/>
 
 <div style="padding: 30px 0">
     <table id="tableConfigurations" class="table table-condensed table-font-small">

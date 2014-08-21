@@ -61,4 +61,56 @@ class CCExModelsCountry extends CCExModelsDefault
         
         return $query;
     }
+
+    /**
+     * Override the default store
+     *
+     */
+    public function store($data = null) {
+        $data = $data ? $data : JRequest::get('post');
+        $date = date("Y-m-d H:i:s");
+        
+        $row_country = JTable::getInstance('country', 'Table');
+        if (!$row_country->bind($data["country"])) {
+            return null;
+        }
+        
+        $row_country->modified = $date;
+        if (!$row_country->check()) {
+            return null;
+        }
+        
+        try {
+            if (!$row_country->store()) {
+                return null;
+            }
+        } catch (Exception $e) {
+            return null;
+        }
+        
+        $return = array('country_id' => $row_country->country_id);
+        
+        return $return;
+    }
+    
+    /**
+     * Delete a Country
+     * @param int      ID of the Country to delete
+     * @return boolean True if successfully deleted
+     */
+    public function delete($id = null) {
+        $app = JFactory::getApplication();
+        $id = $id ? $id : $app->input->get('country_id');
+        
+        if ($id) {
+            $country = JTable::getInstance('country', 'Table');
+            $country->load($id);
+            
+            if ($country->delete()) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

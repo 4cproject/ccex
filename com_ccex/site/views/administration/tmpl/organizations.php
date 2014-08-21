@@ -4,7 +4,6 @@
 </ol>
 
 <h1>Organisations</h1>
-<br/>
 
 <?php 
 $orgWithoutResponsible = array();

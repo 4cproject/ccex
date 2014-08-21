@@ -154,6 +154,7 @@ CREATE TABLE `#__ccex_countries` (
   `published` tinyint(1) NOT NULL DEFAULT 0,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
+  UNIQUE (`name`),
   PRIMARY KEY (`country_id`)
 );
 

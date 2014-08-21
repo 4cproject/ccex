@@ -13,7 +13,6 @@
 <?php } else { ?>
     <h1>New configuration</h1>
 <?php } ?>
-<br/>
 
 <form class="form-horizontal" id="configurationForm" role="form">
     <div class="row">

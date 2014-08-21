@@ -1,26 +1,21 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=index') ?>">Administration</a></li>
-    <li class="active">Exchange Rates</li>
+    <li class="active">Countries</li>
 </ol>
 
-<h1>Exchange Rates</h1>
+<h1>Countries</h1>
 
 <div style="padding: 30px 0">
-    <table id="tableConversions" class="table table-condensed table-font-small">
+    <table id="tableCountry" class="table table-condensed table-font-small">
         <thead>
-            <th>Currency Code</th>
-            <th>Year</th>
-            <th>Rate</th>
+            <th>Country</th>
             <th style="text-align: right; width: 1px;" class="no-sort"></th>
         </thead>
         <tbody>
-            <?php foreach ($this->conversions as $conversion) { ?>
-                <?php $conversion = CCExHelpersCast::cast('CCExModelsEuroconvertionrate', $conversion); ?>
+            <?php foreach ($this->countries as $country) { ?>
                 <tr>
-                    <td><?php echo $conversion->code ?></td>
-                    <td><?php echo $conversion->year ?></td>
-                    <td><?php echo $conversion->tax ?></td>
-                    <td style="text-align: right"><a href="<?php echo JRoute::_('index.php?view=administration&layout=conversion&conversion_id=' . $conversion->euro_convertion_id ) ?>"><i class="fa fa-edit"></i></a></td>
+                    <td><?php echo $country->name ?></td>
+                    <td style="text-align: right"><a href="<?php echo JRoute::_('index.php?view=administration&layout=country&country_id=' . $country->country_id ) ?>"><i class="fa fa-edit"></i></a></td>
                 </tr>
             <?php } ?>
         </tbody>
@@ -29,13 +24,13 @@
 
 <div class="row">
     <div class="col-md-3">
-        <a href="<?php echo JRoute::_('index.php?view=administration&layout=conversion') ?>" class="btn btn-success btn-block">Add new exchange rate</a>
+        <a href="<?php echo JRoute::_('index.php?view=administration&layout=country') ?>" class="btn btn-success btn-block">Add new country</a>
     </div>
 </div>
 
 <script type="text/javascript">
 $(document).ready( function () {
-    $('#tableConversions').dataTable( {
+    $('#tableCountry').dataTable( {
         "dom": 'T<"clear">lfrtip',
         "tableTools": {
             "sSwfPath": "/templates/ccextemplate/libs/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"

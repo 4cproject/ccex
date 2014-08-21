@@ -4,7 +4,6 @@
 </ol>
 
 <h1>Costs</h1>
-<br/>
 
 <div style="padding: 30px 0">
     <table id="tableCosts" class="table table-condensed table-font-small">

@@ -24,6 +24,11 @@ class CCExViewsAdministrationHtml extends JViewHtml
 
                 $this->costs = $costModel->listItems();
                 break;
+            case "countries":
+                $countryModel = new CCExModelsCountry();
+
+                $this->countries = $countryModel->listItems();
+                break;
             case "organizations":
                 $organizationModel = new CCExModelsOrganization();
 
@@ -45,6 +50,14 @@ class CCExViewsAdministrationHtml extends JViewHtml
                 if($configuration_id){
                     $configurationModel = new CCExModelsConfiguration();
                     $this->configuration = $configurationModel->getItemBy("_configuration_id", $configuration_id);
+                }
+                break;
+            case "country":
+                $country_id = $app->input->get('country_id', null);
+
+                if($country_id){
+                    $countryModel = new CCExModelsCountry();
+                    $this->country = $countryModel->getItemBy("_country_id", $country_id);
                 }
                 break;
             case "conversion":
