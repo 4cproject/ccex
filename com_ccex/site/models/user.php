@@ -78,4 +78,14 @@ class CCExModelsUser extends CCExModelsDefault
     public function user(){
         return $this->user;
     }
+
+    public function getUserByID($id){
+        $table = JUser::getTable();
+
+        if($table->load($id)){
+          return JFactory::getUser($id);
+        } else {
+          return null;
+        }
+    }
 }

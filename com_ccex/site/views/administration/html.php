@@ -24,6 +24,11 @@ class CCExViewsAdministrationHtml extends JViewHtml
 
                 $this->costs = $costModel->listItems();
                 break;
+            case "contacts":
+                $contactModel = new CCExModelsContact();
+
+                $this->contacts = $contactModel->listItems();
+                break;
             case "countries":
                 $countryModel = new CCExModelsCountry();
 

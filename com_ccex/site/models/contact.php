@@ -126,6 +126,8 @@ class CCExModelsContact extends CCExModelsDefault
         $data["recipient_organization_id"] = $recipientOrganizationID;
         $data["sender_user_id"] = $senderOrganization->user_id;
         $data["recipient_user_id"] = $recipientOrganization->user_id;
+        $data["sender_email"] = $senderUser->email;
+        $data["recipient_email"] = $recipientUser->email;
 
         $data["message"] = $message;
 
