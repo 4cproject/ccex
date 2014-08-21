@@ -54,6 +54,22 @@ class CCExViewsAdministrationHtml extends JViewHtml
 
                 $this->configurations = $configurationModel->listItems();
                 break;
+            case "organizationtypes":
+                $organizationTypeModel = new CCExModelsOrganizationtype();
+
+                $this->organizationTypes = $organizationTypeModel->listItems();
+                break;
+            case "organizationtype":
+                $org_type_id = $app->input->get('org_type_id', null);
+
+                if($org_type_id){
+                    $organizationModel = new CCExModelsOrganization();
+                    $organizationTypeModel = new CCExModelsOrganizationtype();
+
+                    $this->organizationType = $organizationTypeModel->getItemBy("_org_type_id", $org_type_id);
+                    $this->existsOrganizationsOfType = $organizationModel->existsOrganizationsOfType($org_type_id);
+                }
+                break;
             case "configuration":
                 $configuration_id = $app->input->get('configuration_id', null);
 
@@ -66,8 +82,11 @@ class CCExViewsAdministrationHtml extends JViewHtml
                 $country_id = $app->input->get('country_id', null);
 
                 if($country_id){
+                    $organizationModel = new CCExModelsOrganization();
                     $countryModel = new CCExModelsCountry();
+
                     $this->country = $countryModel->getItemBy("_country_id", $country_id);
+                    $this->existsOrganizationsOfCountry = $organizationModel->existsOrganizationsOfCountry($country_id);
                 }
                 break;
             case "currency":

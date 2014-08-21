@@ -44,6 +44,7 @@ CREATE TABLE `#__ccex_organization_types` (
   `published` tinyint(1) NOT NULL DEFAULT 0,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
+  UNIQUE (`name`),
   PRIMARY KEY (`org_type_id`)
 );
 
@@ -168,7 +169,7 @@ CREATE TABLE `#__ccex_currencies` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
-  `published` tinyint(1) NOT NULL DEFAULTW 0,
+  `published` tinyint(1) NOT NULL DEFAULT 0,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
   UNIQUE (`code`),

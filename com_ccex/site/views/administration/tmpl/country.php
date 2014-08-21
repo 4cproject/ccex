@@ -13,6 +13,7 @@
 <?php } else { ?>
     <h1>New country</h1>
 <?php } ?>
+<br/>
 
 <form class="form-horizontal" id="countryForm" role="form">
     <div class="row">
@@ -42,9 +43,15 @@
             <div class="col-sm-2 col-sm-offset-2">
                 <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=administration&layout=countries') ?>">Cancel</span></a>
             </div>
-            <div class="col-sm-2">
-                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=countries') ?>" data-type="country" data-id="<?php echo $this->country->country_id; ?>">Delete</span></a>
-            </div>
+            <?php if($this->existsOrganizationsOfCountry) { ?>
+                <div class="col-sm-2" data-toggle="tooltip" data-placement="top" title="You can't delete the countries that are being used by organizations.">
+                    <a class="btn btn-danger btn-block" href="javascript:void(0)" disabled >Delete</span></a>
+                </div>
+            <?php } else { ?>
+                <div class="col-sm-2">
+                    <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=countries') ?>" data-type="country" data-id="<?php echo $this->country->country_id; ?>">Delete</span></a>
+                </div>
+            <?php } ?>
         <?php } else { ?>
             <div class="col-sm-2 col-sm-offset-4">
                 <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=administration&layout=countries') ?>">Cancel</span></a>

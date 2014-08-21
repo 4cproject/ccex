@@ -13,6 +13,7 @@
 <?php } else { ?>
     <h1>New exchange rate</h1>
 <?php } ?>
+<br/>
 
 <form class="form-horizontal" id="euroconvertionrateForm" role="form">
     <div class="row">

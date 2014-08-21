@@ -353,6 +353,8 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     }
 
     public function filterOrganizationsBy($filter, $value, $organizations = array()){
+        $configurationModel = new CCExModelsConfiguration();
+
         if(!count($organizations)){
             $organizationModel = new CCExModelsOrganization();
             $organizations = $organizationModel->organizationsForGlobalComparison();

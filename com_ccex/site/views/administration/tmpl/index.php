@@ -1,6 +1,6 @@
 <h1>Administration</h1>
 
-<div class="row" style="padding: 40px 0 30px 0">
+<div class="row" style="padding: 40px 0 10px 0">
     <div class="col-md-3">
         <div class="text-center" onclick="location.href='<?php echo JRoute::_('index.php?view=administration&layout=organizations'); ?>'" style="cursor: pointer;">
             <img class="icon" src="<?php echo (JURI::base().'templates/ccextemplate/images/icons/peppyicons/1405039281_users_128.png') ?>" width="128"/>
@@ -37,6 +37,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row" style="padding: 10px 0 30px 0">
     <div class="col-md-3">
         <div class="text-center"  onclick="location.href='<?php echo JRoute::_('index.php?view=administration&layout=currencies'); ?>'" style="cursor: pointer;">
             <img class="icon" src="<?php echo (JURI::base().'templates/ccextemplate/images/icons/peppyicons/1405039298_dollar_128.png') ?>" width="128"/>

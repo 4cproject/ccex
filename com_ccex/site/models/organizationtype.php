@@ -66,4 +66,56 @@ class CCExModelsOrganizationtype extends CCExModelsDefault
         
         return $query;
     }
+
+    /**
+     * Override the default store
+     *
+     */
+    public function store($data = null) {
+        $data = $data ? $data : JRequest::get('post');
+        $date = date("Y-m-d H:i:s");
+        
+        $row_organization_type = JTable::getInstance('organizationtype', 'Table');
+        if (!$row_organization_type->bind($data["organizationType"])) {
+            return null;
+        }
+        
+        $row_organization_type->modified = $date;
+        if (!$row_organization_type->check()) {
+            return null;
+        }
+        
+        try {
+            if (!$row_organization_type->store()) {
+                return null;
+            }
+        } catch (Exception $e) {
+            return null;
+        }
+        
+        $return = array('org_type_id' => $row_organization_type->org_type_id);
+        
+        return $return;
+    }
+    
+    /**
+     * Delete a Organization type
+     * @param int      ID of the Organization type to delete
+     * @return boolean True if successfully deleted
+     */
+    public function delete($id = null) {
+        $app = JFactory::getApplication();
+        $id = $id ? $id : $app->input->get('organizationtype_id');
+        
+        if ($id) {
+            $organizationtype = JTable::getInstance('organizationtype', 'Table');
+            $organizationtype->load($id);
+            
+            if ($organizationtype->delete()) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

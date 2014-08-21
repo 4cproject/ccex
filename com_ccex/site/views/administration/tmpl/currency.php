@@ -13,6 +13,7 @@
 <?php } else { ?>
     <h1>New currency</h1>
 <?php } ?>
+<br/>
 
 <form class="form-horizontal" id="currencyForm" role="form">
     <div class="row">

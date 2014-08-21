@@ -914,6 +914,20 @@ class CCExModelsOrganization extends CCExModelsDefault
         return $result;
     }
 
+    public function existsOrganizationsOfCountry($country_id){
+        $result = false;
+        $organizationModel = new CCExModelsOrganization();
+
+        foreach ($organizationModel->listItems() as $organization) {
+            if($organization->country_id == $country_id){
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
     public function existsOrganizationsWithCurrency($currency_id){
         $result = false;
         $organizationModel = new CCExModelsOrganization();
