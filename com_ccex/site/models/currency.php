@@ -61,4 +61,56 @@ class CCExModelsCurrency extends CCExModelsDefault
         
         return $query;
     }
+
+    /**
+     * Override the default store
+     *
+     */
+    public function store($data = null) {
+        $data = $data ? $data : JRequest::get('post');
+        $date = date("Y-m-d H:i:s");
+        
+        $row_currency = JTable::getInstance('currency', 'Table');
+        if (!$row_currency->bind($data["currency"])) {
+            return null;
+        }
+        
+        $row_currency->modified = $date;
+        if (!$row_currency->check()) {
+            return null;
+        }
+        
+        try {
+            if (!$row_currency->store()) {
+                return null;
+            }
+        } catch (Exception $e) {
+            return null;
+        }
+        
+        $return = array('currency_id' => $row_currency->currency_id);
+        
+        return $return;
+    }
+    
+    /**
+     * Delete a Currency
+     * @param int      ID of the Currency to delete
+     * @return boolean True if successfully deleted
+     */
+    public function delete($id = null) {
+        $app = JFactory::getApplication();
+        $id = $id ? $id : $app->input->get('currency_id');
+        
+        if ($id) {
+            $currency = JTable::getInstance('currency', 'Table');
+            $currency->load($id);
+            
+            if ($currency->delete()) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

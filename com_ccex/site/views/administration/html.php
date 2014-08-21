@@ -34,6 +34,11 @@ class CCExViewsAdministrationHtml extends JViewHtml
 
                 $this->countries = $countryModel->listItems();
                 break;
+            case "currencies":
+                $currencyModel = new CCExModelsCurrency();
+
+                $this->currencies = $currencyModel->listItems();
+                break;
             case "organizations":
                 $organizationModel = new CCExModelsOrganization();
 
@@ -63,6 +68,17 @@ class CCExViewsAdministrationHtml extends JViewHtml
                 if($country_id){
                     $countryModel = new CCExModelsCountry();
                     $this->country = $countryModel->getItemBy("_country_id", $country_id);
+                }
+                break;
+            case "currency":
+                $currency_id = $app->input->get('currency_id', null);
+
+                if($currency_id){
+                    $organizationModel = new CCExModelsOrganization();
+                    $currencyModel = new CCExModelsCurrency();
+
+                    $this->currency = $currencyModel->getItemBy("_currency_id", $currency_id);
+                    $this->existsOrganizationsWithCurrency = $organizationModel->existsOrganizationsWithCurrency($currency_id);
                 }
                 break;
             case "conversion":

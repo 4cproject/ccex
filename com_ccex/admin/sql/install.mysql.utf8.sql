@@ -168,9 +168,11 @@ CREATE TABLE `#__ccex_currencies` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL,
 
-  `published` tinyint(1) NOT NULL DEFAULT 0,
+  `published` tinyint(1) NOT NULL DEFAULTW 0,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
 
+  UNIQUE (`code`),
+  UNIQUE (`name`),
   PRIMARY KEY (`currency_id`)
 );
 

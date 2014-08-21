@@ -897,4 +897,34 @@ class CCExModelsOrganization extends CCExModelsDefault
           return null;
         }
     }
+
+    public function existsOrganizationsOfType($org_type_id){
+        $result = false;
+        $organizationModel = new CCExModelsOrganization();
+
+        foreach ($organizationModel->listItems() as $organization) {
+            $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+
+            if($organization->haveType($org_type_id)){
+                $result = true;
+                break;       
+            }
+        }
+
+        return $result;
+    }
+
+    public function existsOrganizationsWithCurrency($currency_id){
+        $result = false;
+        $organizationModel = new CCExModelsOrganization();
+
+        foreach ($organizationModel->listItems() as $organization) {
+            if($organization->currency_id == $currency_id){
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
 }

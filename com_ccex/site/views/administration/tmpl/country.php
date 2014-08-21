@@ -43,7 +43,7 @@
                 <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=administration&layout=countries') ?>">Cancel</span></a>
             </div>
             <div class="col-sm-2">
-                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=countries') ?>" data-type="country" data-name="exchange rate" data-id="<?php echo $this->country->country_id; ?>">Delete</span></a>
+                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=administration&layout=countries') ?>" data-type="country" data-id="<?php echo $this->country->country_id; ?>">Delete</span></a>
             </div>
         <?php } else { ?>
             <div class="col-sm-2 col-sm-offset-4">
@@ -57,4 +57,5 @@
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/confirm-bootstrap.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/administration.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/adm_country.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/form.js') ?>"></script>
