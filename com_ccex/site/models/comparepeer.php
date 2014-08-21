@@ -167,12 +167,14 @@ class CCExModelsComparepeer extends CCExModelsDefault
     }
 
     public function peersLikeYou($currentOrganizationID = null){
-        $typeScore = 50;
-        $dataVolumeScore = 40;
-        $mainAssetScore = 20;
-        $numberOfCopiesScore = 20;
-        $staffScore = 20;
-        $scopeScore = 10;
+        $configurationModel = new CCExModelsConfiguration();
+
+        $typeScore = $configurationModel->configurationValue("score_type_match", 50);
+        $dataVolumeScore = $configurationModel->configurationValue("score_data_volume_similiarity", 40);
+        $mainAssetScore = $configurationModel->configurationValue("score_main_asset_equality", 20);
+        $numberOfCopiesScore = $configurationModel->configurationValue("score_number_of_copies_similiarity", 20);
+        $staffScore = $configurationModel->configurationValue("score_staff_similiarity", 20);
+        $scopeScore = $configurationModel->configurationValue("score_scopes_match", 10);
 
         $organizationsScore = array();
         $organizationsHash = array();
@@ -214,7 +216,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
 
         return array(
             "current" => $current,
-            "others" => array_slice($result, 0, 5),
+            "others" => array_slice($result, 0, $configurationModel->configurationValue("maximum_other_peers_like_you", 5)),
             "complete" => $complete
         );
     }

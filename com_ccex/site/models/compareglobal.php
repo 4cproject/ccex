@@ -310,6 +310,8 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     }
 
     public function filterCollectionsBy($filter, $value, $organizations = array(), $collections = array()){
+        $configurationModel = new CCExModelsConfiguration();
+
         if(!count($organizations)){
             $organizationModel = new CCExModelsOrganization();
             $organizations = $organizationModel->organizationsForGlobalComparison();
@@ -324,15 +326,15 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                 $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
 
                 if($filter == "dataVolume"){
-                    if($this->percentageDifference($value, $collection->dataVolumePonderedAverage()) <= 0.3){
+                    if($this->percentageDifference($value, $collection->dataVolumePonderedAverage()) <= $configurationModel->configurationValue("maximum_percentage_of_difference", 0.3)){
                         array_push($result, $collection);
                     }
                 }elseif($filter == "staff"){
-                    if($this->percentageDifference($value, $collection->staffPonderedAverage()) <= 0.3){
+                    if($this->percentageDifference($value, $collection->staffPonderedAverage()) <= $configurationModel->configurationValue("maximum_percentage_of_difference", 0.3)){
                         array_push($result, $collection);
                     }
                 }elseif($filter == "numberOfCopies"){
-                    if($this->percentageDifference($value, $collection->numberOfCopiesPonderedAverage()) <= 0.3){
+                    if($this->percentageDifference($value, $collection->numberOfCopiesPonderedAverage()) <= $configurationModel->configurationValue("maximum_percentage_of_difference", 0.3)){
                         array_push($result, $collection);
                     }
                 }elseif($filter == "scope"){
@@ -373,7 +375,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                     array_push($result, $organization);
                 }
             }elseif($filter == "dataVolume") {
-                if($this->percentageDifference($organization->dataVolumePonderedAverage(), $value) <= 0.3){
+                if($this->percentageDifference($organization->dataVolumePonderedAverage(), $value) <= $configurationModel->configurationValue("maximum_percentage_of_difference", 0.3)){
                     array_push($result, $organization);
                 }
             }elseif($filter == "none") {

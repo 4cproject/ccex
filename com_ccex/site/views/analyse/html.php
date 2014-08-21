@@ -20,6 +20,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
         
         switch ($layout) {
             case "self":
+                $configurationModel = new CCExModelsConfiguration();
                 $compareSelf = new CCExModelsCompareself();
                 $compareSelf->set("_organization", $organization);
 
@@ -52,7 +53,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->_activities->categories = json_encode($categories);     
                 $this->_activities->currency = $organization->currency();  
 
-                if(count($masterCategories) > 5 ){ 
+                if(count($masterCategories) > $configurationModel->configurationValue("maximum_years_my_costs_charts", 5) ){ 
                     $this->_financialAccounting->master = true;
                     $this->_activities->master = true;
                 }else{

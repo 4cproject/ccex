@@ -647,8 +647,10 @@ class CCExModelsOrganization extends CCExModelsDefault
     }
 
     public function validDataVolumePonderedAverage(){
+        $configurationModel = new CCExModelsConfiguration();
+
         if($this->dataVolumePonderedAverage()){
-            return ($this->dataVolumePonderedStandardDeviation() / $this->dataVolumePonderedAverage()) <= 0.3;
+            return ($this->dataVolumePonderedStandardDeviation() / $this->dataVolumePonderedAverage()) <= $configurationModel->configurationValue("maximum_ratio_valid_global_comparison", 0.3);
         }else{
             return true;
         }
@@ -700,8 +702,10 @@ class CCExModelsOrganization extends CCExModelsDefault
     }
 
     public function validStaffPonderedAverage(){
+        $configurationModel = new CCExModelsConfiguration();
+
         if($this->staffPonderedAverage()){
-            return ($this->staffPonderedStandardDeviation() / $this->staffPonderedAverage()) <= 0.3;
+            return ($this->staffPonderedStandardDeviation() / $this->staffPonderedAverage()) <= $configurationModel->configurationValue("maximum_ratio_valid_global_comparison", 0.3);
         }else{
             return true;
         }
@@ -753,8 +757,10 @@ class CCExModelsOrganization extends CCExModelsDefault
     }
 
     public function validNumberOfCopiesPonderedAverage(){
+        $configurationModel = new CCExModelsConfiguration();
+
         if($this->numberOfCopiesPonderedAverage()){
-            return ($this->numberOfCopiesPonderedStandardDeviation() / $this->numberOfCopiesPonderedAverage()) <= 0.3;
+            return ($this->numberOfCopiesPonderedStandardDeviation() / $this->numberOfCopiesPonderedAverage()) <= $configurationModel->configurationValue("maximum_ratio_valid_global_comparison", 0.3);
         }else{
             return true;
         }

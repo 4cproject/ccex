@@ -11,7 +11,7 @@
 <?php if(isset($this->configuration)) { ?>
     <h1><?php echo $this->configuration->name ?></h1>
 <?php } else { ?>
-    <h1>New exchange rate</h1>
+    <h1>New configuration</h1>
 <?php } ?>
 <br/>
 

@@ -171,13 +171,15 @@ class CCExModelsCompareself extends CCExModelsDefault
     }
     
     public function beginOfFirstInterval($collections = array()) {
+        $configurationModel = new CCExModelsConfiguration();
+
         $beginAndLastYear = $this->_organization->beginAndLastYear($collections);
         $beginYear = $beginAndLastYear["begin_year"];
         $lastYear = $beginAndLastYear["last_year"];
         $beginOfFirstInterval = $beginYear;
-        
-        if ($lastYear - $beginYear > 4) {
-            $beginOfFirstInterval = $lastYear - 4;
+
+        if ($lastYear - $beginYear > $configurationModel->configurationValue("maximum_years_my_costs_charts", 5) - 1 ) {
+            $beginOfFirstInterval = $lastYear - ($configurationModel->configurationValue("maximum_years_my_costs_charts", 5) - 1) ;
         }
         
         return array("begin_of_first_interval" => $beginOfFirstInterval, "begin_year" => $beginYear);
