@@ -44,7 +44,7 @@ defined('_JEXEC') or die;
 					continue;
 				}
 
-				if ($item->link == "index.php?option=com_users&view=profile") {
+				if ($item->link == "index.php?option=com_users&view=profile" || $item->link == "index.php?option=com_ccex&view=user&layout=profile") {
 					if (JFactory::getUser()->get('guest')){
 						continue;
 					}else{
@@ -102,7 +102,7 @@ defined('_JEXEC') or die;
 					$class .= ' navbar-right';
 				}
 
-				if ($item->link == "index.php?option=com_users&view=profile"){
+				if ($item->link == "index.php?option=com_users&view=profile" || $item->link == "index.php?option=com_ccex&view=user&layout=profile"){
 					$class .= ' navbar-right';
 				}
 

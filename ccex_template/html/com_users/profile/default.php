@@ -8,16 +8,16 @@
  */
 
 defined('_JEXEC') or die;
+
+$app = JFactory::getApplication(); 
+$app->redirect('/profile'); 
 ?>
 <div class="profile <?php echo $this->pageclass_sfx?>">
 
     <?php echo $this->loadTemplate('core'); ?>
-
     <?php echo $this->loadTemplate('params'); ?>
-
     <?php echo $this->loadTemplate('custom'); ?>
     
-
     <br/>
     <?php if (JFactory::getUser()->id == $this->data->id) : ?>
         <div class="utils">
