@@ -1,7 +1,34 @@
-<ol class="breadcrumb">
+<ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
+    <li>
+        <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
+            <span class="wizard-number">1</span> 
+            Create your organization 
+            <i class="fa fa-check icon-status"></i>
+        </a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li>
+        <div class="nav-wedge"></div>
+        <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
+            <span class="wizard-number">2</span> 
+            Add cost data sets 
+            <i class="fa fa-check icon-status"></i>
+        </a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li class="active">
+        <div class="nav-wedge"></div>
+        <a href="javascript:void(0)" class="wizard-label">
+            <span class="wizard-number">3</span> 
+            Analyse and compare costs 
+        </a>
+    </li>
+</ul>
+
+<!-- <ol class="breadcrumb">
     <li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
     <li class="active">Analyse and compare costs</li>
-</ol>
+</ol> -->
 
 <h1>Analyse and compare costs</h1>
 <p>See the summary of your submitted costs and compare them with other organisations'.</p>

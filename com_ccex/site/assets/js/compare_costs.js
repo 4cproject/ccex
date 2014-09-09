@@ -26,11 +26,11 @@ $(".onoffswitch-checkbox").on("change", function() {
             }
 
             if (data.readyForComparison) {
-                $("#analyse-btn-ready").show();
-                $("#analyse-btn-not-ready").hide();
+                $(".analyse-ready").show();
+                $(".analyse-not-ready").hide();
             } else {
-                $("#analyse-btn-ready").hide();
-                $("#analyse-btn-not-ready").show();
+                $(".analyse-ready").hide();
+                $(".analyse-not-ready").show();
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {

@@ -61,6 +61,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                     $this->_activities->master = false;
                 }
 
+                $this->organization = $organization;
                 break;
 
             case "global":
@@ -103,6 +104,8 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $this->currentPeer = $currentPeer;
                 $this->peersLikeYou = $peersLikeYou["others"];
                 $this->complete = $peersLikeYou["complete"];
+
+                $this->organization = $organization;
                 break;
 
             default:
