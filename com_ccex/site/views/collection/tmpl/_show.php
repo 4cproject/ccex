@@ -8,7 +8,7 @@
                         #<?php echo $this->index ?>
                     </div>
                     <?php echo htmlspecialchars($this->collection->name ) ?> 
-                    <small><a href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id) ?>"><span class="fa fa-edit"></span></a></small>
+                    <small class="edit"><a href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id) ?>"><span class="fa fa-edit"></span> Edit cost data set</a></small>
                     <br>
                     <small><?php echo $this->collection->scope ?></small>
                 </h2>

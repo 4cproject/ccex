@@ -170,6 +170,9 @@
             <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->cost->cost_id)){ echo 'ccexUpdate(\'cost\', \'' . JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '&active_interval=' . $this->interval->interval_id . '#collectionCosts') . '\')'; }else{ echo 'ccexCreate(\'cost\', \'' . JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '&active_interval=' . $this->interval->interval_id . '#collectionCosts') . '\')'; } ?>">Save</span></a>
 		</div>
 		<div class="col-sm-2">
+            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->cost->cost_id)){ echo 'ccexUpdate(\'cost\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\')'; }else{ echo 'ccexCreate(\'cost\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\')'; } ?>">Save and add new</span></a>
+		</div>
+		<div class="col-sm-2">
 			<div class="alert alert-dismissable" id="_message_container" style="display: none;">
 	        	<button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
 	        	<p id="_message"></p>
@@ -177,14 +180,14 @@
 	    	</div>
 	    </div>
 	    <?php if(isset($this->cost->cost_id)){ ?>
-			<div class="col-sm-2 col-sm-offset-4">
+			<div class="col-sm-2 col-sm-offset-2">
 	            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '&active_interval=' . $this->interval->interval_id . '#collectionCosts') ?>">Cancel</span></a>
 			</div>
 			<div class="col-sm-2">
 	            <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '&active_interval=' . $this->interval->interval_id . '#collectionCosts') ?>" data-type="cost" data-id="<?php echo $this->cost->cost_id; ?>">Delete</span></a>
 			</div>
 		<?php } else { ?>
-			<div class="col-sm-2 col-sm-offset-6">
+			<div class="col-sm-2 col-sm-offset-4">
 	            <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->interval->collection()->collection_id . '&active_interval=' . $this->interval->interval_id . '#collectionCosts') ?>">Cancel</span></a>
 			</div>
 		<?php } ?>
