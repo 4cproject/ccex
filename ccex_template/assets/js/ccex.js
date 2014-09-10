@@ -117,7 +117,13 @@ SliderUtils.prototype = {
                 $(this.totalFeedbackElemId).html(this.formatter(this.total));
             } else {
                 $(this.totalFeedbackElemId).children(".feedback-value").html(this.valueFormatter(this.total));
-                $(this.totalFeedbackElemId).children(".feedback-symbol").html(this.symbolFormatter(this.total));
+                if(this.symbolFormatter(this.total) == "%"){
+                    $(this.totalFeedbackElemId).children(".feedback-currency-symbol").html("");
+                    $(this.totalFeedbackElemId).children(".feedback-percentage-symbol").html(this.symbolFormatter(this.total));
+                }else{
+                    $(this.totalFeedbackElemId).children(".feedback-percentage-symbol").html("");
+                    $(this.totalFeedbackElemId).children(".feedback-currency-symbol").html(this.symbolFormatter(this.total));
+                }
             }
         }
 
@@ -130,7 +136,14 @@ SliderUtils.prototype = {
                     $(sliderFeedbackId).html(this.formatter(sliderValue));
                 } else {
                     $(sliderFeedbackId).children(".feedback-value").html(this.valueFormatter(sliderValue));
-                    $(sliderFeedbackId).children(".feedback-symbol").html(this.symbolFormatter(sliderValue));
+                    
+                    if(this.symbolFormatter(this.total) == "%"){
+                        $(sliderFeedbackId).children(".feedback-currency-symbol").html("");
+                        $(sliderFeedbackId).children(".feedback-percentage-symbol").html(this.symbolFormatter(this.total));
+                    }else{
+                        $(sliderFeedbackId).children(".feedback-percentage-symbol").html("");
+                        $(sliderFeedbackId).children(".feedback-currency-symbol").html(this.symbolFormatter(this.total));
+                    }
                 }
             }
         }

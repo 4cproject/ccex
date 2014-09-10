@@ -26,10 +26,10 @@ class CCExHelpersTag
     }
     
     function formatCurrencyWithSymbol($value, $symbol) {
-        return sprintf('%s %s', CCExHelpersTag::formatCurrency($value), $symbol);
+        return sprintf('%s%s',$symbol, CCExHelpersTag::formatCurrency($value));
     }
     
     function formatWithSymbol($value, $symbol) {
-        return sprintf('%s %s', $value, $symbol);
+        return sprintf('%s%s',$symbol, $value);
     }
 }

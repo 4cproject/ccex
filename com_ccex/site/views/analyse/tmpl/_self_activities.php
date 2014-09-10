@@ -234,7 +234,7 @@
                         if(value == 0){value = "0";}else if(value < 0.01){value = value.toPrecision(2);}else{value = value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');}
 
                         var header = '<div style="width:250px"><div style="float: left;">' + this.series.options.stack + '</div><div style="float: right; font-size:12px; margin-bottom: 5px;">Year ' + this.point.category + '</div><table style="font-size:12px; white-space: nowrap; margin-top: 10px; width:100%;">'; 
-                        var point = '<tr><td style="padding:0"><span style="color: ' + this.series.color + '">&#9679;</span>  ' + this.series.name + ': </td>' + '<td style="padding:0 0 0 5px; text-align: right;">' + value  +  ' ' + <?php echo "'" . $this->currency->symbol . "'"; ?>  + '/GB&sdot;Y</td></tr>';
+                        var point = '<tr><td style="padding:0"><span style="color: ' + this.series.color + '">&#9679;</span>  ' + this.series.name + ': </td>' + '<td style="padding:0 0 0 5px; text-align: right;">' + <?php echo "'" . $this->currency->symbol . "'"; ?> + value  + '/GB&sdot;Y</td></tr>';
                         var footer = '</table></div>'; 
 
                         return header + point + footer;
