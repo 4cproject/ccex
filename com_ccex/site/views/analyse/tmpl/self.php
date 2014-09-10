@@ -53,19 +53,19 @@
       </label>
     </div>
     <?php if($this->organization->readyForComparison()){ ?>
-    <div class="radio">
-      <label>
-        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
-        Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
-      </label>
-    </div>
+      <div class="radio">
+        <label>
+          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
+          Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+        </label>
+      </div>
     <?php }else{ ?>
-    <div class="radio">
-      <label style="color: #999">
-        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled>
-        Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
-      </label>
-    </div>
+      <div class="radio">
+        <label style="color: #999">
+          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled>
+          Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+        </label>
+      </div>
     <?php } ?>
     <?php if(count($this->collections)) { ?>
       <div class="radio">

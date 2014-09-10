@@ -521,9 +521,14 @@ class CCExModelsOrganization extends CCExModelsDefault
         return $beginAndLastYear;
     }
     
-    public function years() {
+    public function years($filter = null) {
         $yearsHash = array();
-        $intervals = $this->intervals();
+
+        if($filter && $filter == "final"){
+            $intervals = $this->finalIntervals();
+        }else{
+            $intervals = $this->intervals();
+        }
         
         foreach ($intervals as $interval) {
             $beginYear = $interval->begin_year;

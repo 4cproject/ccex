@@ -48,47 +48,79 @@
     <div class="form-inline col-md-6">
       <h4>My costs</h4>
       <p class="small" style="margin-bottom: 5px">Select which data sets to analyse:</p>
-      <label class="radio-inline">
-        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
-        All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
-      </label>
-      
-      <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelected">
-        <option value="all">All years</option>
-        <?php foreach (array_keys($this->organization->years()) as $year) { ?>
-          <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-        <?php } ?>
-      </select>
-      <br/>
-      <?php if(count($this->collections)) { ?>
-        <label class="radio-inline col-xs-12">
-            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-            Separate and select cost data sets:
+      <div>
+        <label class="radio-inline">
+          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
+          All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
         </label>
-
-        <div class="radio" id="collectionsRadios">
-          <?php $i = 1 ?>
-          <?php foreach ($this->collections as $collection) { 
-            $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
-            
-            <div class="row" style="margin-left: 20px;">
-              <label class="checkbox-inline">
-                <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
-                <span class="badge">#<?php echo $i; ?></span> 
-                <?php echo htmlspecialchars($collection->name) ; ?>
-              </label>
-              <select class="form-control input-xs updateChartsOnChange collectionSelect" name="yearsSelected[<?php echo $collection->collection_id ?>]">
-                <option value="all">All years</option>
-                  <?php foreach (array_keys($collection->years()) as $year) { ?>
-                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                  <?php } ?>
-              </select>
-            </div>
-
-          <?php $i++; ?>
+        
+        <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedAll">
+          <option value="all">All years</option>
+          <?php foreach (array_keys($this->organization->years()) as $year) { ?>
+            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
           <?php } ?>
-        </div>
-      <?php } ?>
+        </select>
+      </div>
+      <div>
+        <?php if($this->organization->readyForComparison()){ ?>
+          <label class="radio-inline">
+            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
+            Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+          </label>
+          
+          <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedFinal">
+            <option value="all">All years</option>
+            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+            <?php } ?>
+          </select>
+        <?php }else{ ?>
+          <label class="radio-inline">
+            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" checked>
+            Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+          </label>
+          
+          <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedFinal">
+            <option value="all">All years</option>
+            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+            <?php } ?>
+          </select>
+        <?php } ?>
+      </div>
+      <div>
+        <?php if(count($this->collections)) { ?>
+          <label class="radio-inline col-xs-12">
+              <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
+              Separate and select cost data sets:
+          </label>
+
+          <div class="radio" id="collectionsRadios">
+            <?php $i = 1 ?>
+            <?php foreach ($this->collections as $collection) { 
+              $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
+              
+              <div class="row" style="margin-left: 20px;">
+                <label class="checkbox-inline">
+                  <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
+                  <span class="badge">#<?php echo $i; ?></span> 
+                  <?php echo htmlspecialchars($collection->name) ; ?>
+                </label>
+                <select class="form-control input-xs updateChartsOnChange collectionSelect" name="yearsSelected[<?php echo $collection->collection_id ?>]">
+                  <option value="all">All years</option>
+                    <?php foreach (array_keys($collection->years()) as $year) { ?>
+                      <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                    <?php } ?>
+                </select>
+                <?php if(!$collection->final){ ?>
+                    <small><span class="label label-default label-draft">Draft</span></small>
+                <?php } ?>            
+            </div>
+            <?php $i++; ?>
+            <?php } ?>
+          </div>
+        <?php } ?>
+      </div>
 
     </div>
     <div class="col-md-6">
