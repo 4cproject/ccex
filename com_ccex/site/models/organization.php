@@ -447,8 +447,13 @@ class CCExModelsOrganization extends CCExModelsDefault
     
     // E
     
-    private function organizationBeginAndLastYear() {
-        $intervals = $this->intervals();
+    private function organizationBeginAndLastYear($filter) {
+        if($filter && $filter == "final"){
+            $intervals = $this->finalIntervals();
+        }else{
+            $intervals = $this->intervals();
+        }
+
         $firstInterval = array_shift($intervals);
         
         if($firstInterval){
@@ -503,12 +508,12 @@ class CCExModelsOrganization extends CCExModelsDefault
         return array("begin_year" => $beginYear, "last_year" => $lastYear);
     }
     
-    public function beginAndLastYear($collections = array()) {
+    public function beginAndLastYear($collections = array(), $filter = null) {
         if (count($collections)) {
             $beginAndLastYear = $this->collectionsBeginAndLastYear($collections);
         } else {
             if (!$this->_organizationBeginAndLastYear) {
-                $this->_organizationBeginAndLastYear = $this->organizationBeginAndLastYear();
+                $this->_organizationBeginAndLastYear = $this->organizationBeginAndLastYear($filter);
             }
             $beginAndLastYear = $this->_organizationBeginAndLastYear;
         }

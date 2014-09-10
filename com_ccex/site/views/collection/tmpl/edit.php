@@ -9,7 +9,7 @@
     </li>
     <li class="active">
         <div class="nav-wedge"></div>
-        <a href="javascript:void(0)" class="wizard-label">
+        <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
             <span class="wizard-number">2</span> 
             Add cost data sets 
             <i class="fa fa-check icon-status analyse-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>

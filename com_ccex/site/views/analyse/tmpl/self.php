@@ -12,7 +12,7 @@
         <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
             <span class="wizard-number">2</span> 
             Add cost data sets 
-            <i class="fa fa-check icon-status"></i>
+            <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
         </a>
         <div class="nav-arrow"></div>
     </li>
@@ -48,10 +48,25 @@
 <form id ="selfComparisonForm">
     <div class="radio">
       <label>
-        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
+        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
         All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
       </label>
     </div>
+    <?php if($this->organization->readyForComparison()){ ?>
+    <div class="radio">
+      <label>
+        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
+        Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+      </label>
+    </div>
+    <?php }else{ ?>
+    <div class="radio">
+      <label style="color: #999">
+        <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled>
+        Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+      </label>
+    </div>
+    <?php } ?>
     <?php if(count($this->collections)) { ?>
       <div class="radio">
         <label>
@@ -67,6 +82,9 @@
                           #<?php echo $i; ?>
                       </span> 
                       <?php echo htmlspecialchars($collection->name) ; ?>
+                      <?php if(!$collection->final){ ?>
+                          <small><span class="label label-default label-draft">Draft</span></small>
+                      <?php } ?>
                   </label>
               </div>
           <?php $i++; ?>

@@ -111,20 +111,25 @@ class CCExModelsCompareself extends CCExModelsDefault
         return $series;
     }
     
-    private function organizationSeries($beginYear, $number) {
+    private function organizationSeries($beginYear, $number, $filter) {
         $series = array("financial_accounting" => array(), "activities" => array());
         
-        $data = $this->seriesData($this->_organization->finalIntervals(), $beginYear, $number);
+        if($filter && $filter=="final"){
+            $data = $this->seriesData($this->_organization->finalIntervals(), $beginYear, $number);
+        }else{
+            $data = $this->seriesData($this->_organization->intervals(), $beginYear, $number);
+        }
+        
         $series = $this->pushSeries($series, $data);
         
         return $series;
     }
     
-    private function series($collections, $beginYear, $number) {
+    private function series($collections, $beginYear, $number, $filter) {
         if (count($collections)) {
             $series = $this->collectionsSeries($collections, $beginYear, $number);
         } else {
-            $series = $this->organizationSeries($beginYear, $number);
+            $series = $this->organizationSeries($beginYear, $number, $filter);
         }
         
         return $series;
@@ -143,8 +148,8 @@ class CCExModelsCompareself extends CCExModelsDefault
         return $categories;
     }
     
-    private function calculateSeriesAndCategories($collections, $startYear) {
-        $beginAndLastYear = $this->_organization->beginAndLastYear($collections);
+    private function calculateSeriesAndCategories($collections, $startYear, $filter) {
+        $beginAndLastYear = $this->_organization->beginAndLastYear($collections, $filter);
         $beginYear = $beginAndLastYear["begin_year"];
         $lastYear = $beginAndLastYear["last_year"];
         
@@ -154,26 +159,26 @@ class CCExModelsCompareself extends CCExModelsDefault
         
         $number = $lastYear - $beginYear + 1;
         
-        $result = array("categories" => $this->categories($beginYear, $number), "series" => $this->series($collections, $beginYear, $number));
+        $result = array("categories" => $this->categories($beginYear, $number), "series" => $this->series($collections, $beginYear, $number, $filter));
         
         return $result;
     }
     
-    public function seriesAndCategories($collections = array(), $startYear = null) {
+    public function seriesAndCategories($collections = array(), $startYear = null, $filter = null) {
         if (count($collections) || $startYear) {
-            return $this->calculateSeriesAndCategories($collections, $startYear);
+            return $this->calculateSeriesAndCategories($collections, $startYear, $filter);
         } else {
             if (!$this->_organizationSeriesAndCategories) {
-                $this->_organizationSeriesAndCategories = $this->calculateSeriesAndCategories($collections, $startYear);
+                $this->_organizationSeriesAndCategories = $this->calculateSeriesAndCategories($collections, $startYear, $filter);
             }
             return $this->_organizationSeriesAndCategories;
         }
     }
     
-    public function beginOfFirstInterval($collections = array()) {
+    public function beginOfFirstInterval($collections = array(), $filter = null) {
         $configurationModel = new CCExModelsConfiguration();
 
-        $beginAndLastYear = $this->_organization->beginAndLastYear($collections);
+        $beginAndLastYear = $this->_organization->beginAndLastYear($collections, $filter);
         $beginYear = $beginAndLastYear["begin_year"];
         $lastYear = $beginAndLastYear["last_year"];
         $beginOfFirstInterval = $beginYear;

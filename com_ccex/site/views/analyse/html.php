@@ -24,7 +24,8 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 $compareSelf = new CCExModelsCompareself();
                 $compareSelf->set("_organization", $organization);
 
-                $this->collections = $organization->finalCollections();
+                $this->collections = $organization->collections();
+                $this->collectionsFinal = $organization->finalCollections();
                 
                 $beginOfFirstInterval = $compareSelf->beginOfFirstInterval();
                 $begin = $beginOfFirstInterval["begin_of_first_interval"];

@@ -27,6 +27,7 @@ class CCExControllersDraft extends JControllerBase
         }
 
         $return['readyForComparison'] = $collection->organization()->readyForComparison();
+        $return['numberIntervals'] = $collection->organization()->numberIntervals();
         
         echo json_encode($return);
     }

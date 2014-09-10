@@ -109,7 +109,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#combinedMode").on('change', function() {
+    $("#combinedModeAll, #combinedModeFinal").on('change', function() {
         if(this.checked) {
             $(".collectionCheck").prop("disabled", true);
         }
@@ -121,7 +121,7 @@ $(document).ready(function() {
 
         if(checked.size()==0){
             $("#separatedMode").removeAttr("checked");
-            $("#combinedMode").prop('checked', true);
+            $("#combinedModeAll").prop('checked', true);
 
             allChecks.prop('checked', true);
             allChecks.prop("disabled", true);

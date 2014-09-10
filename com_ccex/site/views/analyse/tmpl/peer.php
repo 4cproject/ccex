@@ -12,7 +12,7 @@
         <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
             <span class="wizard-number">2</span> 
             Add cost data sets 
-            <i class="fa fa-check icon-status"></i>
+            <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
         </a>
         <div class="nav-arrow"></div>
     </li>

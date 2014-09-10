@@ -15,18 +15,18 @@
             <a href="javascript:void(0)" class="wizard-label">
                 <span class="wizard-number">2</span> 
                 Add cost data sets 
-                <i class="fa fa-check icon-status analyse-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
+                <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
             </a>
             <div class="nav-arrow"></div>
         </li>
-        <li class="analyse-ready last-child" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>">
+        <li class="analyse-ready last-child" style="<?php if(!$this->organization->Intervals()){ echo "display: none"; } ?>">
             <div class="nav-wedge"></div>
             <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="wizard-label">
                 <span class="wizard-number">3</span> 
                 Analyse and compare costs 
             </a>
         </li>
-        <li class="wizard-li-lock analyse-not-ready" style="<?php if($this->organization->readyForComparison()){ echo "display: none"; } ?>">
+        <li class="wizard-li-lock analyse-not-ready" style="<?php if($this->organization->Intervals()){ echo "display: none"; } ?>">
             <div class="nav-wedge"></div>
             <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
                 <span class="wizard-number">3</span> 

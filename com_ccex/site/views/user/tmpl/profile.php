@@ -18,7 +18,7 @@
 <h1>Organisation</h1>
 <p></p>
 
-<?php if(!$this->organization){  ?>
+<?php if($this->organization){  ?>
     <h3 style="margin-bottom: 5px;">
         <?php echo htmlspecialchars($this->organization->name); ?>
         <small class="edit">

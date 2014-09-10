@@ -24,13 +24,11 @@ $(".onoffswitch-checkbox").on("change", function() {
             if (!data.success) {
                 checkbox.prop("checked", !checked);
             }
-
+            
             if (data.readyForComparison) {
-                $(".analyse-ready").show();
-                $(".analyse-not-ready").hide();
+                $(".analyse-check-ready").show();
             } else {
-                $(".analyse-ready").hide();
-                $(".analyse-not-ready").show();
+                $(".analyse-check-ready").hide();
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {
