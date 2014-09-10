@@ -69,7 +69,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
     }
 
     private function mySeries($collectionsIDs, $year, $intervals = array()) {
-        $collections = $this->_organization->finalCollections();
+        $collections = $this->_organization->collections();
         $collectionsIdentifiers = array();
 
         foreach ($collections as $index => $collection) {
@@ -130,11 +130,15 @@ class CCExModelsComparepeer extends CCExModelsDefault
         return $series;
     }
 
-    private function calculateMySeries($collectionsIDs, $year) {
+    private function calculateMySeries($collectionsIDs, $year, $filter) {
         $intervals = array();
 
         if (!count($collectionsIDs)) {
-            $intervals = $this->_organization->finalIntervalsOfYear($year);
+            if($filter && $filter == "final"){
+                $intervals = $this->_organization->finalIntervalsOfYear($year);
+            }else{
+                $intervals = $this->_organization->intervalsOfYear($year);
+            }
         }
         
         return $this->mySeries($collectionsIDs, $year, $intervals);
@@ -146,10 +150,10 @@ class CCExModelsComparepeer extends CCExModelsDefault
         return $series;
     }
     
-    private function calculateSeries($myCollectionsIDs, $myYear, $organization) {
+    private function calculateSeries($myCollectionsIDs, $myYear, $organization, $filter) {
         $series = array("financial_accounting" => array(), "activities" => array());
         
-        $mySeries = $this->calculateMySeries($myCollectionsIDs, $myYear);
+        $mySeries = $this->calculateMySeries($myCollectionsIDs, $myYear, $filter);
         
         $series["financial_accounting"] = $mySeries["financial_accounting"];
         $series["activities"]           = $mySeries["activities"];
@@ -162,8 +166,8 @@ class CCExModelsComparepeer extends CCExModelsDefault
         return $series;
     }
     
-    public function series($organization, $myCollectionsIDs = array(), $myYear = "all") {
-        return $this->calculateSeries($myCollectionsIDs, $myYear, $organization);
+    public function series($organization, $myCollectionsIDs = array(), $myYear = "all", $filter = null) {
+        return $this->calculateSeries($myCollectionsIDs, $myYear, $organization, $filter);
     }
 
     public function peersLikeYou($currentOrganizationID = null){

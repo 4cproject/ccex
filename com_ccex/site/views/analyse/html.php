@@ -103,7 +103,9 @@ class CCExViewsAnalyseHtml extends JViewHtml
                     $this->_activities->series = json_encode($series["activities"]);
                 }
                 
-                $this->collections = $organization->finalCollections();
+                $this->collections = $organization->collections();
+                $this->collectionsFinal = $organization->finalCollections();
+                
                 $this->organization = $organization;
                 $this->currentPeer = $currentPeer;
                 $this->peersLikeYou = $peersLikeYou["others"];

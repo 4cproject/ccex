@@ -54,7 +54,7 @@
           All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
         </label>
         
-        <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedAll">
+        <select class="form-control input-xs updateChartsOnChange organizationSelectAll" style="margin-left: 5px;" name="organizationYearSelectedAll">
           <option value="all">All years</option>
           <?php foreach (array_keys($this->organization->years()) as $year) { ?>
             <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
@@ -68,7 +68,7 @@
             Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
           </label>
           
-          <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedFinal">
+          <select class="form-control input-xs updateChartsOnChange organizationSelect organizationSelectFinal" style="margin-left: 5px;" name="organizationYearSelectedFinal">
             <option value="all">All years</option>
             <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
               <option value="<?php echo $year; ?>"><?php echo $year; ?></option>

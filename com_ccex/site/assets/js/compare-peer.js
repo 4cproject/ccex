@@ -7,8 +7,8 @@ $(document).ready(function() {
 
         if(!($("#separatedMode").is('checked') && $(".collectionCheck:checked").size() == 0) && 
            !($(this).hasClass("collectionSelect") && $(this).closest(".row").find(".collectionCheck:checked:not(:disabled)").size() == 0) &&
-           !($(this).hasClass("organizationSelect") && $("#combinedMode").is(":not(:checked)"))
-           ){
+           !($(this).hasClass("organizationSelectAll") && $("#combinedModeAll").is(":not(:checked)")) &&
+           !($(this).hasClass("organizationSelectFinal") && $("#combinedModeFinal").is(":not(:checked)"))){
             financialAccountingChart.showLoading();
             activitiesChart.showLoading();
             $.ajax({
@@ -52,7 +52,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#combinedMode").on('change', function() {
+    $("#combinedModeAll, #combinedModeFinal").on('change', function() {
         if(this.checked) {
             $(".collectionCheck").attr("disabled", true);
         }
@@ -65,7 +65,7 @@ $(document).ready(function() {
 
         if(checked.size()==0){
             $("#separatedMode").removeAttr("checked");
-            $("#combinedMode").prop('checked', true);
+            $("#combinedModeAll").prop('checked', true);
 
            allChecks.each(function( index, element ) {
                 if(index < 3){

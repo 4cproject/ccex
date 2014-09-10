@@ -458,7 +458,7 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 }
 
 .nav-name-ellipsis{
-  max-width: 140px;
+  max-width: 160px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

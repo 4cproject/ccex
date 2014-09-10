@@ -49,18 +49,47 @@
       <div class="form-inline col-md-6">
         <h3>My costs</h3>
         <p class="small" style="margin-bottom: 0px">Select which data sets to analyse:</p>
+        <div>
         <label class="radio-inline">
-          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedMode" value="combined" checked>
+          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
           All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
         </label>
         
-        <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelected">
+        <select class="form-control input-xs updateChartsOnChange organizationSelect organizationSelectAll" style="margin-left: 5px;" name="organizationYearSelectedAll">
           <option value="all">All years</option>
           <?php foreach (array_keys($this->organization->years()) as $year) { ?>
             <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
           <?php } ?>
         </select>
-        <br/>
+      </div>
+      <div>
+        <?php if($this->organization->readyForComparison()){ ?>
+          <label class="radio-inline">
+            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
+            Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+          </label>
+          
+          <select class="form-control input-xs updateChartsOnChange organizationSelect organizationSelectFinal" style="margin-left: 5px;" name="organizationYearSelectedFinal">
+            <option value="all">All years</option>
+            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+            <?php } ?>
+          </select>
+        <?php }else{ ?>
+          <label class="radio-inline">
+            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" checked>
+            Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
+          </label>
+          
+          <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedFinal">
+            <option value="all">All years</option>
+            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+            <?php } ?>
+          </select>
+        <?php } ?>
+      </div>
+      <div>
         <?php if(count($this->collections)) { ?>
           <label class="radio-inline col-xs-12">
               <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
@@ -84,13 +113,15 @@
                       <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
                     <?php } ?>
                 </select>
-              </div>
-
+                <?php if(!$collection->final){ ?>
+                    <small><span class="label label-default label-draft">Draft</span></small>
+                <?php } ?>            
+            </div>
             <?php $i++; ?>
             <?php } ?>
           </div>
         <?php } ?>
-
+      </div>
       </div>
       <div class="col-md-6">
         <h3><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>

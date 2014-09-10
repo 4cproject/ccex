@@ -14,6 +14,7 @@ class CCExControllersComparepeer extends JControllerBase
         $comparePeer = new CCExModelsComparepeer();
         $comparePeer->set("_organization", $organization);
         $myCollectionsIDs = array();
+        $filter = null;
 
         $organizationModel = new CCExModelsOrganization();
         $currentPeerID = $data["currentPeer"];
@@ -23,11 +24,17 @@ class CCExControllersComparepeer extends JControllerBase
             $myCollectionsIDs = $data['collectionsSelected'];
             $myYear = $data["yearsSelected"];
         } else {
-            $myYear = $data['organizationYearSelected'];
             $myCollectionsIDs = array();
+
+            if($data["collectionsMode"] == "combinedFinal"){
+                $myYear = $data['organizationYearSelectedFinal'];
+                $filter = "final";
+            } else {
+                $myYear = $data['organizationYearSelectedAll'];
+            }
         }
 
-        $series = $comparePeer->series($currentPeer, $myCollectionsIDs, $myYear);
+        $series = $comparePeer->series($currentPeer, $myCollectionsIDs, $myYear, $filter);
         
         $return['success'] = true;            
         $return['series'] = $series;
