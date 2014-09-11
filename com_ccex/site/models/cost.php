@@ -209,10 +209,10 @@ class CCExModelsCost extends CCExModelsDefault
     }
     
     public function percentageFinancialAccountingMapping() {
-        return $this->cat_hardware + $this->cat_software + $this->cat_external + $this->cat_producer + $this->cat_it_developer + $this->cat_operations + $this->cat_specialist + $this->cat_manager + $this->cat_overhead;
+        return intval($this->cat_hardware + $this->cat_software + $this->cat_external + $this->cat_producer + $this->cat_it_developer + $this->cat_operations + $this->cat_specialist + $this->cat_manager + $this->cat_overhead);
     }
     
     public function percentageActivityMapping() {
-        return $this->cat_pre_ingest + $this->cat_ingest + $this->cat_storage + $this->cat_access;
+        return intval($this->cat_pre_ingest + $this->cat_ingest + $this->cat_storage + $this->cat_access);
     }
 }

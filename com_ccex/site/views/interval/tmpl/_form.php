@@ -65,21 +65,21 @@
                 <label class="col-sm-4 control-label" for="asset_unformatted_text">Unformatted text</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_unformatted_text' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_unformatted_text) ? $this->interval->asset_unformatted_text : 0) ?>" id="asset_unformatted_text" name="interval[asset_unformatted_text]" type="text" value="<?php echo (isset($this->interval->asset_unformatted_text) ? $this->interval->asset_unformatted_text : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_unformatted_text_feedback"></span>
+                    <span class="slider-feedback" id="asset_unformatted_text_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_word_processing">Word processing</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_word_processing' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_word_processing) ? $this->interval->asset_word_processing : 0) ?>" id="asset_word_processing" name="interval[asset_word_processing]" type="text" value="<?php echo (isset($this->interval->asset_word_processing) ? $this->interval->asset_word_processing : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_word_processing_feedback"></span>
+                    <span class="slider-feedback" id="asset_word_processing_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_spreadsheet">Spreadsheet</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_spreadsheet' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_spreadsheet) ? $this->interval->asset_spreadsheet : 0) ?>" id="asset_spreadsheet" name="interval[asset_spreadsheet]" type="text" value="<?php echo (isset($this->interval->asset_spreadsheet) ? $this->interval->asset_spreadsheet : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_spreadsheet_feedback"></span>
+                    <span class="slider-feedback" id="asset_spreadsheet_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
@@ -88,7 +88,7 @@
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_graphics' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_graphics) ? $this->interval->asset_graphics : 0) ?>" id="asset_graphics" name="interval[asset_graphics]" type="text" value="<?php echo (isset($this->interval->asset_graphics) ? $this->interval->asset_graphics : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_graphics_feedback"></span>
+                    <span class="slider-feedback" id="asset_graphics_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
@@ -97,7 +97,7 @@
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_audio' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_audio) ? $this->interval->asset_audio : 0) ?>" id="asset_audio" name="interval[asset_audio]" type="text" value="<?php echo (isset($this->interval->asset_audio) ? $this->interval->asset_audio : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_audio_feedback"></span>
+                    <span class="slider-feedback" id="asset_audio_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
@@ -106,28 +106,28 @@
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_video' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_video) ? $this->interval->asset_video : 0) ?>" id="asset_video" name="interval[asset_video]" type="text" value="<?php echo (isset($this->interval->asset_video) ? $this->interval->asset_video : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_video_feedback"></span>
+                    <span class="slider-feedback" id="asset_video_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_hypertext">Hypertext</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_hypertext' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_hypertext) ? $this->interval->asset_hypertext : 0) ?>" id="asset_hypertext" name="interval[asset_hypertext]" type="text" value="<?php echo (isset($this->interval->asset_hypertext) ? $this->interval->asset_hypertext : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_hypertext_feedback"></span>
+                    <span class="slider-feedback" id="asset_hypertext_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_geodata">Geodata</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_geodata' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_geodata) ? $this->interval->asset_geodata : 0) ?>" id="asset_geodata" name="interval[asset_geodata]" type="text" value="<?php echo (isset($this->interval->asset_geodata) ? $this->interval->asset_geodata : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_geodata_feedback"></span>
+                    <span class="slider-feedback" id="asset_geodata_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_email">E-mail</label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_email' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_email) ? $this->interval->asset_email : 0) ?>" id="asset_email" name="interval[asset_email]" type="text" value="<?php echo (isset($this->interval->asset_email) ? $this->interval->asset_email : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_email_feedback"></span>
+                    <span class="slider-feedback" id="asset_email_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
             <div class="form-group">
@@ -136,7 +136,7 @@
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_database' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_database) ? $this->interval->asset_database : 0) ?>" id="asset_database" name="interval[asset_database]" type="text" value="<?php echo (isset($this->interval->asset_database) ? $this->interval->asset_database : 0) ?>"/>
-                    <span class="slider-feedback" id="asset_database_feedback"></span>
+                    <span class="slider-feedback" id="asset_database_feedback"><span class="feedback-value editable-field"></span>&nbsp;<span class="feedback-format-symbol"></span></span>
                 </div>
             </div>
         </div>
@@ -175,22 +175,41 @@
 <script>
 $("[data-toggle='tooltip']").tooltip();
 
-var sliderUtils = new SliderUtils("#pieChart", 400, 400, "#assetTotalFeedback", function (total) {
+var value_formatter = function(total) {
         var volume_number = +($("#interval_data_volume_number").val());
         var volume_unit = +($("#interval_data_volume_unit").val());
 
         if (isNaN(volume_number) || isNaN(volume_unit) || volume_number <= 0) {
-            return total + "%";
+            return total;
         } else {
             var volume = volume_number * volume_unit * 1073741824 * total / 100.0;
             
             if(volume>0){
-                return humanFileSize(volume);
+                return humanFileSize(volume, 2).volume;
             }
         }
 
-        return total + "%";
-    });
+        return total;
+};
+
+var format_formatter = function(total) {
+        var volume_number = +($("#interval_data_volume_number").val());
+        var volume_unit = +($("#interval_data_volume_unit").val());
+
+        if (isNaN(volume_number) || isNaN(volume_unit) || volume_number <= 0) {
+            return "%";
+        } else {
+            var volume = volume_number * volume_unit * 1073741824 * total / 100.0;
+            
+            if(volume>0){
+                return humanFileSize(volume, 2).format;
+            }
+        }
+
+        return "%";
+};
+
+var sliderUtils = new SliderUtils("#pieChart", 400, 400, "#assetTotalFeedback", value_formatter, format_formatter, $(".editable-field"));
 sliderUtils.addSlider("#asset_unformatted_text", "#00b050", "Unformatted text", "#asset_unformatted_text_feedback");
 sliderUtils.addSlider("#asset_word_processing", "#006fc0", "Word processing", "#asset_word_processing_feedback");
 sliderUtils.addSlider("#asset_spreadsheet", "#ff0000", "Spreadsheet", "#asset_spreadsheet_feedback");

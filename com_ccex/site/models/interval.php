@@ -291,7 +291,7 @@ class CCExModelsInterval extends CCExModelsDefault
         $size = 0;
         foreach ($this->costs() as $cost) {
             $cost = CCExHelpersCast::cast('CCExModelsCost', $cost);
-            $sum+= $cost->percentageActivityMapping();
+            $sum += $cost->percentageActivityMapping();
             $size++;
         }
         
@@ -307,7 +307,7 @@ class CCExModelsInterval extends CCExModelsDefault
         $size = 0;
         foreach ($this->costs() as $cost) {
             $cost = CCExHelpersCast::cast('CCExModelsCost', $cost);
-            $sum+= $cost->percentageFinancialAccountingMapping();
+            $sum += $cost->percentageFinancialAccountingMapping();
             $size++;
         }
         

@@ -185,7 +185,7 @@ var value_formatter = function(total) {
     var cost = +($("#cost_value").val());
     
     if(!isNaN(cost) && cost > 0) {
-        return Humanize.formatNumber((cost * total) / 100.0, 0);
+        return formatNumber((cost * total) / 100.0, 2);
     }
 
     if(total){

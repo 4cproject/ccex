@@ -117,12 +117,16 @@ SliderUtils.prototype = {
                 $(this.totalFeedbackElemId).html(this.formatter(this.total));
             } else {
                 $(this.totalFeedbackElemId).children(".feedback-value").html(this.valueFormatter(this.total));
-                if(this.symbolFormatter(this.total) == "%"){
-                    $(this.totalFeedbackElemId).children(".feedback-currency-symbol").html("");
-                    $(this.totalFeedbackElemId).children(".feedback-percentage-symbol").html(this.symbolFormatter(this.total));
-                }else{
-                    $(this.totalFeedbackElemId).children(".feedback-percentage-symbol").html("");
-                    $(this.totalFeedbackElemId).children(".feedback-currency-symbol").html(this.symbolFormatter(this.total));
+                if($(".feedback-currency-symbol").size() > 0){
+                    if(this.symbolFormatter(this.total) == "%"){
+                        $(this.totalFeedbackElemId).children(".feedback-currency-symbol").html("");
+                        $(this.totalFeedbackElemId).children(".feedback-percentage-symbol").html(this.symbolFormatter(this.total));
+                    }else{
+                        $(this.totalFeedbackElemId).children(".feedback-percentage-symbol").html("");
+                        $(this.totalFeedbackElemId).children(".feedback-currency-symbol").html(this.symbolFormatter(this.total));
+                    }
+                }else if($(".feedback-format-symbol").size() > 0){
+                    $(this.totalFeedbackElemId).children(".feedback-format-symbol").html(this.symbolFormatter(this.total));
                 }
             }
         }
@@ -136,13 +140,17 @@ SliderUtils.prototype = {
                     $(sliderFeedbackId).html(this.formatter(sliderValue));
                 } else {
                     $(sliderFeedbackId).children(".feedback-value").html(this.valueFormatter(sliderValue));
-                    
-                    if(this.symbolFormatter(this.total) == "%"){
-                        $(sliderFeedbackId).children(".feedback-currency-symbol").html("");
-                        $(sliderFeedbackId).children(".feedback-percentage-symbol").html(this.symbolFormatter(this.total));
-                    }else{
-                        $(sliderFeedbackId).children(".feedback-percentage-symbol").html("");
-                        $(sliderFeedbackId).children(".feedback-currency-symbol").html(this.symbolFormatter(this.total));
+
+                    if($(".feedback-currency-symbol").size() > 0){
+                        if(this.symbolFormatter(this.total) == "%"){
+                            $(sliderFeedbackId).children(".feedback-currency-symbol").html("");
+                            $(sliderFeedbackId).children(".feedback-percentage-symbol").html(this.symbolFormatter(sliderValue));
+                        }else{
+                            $(sliderFeedbackId).children(".feedback-percentage-symbol").html("");
+                            $(sliderFeedbackId).children(".feedback-currency-symbol").html(this.symbolFormatter(sliderValue));
+                        }
+                    }else if($(".feedback-format-symbol").size() > 0){
+                        $(sliderFeedbackId).children(".feedback-format-symbol").html(this.symbolFormatter(sliderValue));
                     }
                 }
             }
@@ -157,7 +165,6 @@ SliderUtils.prototype = {
                 success: function(response, newValue) {
                     var category = $(this).parent().data('category');
                     var selector = "#" + $(this).parent().prev().attr('id');
-                    var cost = $("#cost_value").val();
 
                     if (isNaN(newValue) || newValue == "") {
                         newValue = 0;
@@ -166,17 +173,33 @@ SliderUtils.prototype = {
                     }
                     var percentValue = newValue;
 
-                    if (category == 'financial-accounting') {
-                        var utils = faSliderUtils;
-                    } else {
-                        var utils = activitiesSliderUtils;
-                    }
+                    if(category == "financial-accounting" || 
+                       category == "activities"){
+                            var cost = $("#cost_value").val();
 
-                    if (isNaN(cost) || cost <= 0) {
-                        percentValue = newValue;
-                    } else {
-                        cost = parseFloat(cost);
-                        percentValue = (newValue / cost) * 100;
+                            if (category == 'financial-accounting') {
+                                var utils = faSliderUtils;
+                            } else {
+                                var utils = activitiesSliderUtils;
+                            }
+
+                            if (isNaN(cost) || cost <= 0) {
+                                percentValue = newValue;
+                            } else {
+                                cost = parseFloat(cost);
+                                percentValue = (newValue / cost) * 100;
+                            }
+                    }else{
+                        var volume = $("#interval_data_volume_number").val();
+                        var utils = sliderUtils;
+
+                        if (isNaN(volume) || volume <= 0) {
+                            percentValue = newValue;
+                        } else {
+                            volume = parseFloat(volume);
+
+                            percentValue = (newValue / volume) * 100;
+                        }
                     }
 
                     if (percentValue > 100) {
@@ -196,7 +219,7 @@ SliderUtils.prototype = {
                     };
                 },
                 display: function(value) {
-                    Humanize.formatNumber(value, 0);
+                    formatNumber(value, 2);
                 },
                 validate: function(value) {
                     var regex = /^[0-9]*(\.[0-9]+)?$/;
@@ -220,21 +243,39 @@ SliderUtils.prototype = {
     }
 };
 
-
 function humanFileSize(filesize, decimals) {
-    var sizeStr;
+    var volume;
+    var format;
+
     if (filesize >= 1125899906842624) {
-        sizeStr = Humanize.formatNumber(filesize / 1125899906842624, decimals, "") + " PB";
+        volume = formatNumber(filesize / 1125899906842624, decimals);
+        format = "PB";
     } else if (filesize >= 1099511627776) {
-        sizeStr = Humanize.formatNumber(filesize / 1099511627776, decimals, "") + " TB";
+        volume = formatNumber(filesize / 1099511627776, decimals);
+        format = "TB";
     } else if (filesize >= 1073741824) {
-        sizeStr = Humanize.formatNumber(filesize / 1073741824, decimals, "") + " GB";
+        volume = formatNumber(filesize / 1073741824, decimals);
+        format = "GB";
     } else if (filesize >= 1048576) {
-        sizeStr = Humanize.formatNumber(filesize / 1048576, decimals, "") + " MB";
+        volume = formatNumber(filesize / 1048576, decimals);
+        format = "MB";
     } else if (filesize >= 1024) {
-        sizeStr = Humanize.formatNumber(filesize / 1024, 0) + " KB";
+        volume = formatNumber(filesize / 1024, decimals);
+        format = "KB";
     } else {
-        sizeStr = Humanize.formatNumber(filesize, 0) + Humanize.pluralize(filesize, " B");
+        volume = formatNumber(filesize, decimals);
+        format = Humanize.pluralize(filesize, "B");
     }
-    return sizeStr;
+
+    return {volume: volume, format: format};
+}
+
+function significantFigures(n, sig) {
+    if(n==0){ return 0; }
+    var mult = Math.pow(10, sig - Math.floor(Math.log(n) / Math.LN10) - 1);
+    return Math.round(n * mult) / mult;
+}
+
+function formatNumber(n, sig) {
+    return significantFigures(n, sig).toLocaleString();
 }

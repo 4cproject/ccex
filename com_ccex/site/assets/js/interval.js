@@ -1,3 +1,15 @@
+$( document ).ready(function() {
+    $(".editable-field").on("click", function(){
+        var volume = $("#interval_data_volume_number").val();
+        var unit = $("#interval_data_volume_unit option:selected").text();
+        var editableField = $(this);
+
+        if (!isNaN(volume) && volume > 0){
+            $(this).siblings(".editable-popup").find(".editable-input").after('<div style="display: inline-block;padding-top: 5px;margin-left: 5px;margin-right: 10px;font-size: 15px"><span>' + unit + '</span></div>');
+        }
+    });
+});
+
 $('#interval_duration').slider();
 $('#interval_duration').on('slide', function(slideEvt) {
     $('#interval_duration_feedback').text(slideEvt.value);
@@ -14,7 +26,6 @@ $('#interval_duration').on('slide', function(slideEvt) {
 
     active.contents().get(0).nodeValue = new_value;
 });
-
 
 $('#interval_begin_year').on('input', function() {
     var input = $(this);
