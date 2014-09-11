@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsOrganizationorgtype extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_org_type_id = null;
     protected $_organization_org_type_id = null;
     protected $_organization_id = null;
@@ -32,10 +27,10 @@ class CCExModelsOrganizationorgtype extends CCExModelsDefault
         }
     }
     
-    /**
-     * Builds the query to be used by the OrganizationOrgType model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        return $this->getItem();
+    }
+    
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -46,13 +41,7 @@ class CCExModelsOrganizationorgtype extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
-        
         if (is_numeric($this->_org_type_id)) {
             $query->where('t.organization_org_type_id = ' . (int)$this->_organization_org_type_id);
         } else {
@@ -67,10 +56,6 @@ class CCExModelsOrganizationorgtype extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Override the default store
-     *
-     */
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $date = date("Y-m-d H:i:s");
@@ -81,21 +66,13 @@ class CCExModelsOrganizationorgtype extends CCExModelsDefault
         }
         
         $row_organization_org_type->modified = $date;
-        if (!$row_organization_org_type->check()) {
-            return null;
-        }
-        if (!$row_organization_org_type->store()) {
+        if (!$row_organization_org_type->check() || !$row_organization_org_type->store()) {
             return null;
         }
         
         return true;
     }
     
-    /**
-     * Delete a OrganizationOrgType
-     * @param int      ID of the OrganizationOrgType to delete
-     * @return boolean True if successfully deleted
-     */
     public function delete($id = null) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('organization_org_type_id');

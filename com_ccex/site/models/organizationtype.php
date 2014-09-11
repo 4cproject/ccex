@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsOrganizationtype extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_org_type_id = null;
     protected $_name = null;
     protected $_pagination = null;
@@ -33,10 +28,10 @@ class CCExModelsOrganizationtype extends CCExModelsDefault
         }
     }
     
-    /**
-     * Builds the query to be used by the OrganizationType model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        return $this->getItem();
+    }
+
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -47,13 +42,7 @@ class CCExModelsOrganizationtype extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
-        
         if (is_numeric($this->_org_type_id)) {
             $query->where('t.org_type_id = ' . (int)$this->_org_type_id);
         } else {
@@ -63,14 +52,9 @@ class CCExModelsOrganizationtype extends CCExModelsDefault
         }
         
         $query->where('t.deleted = ' . (int)$this->_deleted);
-        
         return $query;
     }
-
-    /**
-     * Override the default store
-     *
-     */
+    
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $date = date("Y-m-d H:i:s");
@@ -81,28 +65,20 @@ class CCExModelsOrganizationtype extends CCExModelsDefault
         }
         
         $row_organization_type->modified = $date;
-        if (!$row_organization_type->check()) {
-            return null;
-        }
         
         try {
-            if (!$row_organization_type->store()) {
+            if (!$row_organization_type->check() || !$row_organization_type->store()) {
                 return null;
             }
-        } catch (Exception $e) {
+        }
+        catch(Exception $e) {
             return null;
         }
         
-        $return = array('org_type_id' => $row_organization_type->org_type_id);
-        
+        $return = array('org_type_id' => $row_organization_type->org_type_id);      
         return $return;
     }
     
-    /**
-     * Delete a Organization type
-     * @param int      ID of the Organization type to delete
-     * @return boolean True if successfully deleted
-     */
     public function delete($id = null) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('organizationtype_id');

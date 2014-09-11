@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsCost extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_user_id = null;
     protected $_interval_id = null;
     protected $_cost_id = null;
@@ -39,10 +34,20 @@ class CCExModelsCost extends CCExModelsDefault
         return null;
     }
     
-    /**
-     * Builds the query to be used by the Cost model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        $cost = null;
+        
+        if (is_numeric($this->_cost_id)) {
+            $cost = parent::getItem();
+            
+            if ($cost) {
+                $cost = CCExHelpersCast::cast('CCExModelsCost', $cost);
+            }
+        }
+        
+        return $cost;
+    }
+    
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -53,11 +58,6 @@ class CCExModelsCost extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
         if (is_numeric($this->_cost_id)) {
             $query->where('c.cost_id = ' . (int)$this->_cost_id);
@@ -68,19 +68,13 @@ class CCExModelsCost extends CCExModelsDefault
         }
         
         $query->where('c.deleted = ' . (int)$this->_deleted);
-        
         return $query;
     }
     
-    /**
-     * Override the default store
-     *
-     */
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
-        $date = date("Y-m-d H:i:s");
-        
         $intervalModel = new CCExModelsInterval();
+        $date = date("Y-m-d H:i:s");
         
         if (!$data['cost']['name'] || !$data['cost']['cost'] || !$data['cost']['interval_id'] || !$intervalModel->getItemBy("_interval_id", $data['cost']['interval_id'])) {
             return null;
@@ -92,43 +86,30 @@ class CCExModelsCost extends CCExModelsDefault
         }
         
         $row_cost->modified = $date;
-        if (!$row_cost->check()) {
-            return null;
-        }
-        if (!$row_cost->store()) {
+        if (!$row_cost->check() || !$row_cost->store()) {
             return null;
         }
         
         $return = array('cost_id' => $row_cost->cost_id);
-        
         return $return;
     }
     
-    /**
-     * Delete a cost
-     * @param int      ID of the cost to delete
-     * @return boolean True if successfully deleted
-     */
     public function delete($id = null, $update = true) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('cost_id');
         
         $costModel = new CCExModelsCost();
-        $costs = $costModel->listItemsBy("_cost_id", $id);
-        $cost = array_shift($costs);
-        $cost = CCExHelpersCast::cast('CCExModelsCost', $cost);
-
+        $cost = $costModel->getItemUnrestrictedBy("_cost_id", $id);
+        
         $costTable = JTable::getInstance('Cost', 'Table');
         $costTable->load($id);
-        
         $costTable->deleted = 1;
         
         if ($costTable->store()) {
-            
-            if($update){
+            if ($update) {
                 $cost->interval()->collection()->updateFinalStatus();
             }
-
+            
             return true;
         } else {
             return false;
@@ -139,7 +120,6 @@ class CCExModelsCost extends CCExModelsDefault
         if ($user_id && $this->interval() && $this->interval()->havePermissions($user_id)) {
             return true;
         }
-        
         return false;
     }
     
@@ -154,10 +134,7 @@ class CCExModelsCost extends CCExModelsDefault
     
     public function interval() {
         $intervalModel = new CCExModelsInterval();
-        $intervals = $intervalModel->listItemsBy('_interval_id', $this->interval_id);
-        $interval = CCExHelpersCast::cast('CCExModelsInterval', array_shift($intervals));
-        
-        return $interval;
+        return $intervalModel->getItemUnrestrictedBy('_interval_id', $this->interval_id);
     }
     
     public function costPerGB() {

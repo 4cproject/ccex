@@ -9,7 +9,7 @@
 	</div>
 	<div class="col-md-6">
 		<dl class="dl-horizontal">
-	        <dt>Curation staff in scope</dt>
+	        <dt>Curation staff</dt>
 	        <dd><?php echo $this->interval->formattedStaff() ?></dd>
 	        <dt>Years</dt>
 	        <dd><?php echo $this->interval->toString() ?></dd>  	  

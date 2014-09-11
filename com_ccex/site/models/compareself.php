@@ -5,18 +5,12 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsCompareself extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_organization = null;
     protected $_organizationSeriesAndCategories = null;
     protected $_categories = null;
     
     function __construct() {
         $this->_categories = array("cat_hardware", "cat_software", "cat_external", "cat_producer", "cat_it_developer", "cat_operations", "cat_specialist", "cat_manager", "cat_overhead", "cat_financial_accounting_other", "cat_pre_ingest", "cat_ingest", "cat_storage", "cat_access", "cat_activities_other");
-        
         parent::__construct();
     }
     
@@ -57,14 +51,14 @@ class CCExModelsCompareself extends CCExModelsDefault
                     $data[$key][$position]+= $costsPerGBPerYear[$key] * $dataVolume;
                 }
             }
-
-            $sumDataVolumes += $dataVolume;
+            
+            $sumDataVolumes+= $dataVolume;
         }
-
-        if($sumDataVolumes){
+        
+        if ($sumDataVolumes) {
             foreach ($data as $dataKey => $dataValue) {
                 foreach ($data[$dataKey] as $key => $value) {
-                    $data[$dataKey][$key]= $value / $sumDataVolumes;
+                    $data[$dataKey][$key] = $value / $sumDataVolumes;
                 }
             }
         }
@@ -114,14 +108,13 @@ class CCExModelsCompareself extends CCExModelsDefault
     private function organizationSeries($beginYear, $number, $filter) {
         $series = array("financial_accounting" => array(), "activities" => array());
         
-        if($filter && $filter=="final"){
+        if ($filter && $filter == "final") {
             $data = $this->seriesData($this->_organization->finalIntervals(), $beginYear, $number);
-        }else{
+        } else {
             $data = $this->seriesData($this->_organization->intervals(), $beginYear, $number);
         }
         
         $series = $this->pushSeries($series, $data);
-        
         return $series;
     }
     
@@ -137,7 +130,6 @@ class CCExModelsCompareself extends CCExModelsDefault
     
     private function categories($beginYear, $number) {
         $categories = array();
-        
         $currentYear = $beginYear;
         
         for ($i = 0; $i < $number; $i++) {
@@ -158,9 +150,7 @@ class CCExModelsCompareself extends CCExModelsDefault
         }
         
         $number = $lastYear - $beginYear + 1;
-        
         $result = array("categories" => $this->categories($beginYear, $number), "series" => $this->series($collections, $beginYear, $number, $filter));
-        
         return $result;
     }
     
@@ -177,14 +167,14 @@ class CCExModelsCompareself extends CCExModelsDefault
     
     public function beginOfFirstInterval($collections = array(), $filter = null) {
         $configurationModel = new CCExModelsConfiguration();
-
+        
         $beginAndLastYear = $this->_organization->beginAndLastYear($collections, $filter);
         $beginYear = $beginAndLastYear["begin_year"];
         $lastYear = $beginAndLastYear["last_year"];
         $beginOfFirstInterval = $beginYear;
-
-        if ($lastYear - $beginYear > $configurationModel->configurationValue("maximum_years_my_costs_charts", 5) - 1 ) {
-            $beginOfFirstInterval = $lastYear - ($configurationModel->configurationValue("maximum_years_my_costs_charts", 5) - 1) ;
+        
+        if ($lastYear - $beginYear > $configurationModel->configurationValue("maximum_years_my_costs_charts", 5) - 1) {
+            $beginOfFirstInterval = $lastYear - ($configurationModel->configurationValue("maximum_years_my_costs_charts", 5) - 1);
         }
         
         return array("begin_of_first_interval" => $beginOfFirstInterval, "begin_year" => $beginYear);

@@ -27,7 +27,7 @@
         <dl class="dl-horizontal">
             <dt>Duration</dt>
             <dd><?php echo $this->interval->duration ?></dd>
-            <dt>Curation staff in scope</dt>
+            <dt>Curation staff</dt>
             <dd><?php echo $this->interval->formattedStaff() ?></dd>
             <dt>Years</dt>
             <dd><?php echo $this->interval->toString() ?></dd>  

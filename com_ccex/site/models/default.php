@@ -20,10 +20,6 @@ class CCExModelsDefault extends JModelBase
         parent::__construct();
     }
     
-    /**
-     * Build a query, where clause and return an object
-     *
-     */
     public function getItem() {
         $db = JFactory::getDBO();
         
@@ -40,19 +36,25 @@ class CCExModelsDefault extends JModelBase
         if ($field == null || $value == null) {
             return null;
         }
-        
         $this->set($field, $value);
         
         return $this->getItem();
     }
     
+    public function getItemUnrestrictedBy($field = null, $value = null) {
+        if ($field == null || $value == null) {
+            return null;
+        }
+        $this->set($field, $value);
+        
+        return $this->getItemUnrestricted();
+    }
+    
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $row = JTable::getInstance($data['table'], 'Table');
-        
         $date = date("Y-m-d H:i:s");
         
-        // Bind the form fields to the table
         if (!$row->bind($data)) {
             return false;
         }
@@ -62,12 +64,7 @@ class CCExModelsDefault extends JModelBase
             $row->created = $date;
         }
         
-        // Make sure the record is valid
-        if (!$row->check()) {
-            return false;
-        }
-        
-        if (!$row->store()) {
+        if (!$row->check() || !$row->store()) {
             return false;
         }
         

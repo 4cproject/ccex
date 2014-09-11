@@ -32,4 +32,12 @@ class CCExHelpersTag
     function formatWithSymbol($value, $symbol) {
         return sprintf('%s%s',$symbol, $value);
     }
+
+    function formatBoolean($boolean){
+        if ($boolean) {
+            return "Yes";
+        } else {
+            return "No";
+        }
+    }
 }

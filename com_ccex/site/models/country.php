@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsCountry extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_country_id = null;
     protected $_name = null;
     protected $_pagination = null;
@@ -32,10 +27,10 @@ class CCExModelsCountry extends CCExModelsDefault
         }
     }
     
-    /**
-     * Builds the query to be used by the Country model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        return $this->getItem();
+    }
+    
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -46,13 +41,7 @@ class CCExModelsCountry extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
-        
         if (is_numeric($this->_country_id)) {
             $query->where('c.country_id = ' . (int)$this->_country_id);
         }
@@ -61,11 +50,7 @@ class CCExModelsCountry extends CCExModelsDefault
         
         return $query;
     }
-
-    /**
-     * Override the default store
-     *
-     */
+    
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $date = date("Y-m-d H:i:s");
@@ -76,28 +61,20 @@ class CCExModelsCountry extends CCExModelsDefault
         }
         
         $row_country->modified = $date;
-        if (!$row_country->check()) {
-            return null;
-        }
         
         try {
-            if (!$row_country->store()) {
+            if (!$row_country->check() || !$row_country->store()) {
                 return null;
             }
-        } catch (Exception $e) {
+        }
+        catch(Exception $e) {
             return null;
         }
         
         $return = array('country_id' => $row_country->country_id);
-        
         return $return;
     }
     
-    /**
-     * Delete a Country
-     * @param int      ID of the Country to delete
-     * @return boolean True if successfully deleted
-     */
     public function delete($id = null) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('country_id');

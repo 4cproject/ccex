@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsCollection extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_collection_id = null;
     protected $_organization_id = null;
     protected $_pagination = null;
@@ -20,7 +15,7 @@ class CCExModelsCollection extends CCExModelsDefault
     
     function __construct() {
         $this->_assetTypes = array("asset_unformatted_text", "asset_word_processing", "asset_spreadsheet", "asset_graphics", "asset_audio", "asset_video", "asset_hypertext", "asset_geodata", "asset_email", "asset_database");
-
+        
         parent::__construct();
     }
     
@@ -42,10 +37,20 @@ class CCExModelsCollection extends CCExModelsDefault
         return null;
     }
     
-    /**
-     * Builds the query to be used by the Collection model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        $collection = null;
+        
+        if (is_numeric($this->_collection_id)) {
+            $collection = parent::getItem();
+            
+            if ($collection) {
+                $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
+            }
+        }
+        
+        return $collection;
+    }
+    
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -56,22 +61,14 @@ class CCExModelsCollection extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
-        
         if (is_numeric($this->_collection_id)) {
-            $query->where('p.collection_id = ' . (int)$this->_collection_id);
-        } else {
-            if ($this->_organization_id) {
-                $query->where("p.organization_id = '" . $this->_organization_id . "'");
-            }
+            $query->where('p.collection_id = ' . $this->_collection_id);
+        } else if ($this->_organization_id) {
+            $query->where('p.organization_id = ' . $this->_organization_id);
         }
-
-        if($this->_final){
+        
+        if ($this->_final) {
             $query->where('p.final = 1');
         }
         
@@ -80,30 +77,19 @@ class CCExModelsCollection extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Override the default store
-     *
-     */
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $date = date("Y-m-d H:i:s");
         
         $organizationModel = new CCExModelsOrganization();
-        
-        if (!$data['collection']['name'] || !$data['collection']['scope'] || !$data['collection']['organization_id'] || !$organizationModel->getItemBy("_organization_id", $data['collection']['organization_id'])) {
-            return null;
-        }
-        
         $row_collection = JTable::getInstance('collection', 'Table');
-        if (!$row_collection->bind($data['collection'])) {
+        
+        if (!$data['collection']['name'] || !$data['collection']['scope'] || !$data['collection']['organization_id'] || !$organizationModel->getItemBy("_organization_id", $data['collection']['organization_id']) || !$row_collection->bind($data['collection'])) {
             return null;
         }
         
         $row_collection->modified = $date;
-        if (!$row_collection->check()) {
-            return null;
-        }
-        if (!$row_collection->store()) {
+        if (!$row_collection->check() || !$row_collection->store()) {
             return null;
         }
         
@@ -111,7 +97,6 @@ class CCExModelsCollection extends CCExModelsDefault
         
         $intervalModel = new CCExModelsInterval();
         $result = $intervalModel->store($data['interval']);
-        
         if (!$result) {
             return null;
         }
@@ -124,48 +109,39 @@ class CCExModelsCollection extends CCExModelsDefault
         return $return;
     }
     
-    /**
-     * Delete a collection
-     * @param int      ID of the collection to delete
-     * @return boolean True if successfully deleted
-     */
     public function delete($id = null, $update = true) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('collection_id');
         
         $collectionModel = new CCExModelsInterval();
-        $collections = $collectionModel->listItemsBy("_collection_id", $id);
-        $collection = array_shift($collections);
-        $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
-
+        $collection = $collectionModel->getItemUnrestrictedBy("_collection_id", $id);
+        
         $collectionTable = JTable::getInstance('Collection', 'Table');
         $collectionTable->load($id);
-        
         $collectionTable->deleted = 1;
         
         if ($collectionTable->store()) {
             $collection->deleteIntervals(false);
-
-            if($update){
+            
+            if ($update) {
                 $collection->updateFinalStatus();
             }
-
+            
             return true;
         } else {
             return false;
         }
     }
-
+    
     public function switchFinal($final) {
         $app = JFactory::getApplication();
         $id = $this->collection_id;
         
         $collectionModel = new CCExModelsCollection();
         $collection = $collectionModel->getItemBy("_collection_id", $id);
-
+        
         $collectionTable = JTable::getInstance('Collection', 'Table');
         $collectionTable->load($id);
-        
         $collectionTable->final = $final;
         
         if ($collectionTable->store()) {
@@ -174,10 +150,10 @@ class CCExModelsCollection extends CCExModelsDefault
             return false;
         }
     }
-
+    
     public function deleteIntervals($update = true) {
         $intervalModel = new CCExModelsInterval();
-
+        
         foreach ($this->intervals() as $interval) {
             $intervalModel->delete($interval->interval_id, $update);
         }
@@ -193,10 +169,7 @@ class CCExModelsCollection extends CCExModelsDefault
     
     public function organization() {
         $organizationModel = new CCExModelsOrganization();
-        $organizations = $organizationModel->listItemsBy('_organization_id', $this->organization_id);
-        $organization = CCExHelpersCast::cast('CCExModelsOrganization', array_shift($organizations));
-        
-        return $organization;
+        return $organizationModel->getItemUnrestrictedBy('_organization_id', $this->organization_id);
     }
     
     public function intervals() {
@@ -206,11 +179,11 @@ class CCExModelsCollection extends CCExModelsDefault
             return $intervalModel->listItemsByCollection($this->_collection_id);
         } else if (isset($this->collection_id)) {
             return $intervalModel->listItemsByCollection($this->collection_id);
-        } else {
-            return array();
         }
+        
+        return array();
     }
-
+    
     public function costs() {
         $costs = array();
         
@@ -221,28 +194,28 @@ class CCExModelsCollection extends CCExModelsDefault
         
         return $costs;
     }
-
+    
     public function nonEmptyInvervals() {
         $intervals = array();
-
+        
         foreach ($this->intervals() as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            if($interval->haveCosts()){
+            if ($interval->haveCosts()) {
                 array_push($intervals, $interval);
             }
         }
-
+        
         return $intervals;
     }
-
+    
     public function haveCosts() {
         return count($this->nonEmptyInvervals());
     }
-
+    
     public function updateFinalStatus() {
-        if($this->haveCosts()){
+        if ($this->haveCosts()) {
             $this->switchFinal(1);
-        }else{
+        } else {
             $this->switchFinal(0);
         }
     }
@@ -261,7 +234,7 @@ class CCExModelsCollection extends CCExModelsDefault
     
     public function newInterval() {
         $newInterval = new CCExModelsInterval();
-        $newInterval->set('collection_id', $this->_collection_id);
+        $newInterval->set('collection_id', $this->collection_id);
         
         if ($this->numberIntervals()) {
             $lastInterval = $this->lastInterval();
@@ -321,100 +294,99 @@ class CCExModelsCollection extends CCExModelsDefault
         }
         
         krsort($yearsHash, SORT_NUMERIC);
-        
         return $yearsHash;
     }
-
-    public function intervalsOfYear($year="all") {
+    
+    public function intervalsOfYear($year = "all") {
         $intervals = array();
         $allIntervals = $this->intervals();
-
-        if($year=="all" || !is_numeric($year)){
+        
+        if ($year == "all" || !is_numeric($year)) {
             $intervals = $allIntervals;
-        }else{
+        } else {
             foreach ($allIntervals as $interval) {
                 $year = intval($year);
-
+                
                 $beginYear = $interval->begin_year;
-                $endYear = $interval->begin_year + $interval->duration - 1; 
-
-                if($year >= $beginYear && $year <= $endYear){
+                $endYear = $interval->begin_year + $interval->duration - 1;
+                
+                if ($year >= $beginYear && $year <= $endYear) {
                     array_push($intervals, $interval);
                 }
             }
         }
-
+        
         return $intervals;
     }
-
-    public function dataVolumePonderedAverage(){
+    
+    public function dataVolumePonderedAverage() {
         $dividend = 0;
-        $divisor  = 0;
-
+        $divisor = 0;
+        
         foreach ($this->intervals() as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $dividend += $interval->data_volume * $interval->duration;
-            $divisor += $interval->duration;
+            $dividend+= $interval->data_volume * $interval->duration;
+            $divisor+= $interval->duration;
         }
-
-        return $dividend/$divisor;
+        
+        return $dividend / $divisor;
     }
-
-    public function staffPonderedAverage(){
+    
+    public function staffPonderedAverage() {
         $dividend = 0;
-        $divisor  = 0;
-
+        $divisor = 0;
+        
         foreach ($this->intervals() as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $dividend += $interval->staff * $interval->duration;
-            $divisor += $interval->duration;
+            $dividend+= $interval->staff * $interval->duration;
+            $divisor+= $interval->duration;
         }
-
-        return $dividend/$divisor;
+        
+        return $dividend / $divisor;
     }
-
-    public function numberOfCopiesPonderedAverage(){
+    
+    public function numberOfCopiesPonderedAverage() {
         $dividend = 0;
-        $divisor  = 0;
-
+        $divisor = 0;
+        
         foreach ($this->intervals() as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-            $dividend += $interval->number_copies * $interval->duration;
-            $divisor += $interval->duration;
+            $dividend+= $interval->number_copies * $interval->duration;
+            $divisor+= $interval->duration;
         }
-
-        return $dividend/$divisor;
+        
+        return $dividend / $divisor;
     }
-
-    public function mainAsset(){
+    
+    public function mainAsset() {
         $assetTypes = array();
-        $divisor  = 0;
+        $divisor = 0;
         $mainValue = 0;
         $main = null;
-
+        
         foreach ($this->_assetTypes as $assetType) {
             $assetTypes[$assetType] = 0;
         }
-
+        
         foreach ($this->intervals() as $interval) {
             $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-
+            
             foreach ($this->_assetTypes as $assetType) {
-                $assetTypes[$assetType] += $interval->get($assetType, 0) * $interval->duration;
+                $assetTypes[$assetType]+= $interval->get($assetType, 0) * $interval->duration;
             }
-
-            $divisor += $interval->duration;
+            
+            $divisor+= $interval->duration;
         }
-
+        
         foreach ($assetTypes as $assetType => $value) {
-            $realValue = $value/$divisor;
-
-            if($realValue > $mainValue){
+            $realValue = $value / $divisor;
+            
+            if ($realValue > $mainValue) {
                 $mainValue = $realValue;
                 $main = $assetType;
             }
         }
-
+        
         return $main;
     }
 }

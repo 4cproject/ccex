@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsCurrency extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_currency_id = null;
     protected $_name = null;
     protected $_pagination = null;
@@ -26,16 +21,16 @@ class CCExModelsCurrency extends CCExModelsDefault
         }
         
         $currency = parent::getItem();
-        
+
         if ($currency) {
             return CCExHelpersCast::cast('CCExModelsCurrency', $currency);
         }
     }
     
-    /**
-     * Builds the query to be used by the Currency model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        return $this->getItem();
+    }
+
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -46,26 +41,15 @@ class CCExModelsCurrency extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
-        
         if (is_numeric($this->_currency_id)) {
             $query->where('c.currency_id = ' . (int)$this->_currency_id);
         }
         
         $query->where('c.deleted = ' . (int)$this->_deleted);
-        
         return $query;
     }
 
-    /**
-     * Override the default store
-     *
-     */
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $date = date("Y-m-d H:i:s");
@@ -76,12 +60,9 @@ class CCExModelsCurrency extends CCExModelsDefault
         }
         
         $row_currency->modified = $date;
-        if (!$row_currency->check()) {
-            return null;
-        }
         
         try {
-            if (!$row_currency->store()) {
+            if (!$row_currency->check() || !$row_currency->store()) {
                 return null;
             }
         } catch (Exception $e) {
@@ -89,15 +70,9 @@ class CCExModelsCurrency extends CCExModelsDefault
         }
         
         $return = array('currency_id' => $row_currency->currency_id);
-        
         return $return;
     }
     
-    /**
-     * Delete a Currency
-     * @param int      ID of the Currency to delete
-     * @return boolean True if successfully deleted
-     */
     public function delete($id = null) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('currency_id');

@@ -28,15 +28,15 @@
     <div class="col-md-6">
         <dl class="dl-horizontal" >
             <dt class="dt-large">Include costs in global comparison</dt>
-            <dd><?php echo $this->organization->globalComparison() ?></dd>
+            <dd><?php echo CCExHelpersTag::formatBoolean($this->organization->global_comparison) ?></dd>
             <dt class="dt-large">Include costs in peer comparison</dt>
-            <dd><?php echo $this->organization->peerComparison() ?></dd>
+            <dd><?php echo CCExHelpersTag::formatBoolean($this->organization->peer_comparison) ?></dd>
             <dt class="dt-large">Allow organisation to be linked to the cost data</dt>
-            <dd><?php echo $this->organization->organizationLinked() ?></dd>
+            <dd><?php echo CCExHelpersTag::formatBoolean($this->organization->organization_linked) ?></dd>
             <dt class="dt-large">Allow contact and share cost data</dt>
-            <dd><?php echo $this->organization->contactAndSharing() ?></dd>
+            <dd><?php echo CCExHelpersTag::formatBoolean($this->organization->contact_and_sharing) ?></dd>
             <dt class="dt-large">Allow snapshots of cost data</dt>
-            <dd><?php echo $this->organization->snapshots() ?></dd>
+            <dd><?php echo CCExHelpersTag::formatBoolean($this->organization->snapshots) ?></dd>
         </dl>
     </div>
 </div>

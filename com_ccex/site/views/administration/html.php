@@ -115,40 +115,28 @@ class CCExViewsAdministrationHtml extends JViewHtml
                 $organization_id = $app->input->get('organization_id', null);
                 $organizationModel = new CCExModelsOrganization();
 
-                $organizations = $organizationModel->listItemsBy("_organization_id", $organization_id);
-                $organization = array_shift($organizations);
-                $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-
+                $organization = $organizationModel->getItemUnrestrictedBy("_organization_id", $organization_id);
                 $this->organization = $organization;
                 break;
             case "collection":
                 $collection_id = $app->input->get('collection_id', null);
                 $collectionModel = new CCExModelsCollection();
 
-                $collections = $collectionModel->listItemsBy("_collection_id", $collection_id);
-                $collection = array_shift($collections);
-                $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
-
+                $collection = $collectionModel->getItemUnrestrictedBy("_collection_id", $collection_id);
                 $this->collection = $collection;
                 break;
             case "interval":
                 $interval_id = $app->input->get('interval_id', null);
                 $intervalModel = new CCExModelsInterval();
 
-                $intervals = $intervalModel->listItemsBy("_interval_id", $interval_id);
-                $interval = array_shift($intervals);
-                $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval);
-
+                $interval = $intervalModel->getItemUnrestrictedBy("_interval_id", $interval_id);
                 $this->interval = $interval;
                 break;
             case "cost":
                 $cost_id = $app->input->get('cost_id', null);
                 $costModel = new CCExModelsCost();
 
-                $costs = $costModel->listItemsBy("_cost_id", $cost_id);
-                $cost = array_shift($costs);
-                $cost = CCExHelpersCast::cast('CCExModelsCost', $cost);
-
+                $cost = $costModel->getItemUnrestrictedBy("_cost_id", $cost_id);
                 $this->currency = $cost->interval()->collection()->organization()->currency();
                 $this->cost = $cost;
                 break;

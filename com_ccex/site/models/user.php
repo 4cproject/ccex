@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsUser extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_user_id = null;
     protected $_pagination = null;
     protected $_total = null;
@@ -19,48 +14,15 @@ class CCExModelsUser extends CCExModelsDefault
         $app = JFactory::getApplication();
         
         $this->user = JFactory::getUser();
-
         $this->_user_id = $this->user->id;
         $this->user_id = $this->_user_id;
-
+        
         parent::__construct();
-    }
-    
-    public function getItem() {
-        
-        // $user = parent::getItem();
-        
-        // if($user){
-        //   return CCExHelpersCast::cast('CCExModelsUser', $user);
-        // }
-        
-        return null;
-    }
-    
-    /**
-     * Builds the query to be used by the User model
-     * @return   object  Query object
-     */
-    protected function _buildQuery() {
-        $db = JFactory::getDBO();
-        $query = $db->getQuery(TRUE);
-        
-        return $query;
-    }
-    
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
-    protected function _buildWhere(&$query) {
-        return $query;
     }
     
     public function organization() {
         $organizationModel = new CCExModelsOrganization();
         $organization = $organizationModel->getItemBy('_user_id', $this->user_id);
-        
         return $organization;
     }
     
@@ -70,22 +32,22 @@ class CCExModelsUser extends CCExModelsDefault
         }
         return false;
     }
-
-    public function isAdmin(){
+    
+    public function isAdmin() {
         return $this->user->get('isRoot');
     }
-
-    public function user(){
+    
+    public function user() {
         return $this->user;
     }
-
-    public function getUserByID($id){
+    
+    public function getUserByID($id) {
         $table = JUser::getTable();
-
-        if($table->load($id)){
-          return JFactory::getUser($id);
+        
+        if ($table->load($id)) {
+            return JFactory::getUser($id);
         } else {
-          return null;
+            return null;
         }
     }
 }

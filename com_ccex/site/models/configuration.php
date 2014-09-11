@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsConfiguration extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_configuration_id = null;
     protected $_identifier = null;
     protected $_pagination = null;
@@ -31,10 +26,10 @@ class CCExModelsConfiguration extends CCExModelsDefault
         }
     }
     
-    /**
-     * Builds the query to be used by the Configuration model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        return $this->getItem();
+    }
+    
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -45,27 +40,16 @@ class CCExModelsConfiguration extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
         if (is_numeric($this->_configuration_id)) {
             $query->where('t.configuration_id = ' . (int)$this->_configuration_id);
-        }else{
-            if($this->_identifier){
-                $query->where('t.identifier = \'' . $this->_identifier . '\'');
-            }
+        } else if ($this->_identifier) {
+            $query->where('t.identifier = \'' . $this->_identifier . '\'');
         }
         
         return $query;
     }
     
-    /**
-     * Override the default store
-     *
-     */
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $date = date("Y-m-d H:i:s");
@@ -76,32 +60,20 @@ class CCExModelsConfiguration extends CCExModelsDefault
         }
         
         $row_configuration->modified = $date;
-        if (!$row_configuration->check()) {
-            return null;
-        }
-
+        
         try {
-            if (!$row_configuration->store()) {
+            if (!$row_configuration->check() || !$row_configuration->store()) {
                 return null;
             }
-        } catch (Exception $e) {
-            return null;
         }
-
-        if (!$row_configuration->store()) {
+        catch(Exception $e) {
             return null;
         }
         
         $return = array('configuration_id' => $row_configuration->configuration_id);
-        
         return $return;
     }
     
-    /**
-     * Delete a Configuration
-     * @param int      ID of the Configuration to delete
-     * @return boolean True if successfully deleted
-     */
     public function delete($id = null) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('configuration_id');
@@ -117,14 +89,14 @@ class CCExModelsConfiguration extends CCExModelsDefault
         
         return false;
     }
-
-    public function configurationValue($identifier, $default = null){
+    
+    public function configurationValue($identifier, $default = null) {
         $configurationModel = new CCExModelsConfiguration();
         $configuration = $configurationModel->getItemBy("_identifier", $identifier);
-
-        if($configuration){
+        
+        if ($configuration) {
             return $configuration->value;
-        }else{
+        } else {
             return $default;
         }
     }

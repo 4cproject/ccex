@@ -18,7 +18,7 @@ class CCExControllersComparepeer extends JControllerBase
 
         $organizationModel = new CCExModelsOrganization();
         $currentPeerID = $data["currentPeer"];
-        $currentPeer = array_shift($organizationModel->listItemsBy("_organization_id", $currentPeerID));
+        $currentPeer = $organizationModel->getItemUnrestrictedBy("_organization_id", $currentPeerID);
 
         if (array_key_exists('collectionsSelected', $data) && array_key_exists('collectionsMode', $data) && $data["collectionsMode"] == "separated") {
             $myCollectionsIDs = $data['collectionsSelected'];

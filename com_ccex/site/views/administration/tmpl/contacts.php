@@ -19,11 +19,8 @@
                 <?php
                     $organizationModel = new CCExModelsOrganization();
                     
-                    $recipientOrganizations = $organizationModel->listItemsBy("_organization_id", $contact->recipient_organization_id);
-                    $recipientOrganization = array_shift($recipientOrganizations);
-
-                    $senderOrganizations = $organizationModel->listItemsBy("_organization_id", $contact->sender_organization_id);
-                    $senderOrganization = array_shift($senderOrganizations);
+                    $recipientOrganization = $organizationModel->getItemUnrestrictedBy("_organization_id", $contact->recipient_organization_id);
+                    $senderOrganization = $organizationModel->getItemUnrestrictedBy("_organization_id", $contact->sender_organization_id);
                 ?>
                 <tr>
                     <td><a href="mailto:<?php echo $contact->sender_email ?>"><?php echo $contact->sender_email ?></a></td>

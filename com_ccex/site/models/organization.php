@@ -5,11 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExModelsOrganization extends CCExModelsDefault
 {
-    
-    /**
-     * Protected fields
-     *
-     */
     protected $_organization_id = null;
     protected $_user_id = null;
     protected $_name = null;
@@ -41,10 +36,20 @@ class CCExModelsOrganization extends CCExModelsDefault
         return null;
     }
     
-    /**
-     * Builds the query to be used by the Organization model
-     * @return   object  Query object
-     */
+    public function getItemUnrestricted() {
+        $organization = null;
+        
+        if (is_numeric($this->_organization_id) || is_numeric($this->_user_id)) {
+            $organization = parent::getItem();
+            
+            if ($organization) {
+                $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
+            }
+        }
+        
+        return $organization;
+    }
+    
     protected function _buildQuery() {
         $db = JFactory::getDBO();
         $query = $db->getQuery(TRUE);
@@ -55,13 +60,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         return $query;
     }
     
-    /**
-     * Builds the filter for the query
-     * @param    object  Query object
-     * @return   object  Query object
-     */
     protected function _buildWhere(&$query) {
-        
         if (is_numeric($this->_organization_id)) {
             $query->where('o.organization_id = ' . (int)$this->_organization_id);
         } elseif (is_numeric($this->_user_id)) {
@@ -73,14 +72,9 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
         
         $query->where('o.deleted = ' . (int)$this->_deleted);
-        
         return $query;
     }
     
-    /**
-     * Override the default store
-     *
-     */
     public function store($data = null) {
         $data = $data ? $data : JRequest::get('post');
         $date = date("Y-m-d H:i:s");
@@ -98,10 +92,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
         
         $row_organization->modified = $date;
-        if (!$row_organization->check()) {
-            return null;
-        }
-        if (!$row_organization->store()) {
+        if (!$row_organization->check() || !$row_organization->store()) {
             return null;
         }
         
@@ -117,29 +108,21 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $return;
     }
-
-    /**
-     * Delete a organization
-     * @param int      ID of the organization to delete
-     * @return boolean True if successfully deleted
-     */
+    
     public function delete($id = null, $update = true) {
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('organization_id');
         
         $organizationModel = new CCExModelsOrganization();
-        $organizations = $organizationModel->listItemsBy("_organization_id", $id);
-        $organization = array_shift($organizations);
-        $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-
+        $organization = $organizationModel->getItemUnrestrictedBy("_organization_id", $id);
+        
         $organizationTable = JTable::getInstance('Organization', 'Table');
         $organizationTable->load($id);
-        
         $organizationTable->deleted = 1;
         
         if ($organizationTable->store()) {
             $organization->deleteCollections();
-
+            
             return true;
         } else {
             return false;
@@ -148,12 +131,12 @@ class CCExModelsOrganization extends CCExModelsDefault
     
     public function deleteCollections($update = true) {
         $collectionModel = new CCExModelsCollection();
-
+        
         foreach ($this->collections() as $collection) {
             $collectionModel->delete($collection->collection_id, $update);
         }
     }
-
+    
     public function havePermissions($user_id) {
         if ($user_id && $this->user_id == $user_id) {
             return true;
@@ -164,37 +147,32 @@ class CCExModelsOrganization extends CCExModelsDefault
     
     public function currency() {
         $currencyModel = new CCExModelsCurrency();
-        $currencies = $currencyModel->listItemsBy('_currency_id', $this->currency_id);
-        $currency = CCExHelpersCast::cast('CCExModelsCurrency', array_shift($currencies));
-        
-        return $currency;
+        return $currencyModel->getItemUnrestrictedBy('_currency_id', $this->currency_id);
     }
     
     public function collections() {
         $collectionModel = new CCExModelsCollection();
         $collections = $collectionModel->listItemsBy('_organization_id', $this->organization_id);
-        
         return $collections;
     }
-
+    
     public function finalCollections() {
         $collectionModel = new CCExModelsCollection();
         $collectionModel->set("_final", true);
         $collections = $collectionModel->listItemsBy('_organization_id', $this->organization_id);
-        
         return $collections;
     }
-
+    
     public function finalAndNonEmptyCollections() {
         $collections = array();
-
+        
         foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
-            if($collection->haveCosts()){
+            if ($collection->haveCosts()) {
                 array_push($collections, $collection);
             }
         }
-
+        
         return $collections;
     }
     
@@ -212,7 +190,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $intervals;
     }
-
+    
     public function costs() {
         $costs = array();
         
@@ -223,7 +201,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $costs;
     }
-
+    
     public function finalIntervals() {
         $intervals = array();
         
@@ -234,7 +212,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $intervals;
     }
-
+    
     public function finalAndNonEmptyIntervals() {
         $intervals = array();
         
@@ -245,8 +223,8 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $intervals;
     }
-
-    public function readyForComparison(){
+    
+    public function readyForComparison() {
         return count($this->finalAndNonEmptyIntervals());
     }
     
@@ -296,14 +274,12 @@ class CCExModelsOrganization extends CCExModelsDefault
     public function country() {
         $countryModel = new CCExModelsCountry();
         $country = $countryModel->getItemBy('_country_id', $this->country_id);
-        
         return $country;
     }
     
     public function organizationOrgTypes() {
         $organizationOrgTypeModel = new CCExModelsOrganizationorgtype();
         $organizationOrgTypes = $organizationOrgTypeModel->listItemsBy('_organization_id', $this->organization_id);
-        
         return $organizationOrgTypes;
     }
     
@@ -357,7 +333,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return false;
     }
-
+    
     public function haveType($type) {
         foreach ($this->types() as $orgType) {
             if ($orgType->org_type_id == $type) {
@@ -367,19 +343,19 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return false;
     }
-
+    
     public function haveTypes($types) {
         $result = true;
-
+        
         foreach ($types as $type) {
-            if(!$this->haveType($type)){
+            if (!$this->haveType($type)) {
                 $result = false;
             }
         }
-
+        
         return $result;
     }
-
+    
     public function typesToString() {
         $string = "";
         $other = false;
@@ -404,49 +380,6 @@ class CCExModelsOrganization extends CCExModelsDefault
         return $string;
     }
     
-    // B FIX THIS
-    public function globalComparison() {
-        if ($this->global_comparison) {
-            return "Yes";
-        } else {
-            return "No";
-        }
-    }
-    
-    public function peerComparison() {
-        if ($this->peer_comparison) {
-            return "Yes";
-        } else {
-            return "No";
-        }
-    }
-
-    public function organizationLinked() {
-        if ($this->organization_linked) {
-            return "Yes";
-        } else {
-            return "No";
-        }
-    }
-    
-    public function contactAndSharing() {
-        if ($this->contact_and_sharing) {
-            return "Yes";
-        } else {
-            return "No";
-        }
-    }
-    
-    public function snapshots() {
-        if ($this->snapshots) {
-            return "Yes";
-        } else {
-            return "No";
-        }
-    }
-    
-    // E
-    
     private function organizationBeginAndLastYear($filter) {
         if($filter && $filter == "final"){
             $intervals = $this->finalIntervals();
@@ -456,7 +389,13 @@ class CCExModelsOrganization extends CCExModelsDefault
 
         $firstInterval = array_shift($intervals);
         
-        if($firstInterval){
+        if ($filter && $filter == "final") {
+            $intervals = $this->finalIntervals();
+        } else {
+            $intervals = $this->intervals();
+        }
+        
+        if ($firstInterval) {
             $beginYear = $firstInterval->begin_year;
             $lastYear = $beginYear + $firstInterval->duration - 1;
             
@@ -469,7 +408,7 @@ class CCExModelsOrganization extends CCExModelsDefault
                     $lastYear = $interval->begin_year + $interval->duration - 1;
                 }
             }
-        }else{
+        } else {
             $beginYear = date("Y");
             $lastYear = date("Y") + 1;
         }
@@ -481,7 +420,6 @@ class CCExModelsOrganization extends CCExModelsDefault
         $firstCollectionID = array_shift($collections);
         $collectionModel = new CCExModelsCollection();
         $collection = $collectionModel->getItemBy("_collection_id", $firstCollectionID);
-        
         $beginAndLastYear = $collection->beginAndLastYear($collections);
         
         $beginYear = $beginAndLastYear["begin_year"];
@@ -492,7 +430,6 @@ class CCExModelsOrganization extends CCExModelsDefault
             $collection = $collectionModel->getItemBy("_collection_id", $collectionID);
             
             if ($collection) {
-                
                 $beginAndLastYear = $collection->beginAndLastYear();
                 
                 if ($beginAndLastYear["begin_year"] < $beginYear) {
@@ -523,10 +460,10 @@ class CCExModelsOrganization extends CCExModelsDefault
     
     public function years($filter = null) {
         $yearsHash = array();
-
-        if($filter && $filter == "final"){
+        
+        if ($filter && $filter == "final") {
             $intervals = $this->finalIntervals();
-        }else{
+        } else {
             $intervals = $this->intervals();
         }
         
@@ -543,54 +480,53 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
         
         krsort($yearsHash, SORT_NUMERIC);
-        
         return $yearsHash;
     }
-
-    public function intervalsOfYear($year="all") {
+    
+    public function intervalsOfYear($year = "all") {
         $intervals = array();
         $allIntervals = $this->intervals();
-
-        if($year=="all" || !is_numeric($year)){
+        
+        if ($year == "all" || !is_numeric($year)) {
             $intervals = $allIntervals;
-        }else{
+        } else {
             foreach ($allIntervals as $interval) {
                 $year = intval($year);
-
+                
                 $beginYear = $interval->begin_year;
-                $endYear = $interval->begin_year + $interval->duration - 1; 
-
-                if($year >= $beginYear && $year <= $endYear){
+                $endYear = $interval->begin_year + $interval->duration - 1;
+                
+                if ($year >= $beginYear && $year <= $endYear) {
                     array_push($intervals, $interval);
                 }
             }
         }
-
+        
         return $intervals;
     }
-
-    public function finalIntervalsOfYear($year="all") {
+    
+    public function finalIntervalsOfYear($year = "all") {
         $intervals = array();
         $allIntervals = $this->finalIntervals();
-
-        if($year=="all" || !is_numeric($year)){
+        
+        if ($year == "all" || !is_numeric($year)) {
             $intervals = $allIntervals;
-        }else{
+        } else {
             foreach ($allIntervals as $interval) {
                 $year = intval($year);
-
+                
                 $beginYear = $interval->begin_year;
-                $endYear = $interval->begin_year + $interval->duration - 1; 
-
-                if($year >= $beginYear && $year <= $endYear){
+                $endYear = $interval->begin_year + $interval->duration - 1;
+                
+                if ($year >= $beginYear && $year <= $endYear) {
                     array_push($intervals, $interval);
                 }
             }
         }
-
+        
         return $intervals;
     }
-
+    
     public function dataVolumeToString() {
         $result = new stdClass();
         $result->format = "Gigabytes";
@@ -610,345 +546,344 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $result->value . " " . $result->format;
     }
-
-    public function dataVolumePonderedAverage(){
+    
+    public function dataVolumePonderedAverage() {
         $dividend = 0;
-        $divisor  = 0;
-
+        $divisor = 0;
+        
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
-
-            $dividend += $collection->dataVolumePonderedAverage() * $nrYears;
-            $divisor += $nrYears;
+            
+            $dividend+= $collection->dataVolumePonderedAverage() * $nrYears;
+            $divisor+= $nrYears;
         }
-
-        if($divisor>0){
-            return $dividend/$divisor;
-        }else{
+        
+        if ($divisor > 0) {
+            return $dividend / $divisor;
+        } else {
             return 0;
         }
     }
-
-    public function dataVolumePonderedStandardDeviation(){
+    
+    public function dataVolumePonderedStandardDeviation() {
         $data = array();
         $std_dev = 0;
         $n = 0;
-
+        
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
-
-            $data[$collection->dataVolumePonderedAverage()] = $nrYears;
-            $n += $nrYears;
+            
+            $data[$collection->dataVolumePonderedAverage() ] = $nrYears;
+            $n+= $nrYears;
         }
-
+        
         foreach ($data as $value => $count) {
-            $std_dev += ($count * pow($value - $this->dataVolumePonderedAverage(), 2));
+            $std_dev+= ($count * pow($value - $this->dataVolumePonderedAverage(), 2));
         }
-
-        if($n < 2){
+        
+        if ($n < 2) {
             $std_dev = 0;
-        }else{
-            $std_dev = sqrt($std_dev/($n - 1));
+        } else {
+            $std_dev = sqrt($std_dev / ($n - 1));
         }
-
+        
         return $std_dev;
     }
-
-    public function validDataVolumePonderedAverage(){
+    
+    public function validDataVolumePonderedAverage() {
         $configurationModel = new CCExModelsConfiguration();
-
-        if($this->dataVolumePonderedAverage()){
+        
+        if ($this->dataVolumePonderedAverage()) {
             return ($this->dataVolumePonderedStandardDeviation() / $this->dataVolumePonderedAverage()) <= $configurationModel->configurationValue("maximum_ratio_valid_global_comparison", 0.3);
-        }else{
+        } else {
             return true;
         }
     }
-
-    public function staffPonderedAverage(){
+    
+    public function staffPonderedAverage() {
         $dividend = 0;
-        $divisor  = 0;
-
+        $divisor = 0;
+        
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
-
-            $dividend += $collection->staffPonderedAverage() * $nrYears;
-            $divisor += $nrYears;
+            
+            $dividend+= $collection->staffPonderedAverage() * $nrYears;
+            $divisor+= $nrYears;
         }
-
-        if($divisor>0){
-            return $dividend/$divisor;
-        }else{
+        
+        if ($divisor > 0) {
+            return $dividend / $divisor;
+        } else {
             return 0;
         }
     }
-
-    public function staffPonderedStandardDeviation(){
+    
+    public function staffPonderedStandardDeviation() {
         $data = array();
         $std_dev = 0;
         $n = 0;
-
+        
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
-
-            $data[$collection->staffPonderedAverage()] = $nrYears;
-            $n += $nrYears;
+            
+            $data[$collection->staffPonderedAverage() ] = $nrYears;
+            $n+= $nrYears;
         }
-
+        
         foreach ($data as $value => $count) {
-            $std_dev += ($count * pow($value - $this->staffPonderedAverage(), 2));
+            $std_dev+= ($count * pow($value - $this->staffPonderedAverage(), 2));
         }
-
-        if($n < 2){
+        
+        if ($n < 2) {
             $std_dev = 0;
-        }else{
-            $std_dev = sqrt($std_dev/($n - 1));
+        } else {
+            $std_dev = sqrt($std_dev / ($n - 1));
         }
-
+        
         return $std_dev;
     }
-
-    public function validStaffPonderedAverage(){
+    
+    public function validStaffPonderedAverage() {
         $configurationModel = new CCExModelsConfiguration();
-
-        if($this->staffPonderedAverage()){
+        
+        if ($this->staffPonderedAverage()) {
             return ($this->staffPonderedStandardDeviation() / $this->staffPonderedAverage()) <= $configurationModel->configurationValue("maximum_ratio_valid_global_comparison", 0.3);
-        }else{
+        } else {
             return true;
         }
     }
-
-    public function numberOfCopiesPonderedAverage(){
+    
+    public function numberOfCopiesPonderedAverage() {
         $dividend = 0;
-        $divisor  = 0;
-
+        $divisor = 0;
+        
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
-
-            $dividend += $collection->numberOfCopiesPonderedAverage() * $nrYears;
-            $divisor += $nrYears;
+            
+            $dividend+= $collection->numberOfCopiesPonderedAverage() * $nrYears;
+            $divisor+= $nrYears;
         }
-
-        if($divisor>0){
-            return $dividend/$divisor;
-        }else{
+        
+        if ($divisor > 0) {
+            return $dividend / $divisor;
+        } else {
             return 0;
         }
     }
-
-    public function numberOfCopiesPonderedStandardDeviation(){
+    
+    public function numberOfCopiesPonderedStandardDeviation() {
         $data = array();
         $std_dev = 0;
         $n = 0;
-
+        
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
-
-            $data[$collection->numberOfCopiesPonderedAverage()] = $nrYears;
-            $n += $nrYears;
+            
+            $data[$collection->numberOfCopiesPonderedAverage() ] = $nrYears;
+            $n+= $nrYears;
         }
-
+        
         foreach ($data as $value => $count) {
-            $std_dev += ($count * pow($value - $this->numberOfCopiesPonderedAverage(), 2));
+            $std_dev+= ($count * pow($value - $this->numberOfCopiesPonderedAverage(), 2));
         }
-
-        if($n < 2){
+        
+        if ($n < 2) {
             $std_dev = 0;
-        }else{
-            $std_dev = sqrt($std_dev/($n - 1));
+        } else {
+            $std_dev = sqrt($std_dev / ($n - 1));
         }
-
+        
         return $std_dev;
     }
-
-    public function validNumberOfCopiesPonderedAverage(){
+    
+    public function validNumberOfCopiesPonderedAverage() {
         $configurationModel = new CCExModelsConfiguration();
-
-        if($this->numberOfCopiesPonderedAverage()){
+        
+        if ($this->numberOfCopiesPonderedAverage()) {
             return ($this->numberOfCopiesPonderedStandardDeviation() / $this->numberOfCopiesPonderedAverage()) <= $configurationModel->configurationValue("maximum_ratio_valid_global_comparison", 0.3);
-        }else{
+        } else {
             return true;
         }
     }
-
-    public function typeMatch($types){
+    
+    public function typeMatch($types) {
         $match = 0;
         $total = 0;
-
+        
         foreach ($types as $type) {
-            if($type->name != "Other"){
-                if($this->haveType($type)){
+            if ($type->name != "Other") {
+                if ($this->haveType($type)) {
                     $match++;
                 }
                 $total++;
             }
         }
-
-        if($total == 0){
+        
+        if ($total == 0) {
             return 1;
-        }else{
-            return $match/(float)$total;
+        } else {
+            return $match / (float)$total;
         }
     }
-
-    public function scopesMatch($scopes){
+    
+    public function scopesMatch($scopes) {
         $match = 0;
         $total = 0;
         $myScopes = $this->scopes();
-
+        
         foreach ($scopes as $scope) {
-            if(in_array($scope, $myScopes)){
+            if (in_array($scope, $myScopes)) {
                 $match++;
             }
             $total++;
         }
-
-        if($total == 0){
+        
+        if ($total == 0) {
             return 1;
-        }else{
-            return $match/(float)$total;
+        } else {
+            return $match / (float)$total;
         }
     }
-
-    public function mainAssetsMatch($mainAssets){
+    
+    public function mainAssetsMatch($mainAssets) {
         $match = 0;
         $total = 0;
         $myMainAssets = $this->mainAssets();
-
+        
         foreach ($mainAssets as $mainAsset) {
-            if(in_array($mainAsset, $myMainAssets)){
+            if (in_array($mainAsset, $myMainAssets)) {
                 $match++;
             }
             $total++;
         }
-
-        if($total == 0){
+        
+        if ($total == 0) {
             return 1;
-        }else{
-            return $match/(float)$total;
+        } else {
+            return $match / (float)$total;
         }
     }
-
-    public function scopes(){
+    
+    public function scopes() {
         $scopes = array();
-
+        
         foreach ($this->collections() as $collection) {
             $scopes[$collection->scope] = true;
         }
-
+        
         return array_keys($scopes);
     }
-
-    public function mainAssets(){
+    
+    public function mainAssets() {
         $mainAssets = array();
-
+        
         foreach ($this->collections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
-
-            $mainAssets[$collection->mainAsset()] = true;
+            $mainAssets[$collection->mainAsset() ] = true;
         }
-
+        
         return array_keys($mainAssets);
     }
-
-    public function organizationsForGlobalComparison(){
+    
+    public function organizationsForGlobalComparison() {
         $organizationModel = new CCExModelsOrganization();
         $organizationModel->set("_global_comparison", true);
         $organizations = $organizationModel->listItems();
         $userModel = new CCExModelsUser();
         $userOrganization = $userModel->organization();
         $result = array();
-
+        
         foreach ($organizations as $organization) {
-            if($userOrganization->organization_id != $organization->organization_id ){
+            if ($userOrganization->organization_id != $organization->organization_id) {
                 $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-
-                if($organization->readyForComparison()){
+                
+                if ($organization->readyForComparison()) {
                     array_push($result, $organization);
                 }
             }
         }
-
+        
         return $result;
     }
-
-    public function organizationsForPeerComparison(){
+    
+    public function organizationsForPeerComparison() {
         $organizationModel = new CCExModelsOrganization();
         $organizationModel->set("_peer_comparison", true);
         $organizations = $organizationModel->listItems();
         $userModel = new CCExModelsUser();
         $userOrganization = $userModel->organization();
         $result = array();
-
+        
         foreach ($organizations as $organization) {
-            if($userOrganization->organization_id != $organization->organization_id ){
+            if ($userOrganization->organization_id != $organization->organization_id) {
                 $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-
-                if($organization->readyForComparison()){
+                
+                if ($organization->readyForComparison()) {
                     array_push($result, $organization);
                 }
             }
         }
-
+        
         return $result;
     }
-
-    public function user(){
+    
+    public function user() {
         $table = JUser::getTable();
-
-        if($table->load($this->user_id)){
-          return JFactory::getUser($this->user_id);
+        
+        if ($table->load($this->user_id)) {
+            return JFactory::getUser($this->user_id);
         } else {
-          return null;
+            return null;
         }
     }
-
-    public function existsOrganizationsOfType($org_type_id){
+    
+    public function existsOrganizationsOfType($org_type_id) {
         $result = false;
         $organizationModel = new CCExModelsOrganization();
-
+        
         foreach ($organizationModel->listItems() as $organization) {
             $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
-
-            if($organization->haveType($org_type_id)){
-                $result = true;
-                break;       
-            }
-        }
-
-        return $result;
-    }
-
-    public function existsOrganizationsOfCountry($country_id){
-        $result = false;
-        $organizationModel = new CCExModelsOrganization();
-
-        foreach ($organizationModel->listItems() as $organization) {
-            if($organization->country_id == $country_id){
+            
+            if ($organization->haveType($org_type_id)) {
                 $result = true;
                 break;
             }
         }
-
+        
         return $result;
     }
-
-    public function existsOrganizationsWithCurrency($currency_id){
+    
+    public function existsOrganizationsOfCountry($country_id) {
         $result = false;
         $organizationModel = new CCExModelsOrganization();
-
+        
         foreach ($organizationModel->listItems() as $organization) {
-            if($organization->currency_id == $currency_id){
+            if ($organization->country_id == $country_id) {
                 $result = true;
                 break;
             }
         }
-
+        
+        return $result;
+    }
+    
+    public function existsOrganizationsWithCurrency($currency_id) {
+        $result = false;
+        $organizationModel = new CCExModelsOrganization();
+        
+        foreach ($organizationModel->listItems() as $organization) {
+            if ($organization->currency_id == $currency_id) {
+                $result = true;
+                break;
+            }
+        }
+        
         return $result;
     }
 }
