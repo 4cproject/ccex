@@ -72,7 +72,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         return $series;
     }
     
-    private function mySeries($collectionsIDs, $year, $intervals = array()) {
+    private function mySeries($collectionsIDs, $year, $intervals, $filter) {
         $collections = $this->_organization->collections();
         $collectionsIdentifiers = array();
         
@@ -103,7 +103,13 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             }
         } else {
             $color = "#00b050";
-            $label = "You :: All data sets at ";
+
+            if($filter && $filter == "final"){
+              $label = "You :: Final data sets at ";  
+            }else{
+              $label = "You :: All data sets at ";
+            }
+
             $id = "self_all";
             
             if ($year == "all") {
@@ -185,7 +191,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             }
         }
         
-        return $this->mySeries($collectionsIDs, $year, $intervals);
+        return $this->mySeries($collectionsIDs, $year, $intervals, $filter);
     }
     
     private function calculateOtherSeries($organizations, $collections, $label) {

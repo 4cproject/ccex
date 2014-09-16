@@ -40,10 +40,6 @@ defined('_JEXEC') or die;
 					continue;
 				}
 
-				if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')) {
-					continue;
-				}
-
 				if ($item->link == "index.php?option=com_users&view=profile" || $item->link == "index.php?option=com_ccex&view=user&layout=profile") {
 					if (JFactory::getUser()->get('guest')){
 						continue;
@@ -117,20 +113,28 @@ defined('_JEXEC') or die;
               
 				echo '<li' . $class . '>';
 				
-				// Render the menu item.
-				switch ($item->type) :
-					case 'separator':
-					case 'url':
-					case 'component':
-					case 'heading':
-						require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
-						break;
+				if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')){ ?>
+					<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.logout'); ?>" method="post" class="form-horizontal">
+						<input type="submit" value="Logout"></input>
+						<input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('index.php?option=com_users&view=login')); ?>" />
+						<?php echo JHtml::_('form.token'); ?>
+					</form> <?php
+				}else{
+					// Render the menu item.
+					switch ($item->type) :
+						case 'separator':
+						case 'url':
+						case 'component':
+						case 'heading':
+							require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
+							break;
 
-					default:
-						require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
-						break;
-				endswitch;
-
+						default:
+							require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
+							break;
+					endswitch;
+				}
+				
 				// The next item is deeper.
 				if ($item->deeper)
 				{

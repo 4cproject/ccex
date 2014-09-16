@@ -1,5 +1,6 @@
 <?php
- // no direct access
+
+// no direct access
 defined('_JEXEC') or die('Restricted access');
 
 class CCExHelpersView

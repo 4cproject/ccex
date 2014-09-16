@@ -20,8 +20,8 @@ class CCExControllersCompareself extends JControllerBase
         } else {
             $collections = array();
         }
-
-        if(array_key_exists('collectionsMode', $data) && $data["collectionsMode"] == "combinedFinal") {
+        
+        if (array_key_exists('collectionsMode', $data) && $data["collectionsMode"] == "combinedFinal") {
             $filter = "final";
         }
         

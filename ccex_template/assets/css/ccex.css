@@ -91,18 +91,12 @@
 }
 
 .navbar-nav>li input {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     line-height: 20px;
 
     border: none;
     background: none;
     outline-color: #fff;
-}
-
-.navbar-nav>li input {
-    padding-top: 15px;
-    padding-bottom: 15px;
 }
 
 .navbar-default .navbar-nav>li input {
@@ -141,7 +135,7 @@ ul.dropdown-menu.width-auto{
 }
 
 .input-xs {
-    height: 22px;
+    height: 20px;
     padding: 1px 1px;
     font-size: 10px;
     line-height: 1.5;
@@ -458,7 +452,7 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 }
 
 .nav-name-ellipsis{
-  max-width: 160px;
+  max-width: 140px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

@@ -11,21 +11,19 @@ class CCExControllersDraft extends JControllerBase
         $collectionModel = new CCExModelsCollection();
         $collection_id = $data['collection_id'];
         $final = 0;
-
-        if(isset($data['final']) && $data['final']){
+        
+        if (isset($data['final']) && $data['final']) {
             $final = 1;
         }
-
+        
         $collection = $collectionModel->getItemBy("_collection_id", $collection_id);
-
-        if(is_numeric($collection_id) &&
-           $collection && 
-           $collection->switchFinal($final)){
-            $return['success'] = true;  
-        }else{
-            $return['success'] = false;  
+        
+        if (is_numeric($collection_id) && $collection && $collection->switchFinal($final)) {
+            $return['success'] = true;
+        } else {
+            $return['success'] = false;
         }
-
+        
         $return['readyForComparison'] = $collection->organization()->readyForComparison();
         $return['numberIntervals'] = $collection->organization()->numberIntervals();
         

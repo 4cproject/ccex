@@ -113,7 +113,7 @@ class CCExModelsCollection extends CCExModelsDefault
         $app = JFactory::getApplication();
         $id = $id ? $id : $app->input->get('collection_id');
         
-        $collectionModel = new CCExModelsInterval();
+        $collectionModel = new CCExModelsCollection();
         $collection = $collectionModel->getItemUnrestrictedBy("_collection_id", $id);
         
         $collectionTable = JTable::getInstance('Collection', 'Table');
@@ -234,7 +234,7 @@ class CCExModelsCollection extends CCExModelsDefault
     
     public function newInterval() {
         $newInterval = new CCExModelsInterval();
-        $newInterval->set('collection_id', $this->collection_id);
+        $newInterval->set('collection_id', $this->_collection_id);
         
         if ($this->numberIntervals()) {
             $lastInterval = $this->lastInterval();

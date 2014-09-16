@@ -1,54 +1,15 @@
 $(document).ready(function() {
-    $(".updateChartsOnChange").on('change', function(){
-        var form = $("#globalComparisonForm");
-        var info = form.serializeAll();
-        var financialAccountingChart = $("#global_financial_accounting_chart").highcharts();
-        var activitiesChart = $("#global_activities_chart").highcharts();
-
-        if(!($("#separatedMode").is('checked') && $(".collectionCheck:checked").size() == 0) && 
-           !($(this).hasClass("collectionSelect") && $(this).closest(".row").find(".collectionCheck:checked:not(:disabled)").size() == 0) &&
-           !($(this).hasClass("organizationSelectAll") && $("#combinedModeAll").is(":not(:checked)")) &&
-           !($(this).hasClass("organizationSelectFinal") && $("#combinedModeFinal").is(":not(:checked)"))){
-            financialAccountingChart.showLoading();
-            activitiesChart.showLoading();
-            $.ajax({
-                url: 'index.php?option=com_ccex&controller=compareglobal&format=raw',
-                type: 'POST',
-                data: info,
-                dataType: 'JSON',
-                success: function(data) {            
-                    if(data.success){                      
-                        while(financialAccountingChart.series.length > 0){
-                            financialAccountingChart.series[0].remove(false);
-                        }
-
-                        for(var i=0; i<data.series.financial_accounting.length; i++){
-                            financialAccountingChart.addSeries(data.series.financial_accounting[i], false);
-                        }
-
-                        while(activitiesChart.series.length > 0){
-                            activitiesChart.series[0].remove(false);
-                        }
-
-                        for(var i=0; i<data.series.activities.length; i++){
-                            activitiesChart.addSeries(data.series.activities[i], false);
-                        }
-
-                        financialAccountingChart.redraw();
-                        activitiesChart.redraw();
-                    }                 
-                },
-                complete: function(){
-                    financialAccountingChart.hideLoading();
-                    activitiesChart.hideLoading();
-                }
-            });
-        }
-    });
-
     $("#separatedMode").on('change', function() {
+        var checked = $(".collectionCheck:checked");
+        var notChecked = $(".collectionCheck:not(:checked)");
+        var allChecks =  $(".collectionCheck");
+        
         if(this.checked) {
-            $(".collectionCheck:checked").removeAttr("disabled");
+            if(checked.size() > 3){
+                checked.removeAttr("disabled");
+            }else{
+                allChecks.removeAttr("disabled");
+            }
         }
     });
 
@@ -65,7 +26,6 @@ $(document).ready(function() {
 
         if(checked.size()==0){
             $("#separatedMode").removeAttr("checked");
-            $("#combinedModeAll").prop('checked', true);
 
            allChecks.each(function( index, element ) {
                 if(index < 3){
@@ -74,18 +34,115 @@ $(document).ready(function() {
             });
 
             allChecks.attr("disabled", true);
-        }else if(checked.size()==3){
-            notChecked.attr("disabled", true);
-        }else{
-            allChecks.removeAttr("disabled");
+            $("#combinedModeAll").prop('checked', true).change();
+        }else{ 
+            if(checked.size()==3){
+                notChecked.attr("disabled", true);
+            }else{
+                allChecks.removeAttr("disabled");
+            }
+            
+            updateFilterAndChart($(this));
         }
     });
 
-    $("#see-all-filters").on("click", function(){
-        $("#other-filters").slideToggle();
-        $("#see-all-filters").children("i").toggleClass("fa-angle-down").toggleClass("fa-angle-up");
+    $(".generalCheck").on('change', function() {
+        updateFilterAndChart($(this));
     });
-
 });
 
+function updateFilterAndChart(element){
+    if(!(element.hasClass("collectionSelect") && element.closest("label").find(".collectionCheck:checked:not(:disabled)").size() == 0) &&
+       !(element.hasClass("organizationSelectAll") && $("#combinedModeAll").is(":not(:checked)")) &&
+       !(element.hasClass("organizationSelectFinal") && $("#combinedModeFinal").is(":not(:checked)"))){
+        updateChartsOnChange(element);
+        updateSelectedFilter(element);
+    }
+}
 
+function updateSelectedFilter(element){
+    if(element.closest("#my-costs-filters").size() > 0){
+        var updateType = element.data("update");
+        var tagsInput = $("#my-costs-filters .tagsinput");
+        var selectedFilter = tagsInput.find(".selected-filter");
+        var title;
+
+        tagsInput.find(".singular-filter").remove();
+
+        if(updateType == "general"){
+            var label = element.closest("label");
+            var select = label.find("select");
+            title = label.find(".filter-title").text();
+
+            selectedFilter.show();
+
+            if(select.val() != "all"){
+                title += " at " + select.val()
+            }
+
+            selectedFilter.text(title);
+
+        }else if(updateType == "singular"){
+            selectedFilter.hide();
+
+            $("#my-costs-filters").find(".collectionCheck").each(function(index, element){
+                if($(element).prop("checked")){
+                    var label = $(element).closest("label");
+                    var select = label.find("select");
+                    title = label.find(".filter-title").text();
+
+                    if(select.val() != "all"){
+                        title += " at " + select.val()
+                    }
+
+                    tagsInput.append('<span class="tag singular-filter">' + title + '</span>');
+                }
+            });
+        }
+    }else{
+        var title = element.next().text();
+        $("#other-organisations-filters .selected-filter").text(title);
+    }
+}
+
+function updateChartsOnChange(element){
+        var form = $("#globalComparisonForm");
+        var info = form.serializeAll();
+        var financialAccountingChart = $("#global_financial_accounting_chart").highcharts();
+        var activitiesChart = $("#global_activities_chart").highcharts();
+
+        financialAccountingChart.showLoading();
+        activitiesChart.showLoading();
+        $.ajax({
+            url: 'index.php?option=com_ccex&controller=compareglobal&format=raw',
+            type: 'POST',
+            data: info,
+            dataType: 'JSON',
+            success: function(data) {            
+                if(data.success){                      
+                    while(financialAccountingChart.series.length > 0){
+                        financialAccountingChart.series[0].remove(false);
+                    }
+
+                    for(var i=0; i<data.series.financial_accounting.length; i++){
+                        financialAccountingChart.addSeries(data.series.financial_accounting[i], false);
+                    }
+
+                    while(activitiesChart.series.length > 0){
+                        activitiesChart.series[0].remove(false);
+                    }
+
+                    for(var i=0; i<data.series.activities.length; i++){
+                        activitiesChart.addSeries(data.series.activities[i], false);
+                    }
+
+                    financialAccountingChart.redraw();
+                    activitiesChart.redraw();
+                }                 
+            },
+            complete: function(){
+                financialAccountingChart.hideLoading();
+                activitiesChart.hideLoading();
+            }
+        });
+}
