@@ -13,10 +13,10 @@ class CCExViewsAnalyseHtml extends JViewHtml
         $userModel = new CCExModelsUser();
         $organization = $userModel->organization();
         
-        if (!$organization) {
+/*        if (!$organization) {
             $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
             $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
-        }
+        }*/
         
         switch ($layout) {
             case "self":
@@ -79,9 +79,15 @@ class CCExViewsAnalyseHtml extends JViewHtml
 
                 $this->options = $compareGlobal->otherOrganizationCostsOptions();
                 
-                $this->collections = $organization->collections();
-                $this->collectionsFinal = $organization->finalCollections();
+                if($organization){
+                    $this->collections = $organization->collections();
+                    $this->collectionsFinal = $organization->finalCollections();
 
+                    $this->_showOrganization = CCExHelpersView::load('Organization', '_show', 'phtml');
+                    $this->_showOrganization->organization = $organization;
+                }
+
+                $this->user = $userModel;
                 $this->organization = $organization;
                 break;
 

@@ -73,7 +73,12 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     }
     
     private function mySeries($collectionsIDs, $year, $intervals, $filter) {
-        $collections = $this->_organization->collections();
+        if($this->_organization){
+            $collections = $this->_organization->collections();
+        }else{
+            $collections = array();
+        }   
+
         $collectionsIdentifiers = array();
         
         foreach ($collections as $index => $collection) {
@@ -103,20 +108,23 @@ class CCExModelsCompareglobal extends CCExModelsDefault
             }
         } else {
             $color = "#00b050";
-
-            if($filter && $filter == "final"){
-              $label = "You :: Final data sets at ";  
-            }else{
-              $label = "You :: All data sets at ";
-            }
-
             $id = "self_all";
-            
-            if ($year == "all") {
-                $label.= "all years";
-            } else {
-                $label.= $year;
-            }
+
+            if($this->_organization){
+                if($filter && $filter == "final"){
+                  $label = "You :: Final data sets at ";  
+                }else{
+                  $label = "You :: All data sets at ";
+                }
+                
+                if ($year == "all") {
+                    $label.= "all years";
+                } else {
+                    $label.= $year;
+                }
+            }else{
+                $label = "You :: No organization";
+            }  
             
             $data = $this->seriesData($intervals);
             array_push($series["financial_accounting"], $this->serie($label, $data["financial_accounting"], $color, $id, $label, false));
@@ -183,14 +191,16 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     private function calculateMySeries($collectionsIDs, $year, $filter) {
         $intervals = array();
         
-        if (!count($collectionsIDs)) {
-            if ($filter && $filter == "final") {
-                $intervals = $this->_organization->finalIntervalsOfYear($year);
-            } else {
-                $intervals = $this->_organization->intervalsOfYear($year);
+        if($this->_organization){
+            if (!count($collectionsIDs)) {
+                if ($filter && $filter == "final") {
+                    $intervals = $this->_organization->finalIntervalsOfYear($year);
+                } else {
+                    $intervals = $this->_organization->intervalsOfYear($year);
+                }
             }
         }
-        
+
         return $this->mySeries($collectionsIDs, $year, $intervals, $filter);
     }
     
@@ -237,36 +247,38 @@ class CCExModelsCompareglobal extends CCExModelsDefault
         
         $listall = $this->addOption($listall, "List all organisations", "organization", "none", "", $organizations, true);
         
-        $typesIDs = array();
-        $typesNames = array();
-        foreach ($this->_organization->types() as $type) {
-            if ($type->name != "Other") {
-                $options = $this->addOption($options, "Organisations of type " . $type->name, "organization", "type", $type->org_type_id, $organizations);
-                
-                array_push($typesIDs, $type->org_type_id);
-                array_push($typesNames, $type->name);
+        if($this->_organization){
+            $typesIDs = array();
+            $typesNames = array();
+            foreach ($this->_organization->types() as $type) {
+                if ($type->name != "Other") {
+                    $options = $this->addOption($options, "Organisations of type " . $type->name, "organization", "type", $type->org_type_id, $organizations);
+                    
+                    array_push($typesIDs, $type->org_type_id);
+                    array_push($typesNames, $type->name);
+                }
             }
-        }
-        
-        if (count($typesIDs) > 1) {
-            $options = $this->addOption($options, "Organisations of types " . implode(", ", $typesNames), "organization", "types", implode(",", $typesIDs), $organizations);
-        }
-        
-        $options = $this->addOption($options, "Organisations of country " . $this->_organization->country()->name, "organization", "country", $this->_organization->country_id, $organizations);
-        $options = $this->addOption($options, "Organisations with around the same data volume", "organization", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations);
-        $options = $this->addOption($options, "Collections with around the same data volume", "collection", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations, false, $this->_organization->validDataVolumePonderedAverage());
-        $options = $this->addOption($options, "Collections with around the same staff", "collection", "staff", $this->_organization->staffPonderedAverage(), $organizations, false, $this->_organization->validStaffPonderedAverage());
-        $options = $this->addOption($options, "Collections with the same number of copies", "collection", "numberOfCopies", $this->_organization->numberOfCopiesPonderedAverage(), $organizations, false, $this->_organization->validNumberOfCopiesPonderedAverage());
-        
-        foreach ($this->_organization->scopes() as $scope) {
-            $options = $this->addOption($options, "Collections of scope: " . $scope, "collection", "scope", $scope, $organizations);
-        }
-        
-        foreach ($this->_organization->mainAssets() as $mainAsset) {
-            $assetWords = explode("_", $mainAsset);
-            array_shift($assetWords);
             
-            $options = $this->addOption($options, "Collections with mainly " . implode(" ", $assetWords) . " asset", "collection", "asset", $mainAsset, $organizations);
+            if (count($typesIDs) > 1) {
+                $options = $this->addOption($options, "Organisations of types " . implode(", ", $typesNames), "organization", "types", implode(",", $typesIDs), $organizations);
+            }
+            
+            $options = $this->addOption($options, "Organisations of country " . $this->_organization->country()->name, "organization", "country", $this->_organization->country_id, $organizations);
+            $options = $this->addOption($options, "Organisations with around the same data volume", "organization", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations);
+            $options = $this->addOption($options, "Collections with around the same data volume", "collection", "dataVolume", $this->_organization->dataVolumePonderedAverage(), $organizations, false, $this->_organization->validDataVolumePonderedAverage());
+            $options = $this->addOption($options, "Collections with around the same staff", "collection", "staff", $this->_organization->staffPonderedAverage(), $organizations, false, $this->_organization->validStaffPonderedAverage());
+            $options = $this->addOption($options, "Collections with the same number of copies", "collection", "numberOfCopies", $this->_organization->numberOfCopiesPonderedAverage(), $organizations, false, $this->_organization->validNumberOfCopiesPonderedAverage());
+            
+            foreach ($this->_organization->scopes() as $scope) {
+                $options = $this->addOption($options, "Collections of scope: " . $scope, "collection", "scope", $scope, $organizations);
+            }
+            
+            foreach ($this->_organization->mainAssets() as $mainAsset) {
+                $assetWords = explode("_", $mainAsset);
+                array_shift($assetWords);
+                
+                $options = $this->addOption($options, "Collections with mainly " . implode(" ", $assetWords) . " asset", "collection", "asset", $mainAsset, $organizations);
+            }
         }
         
         function compareOption($a, $b) {

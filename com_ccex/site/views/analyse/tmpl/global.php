@@ -1,29 +1,39 @@
-<ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
-    <li>
-        <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
-            <span class="wizard-number">1</span> 
-            Create your organization 
-            <i class="fa fa-check icon-status"></i>
-        </a>
-        <div class="nav-arrow"></div>
-    </li>
-    <li>
-        <div class="nav-wedge"></div>
-        <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
-            <span class="wizard-number">2</span> 
-            Add cost data sets 
-            <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
-        </a>
-        <div class="nav-arrow"></div>
-    </li>
-    <li class="active">
-        <div class="nav-wedge"></div>
-        <a href="javascript:void(0)" class="wizard-label">
-            <span class="wizard-number">3</span> 
-            Analyse and compare costs 
-        </a>
-    </li>
-</ul>
+<?php if(!$this->user->isGuest()){ ?>
+  <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
+      <li>
+          <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
+              <span class="wizard-number">1</span> 
+              Sign in
+              <i class="fa fa-check icon-status"></i>
+          </a>
+          <div class="nav-arrow"></div>
+      </li>
+      <li>
+          <div class="nav-wedge"></div>
+          <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
+              <span class="wizard-number">2</span> 
+              Set your organization 
+              <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
+          </a>
+          <div class="nav-arrow"></div>
+      </li>
+      <li>
+          <div class="nav-wedge"></div>
+          <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
+              <span class="wizard-number">2</span> 
+              Manage cost data sets 
+              <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>        </a>
+          <div class="nav-arrow"></div>
+      </li>
+      <li class="active">
+          <div class="nav-wedge"></div>
+          <a href="javascript:void(0)" class="wizard-label">
+              <span class="wizard-number">3</span> 
+              Analyse and compare costs 
+          </a>
+      </li>
+  </ul>
+<?php } ?>
 
 <!-- <ol class="breadcrumb">
     <li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
@@ -46,102 +56,148 @@
 <div class="row">
   <form id="globalComparisonForm" class="form-inline">
     <div class="col-md-6">
-      <h4>My costs</h4>
-      <p class="small" style="line-height: 15px;margin-bottom: 30px">Select which data sets to analyse:</p>
-      <nav id="cbp-hrmenu" class="cbp-hrmenu">
-        <ul>
-          <li id="my-costs-filters">
-            <a href="javascript:void(0)">
-              <div class="tagsinput">
-                <span class="tag selected-filter">All cost data sets combined</span>
-                <span class="tag pull-right"><i class="fa fa-angle-down"></i></span>
-              </div>
-            </a>
-            <div class="cbp-hrsub">
-              <div class="cbp-hrsub-inner" style="padding: 20px"> 
-                <div class="radio">
-                  <label>
-                    <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
-                    <span class="filter-title">All cost data sets combined</span>
-                    <select data-update="general" class="form-control input-xs generalCheck organizationSelectAll" style="margin-left: 5px;" name="organizationYearSelectedAll">
-                      <option value="all">All years</option>
-                      <?php foreach (array_keys($this->organization->years()) as $year) { ?>
-                        <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                      <?php } ?>
-                    </select>
+      <?php if($this->organization){ ?>
+        <h4>
+          <?php echo htmlspecialchars($this->organization->name) ?>
 
-                    <small class="pull-right"><?php echo count($this->collections); ?></small>
-                  </label>
-                </div>
-                <div class="radio">
-                  <?php if($this->organization->readyForComparison()){ ?>
-                    <label>
-                      <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
-                      <span class="filter-title">Final cost data sets combined</span>
-                      <select data-update="general" class="form-control input-xs generalCheck organizationSelect organizationSelectFinal" style="margin-left: 5px;" name="organizationYearSelectedFinal">
-                        <option value="all">All years</option>
-                        <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
-                          <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                        <?php } ?>
-                      </select>
-
-                      <small class="pull-right"><?php echo count($this->collectionsFinal); ?></small>
-                    </label>
+          <a class="edit" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
+            Edit
+          </a>
+        </h4>
+        <p class="small" style="margin-bottom: 17px;">You can select which data sets to analyse, by selecting the options below:</p>
+      <?php }else{ ?>
+        <h4>Your organisation</h4>
+      <?php } ?>
+      <?php if($this->organization){ ?>
+        <nav id="cbp-hrmenu" class="cbp-hrmenu">
+          <ul>
+            <li id="my-costs-filters">
+              <a href="javascript:void(0)">
+                <div class="tagsinput">
+                  <?php if(count($this->collections)){ ?>
+                    <span class="tag selected-filter">All cost data sets combined</span>
                   <?php }else{ ?>
-                    <label style="color: #ddd">
-                      <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled="">
-                      <span class="filter-title">Final cost data sets combined</span>
-                      <select data-update="general" class="form-control input-xs generalCheck organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedFinal" disabled>
-                        <option value="all">All years</option>
-                        <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
-                          <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                        <?php } ?>
-                      </select>
-
-                      <small class="pull-right"><?php echo count($this->collectionsFinal); ?></small>
-                    </label>
+                    <span class="tag selected-filter">No cost data sets</span>
                   <?php } ?>
+                  <span class="tag pull-right"><i class="fa fa-angle-down"></i></span>
                 </div>
-                <div>
-                  <?php if(count($this->collections)) { ?>
-                    <div class="radio">
+              </a>
+              <div class="cbp-hrsub">
+                <div class="cbp-hrsub-inner"> 
+                  <div class="radio">
+                    <?php if(count($this->collections)){ ?>
                       <label>
-                          <input data-update="singular" class="generalCheck" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-                          Separate and select cost data sets:
+                        <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
+                        <span class="filter-title">All cost data sets combined</span>
+                        <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
+                        <select data-update="general" class="form-control input-xs generalCheck organizationSelectAll pull-right" name="organizationYearSelectedAll">
+                          <option value="all">All years</option>
+                          <?php foreach (array_keys($this->organization->years()) as $year) { ?>
+                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                          <?php } ?>
+                        </select>
                       </label>
-                    </div>
-
-                    <div class="radio" id="collectionsRadios">
-                      <?php $i = 1 ?>
-                      <?php foreach ($this->collections as $collection) { 
-                        $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
-                        
-                        <div class="row" style="margin-left: 20px;">
-                          <label>
-                            <input data-update="singular" class="collectionCheck" style="margin-top: 8px;" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
-                            <span class="badge">#<?php echo $i; ?></span> 
-                            <span class="filter-title"><?php echo htmlspecialchars($collection->name) ; ?></span>
-                            <select data-update="singular" class="form-control input-xs collectionSelect generalCheck" name="yearsSelected[<?php echo $collection->collection_id ?>]">
-                              <option value="all">All years</option>
-                                <?php foreach (array_keys($collection->years()) as $year) { ?>
-                                  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                                <?php } ?>
-                            </select>
-                          </label>          
+                    <?php }else{ ?>
+                      <label class="label-disabled">
+                        <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" disabled>
+                        <span class="filter-title">All cost data sets combined</span>
+                        <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
+                        <select data-update="general" class="form-control input-xs generalCheck organizationSelectAll pull-right" name="organizationYearSelectedAll" disabled>
+                          <option value="all">All years</option>
+                          <?php foreach (array_keys($this->organization->years()) as $year) { ?>
+                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                          <?php } ?>
+                        </select>
+                      </label>
+                    <?php } ?>
+                  </div>
+                  <div class="radio">
+                    <?php if($this->organization->readyForComparison()){ ?>
+                      <label>
+                        <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
+                        <span class="filter-title">Final cost data sets combined</span>
+                        <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
+                        <select data-update="general" class="form-control input-xs generalCheck organizationSelect organizationSelectFinal pull-right" name="organizationYearSelectedFinal">
+                          <option value="all">All years</option>
+                          <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                          <?php } ?>
+                        </select>
+                      </label>
+                    <?php }else{ ?>
+                      <label class="label-disabled">
+                        <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled="">
+                        <span class="filter-title">Final cost data sets combined</span>
+                        <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
+                        <select data-update="general" class="form-control input-xs generalCheck organizationSelect pull-right" name="organizationYearSelectedFinal" disabled>
+                          <option value="all">All years</option>
+                          <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                          <?php } ?>
+                        </select>
+                      </label>
+                    <?php } ?>
+                  </div>
+                  <div>
+                    <?php if(count($this->collections)) { ?>
+                      <div class="radio">
+                        <label>
+                            <input data-update="singular" class="generalCheck" type="radio" name="collectionsMode" id="separatedMode" value="separated">
+                            Separate and select cost data sets:
+                        </label>
                       </div>
-                      <?php $i++; ?>
-                      <?php } ?>
-                    </div>
-                  <?php } ?>
+
+                      <div class="radio" id="collectionsRadios" style="margin-right: 15px">
+                        <?php $i = 1 ?>
+                        <?php foreach ($this->collections as $collection) { 
+                          $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
+                          
+                          <div class="row" style="margin-left: 20px;">
+                            <label>
+                              <input data-update="singular" class="collectionCheck" style="margin-top: 8px;" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
+                              <span class="badge">#<?php echo $i; ?></span> 
+                              <span class="filter-title"><?php echo htmlspecialchars($collection->name) ; ?></span>
+                              <?php if(!$collection->final){ ?>
+                                  <small><span class="label label-default label-draft">Draft</span></small>
+                              <?php } ?>  
+                              <select data-update="singular" class="form-control input-xs collectionSelect generalCheck pull-right" name="yearsSelected[<?php echo $collection->collection_id ?>]">
+                                <option value="all">All years</option>
+                                  <?php foreach (array_keys($collection->years()) as $year) { ?>
+                                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                                  <?php } ?>
+                              </select>
+ 
+                            </label>          
+                        </div>
+                        <?php $i++; ?>
+                        <?php } ?>
+                      </div>
+                    <?php } ?>
+                  </div>
                 </div>
               </div>
-            </div>
           </li>
         </ul>
       </nav>
+      <p class="small" style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Manage cost data sets.</a></p>
+      <?php }else{ ?>
+        <?php if($this->user->isGuest()){ ?>
+          <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
+            <p>Please <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>log in</strong></a> or <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>sign up</strong></a> to being able to create your organisation and define their costs.</a></p>
+            <div style="margin-top: -16px">
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Log in</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
+            </div>
+          </div>
+        <?php }else{ ?>
+          <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0">
+            <a href="<?php echo JRoute::_('index.php?view=organization&layout=add', false) ?>"><strong>Please create your organisation</strong> before being able to add costs.</a>
+          </div>
+        <?php } ?>
+      <?php } ?>
     </div>
     <div class="col-md-6">
-      <h4>Other organisations costs</h4>
+      <h4>Other organisations</h4>
       <p class="small" style="line-height: 15px;margin-bottom: 15px">You can filter the characteristics of the organisations or data sets against which your data sets are compared, by selecting the options below:</p>
       <nav id="cbp-hrmenu" class="cbp-hrmenu">
         <ul>
@@ -163,14 +219,14 @@
                   <?php if($option["enable"]) { ?>
                     <div class="radio">
                       <label>
-                        <input class="" <?php if($option["active"]){ echo "checked"; } ?> type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>|<?php echo $option["title"]; ?>"> 
+                        <input class="generalCheck" <?php if($option["active"]){ echo "checked"; } ?> type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>|<?php echo $option["title"]; ?>"> 
                         <span class="filter-title"><?php echo $option["title"]; ?></span> 
                         <small class="pull-right"><?php echo $option["number"]; ?></small>
                       </label>
                     </div>
                   <?php } else { ?>
                     <div class="radio">
-                      <label  style="color: #ddd" data-toggle="tooltip" data-placement="right" data-container="body" title="<?php echo $option["tooltip"]; ?>">
+                      <label  class="label-disabled" data-toggle="tooltip" data-placement="right" data-container="body" title="<?php echo $option["tooltip"]; ?>">
                         <input class="" type="radio" name="otherOrganisationsCosts" value="<?php echo $option["type"]; ?>|<?php echo $option["filter"]; ?>|<?php echo $option["value"]; ?>" disabled> 
                         <span class="filter-title"><?php echo $option["title"]; ?></span> 
                         <small class="pull-right"><?php echo $option["number"]; ?></small>

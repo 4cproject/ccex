@@ -29,7 +29,7 @@
 }
 
 .information{
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .organization h1{
@@ -371,7 +371,7 @@
 }
 
 .nav-pills.nav-wizard li {
-    width: 33%;
+    width: 24.8%;
 }
 
 .nav-pills.nav-wizard.nav>li>a {
@@ -449,17 +449,11 @@
 }
 
 .label.label-draft {
-  background-color: #fff;
-  color: #5cb85c;
+    background-color: #eee;
+    color: #666;
 }
 
 /* CBP Horizontal Menu */
-
-/*.cbp-hrmenu {
-    width: 100%;
-    margin-top: 2em;
-    border-bottom: 4px solid #5cb85c;
-}*/
 
 /* general ul style */
 .cbp-hrmenu ul {
@@ -467,30 +461,6 @@
     padding: 0;
     list-style-type: none;
 }
-
-/* first level ul style */
-/*.cbp-hrmenu > ul,
-.cbp-hrmenu .cbp-hrsub-inner {
-    width: 90%;
-    max-width: 70em;
-    margin: 0 auto;
-    padding: 0 1.875em;
-}*/
-
-/*.cbp-hrmenu > ul > li {
-    display: inline-block;
-}*/
-/*
-.cbp-hrmenu > ul > li > a {
-    font-weight: 700;
-    padding: 1em 2em;
-    color: #999;
-    display: inline-block;
-}*/
-
-/*.cbp-hrmenu > ul > li > a:hover {
-    color: #5cb85c;
-}*/
 
 .cbp-hrmenu > ul > li.cbp-hropen a,
 .cbp-hrmenu > ul > li.cbp-hropen > a:hover {
@@ -502,27 +472,27 @@
 .cbp-hrmenu .cbp-hrsub {
     display: none;
     position: absolute;
-    background: #5cb85c;
+    background: #f9f9f9;
     width: 100%;
     left: 0;
 
-    color: #fff;
-
-    border: solid 1px #fff;
+    border: 15px solid transparent;
+    -webkit-background-clip: padding-box; 
+    background-clip: padding-box;
     border-top: none;
 }
 
 .cbp-hropen .cbp-hrsub {
     display: block;
-/*    padding-bottom: 3em;*/
     z-index: 1;
 }
-/*
-.cbp-hrmenu .cbp-hrsub-inner > div {
-    width: 33%;
-    float: left;
-    padding: 0 2em 0;
-}*/
+
+.cbp-hrmenu .cbp-hrsub-inner{
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+    color: #666;
+}
 
 .cbp-hrmenu .cbp-hrsub-inner:before,
 .cbp-hrmenu .cbp-hrsub-inner:after {
@@ -603,8 +573,9 @@
 }
 
 .cbp-hrmenu .cbp-hrsub .badge{
-    color: #5cb85c;
-    background-color: #fff; 
+    color: #f9f9f9;
+    background-color: #5cb85c;
+    margin: 0 3px;
 }
 
 .cbp-hrmenu .cbp-hrsub .radio{
@@ -615,27 +586,20 @@
 /* Tags input */
 
 div.tagsinput {
-    border: 1px solid #CCC;
-    background: #FFF;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background: #f9f9f9;
     padding: 7px 7px 3px 7px;
-/*    width: 300px;
-    height: 100px;*/
     overflow-y: auto;
 }
 
 div.tagsinput span.tag {
-/*    border: 1px solid #5cb85c;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;*/
     display: block;
     float: left;
     padding: 5px;
     text-decoration: none;
-    background: #fff;
-    color: #5cb85c;
-    margin-right: 5px;
+    color: #666;
     margin-bottom: 5px;
-/*    font-family: helvetica;*/
     font-weight: 400;
     font-size: 15px;
 }
@@ -650,7 +614,6 @@ div.tagsinput span.tag a {
 div.tagsinput input {
     width: 80px;
     margin: 0px;
-/*    font-family: helvetica;*/
     font-weight: 400;
     font-size: 13px;
     border: 1px solid transparent;
@@ -676,4 +639,18 @@ div.tagsinput div {
 .not_valid {
     background: #FBD8DB !important;
     color: #90111A !important;
+}
+
+.organization-information{
+    font-size: 80%;
+    margin-top: -5px;
+    margin-bottom: 0px;
+}
+
+label.label-disabled{
+    color: #ddd;
+}
+
+#my-costs-filters select.input-xs{
+    margin: 0 5px;
 }

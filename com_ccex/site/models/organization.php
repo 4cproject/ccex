@@ -800,7 +800,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $result = array();
         
         foreach ($organizations as $organization) {
-            if ($userOrganization->organization_id != $organization->organization_id) {
+            if (!$userOrganization || $userOrganization->organization_id != $organization->organization_id) {
                 $organization = CCExHelpersCast::cast('CCExModelsOrganization', $organization);
                 
                 if ($organization->readyForComparison()) {

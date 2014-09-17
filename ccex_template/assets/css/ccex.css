@@ -549,3 +549,14 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
     top: 3px;
 }
 
+.btn.btn-xs{
+  padding: 3px 20px;
+  margin: 0 2px;
+  font-size: 12px;
+  border-radius: 0px;
+  border: none;
+}
+
+.alert.alert-warning .btn{
+  border: 1px solid #faebcc;
+}
