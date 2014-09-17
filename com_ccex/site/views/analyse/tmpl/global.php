@@ -1,4 +1,4 @@
-<?php if(!$this->user->isGuest()){ ?>
+<?php if($this->organization){ ?>
   <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
       <li>
           <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
@@ -13,7 +13,7 @@
           <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
               <span class="wizard-number">2</span> 
               Set your organization 
-              <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
+              <i class="fa fa-check icon-status"></i>
           </a>
           <div class="nav-arrow"></div>
       </li>
@@ -181,19 +181,13 @@
       </nav>
       <p class="small" style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Manage cost data sets.</a></p>
       <?php }else{ ?>
-        <?php if($this->user->isGuest()){ ?>
-          <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
-            <p>Please <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>log in</strong></a> or <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>sign up</strong></a> to being able to create your organisation and define their costs.</a></p>
-            <div style="margin-top: -16px">
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Log in</a>
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
-            </div>
+        <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
+          <p style="line-height: 21px">Please <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>log in</strong></a> or <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>sign up</strong></a> to being able to create your organisation and define their costs.</a></p>
+          <div>
+            <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Log in</a>
+            <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
           </div>
-        <?php }else{ ?>
-          <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0">
-            <a href="<?php echo JRoute::_('index.php?view=organization&layout=add', false) ?>"><strong>Please create your organisation</strong> before being able to add costs.</a>
-          </div>
-        <?php } ?>
+        </div>
       <?php } ?>
     </div>
     <div class="col-md-6">

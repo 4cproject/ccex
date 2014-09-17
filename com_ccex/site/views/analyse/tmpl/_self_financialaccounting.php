@@ -1,4 +1,4 @@
-<div class="container">
+<div>
     <h3>Financial accounting</h3>
     <div id="self_financial_accounting_chart" class="col-md-12" style="width: 100%; height: 400px;margin-top:20px"></div>
     <div id="self_financial_accounting_master_chart" class="col-md-12" style="width: 100%; height: 100px;margin-bottom:20px;<?php if(!$this->master){ echo 'display:none;'; } ?>"></div>
