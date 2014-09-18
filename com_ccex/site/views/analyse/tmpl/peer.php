@@ -12,7 +12,7 @@
           <div class="nav-wedge"></div>
           <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
               <span class="wizard-number">2</span> 
-              Set your organization 
+              Organization profile 
               <i class="fa fa-check icon-status"></i>
           </a>
           <div class="nav-arrow"></div>
@@ -20,16 +20,16 @@
       <li>
           <div class="nav-wedge"></div>
           <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
-              <span class="wizard-number">2</span> 
-              Manage cost data sets 
+              <span class="wizard-number">3</span> 
+              Cost data sets
               <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>        </a>
           <div class="nav-arrow"></div>
       </li>
       <li class="active">
           <div class="nav-wedge"></div>
           <a href="javascript:void(0)" class="wizard-label">
-              <span class="wizard-number">3</span> 
-              Analyse and compare costs 
+              <span class="wizard-number">4</span> 
+              Compare costs 
           </a>
       </li>
   </ul>
@@ -202,7 +202,9 @@
           <p style="line-height: 20px;margin-bottom: 15px" class="small vertical-ellipsis-2l">
             The organisation is described as: 
             <?php echo htmlspecialchars(mb_strimwidth($this->currentPeer->description, 0, 140, "...")) ?>
-            <a href="">read more</a>
+            <?php if(strlen($this->currentPeer->description) > 140){ ?>
+              <a href="#readMore" data-toggle="modal">read more</a>
+            <?php } ?>
           </p>
         <?php } ?>
 
@@ -322,6 +324,23 @@ I'd like to contact you to exchange information, experiences and more details ab
             <?php } ?>
           </tbody>
         </table>
+      </div>
+      <div class="modal-footer" style="clear: both;">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="readMore" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="readMore" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="readMoreLabel"><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
+      </div>
+      <div class="modal-body">
+        <?php echo $this->currentPeer->description ?>
       </div>
       <div class="modal-footer" style="clear: both;">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

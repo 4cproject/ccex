@@ -3,8 +3,10 @@
     color: #333; 
 }
 
-.collection:first-child {
-    margin-top: 30px;
+.collection .container{
+    background-color: #f9f9f9;
+    border: 5px solid #f0f0f0;
+    padding: 5px 25px;
 }
 
 .collection:last-child {
@@ -116,7 +118,7 @@
 }
 
 .collections-empty{
-    margin: 40px 0; 
+    margin: 0 0 40px 0; 
     color: #999; 
     font-size: 2em;
 }
@@ -290,167 +292,6 @@
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
-}
-
-/* Wizard Style Navigation Tabs for Bootstrap */
-
-.nav-pills.nav-wizard > li {
-  position: relative;
-  overflow: visible;
-  border-right: 15px solid #fff;
-  border-left: 15px solid #fff;
-}
-.nav-pills.nav-wizard > li:first-child {
-  border-left: 0;
-}
-.nav-pills.nav-wizard > li:first-child a {
-  border-radius: 5px 0 0 5px;
-}
-.nav-pills.nav-wizard > li:last-child, .nav-pills.nav-wizard > li.last-child {
-  border-right: 0;
-}
-.nav-pills.nav-wizard > li:last-child a, .nav-pills.nav-wizard > li.last-child a {
-  border-radius: 0 5px 5px 0;
-}
-.nav-pills.nav-wizard > li a {
-  border-radius: 0;
-  background-color: #eee;
-}
-.nav-pills.nav-wizard > li .nav-arrow {
-  position: absolute;
-  top: 0px;
-  right: -20px;
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 20px 0 20px 20px;
-  border-color: transparent transparent transparent #eee;
-  z-index: 150;
-}
-.nav-pills.nav-wizard > li .nav-wedge {
-  position: absolute;
-  top: 0px;
-  left: -20px;
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 20px 0 20px 20px;
-  border-color: #eee #eee #eee transparent;
-  z-index: 150;
-}
-.nav-pills.nav-wizard > li:hover .nav-arrow {
-  border-color: transparent transparent transparent #ddd;
-}
-.nav-pills.nav-wizard > li:hover .nav-wedge {
-  border-color: #ddd #ddd #ddd transparent;
-}
-.nav-pills.nav-wizard > li:hover a {
-  background-color: #ddd;
-}
-.nav-pills.nav-wizard > li.active .nav-arrow {
-  border-color: transparent transparent transparent #428bca;
-}
-.nav-pills.nav-wizard > li.active .nav-wedge {
-  border-color: #428bca #428bca #428bca transparent;
-}
-.nav-pills.nav-wizard > li.active a {
-  background-color: #428bca;
-}
-
-/* Custom */
-
-.nav-pills.nav-wizard a {
-    -webkit-transition: none;
-    moz-transition: none;
-    -ms-transition: none;
-    -o-transition: none;
-    transition: none;
-
-    color: #555;
-    font-weight: 400;
-}
-
-.nav-pills.nav-wizard li {
-    width: 24.8%;
-}
-
-.nav-pills.nav-wizard.nav>li>a {
-    padding: 9px 10px;
-}
-
-.nav-pills.nav-wizard > li .nav-arrow {
-    border-width: 20px 0 20px 20px;
-}
-
-.nav-pills.nav-wizard > li .nav-wedge {
-    border-width: 20px 0 20px 20px;
-}
-
-.nav-pills.nav-wizard > li.active .nav-arrow {
-  border-color: transparent transparent transparent #5cb85c;
-}
-
-.nav-pills.nav-wizard > li.active .nav-wedge {
-  border-color: #5cb85c #5cb85c #5cb85c transparent;
-}
-
-.nav-pills.nav-wizard > li.active a {
-  background-color: #5cb85c;
-}
-
-.nav-pills.nav-wizard>li.active>a, .nav-pills.nav-wizard>li.active>a:hover, .nav-pills.nav-wizard>li.active>a:focus {
-    background-color: #5cb85c;
-}
-
-.wizard-label .icon-status{
-    float: right;
-    padding-top: 5px;
-    margin-right: -10px;
-    color: #5cb85c;
-}
-
-.wizard-label:last-child .icon-status, .wizard-label .last-child .icon-status{
-    margin-right: 5px;
-}
-
-.wizard-label-lock .icon-status {
-    color: #ccc;
-}
-
-.nav-pills.nav-wizard > li.active .icon-status {
-    color: #fff;
-}
-
-.nav-pills.nav-wizard  a.wizard-label-lock, .nav-pills.nav-wizard  a.wizard-label-lock:hover {
-    color: #999;
-}
-
-.nav-pills.nav-wizard > li.wizard-li-lock:hover a {
-    background-color: #eee;
-}
-
-.nav-pills.nav-wizard > li.wizard-li-lock:hover .nav-wedge {
-    border-color: #eee #eee #eee transparent;
-}
-
-.nav-pills.nav-wizard > li.wizard-li-lock:hover .nav-arrow {
-    border-color: transparent transparent transparent #eee;
-}
-
-.nav-pills.nav-wizard > li.active:hover .nav-arrow {
-    border-color: transparent transparent transparent #5cb85c;
-}
-
-.nav-pills.nav-wizard > li .wizard-number {
-    border-radius: 100px;
-    padding: 0 5px;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.label.label-draft {
-    background-color: #eee;
-    color: #666;
 }
 
 /* CBP Horizontal Menu */
@@ -666,11 +507,6 @@ label.label-disabled{
     border: 1px solid #5cb85c;
 }
 
-/*.vertical-ellipsis-2l{
-  display: -webkit-box;
-  line-height: 20px;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}*/
+.collection .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    background-color: #f9f9f9;
+}

@@ -115,7 +115,7 @@ defined('_JEXEC') or die;
 				
 				if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')){ ?>
 					<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.logout'); ?>" method="post" class="form-horizontal">
-						<input type="submit" value="Logout"></input>
+						<input type="submit" value="Sign out"></input>
 						<input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('index.php?option=com_users&view=login')); ?>" />
 						<?php echo JHtml::_('form.token'); ?>
 					</form> <?php

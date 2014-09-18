@@ -1,17 +1,17 @@
 <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
-    <li class="active">
-        <a href="javascript:void(0)" class="wizard-label">
+    <li class="">
+        <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
             <span class="wizard-number">1</span> 
-            Create your organization 
+            Sign in
+            <i class="fa fa-check icon-status"></i>
         </a>
         <div class="nav-arrow"></div>
     </li>
-    <li class="wizard-li-lock">
+    <li class="active">
         <div class="nav-wedge"></div>
-        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+        <a href="javascript:void(0)" class="wizard-label">
             <span class="wizard-number">2</span> 
-            Add cost data sets 
-            <i class="fa fa-lock icon-status"></i>
+            Organization profile 
         </a>
         <div class="nav-arrow"></div>
     </li>
@@ -19,11 +19,21 @@
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
             <span class="wizard-number">3</span> 
-            Analyse and compare costs 
+            Cost data sets 
+            <i class="fa fa-lock icon-status"></i>
+        </a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li class="wizard-li-lock">
+        <div class="nav-wedge"></div>
+        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+            <span class="wizard-number">4</span> 
+            Compare costs 
             <i class="fa fa-lock icon-status"></i>
         </a>
     </li>
 </ul>
+
 <!-- 
 <ol class="breadcrumb">
 	<li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>

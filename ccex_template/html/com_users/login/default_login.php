@@ -13,6 +13,44 @@ if($redirect && $redirect == "comparecosts"){
 }
 
 ?>
+
+<ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
+    <li class="active">
+        <a href="javascript:void(0)" class="wizard-label">
+            <span class="wizard-number">1</span> 
+            Sign in
+            <i class="fa fa-check icon-status"></i>
+        </a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li class="wizard-li-lock">
+        <div class="nav-wedge"></div>
+        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+            <span class="wizard-number">2</span> 
+            Organization profile 
+            <i class="fa fa-lock icon-status"></i>
+        </a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li class="wizard-li-lock">
+        <div class="nav-wedge"></div>
+        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+            <span class="wizard-number">3</span> 
+            Cost data sets 
+            <i class="fa fa-lock icon-status"></i>
+        </a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li class="wizard-li-lock">
+        <div class="nav-wedge"></div>
+        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+            <span class="wizard-number">4</span> 
+            Compare costs 
+            <i class="fa fa-lock icon-status"></i>
+        </a>
+    </li>
+</ul>
+
 <div class="col-md-offset-1 col-md-10">
 	<h1>Sign In</h1>
 	<p>Please fill out the following fields to access your account. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">Sign Up Here</a></p>

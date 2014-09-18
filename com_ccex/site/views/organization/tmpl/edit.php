@@ -1,8 +1,17 @@
 <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
-    <li class="active">
-        <a href="javascript:void(0)" class="wizard-label">
+    <li class="">
+        <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
             <span class="wizard-number">1</span> 
-            Create your organization 
+            Sign in
+            <i class="fa fa-check icon-status"></i>
+        </a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li class="active">
+        <div class="nav-wedge"></div>
+        <a href="javascript:void(0)" class="wizard-label">
+            <span class="wizard-number">2</span> 
+            Organisation profile
             <i class="fa fa-check icon-status"></i>
         </a>
         <div class="nav-arrow"></div>
@@ -10,8 +19,8 @@
     <li>
         <div class="nav-wedge"></div>
         <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
-            <span class="wizard-number">2</span> 
-            Add cost data sets 
+            <span class="wizard-number">3</span> 
+            Cost data sets 
             <i class="fa fa-check icon-status analyse-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
         </a>
         <div class="nav-arrow"></div>
@@ -19,15 +28,15 @@
     <li class="analyse-ready last-child" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>">
         <div class="nav-wedge"></div>
         <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="wizard-label">
-            <span class="wizard-number">3</span> 
-            Analyse and compare costs 
+            <span class="wizard-number">4</span> 
+            Compare costs 
         </a>
     </li>
     <li class="wizard-li-lock analyse-not-ready" style="<?php if($this->organization->readyForComparison()){ echo "display: none"; } ?>">
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
-            <span class="wizard-number">3</span> 
-            Analyse and compare costs 
+            <span class="wizard-number">4</span> 
+            Compare costs 
             <i class="fa fa-lock icon-status"></i>
         </a>
     </li>
