@@ -107,15 +107,18 @@ class CCExViewsAnalyseHtml extends JViewHtml
                     $this->_activities = CCExHelpersView::load('Analyse', '_peer_activities', 'phtml');
                     $this->_activities->series = json_encode($series["activities"]);
                 }
-                
-                $this->collections = $organization->collections();
-                $this->collectionsFinal = $organization->finalCollections();
+                     
+                if($organization){
+                    $this->collections = $organization->collections();
+                    $this->collectionsFinal = $organization->finalCollections();
+                }
                 
                 $this->organization = $organization;
                 $this->currentPeer = $currentPeer;
                 $this->peersLikeYou = $peersLikeYou["others"];
                 $this->complete = $peersLikeYou["complete"];
 
+                $this->user = $userModel;
                 $this->organization = $organization;
                 break;
 

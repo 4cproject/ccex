@@ -144,10 +144,10 @@
   <?php echo $this->_financialAccounting->render(); ?>
   <?php echo $this->_activities->render(); ?>
 <?php }else{ ?>
-  <div class="alert alert-warning fade in" role="alert" style="border-radius: 0; display: table; width: 100%">
-    <p>Please <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>log in</strong></a> or <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>sign up</strong></a> to being able to create your organisation and define their costs.</a></p>
+  <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table; width: 100%">
+    <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to define your organisation costs. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
     <div>
-      <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Log in</a>
+      <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign in</a>
       <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
     </div>
   </div>

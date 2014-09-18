@@ -55,105 +55,169 @@
 
 <?php if($this->currentPeer){ ?>
   <div class="row">
-    <form id ="peerComparisonForm">
-      <div class="form-inline col-md-6">
-        <h3>My costs</h3>
-        <p class="small" style="margin-bottom: 0px">Select which data sets to analyse:</p>
-        <div>
-        <label class="radio-inline">
-          <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
-          All cost data sets combined <small>(<?php echo count($this->collections); ?>)</small>
-        </label>
-        
-        <select class="form-control input-xs updateChartsOnChange organizationSelect organizationSelectAll" style="margin-left: 5px;" name="organizationYearSelectedAll">
-          <option value="all">All years</option>
-          <?php foreach (array_keys($this->organization->years()) as $year) { ?>
-            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-          <?php } ?>
-        </select>
-      </div>
-      <div>
-        <?php if($this->organization->readyForComparison()){ ?>
-          <label class="radio-inline">
-            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
-            Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
-          </label>
-          
-          <select class="form-control input-xs updateChartsOnChange organizationSelect organizationSelectFinal" style="margin-left: 5px;" name="organizationYearSelectedFinal">
-            <option value="all">All years</option>
-            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
-              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-            <?php } ?>
-          </select>
-        <?php }else{ ?>
-          <label class="radio-inline">
-            <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" checked>
-            Final cost data sets combined <small>(<?php echo count($this->collectionsFinal); ?>)</small>
-          </label>
-          
-          <select class="form-control input-xs updateChartsOnChange organizationSelect" style="margin-left: 5px;" name="organizationYearSelectedFinal">
-            <option value="all">All years</option>
-            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
-              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-            <?php } ?>
-          </select>
-        <?php } ?>
-      </div>
-      <div>
-        <?php if(count($this->collections)) { ?>
-          <label class="radio-inline col-xs-12">
-              <input class="updateChartsOnChange" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-              Separate and select cost data sets:
-          </label>
+    <form id="globalComparisonForm" class="form-inline">
+      <div class="col-md-6">
+        <?php if($this->organization){ ?>
+          <h4>
+            <?php echo htmlspecialchars($this->organization->name) ?>
 
-          <div class="radio" id="collectionsRadios">
-            <?php $i = 1 ?>
-            <?php foreach ($this->collections as $collection) { 
-              $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
-              
-              <div class="row" style="margin-left: 20px;">
-                <label class="checkbox-inline">
-                  <input class="updateChartsOnChange collectionCheck" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
-                  <span class="badge">#<?php echo $i; ?></span> 
-                  <?php echo htmlspecialchars($collection->name) ; ?>
-                </label>
-                <select class="form-control input-xs updateChartsOnChange collectionSelect" name="yearsSelected[<?php echo $collection->collection_id ?>]">
-                  <option value="all">All years</option>
-                    <?php foreach (array_keys($collection->years()) as $year) { ?>
-                      <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+            <a class="edit" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
+              Edit
+            </a>
+          </h4>
+          <p class="small" style="margin-bottom: 17px;">You can select which data sets to analyse, by selecting the options below:</p>
+        <?php }else{ ?>
+          <h4>Your organisation</h4>
+        <?php } ?>
+        <?php if($this->organization){ ?>
+          <nav id="cbp-hrmenu" class="cbp-hrmenu">
+            <ul>
+              <li id="my-costs-filters">
+                <a href="javascript:void(0)">
+                  <div class="tagsinput">
+                    <?php if(count($this->collections)){ ?>
+                      <span class="tag selected-filter">All cost data sets combined</span>
+                    <?php }else{ ?>
+                      <span class="tag selected-filter">No cost data sets</span>
                     <?php } ?>
-                </select>
-                <?php if(!$collection->final){ ?>
-                    <small><span class="label label-default label-draft">Draft</span></small>
-                <?php } ?>            
+                    <span class="tag pull-right"><i class="fa fa-angle-down"></i></span>
+                  </div>
+                </a>
+                <div class="cbp-hrsub">
+                  <div class="cbp-hrsub-inner"> 
+                    <div class="radio">
+                      <?php if(count($this->collections)){ ?>
+                        <label>
+                          <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
+                          <span class="filter-title">All cost data sets combined</span>
+                          <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
+                          <select data-update="general" class="form-control input-xs generalCheck organizationSelectAll pull-right" name="organizationYearSelectedAll">
+                            <option value="all">All years</option>
+                            <?php foreach (array_keys($this->organization->years()) as $year) { ?>
+                              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                            <?php } ?>
+                          </select>
+                        </label>
+                      <?php }else{ ?>
+                        <label class="label-disabled">
+                          <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" disabled>
+                          <span class="filter-title">All cost data sets combined</span>
+                          <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
+                          <select data-update="general" class="form-control input-xs generalCheck organizationSelectAll pull-right" name="organizationYearSelectedAll" disabled>
+                            <option value="all">All years</option>
+                            <?php foreach (array_keys($this->organization->years()) as $year) { ?>
+                              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                            <?php } ?>
+                          </select>
+                        </label>
+                      <?php } ?>
+                    </div>
+                    <div class="radio">
+                      <?php if($this->organization->readyForComparison()){ ?>
+                        <label>
+                          <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
+                          <span class="filter-title">Final cost data sets combined</span>
+                          <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
+                          <select data-update="general" class="form-control input-xs generalCheck organizationSelect organizationSelectFinal pull-right" name="organizationYearSelectedFinal">
+                            <option value="all">All years</option>
+                            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+                              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                            <?php } ?>
+                          </select>
+                        </label>
+                      <?php }else{ ?>
+                        <label class="label-disabled">
+                          <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled="">
+                          <span class="filter-title">Final cost data sets combined</span>
+                          <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
+                          <select data-update="general" class="form-control input-xs generalCheck organizationSelect pull-right" name="organizationYearSelectedFinal" disabled>
+                            <option value="all">All years</option>
+                            <?php foreach (array_keys($this->organization->years("final")) as $year) { ?>
+                              <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                            <?php } ?>
+                          </select>
+                        </label>
+                      <?php } ?>
+                    </div>
+                    <div>
+                      <?php if(count($this->collections)) { ?>
+                        <div class="radio">
+                          <label>
+                              <input data-update="singular" class="generalCheck" type="radio" name="collectionsMode" id="separatedMode" value="separated">
+                              Separate and select cost data sets:
+                          </label>
+                        </div>
+
+                        <div class="radio" id="collectionsRadios" style="margin-right: 15px">
+                          <?php $i = 1 ?>
+                          <?php foreach ($this->collections as $collection) { 
+                            $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
+                            
+                            <div class="row" style="margin-left: 20px;">
+                              <label>
+                                <input data-update="singular" class="collectionCheck" style="margin-top: 8px;" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  <?php if($i<=3){echo "checked";} ?>> 
+                                <span class="badge">#<?php echo $i; ?></span> 
+                                <span class="filter-title"><?php echo htmlspecialchars($collection->name) ; ?></span>
+                                <?php if(!$collection->final){ ?>
+                                    <small><span class="label label-default label-draft">Draft</span></small>
+                                <?php } ?>  
+                                <select data-update="singular" class="form-control input-xs collectionSelect generalCheck pull-right" name="yearsSelected[<?php echo $collection->collection_id ?>]">
+                                  <option value="all">All years</option>
+                                    <?php foreach (array_keys($collection->years()) as $year) { ?>
+                                      <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                                    <?php } ?>
+                                </select>
+   
+                              </label>          
+                          </div>
+                          <?php $i++; ?>
+                          <?php } ?>
+                        </div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                </div>
+            </li>
+          </ul>
+        </nav>
+        <p class="small" style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Manage cost data sets.</a></p>
+        <?php }else{ ?>
+          <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
+            <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to define your organisation costs.</p>
+            <p style="line-height: 20px">With this, we will provide you with the peers that are most alike you and show how you compare to them.</p>
+            <p>Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
+            <div>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign in</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
             </div>
-            <?php $i++; ?>
-            <?php } ?>
           </div>
         <?php } ?>
       </div>
-      </div>
       <div class="col-md-6">
-        <h3><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
-        <p style="margin-bottom:10px">
+        <h4><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h4>
+        <p style="line-height: 22px;margin-bottom: 10px">
           The <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo htmlspecialchars($this->currentPeer->typesToString() ) ?></b> from <b><?php echo htmlspecialchars($this->currentPeer->country()->name ) ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
         </p>
-        <small>Compare with <a href="javaScript:void(0);" id="otherPeersLikeYou">other peers</a>.</small>
+        <?php if(trim($this->currentPeer->description) != ""){ ?>
+          <p style="line-height: 20px;margin-bottom: 15px" class="small vertical-ellipsis-2l">
+            The organisation is described as: 
+            <?php echo htmlspecialchars(mb_strimwidth($this->currentPeer->description, 0, 140, "...")) ?>
+            <a href="">read more</a>
+          </p>
+        <?php } ?>
+
+
+        <a href="#completeListPeers" data-toggle="modal" href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs btn-border-green">Compare with other peers</a>
       </div>
-      <input type="hidden" name="currentPeer" value="<?php echo $this->currentPeer->organization_id; ?>"/>
     </form>
   </div>
 
-  <div class="row">
-  <h2>Analysis</h2>
-
   <?php echo $this->_financialAccounting->render(); ?>
   <?php echo $this->_activities->render(); ?>
-  </div>
 
-  <div class="row">
-  <h2>More information</h2>
+  <h3>More information</h3>
   <p>If you want to know more about <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> you can request direct contact through the CCEx, to exchange information, experiences and more details about their curation costs.</p>
+
   <?php if(!$this->currentPeer->contact_and_sharing) { ?>
     <div class="row">
       <div class="col-md-6">
@@ -173,85 +237,6 @@
   <?php }else{ ?>
     <a href="#contactModal" style="margin-bottom: 20px" class="btn btn-primary" data-toggle="modal">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></a>
   <?php } ?>
-  <a name="otherPeersLikeYou"></a>
-  <br/>
-
-  <h4>Other peers like you</h4>
-  <?php if(count($this->peersLikeYou)){ ?>
-    <ul>
-      <?php foreach ($this->peersLikeYou as $peer) { ?>
-        <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>"><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?>, <?php echo htmlspecialchars($peer->typesToString() ) ?>, <?php echo htmlspecialchars($peer->country()->name ) ?></a></li>
-      <?php } ?>
-    </ul> 
-  <?php }else{ ?>
-    <p>There are no more peers available for comparison. Please, try again later.</p>
-  <?php } ?>
-<!--   <p>Not quite right? Learn more about how your closest peers are matched with you.</p> -->
-  <p>Choose from the <a href="#completeListPeers" data-toggle="modal">complete list of peers</a> which have allowed sharing of their information.</p>
-  </div>
-
-  <?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
-    <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <form id="contactForm" action="index.php?option=com_ccex&controller=contact" method="post">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h3 id="contactModalLabel">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                  <label>Include a personal note</label>
-                  <textarea name="message" rows="5" class="form-control">
-I'd like to contact you to exchange information, experiences and more details about your organisation curation costs.
-
-- <?php echo htmlspecialchars(JFactory::getUser()->name ) ?>
-                  </textarea>
-                  <input type="hidden" name="recipient_organization_id" value="<?php echo $this->currentPeer->organization_id ?>">
-                </div>
-            </div>
-            <div class="modal-footer" style="clear: both;">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-              <button type="submit" class="btn btn-success">Send</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  <?php } ?>
-
-  <div id="completeListPeers" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="completeListPeersLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="completeListPeersLabel">Complete list of peers</h3>
-        </div>
-        <div class="modal-body">
-          <ul>
-            <?php foreach ($this->complete as $peer) { ?>
-              <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>"><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?>, <?php echo htmlspecialchars($peer->typesToString() ) ?>, <?php echo htmlspecialchars($peer->country()->name ) ?></a></li>
-            <?php } ?>
-          </ul> 
-        </div>
-        <div class="modal-footer" style="clear: both;">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script type="text/javascript">
-  function scrollToAnchor(aid){
-      var aTag = $("a[name='"+ aid +"']");
-      $('html,body').animate({scrollTop: aTag.offset().top},'slow');
-  }
-
-  $("#otherPeersLikeYou").click(function() {
-     scrollToAnchor('otherPeersLikeYou');
-  });
-</script>
-
 <?php }else{ ?>
   <div class="alert alert-info">
     <div class="row">
@@ -264,8 +249,94 @@ I'd like to contact you to exchange information, experiences and more details ab
   </div>
 <?php } ?>
 
+<?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
+  <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="contactForm" action="index.php?option=com_ccex&controller=contact" method="post">
+        <div class="modal-content">
+          <?php if($this->user->isGuest()){ ?>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="contactModalLabel">Sign in to request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
+            </div>
+            <div class="modal-body">
+               <p style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?>.</p>
+               <p>Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
+            </div>
+            <div class="modal-footer" style="clear: both;">
+              <button class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button>
+
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-primary">Sign up</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-primary">Sign in</a>
+            </div>
+          <?php }else{ ?>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="contactModalLabel">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Include a personal note</label>
+                <textarea name="message" rows="5" class="form-control">
+I'd like to contact you to exchange information, experiences and more details about your organisation curation costs.
+
+- <?php echo htmlspecialchars(JFactory::getUser()->name ) ?>
+                </textarea>
+                <input type="hidden" name="recipient_organization_id" value="<?php echo $this->currentPeer->organization_id ?>">
+              </div>
+            </div>
+            <div class="modal-footer" style="clear: both;">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              <button type="submit" class="btn btn-success">Send</button>
+            </div>
+          <?php } ?>
+        </div>
+      </form>
+    </div>
+  </div>
+<?php } ?>
+
+<div id="completeListPeers" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="completeListPeersLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="completeListPeersLabel">Compare with other peers</h3>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Country</th>
+              <th>Types</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($this->complete as $peer) { ?>
+              <tr style="cursor: pointer" onclick="document.location = '<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>';">
+                <td style="white-space: nowrap "><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?></td>
+                <td><?php echo htmlspecialchars($peer->country()->name ) ?></td>
+                <td><?php echo htmlspecialchars($peer->typesToString() ) ?></td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer" style="clear: both;">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare-peer.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/contact.js') ?>"></script>
-
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/cbpHorizontalMenu.js') ?>"></script>
+<script>
+    $(function() {
+        cbpHorizontalMenu.init();
+    });
+</script>

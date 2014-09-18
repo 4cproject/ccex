@@ -191,13 +191,11 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     private function calculateMySeries($collectionsIDs, $year, $filter) {
         $intervals = array();
         
-        if($this->_organization){
-            if (!count($collectionsIDs)) {
-                if ($filter && $filter == "final") {
-                    $intervals = $this->_organization->finalIntervalsOfYear($year);
-                } else {
-                    $intervals = $this->_organization->intervalsOfYear($year);
-                }
+        if ($this->_organization && !count($collectionsIDs)) {
+            if ($filter && $filter == "final") {
+                $intervals = $this->_organization->finalIntervalsOfYear($year);
+            } else {
+                $intervals = $this->_organization->intervalsOfYear($year);
             }
         }
 

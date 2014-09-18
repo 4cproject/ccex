@@ -1,4 +1,4 @@
-<div class="container">
+<div>
     <div class="caption" style="margin-top: 30px">
         <h3>Financial accounting comparison</h3>
     </div>

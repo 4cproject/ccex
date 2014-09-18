@@ -62,8 +62,13 @@ class CCExModelsComparepeer extends CCExModelsDefault
         return $series;
     }
     
-    private function mySeries($collectionsIDs, $year, $intervals = array()) {
-        $collections = $this->_organization->collections();
+    private function mySeries($collectionsIDs, $year, $intervals, $filter) {
+        if($this->_organization){
+            $collections = $this->_organization->collections();
+        }else{
+            $collections = array();
+        }   
+
         $collectionsIdentifiers = array();
         
         foreach ($collections as $index => $collection) {
@@ -93,14 +98,23 @@ class CCExModelsComparepeer extends CCExModelsDefault
             }
         } else {
             $color = "#00b050";
-            $label = "You :: All data sets at ";
             $id = "self_all";
-            
-            if ($year == "all") {
-                $label.= "all years";
-            } else {
-                $label.= $year;
-            }
+
+            if($this->_organization){
+                if($filter && $filter == "final"){
+                  $label = "You :: Final data sets at ";  
+                }else{
+                  $label = "You :: All data sets at ";
+                }
+                
+                if ($year == "all") {
+                    $label.= "all years";
+                } else {
+                    $label.= $year;
+                }
+            }else{
+                $label = "You :: No organization";
+            }  
             
             $data = $this->seriesData($intervals);
             array_push($series["financial_accounting"], $this->serie($label, $data["financial_accounting"], $color, $id, $label, false));
@@ -132,7 +146,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
     private function calculateMySeries($collectionsIDs, $year, $filter) {
         $intervals = array();
         
-        if (!count($collectionsIDs)) {
+        if ($this->_organization && !count($collectionsIDs)) {
             if ($filter && $filter == "final") {
                 $intervals = $this->_organization->finalIntervalsOfYear($year);
             } else {
@@ -140,7 +154,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
             }
         }
         
-        return $this->mySeries($collectionsIDs, $year, $intervals);
+        return $this->mySeries($collectionsIDs, $year, $intervals, $filter);
     }
     
     private function calculateOtherSeries($organization) {
@@ -188,14 +202,18 @@ class CCExModelsComparepeer extends CCExModelsDefault
         foreach ($organizations as $organization) {
             $organizationID = $organization->organization_id;
             
-            $organizationsScore[$organizationID] = 0;
-            $organizationsScore[$organizationID]+= $typeScore * $organization->typeMatch($this->_organization->types());
-            $organizationsScore[$organizationID]+= $dataVolumeScore * max((1 - $this->percentageDifference($organization->dataVolumePonderedAverage(), $this->_organization->dataVolumePonderedAverage())), 0);
-            $organizationsScore[$organizationID]+= $numberOfCopiesScore * max((1 - $this->percentageDifference($organization->numberOfCopiesPonderedAverage(), $this->_organization->numberOfCopiesPonderedAverage())), 0);
-            $organizationsScore[$organizationID]+= $staffScore * max((1 - $this->percentageDifference($organization->staffPonderedAverage(), $this->_organization->staffPonderedAverage())), 0);
-            $organizationsScore[$organizationID]+= $mainAssetScore * $organization->mainAssetsMatch($this->_organization->mainAssets());
-            $organizationsScore[$organizationID]+= $scopeScore * $organization->scopesMatch($this->_organization->scopes());
-            
+            if($this->_organization){
+                $organizationsScore[$organizationID] = 0;
+                $organizationsScore[$organizationID]+= $typeScore * $organization->typeMatch($this->_organization->types());
+                $organizationsScore[$organizationID]+= $dataVolumeScore * max((1 - $this->percentageDifference($organization->dataVolumePonderedAverage(), $this->_organization->dataVolumePonderedAverage())), 0);
+                $organizationsScore[$organizationID]+= $numberOfCopiesScore * max((1 - $this->percentageDifference($organization->numberOfCopiesPonderedAverage(), $this->_organization->numberOfCopiesPonderedAverage())), 0);
+                $organizationsScore[$organizationID]+= $staffScore * max((1 - $this->percentageDifference($organization->staffPonderedAverage(), $this->_organization->staffPonderedAverage())), 0);
+                $organizationsScore[$organizationID]+= $mainAssetScore * $organization->mainAssetsMatch($this->_organization->mainAssets());
+                $organizationsScore[$organizationID]+= $scopeScore * $organization->scopesMatch($this->_organization->scopes());
+            }else{
+                $organizationsScore[$organizationID] = mt_rand(0, 10000);
+            }
+
             $organizationsHash[$organizationID] = $organization;
         }
         

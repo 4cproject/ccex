@@ -110,11 +110,12 @@ class CCExModelsCompareself extends CCExModelsDefault
         
         if ($filter && $filter == "final") {
             $data = $this->seriesData($this->_organization->finalIntervals(), $beginYear, $number);
+            $series = $this->pushSeries($series, $data, "Final data sets");
         } else {
             $data = $this->seriesData($this->_organization->intervals(), $beginYear, $number);
+            $series = $this->pushSeries($series, $data, "All data sets");
         }
         
-        $series = $this->pushSeries($series, $data);
         return $series;
     }
     

@@ -661,3 +661,16 @@ label.label-disabled{
 #my-costs-filters select.input-xs{
     margin: 0 5px;
 }
+
+.btn.btn-default.btn-border-green {
+    border: 1px solid #5cb85c;
+}
+
+/*.vertical-ellipsis-2l{
+  display: -webkit-box;
+  line-height: 20px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}*/
