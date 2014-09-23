@@ -551,7 +551,6 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 
 .btn.btn-xs{
   padding: 3px 20px;
-  margin: 0 2px;
   font-size: 12px;
   border-radius: 0px;
   border: none;
@@ -715,6 +714,22 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
     padding: 0 5px;
     font-size: 16px;
     font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+  span.wizard-number {
+    display: none;
+  }
+
+  i.icon-status {
+    display: none;
+  }
+
+  .nav-pills.nav-wizard.nav>li>a {
+    padding: 11.5px 0;
+    font-size: 12px;
+    text-align: center;
+  }
 }
 
 .label.label-draft {

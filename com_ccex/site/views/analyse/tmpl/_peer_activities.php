@@ -4,8 +4,7 @@
     </div>
     <div id="peer_activities_chart" class="col-md-12" style="width: 100%; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
     <p>
-        This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with cost data sets shared by the organisation most similar to yours.. Hover on each bar or use the key to identify your relative cost per gigabyte for the total period of each cost data set, in terms of a financial accounting breakdown. The figure at the head of the bar for each year also shows your relative cost per gigabyte for the total period of each cost data set.
-        <br/>
+        This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with cost data sets shared by the organisation most similar to yours.. Hover on each bar or use the key to identify your relative cost per gigabyte for the total period of each cost data set, in terms of a financial accounting breakdown. The figure at the head of the bar for each year also shows your relative cost per gigabyte for the total period of each cost data set. 
         <a target="_blank" href="<?php echo JRoute::_('/index.php/62-analyse-and-compare-costs#peer_activities'); ?>">Learn more about how these results are calculated.</a>
     </p>
 </div>

@@ -54,7 +54,7 @@
 <p>The graphs below represent a summary of your submitted costs. Analyse and compare your own cost data sets to see how they vary over time and understand spending patterns within your organisation.</p>
 
 <?php if($this->organization){ ?>
-  <p style="margin-bottom: 5px">Select which data sets to analyse:</p>
+  <p style="margin-bottom: 10px">Select which data sets to analyse:</p>
   <div class="row" style="margin-bottom:35px">
     <form id ="selfComparisonForm" class="form-inline">
       <div class="col-md-6">
@@ -136,7 +136,7 @@
               </li>
             </ul>
           </nav>
-          <p class="small" style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Manage cost data sets.</a></p>
+          <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" style="margin-top: 15px">Manage cost data sets</a>
       </div>
     </form>
   </div>

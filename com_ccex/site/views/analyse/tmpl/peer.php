@@ -55,14 +55,14 @@
 
 <?php if($this->currentPeer){ ?>
   <div class="row">
-    <form id="globalComparisonForm" class="form-inline">
+    <form id="peerComparisonForm" class="form-inline">
       <div class="col-md-6">
         <?php if($this->organization){ ?>
           <h4>
             <?php echo htmlspecialchars($this->organization->name) ?>
 
             <a class="edit" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
-              Edit
+              edit
             </a>
           </h4>
           <p class="small" style="margin-bottom: 17px;">You can select which data sets to analyse, by selecting the options below:</p>
@@ -180,7 +180,7 @@
             </li>
           </ul>
         </nav>
-        <p class="small" style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Manage cost data sets.</a></p>
+        <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" style="margin-top: 15px">Manage cost data sets</a>
         <?php }else{ ?>
           <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
             <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to define your organisation costs.</p>
@@ -194,7 +194,13 @@
         <?php } ?>
       </div>
       <div class="col-md-6">
-        <h4><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h4>
+        <h4>
+          <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?>
+
+          <?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
+            <a href="#contactModal" data-toggle="modal" class="edit">contact</a>
+          <?php } ?>
+        </h4>
         <p style="line-height: 22px;margin-bottom: 10px">
           The <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo htmlspecialchars($this->currentPeer->typesToString() ) ?></b> from <b><?php echo htmlspecialchars($this->currentPeer->country()->name ) ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
         </p>
@@ -207,38 +213,14 @@
             <?php } ?>
           </p>
         <?php } ?>
-
-
-        <a href="#completeListPeers" data-toggle="modal" href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs btn-border-green">Compare with other peers</a>
+        <a href="#completeListPeers" data-toggle="modal" class="btn btn-primary btn-xs">Compare with other peers</a>
       </div>
+    <input type="hidden" name="currentPeer" value="<?php echo $this->currentPeer->organization_id; ?>"/>
     </form>
   </div>
 
   <?php echo $this->_financialAccounting->render(); ?>
   <?php echo $this->_activities->render(); ?>
-
-  <h3>More information</h3>
-  <p>If you want to know more about <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> you can request direct contact through the CCEx, to exchange information, experiences and more details about their curation costs.</p>
-
-  <?php if(!$this->currentPeer->contact_and_sharing) { ?>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="alert alert-danger">
-          This organization doesn't want to receive contact requests.
-        </div>
-      </div>
-    </div>
-  <?php }else if(!$this->currentPeer->user()){ ?>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="alert alert-danger">
-          The user responsible for this organization isn't available for contact requests.
-        </div>
-      </div>
-    </div>
-  <?php }else{ ?>
-    <a href="#contactModal" style="margin-bottom: 20px" class="btn btn-primary" data-toggle="modal">Request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></a>
-  <?php } ?>
 <?php }else{ ?>
   <div class="alert alert-info">
     <div class="row">
@@ -306,7 +288,7 @@ I'd like to contact you to exchange information, experiences and more details ab
         <h3 id="completeListPeersLabel">Compare with other peers</h3>
       </div>
       <div class="modal-body">
-        <table class="table table-hover">
+        <table class="table table-hover small">
           <thead>
             <tr>
               <th>Name</th>
