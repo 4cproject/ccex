@@ -74,6 +74,14 @@ $(document).ready(function() {
                 min: 0.1
             }
         },
+        messages: {
+            'interval[data_volume_number]': {
+                number: "Please enter a valid number, the decimal separator is a dot.",
+            },
+            'interval[staff]': {
+                number: "Please enter a valid number, the decimal separator is a dot.",
+            }
+        },
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
         },
@@ -88,6 +96,14 @@ $(document).ready(function() {
             } else {
                 error.insertAfter(element);
             }
+        },
+        invalidHandler: function(form, validator) {
+            if (!validator.numberOfInvalids())
+                return;
+
+            $('html, body').animate({
+                scrollTop: $(validator.errorList[0].element).offset().top - 100
+            }, "fast");
         }
     });
 });

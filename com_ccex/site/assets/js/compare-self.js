@@ -96,6 +96,11 @@ function updateChartsOnChange(element){
         var activitiesMasterChart = $("#self_activities_master_chart").highcharts();
         var activitiesChart = $("#self_activities_chart").highcharts();
         var masterCharts = $("#self_financial_accounting_master_chart, #self_activities_master_chart");
+        var maxYears = 5;
+
+        if($("#configuration_max_years").size() > 0){
+            maxYears = parseInt($("#configuration_max_years").val());
+        }
 
         financialAccountingChart.showLoading();
         financialAccountingMasterChart.showLoading(" ");  
@@ -108,7 +113,7 @@ function updateChartsOnChange(element){
             dataType: 'JSON',
             success: function(data) {            
                 if(data.success){                      
-                    if(data.masterCategories.length > 5){
+                    if(data.masterCategories.length > maxYears){
                         masterCharts.show(); 
 
                         financialAccountingMasterChart.xAxis[0].removePlotBand("mask-before");

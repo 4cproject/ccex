@@ -7,49 +7,54 @@ $redirect_url = JRoute::_('/');
 
 $app = JFactory::getApplication();
 $redirect = $app->input->get('redirect_url', null);
+$navbar = $app->input->get('navbar', null);
 
-if($redirect && $redirect == "comparecosts"){
-	$redirect_url = JRoute::_('/index.php/compare-costs');
+if($redirect){
+    if($redirect == "analyseglobal"){
+       $redirect_url = JRoute::_('index.php?view=analyse&layout=global');
+    }
 }
 
 ?>
 
-<ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
-    <li class="active">
-        <a href="javascript:void(0)" class="wizard-label">
-            <span class="wizard-number">1</span> 
-            Sign in
-            <i class="fa fa-check icon-status"></i>
-        </a>
-        <div class="nav-arrow"></div>
-    </li>
-    <li class="wizard-li-lock">
-        <div class="nav-wedge"></div>
-        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
-            <span class="wizard-number">2</span> 
-            Organization profile 
-            <i class="fa fa-lock icon-status"></i>
-        </a>
-        <div class="nav-arrow"></div>
-    </li>
-    <li class="wizard-li-lock">
-        <div class="nav-wedge"></div>
-        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
-            <span class="wizard-number">3</span> 
-            Cost data sets 
-            <i class="fa fa-lock icon-status"></i>
-        </a>
-        <div class="nav-arrow"></div>
-    </li>
-    <li class="wizard-li-lock">
-        <div class="nav-wedge"></div>
-        <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
-            <span class="wizard-number">4</span> 
-            Compare costs 
-            <i class="fa fa-lock icon-status"></i>
-        </a>
-    </li>
-</ul>
+<?php if($redirect && $redirect == "analyseglobal"){ ?>
+    <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
+        <li class="active">
+            <a href="javascript:void(0)" class="wizard-label">
+                <span class="wizard-number">1</span> 
+                Sign in
+                <i class="fa fa-check icon-status"></i>
+            </a>
+            <div class="nav-arrow"></div>
+        </li>
+        <li class="wizard-li-lock">
+            <div class="nav-wedge"></div>
+            <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+                <span class="wizard-number">2</span> 
+                Organization profile 
+                <i class="fa fa-lock icon-status"></i>
+            </a>
+            <div class="nav-arrow"></div>
+        </li>
+        <li class="wizard-li-lock">
+            <div class="nav-wedge"></div>
+            <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+                <span class="wizard-number">3</span> 
+                Cost data sets 
+                <i class="fa fa-lock icon-status"></i>
+            </a>
+            <div class="nav-arrow"></div>
+        </li>
+        <li class="wizard-li-lock">
+            <div class="nav-wedge"></div>
+            <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
+                <span class="wizard-number">4</span> 
+                Compare costs 
+                <i class="fa fa-lock icon-status"></i>
+            </a>
+        </li>
+    </ul>
+<?php } ?>
 
 <div class="col-md-offset-1 col-md-10">
 	<h1>Sign In</h1>

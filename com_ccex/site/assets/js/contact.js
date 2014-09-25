@@ -21,5 +21,13 @@ $('form#contactForm').validate({
         } else {
             error.insertAfter(element);
         }
+    },
+    invalidHandler: function(form, validator) {
+        if (!validator.numberOfInvalids())
+            return;
+
+        $('html, body').animate({
+            scrollTop: $(validator.errorList[0].element).offset().top - 100
+        }, "fast");
     }
 });

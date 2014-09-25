@@ -389,12 +389,6 @@ class CCExModelsOrganization extends CCExModelsDefault
 
         $firstInterval = array_shift($intervals);
         
-        if ($filter && $filter == "final") {
-            $intervals = $this->finalIntervals();
-        } else {
-            $intervals = $this->intervals();
-        }
-        
         if ($firstInterval) {
             $beginYear = $firstInterval->begin_year;
             $lastYear = $beginYear + $firstInterval->duration - 1;
@@ -551,7 +545,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $dividend = 0;
         $divisor = 0;
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
             
@@ -571,7 +565,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $std_dev = 0;
         $n = 0;
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
             
@@ -606,7 +600,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $dividend = 0;
         $divisor = 0;
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
             
@@ -626,7 +620,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $std_dev = 0;
         $n = 0;
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
             
@@ -661,7 +655,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $dividend = 0;
         $divisor = 0;
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
             
@@ -681,7 +675,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         $std_dev = 0;
         $n = 0;
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $nrYears = count($collection->years());
             
@@ -773,7 +767,7 @@ class CCExModelsOrganization extends CCExModelsDefault
     public function scopes() {
         $scopes = array();
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $scopes[$collection->scope] = true;
         }
         
@@ -783,7 +777,7 @@ class CCExModelsOrganization extends CCExModelsDefault
     public function mainAssets() {
         $mainAssets = array();
         
-        foreach ($this->collections() as $collection) {
+        foreach ($this->finalCollections() as $collection) {
             $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection);
             $mainAssets[$collection->mainAsset() ] = true;
         }

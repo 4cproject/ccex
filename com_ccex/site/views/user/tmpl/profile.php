@@ -8,7 +8,7 @@
         <?php echo htmlspecialchars($this->user->name); ?>
         <small class="edit">
             <a style="font-size: 11px" href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->user->id);?>">
-              edit
+              edit username or password
             </a>
         </small>
       </h3> 
@@ -29,7 +29,7 @@
         <?php echo htmlspecialchars($this->organization->name); ?>
         <small class="edit">
           <a style="font-size: 11px" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
-            edit
+            edit organisation
           </a>     
         </small>   
       </h3> 

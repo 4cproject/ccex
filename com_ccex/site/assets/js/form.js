@@ -81,14 +81,7 @@ function ccexValidateForm(model, silent) {
             $("#_message_container").hide();
             $("#_message_container").removeClass("alert-success alert-danger");
             $("#_message_container").addClass("alert-danger");
-
-            if (model == 'organization') {
-                $("#_message_container #_message").text("Error saving profile");
-            } else {
-                $("#_message_container #_message").text("Error saving " + model);
-            }
-
-            $("#_message_container #_description").text("Please check errors");
+            $("#_message_container #_message").text("Please fill or review highlighted fields");
             $("#_message_container").show();
         }
 

@@ -3,7 +3,7 @@
             <div class="form-group">
                 <label class="col-sm-6 control-label" for="interval_begin_year">Begin year</label>
                 <div class="col-sm-6">
-                    <input class="form-control" id="interval_begin_year" name="interval[begin_year]" type="number" value="<?php if(isset($this->interval->begin_year)){ echo $this->interval->begin_year; } ?>">
+                    <input class="form-control" id="interval_begin_year" name="interval[begin_year]" type="text" value="<?php if(isset($this->interval->begin_year)){ echo $this->interval->begin_year; } ?>">
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <label class="col-sm-2 control-label" for="interval_staff">Curation staff</label>
         <div class="col-sm-2">
             <div class="input-group">
-                <input id="interval_staff" type="number" min="0" class="form-control" name="interval[staff]" value="<?php if(isset($this->interval->staff)){ echo $this->interval->staff; }else{ echo 0; }?>">
+                <input id="interval_staff" type="text" class="form-control" name="interval[staff]" value="<?php if(isset($this->interval->staff)){ echo $this->interval->staff; }else{ echo 0; }?>">
                 <span class="input-group-addon" data-toggle="tooltip" data-placement="right" title="Full Time Equivalents">FTE</span>
             </div>
         </div>
@@ -31,7 +31,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="interval_data_volume">Data volume</label>
         <div class="col-sm-2">
-            <input class="form-control" id="interval_data_volume_number" min="0" name="interval[data_volume_number]" type="number" value="<?php echo $this->interval->dataVolume()->value; ?>">
+            <input class="form-control" id="interval_data_volume_number" min="0" name="interval[data_volume_number]" type="text" value="<?php echo $this->interval->dataVolume()->value; ?>">
         </div>
         <div class="col-sm-2">
             <select class="form-control" id="interval_data_volume_unit" name="interval[data_volume_unit]" value="<?php echo $this->interval->dataVolume()->value; ?>">

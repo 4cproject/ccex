@@ -10,19 +10,19 @@ class CCExControllersDefault extends JControllerBase
         // Get the application
         $app = $this->getApplication();
         
-/*        $user = JFactory::getUser();
-        if ($user->get('guest')) {
-            $app->enqueueMessage(JText::_('COM_CCEX_ACCOUNT_REQUIRED_MSG'), "warning");
-            $app->redirect(JRoute::_('index.php?option=com_users&view=login&redirect_url=comparecosts'));
-        }*/
-        
         // Get the document object.
         $document = JFactory::getDocument();
         
-        $viewName = $app->input->getWord('view', 'comparecosts');
+        $viewName = $app->input->getWord('view', 'analyse');
         $viewFormat = $document->getType();
-        $layoutName = $app->input->getWord('layout', 'index');
+        $layoutName = $app->input->getWord('layout', 'global');
         
+        $user = JFactory::getUser();
+        if ($user->get('guest') && $viewName != "analyse") {
+            $app->enqueueMessage(JText::_('COM_CCEX_ACCOUNT_REQUIRED_MSG'), "warning");
+            $app->redirect(JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal'));
+        }
+
         $app->input->set('view', $viewName);
         
         // Register the layout paths for the view

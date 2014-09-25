@@ -55,7 +55,9 @@ class CCExViewsAnalyseHtml extends JViewHtml
                     $this->_activities->categories = json_encode($categories);     
                     $this->_activities->currency = $organization->currency();  
 
-                    if(count($masterCategories) > $configurationModel->configurationValue("maximum_years_my_costs_charts", 5) ){ 
+                    $this->configuration_max_years = $configurationModel->configurationValue("maximum_years_my_costs_charts", 5);
+
+                    if(count($masterCategories) > $this->configuration_max_years){ 
                         $this->_financialAccounting->master = true;
                         $this->_activities->master = true;
                     }else{

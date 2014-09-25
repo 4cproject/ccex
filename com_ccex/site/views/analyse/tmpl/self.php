@@ -153,6 +153,8 @@
   </div>
 <?php } ?>
 
+<input type="hidden" id="configuration_max_years" name="configuration_max_years" value="<?php echo $this->configuration_max_years; ?>">
+
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare-self.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/cbpHorizontalMenu.js') ?>"></script>

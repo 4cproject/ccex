@@ -16,7 +16,7 @@
 		<div class="col-sm-2">
 			<div class="input-group">
 				<span class="input-group-addon"><?php echo $this->currency->symbol ?></span>
-				<input id="cost_value" type="number" min="0" class="form-control" name="cost[cost]" value="<?php if(isset($this->cost->cost)){ echo $this->cost->cost; } ?>">
+				<input id="cost_value" type="text" min="0" class="form-control" name="cost[cost]" value="<?php if(isset($this->cost->cost)){ echo $this->cost->cost; } ?>">
 			</div>
 		</div>
 		<?php if($this->currency->code != "EUR"){ ?>

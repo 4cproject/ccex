@@ -12,6 +12,11 @@ $(document).ready(function() {
                 min: 0.01
             }
         },
+        messages: {
+            'cost[cost]': {
+                number: "Please enter a valid number, the decimal separator is a dot.",
+            }
+        },
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
         },
@@ -26,6 +31,14 @@ $(document).ready(function() {
             } else {
                 error.insertAfter(element);
             }
+        },
+        invalidHandler: function(form, validator) {
+            if (!validator.numberOfInvalids())
+                return;
+
+            $('html, body').animate({
+                scrollTop: $(validator.errorList[0].element).offset().top - 100
+            }, "fast");
         }
     });
 
