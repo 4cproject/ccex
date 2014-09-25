@@ -104,7 +104,7 @@ $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.boots
         </div>
         <div id="skills" class="footer">
           <div class="container">
-            <span class="pull-left" style="padding-top: 10px"><a href="<?php echo JRoute::_('/index.php/60-privacy-policy'); ?>">Privacy policy</a> | <a href="mailto:info@4cproject.eu">Contact</a></span>
+            <span class="pull-left" style="padding-top: 10px"><a href="<?php echo JRoute::_('/index.php/60-privacy-policy'); ?>">Privacy policy</a> | <a href="mailto:info@4cproject.eu">Contact</a> | <a href="mailto:info@4cproject.eu?subject=[CCEx] Problem report">Report a problem</a></span>
             <a href="http://ec.europa.eu/" target="_blank">
               <div class="polaroid pull-right">
                 <img src="<?php echo $tpath; ?>/images/logos/jaune.jpg" height="30">

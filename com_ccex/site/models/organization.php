@@ -718,13 +718,13 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         foreach ($types as $type) {
             if ($type->name != "Other") {
-                if ($this->haveType($type)) {
+                if ($this->haveType($type->org_type_id)) {
                     $match++;
                 }
                 $total++;
             }
         }
-        
+
         if ($total == 0) {
             return 1;
         } else {

@@ -523,3 +523,7 @@ span.pencil-editable:hover {
 .hover {
     color: #f85c37 !important;
 }
+
+.label.label-similarity{
+    font-size: 13px;
+}

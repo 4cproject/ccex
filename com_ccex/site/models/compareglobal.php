@@ -404,12 +404,9 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     
     private function percentageDifference($first, $second) {
         $difference = abs($first - $second);
-        if ($difference == 0) {
-            $result = 0;
-        } else {
-            $average = ($first + $second) / $difference;
-            $result = $difference / $average;
-        }
+        $average = ($first + $second) / (float)2;
+        $result = $difference / $average;
+
         return $result;
     }
 }

@@ -39,7 +39,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-sm-4 text-right">
-                    <h3>Procurement</h3>
+                    <h3>Purchases</h3>
                 </div>
             </div>
             <div class="form-group">

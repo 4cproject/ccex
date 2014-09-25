@@ -115,7 +115,7 @@ class CCExViewsAnalyseHtml extends JViewHtml
                 
                 $this->organization = $organization;
                 $this->currentPeer = $currentPeer;
-                $this->peersLikeYou = $peersLikeYou["others"];
+                $this->organizationsScore = $peersLikeYou["scores"];
                 $this->complete = $peersLikeYou["complete"];
 
                 $this->user = $userModel;

@@ -8,8 +8,19 @@ class CCExModelsComparepeer extends CCExModelsDefault
     protected $_organization = null;
     
     function __construct() {
+        $configurationModel = new CCExModelsConfiguration();
+
         $this->_categories = array("financial_accounting" => array("cat_hardware", "cat_software", "cat_external", "cat_producer", "cat_it_developer", "cat_operations", "cat_specialist", "cat_manager", "cat_overhead", "cat_financial_accounting_other"), "activities" => array("cat_pre_ingest", "cat_ingest", "cat_storage", "cat_access", "cat_activities_other"));
         $this->_colors = array("#00b050", "#ff0000", "#8DFF1E", "#11FFF7", "#FFB271", "#e46c0a", "#5D07E8", "#E80796");
+
+        $this->_typeScore = $configurationModel->configurationValue("score_type_match", 50);
+        $this->_dataVolumeScore = $configurationModel->configurationValue("score_data_volume_similiarity", 40);
+        $this->_mainAssetScore = $configurationModel->configurationValue("score_main_asset_equality", 20);
+        $this->_numberOfCopiesScore = $configurationModel->configurationValue("score_number_of_copies_similiarity", 20);
+        $this->_staffScore = $configurationModel->configurationValue("score_staff_similiarity", 20);
+        $this->_scopeScore = $configurationModel->configurationValue("score_scopes_match", 10);
+
+        $this->_maxScore = $this->_typeScore + $this->_dataVolumeScore + $this->_mainAssetScore + $this->_numberOfCopiesScore + $this->_staffScore + $this->_scopeScore;
         parent::__construct();
     }
     
@@ -184,15 +195,6 @@ class CCExModelsComparepeer extends CCExModelsDefault
     }
     
     public function peersLikeYou($currentOrganizationID = null) {
-        $configurationModel = new CCExModelsConfiguration();
-        
-        $typeScore = $configurationModel->configurationValue("score_type_match", 50);
-        $dataVolumeScore = $configurationModel->configurationValue("score_data_volume_similiarity", 40);
-        $mainAssetScore = $configurationModel->configurationValue("score_main_asset_equality", 20);
-        $numberOfCopiesScore = $configurationModel->configurationValue("score_number_of_copies_similiarity", 20);
-        $staffScore = $configurationModel->configurationValue("score_staff_similiarity", 20);
-        $scopeScore = $configurationModel->configurationValue("score_scopes_match", 10);
-        
         $organizationsScore = array();
         $organizationsHash = array();
         
@@ -204,12 +206,13 @@ class CCExModelsComparepeer extends CCExModelsDefault
             
             if($this->_organization){
                 $organizationsScore[$organizationID] = 0;
-                $organizationsScore[$organizationID]+= $typeScore * $organization->typeMatch($this->_organization->types());
-                $organizationsScore[$organizationID]+= $dataVolumeScore * max((1 - $this->percentageDifference($organization->dataVolumePonderedAverage(), $this->_organization->dataVolumePonderedAverage())), 0);
-                $organizationsScore[$organizationID]+= $numberOfCopiesScore * max((1 - $this->percentageDifference($organization->numberOfCopiesPonderedAverage(), $this->_organization->numberOfCopiesPonderedAverage())), 0);
-                $organizationsScore[$organizationID]+= $staffScore * max((1 - $this->percentageDifference($organization->staffPonderedAverage(), $this->_organization->staffPonderedAverage())), 0);
-                $organizationsScore[$organizationID]+= $mainAssetScore * $organization->mainAssetsMatch($this->_organization->mainAssets());
-                $organizationsScore[$organizationID]+= $scopeScore * $organization->scopesMatch($this->_organization->scopes());
+
+                $organizationsScore[$organizationID]+= $this->_typeScore * $organization->typeMatch($this->_organization->types());
+                $organizationsScore[$organizationID]+= $this->_dataVolumeScore * max((1 - $this->percentageDifference($organization->dataVolumePonderedAverage(), $this->_organization->dataVolumePonderedAverage())), 0);
+                $organizationsScore[$organizationID]+= $this->_numberOfCopiesScore * max((1 - $this->percentageDifference($organization->numberOfCopiesPonderedAverage(), $this->_organization->numberOfCopiesPonderedAverage())), 0);
+                $organizationsScore[$organizationID]+= $this->_staffScore * max((1 - $this->percentageDifference($organization->staffPonderedAverage(), $this->_organization->staffPonderedAverage())), 0);
+                $organizationsScore[$organizationID]+= $this->_mainAssetScore * $organization->mainAssetsMatch($this->_organization->mainAssets());
+                $organizationsScore[$organizationID]+= $this->_scopeScore * $organization->scopesMatch($this->_organization->scopes());
             }else{
                 $organizationsScore[$organizationID] = mt_rand(0, 10000);
             }
@@ -235,17 +238,44 @@ class CCExModelsComparepeer extends CCExModelsDefault
             $current = array_shift($result);
         }
         
-        return array("current" => $current, "others" => array_slice($result, 0, $configurationModel->configurationValue("maximum_other_peers_like_you", 5)), "complete" => $complete);
+        return array("current" => $current, "complete" => $complete, "scores" => $organizationsScore);
     }
     
     private function percentageDifference($first, $second) {
         $difference = abs($first - $second);
-        if ($difference == 0) {
-            $result = 0;
-        } else {
-            $average = ($first + $second) / $difference;
-            $result = $difference / $average;
+        $average = ($first + $second) / (float)2;
+        $result = $difference / $average;
+
+        return $result;
+    }
+
+    public function similarity($score){
+        $similarity = (float)$score/$this->_maxScore;
+        $result = array(
+            "level" => "",
+            "class"  => "",
+            "value"  => ""
+        );
+        
+        $result["value"] = $similarity;
+
+        if($similarity > 0.80){
+            $result["level"] = "Super";
+            $result["class"] = "super-similarity label-success";
+        }else if($similarity > 0.70){
+            $result["level"] = "Very high";
+            $result["class"] = "very-high-similarity label-primary";
+        }else if($similarity > 0.60){
+            $result["level"] = "High";
+            $result["class"] = "high-similarity label-info";
+        }else if($similarity > 0.40){
+            $result["level"] = "Medium";
+            $result["class"] = "medium-similarity label-warning";
+        }else{
+            $result["level"] = "Lower";
+            $result["class"] = "lower-similarity label-default";
         }
+
         return $result;
     }
 }

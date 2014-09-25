@@ -1,3 +1,8 @@
+<?php 
+  $comparePeer = new CCExModelsComparepeer(); 
+  $currentPeerSimilarity = $comparePeer->similarity($this->organizationsScore[$this->currentPeer->organization_id]);
+?>
+
 <?php if($this->organization){ ?>
   <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
       <li>
@@ -200,6 +205,10 @@
           <?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
             <a href="#contactModal" data-toggle="modal" class="edit">contact</a>
           <?php } ?>
+
+          <?php if($this->organization){ ?>
+            <span class="label label-similarity pull-right <?php echo $currentPeerSimilarity['class']; ?>"><?php echo $currentPeerSimilarity["level"]; ?> silimilarity</span>
+          <?php } ?>
         </h4>
         <p style="line-height: 22px;margin-bottom: 10px">
           The <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo htmlspecialchars($this->currentPeer->typesToString() ) ?></b> from <b><?php echo htmlspecialchars($this->currentPeer->country()->name ) ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
@@ -207,8 +216,8 @@
         <?php if(trim($this->currentPeer->description) != ""){ ?>
           <p style="line-height: 20px;margin-bottom: 15px" class="small vertical-ellipsis-2l">
             The organisation is described as: 
-            <?php echo htmlspecialchars(mb_strimwidth($this->currentPeer->description, 0, 140, "...")) ?>
-            <?php if(strlen($this->currentPeer->description) > 140){ ?>
+            <?php echo htmlspecialchars(mb_strimwidth($this->currentPeer->description, 0, 130, "...")) ?>
+            <?php if(strlen($this->currentPeer->description) > 130){ ?>
               <a href="#readMore" data-toggle="modal">read more</a>
             <?php } ?>
           </p>
@@ -294,6 +303,7 @@ I'd like to contact you to exchange information, experiences and more details ab
               <th>Name</th>
               <th>Country</th>
               <th>Types</th>
+              <th>Similarity</th>
             </tr>
           </thead>
           <tbody>
@@ -302,6 +312,10 @@ I'd like to contact you to exchange information, experiences and more details ab
                 <td style="white-space: nowrap "><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?></td>
                 <td><?php echo htmlspecialchars($peer->country()->name ) ?></td>
                 <td><?php echo htmlspecialchars($peer->typesToString() ) ?></td>
+                <td><?php 
+                  $peerSimilarity = $comparePeer->similarity($this->organizationsScore[$peer->organization_id]);
+                  echo $peerSimilarity["level"]; 
+                ?></td>
               </tr>
             <?php } ?>
           </tbody>

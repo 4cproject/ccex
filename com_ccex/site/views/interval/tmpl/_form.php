@@ -45,11 +45,11 @@
         <label class="col-sm-2 control-label" for="interval_copies">Number of copies</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="Indicate the number of copies you have for each digital asset within the scope. The original does not count as a copy, only backup copies or replicas. If your organisation has a different number of copies policy dependending on the value of the assets, please provide the number closer to the average within the scope.">
             <select class="form-control" id="cintervaln_copies" name="interval[number_copies]">
-                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 0){ echo "selected=\"true\""; }?> value="0">No replicas</option>
-                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 1){ echo "selected=\"true\""; }?> value="1">One replica</option>
-                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 2){ echo "selected=\"true\""; }?> value="2">Two replicas</option>
-                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 3){ echo "selected=\"true\""; }?> value="3">Three replicas</option>
-                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == -1){ echo "selected=\"true\""; }?> value="-1">More than three replicas</option>
+                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 0){ echo "selected=\"true\""; }?> value="0">One original, and no replicas</option>
+                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 1){ echo "selected=\"true\""; }?> value="1">One original, and one replica</option>
+                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 2){ echo "selected=\"true\""; }?> value="2">One original, and two replicas</option>
+                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == 3){ echo "selected=\"true\""; }?> value="3">One original, and three replicas</option>
+                <option <?php if(isset($this->interval->number_copies) && $this->interval->number_copies == -1){ echo "selected=\"true\""; }?> value="-1">One original, and more than three replicas</option>
             </select>
         </div>
     </div>
