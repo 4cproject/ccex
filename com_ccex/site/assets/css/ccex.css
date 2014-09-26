@@ -527,3 +527,19 @@ span.pencil-editable:hover {
 .label.label-similarity{
     font-size: 13px;
 }
+
+.label.label-similarity.super-similarity{
+    background-color: #1B7C1B;
+}
+
+.label.label-similarity.very-high-similarity{
+    background-color: #369836;
+}
+
+.label.label-similarity.high-similarity{
+    background-color: #5CB85C;
+}
+
+.alert.alert-warning .btn.pull-right{
+    margin-left: 5px;
+}

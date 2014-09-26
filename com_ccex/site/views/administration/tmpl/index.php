@@ -62,7 +62,7 @@
             <img class="icon" src="<?php echo (JURI::base().'templates/ccextemplate/images/icons/peppyicons/1405039230_ribbon_128.png') ?>" width="128"/>
 
             <div class="caption">
-                <h3>Organization types</h3>
+                <h3>Organisation types</h3>
             </div>
         </div>
     </div>

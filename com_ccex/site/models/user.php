@@ -34,7 +34,7 @@ class CCExModelsUser extends CCExModelsDefault
     }
     
     public function isAdmin() {
-        return $this->user->get('isRoot');
+        return $this->user->get('isRoot') || in_array(7, $this->user->getAuthorisedGroups() );
     }
 
     public function isGuest() {

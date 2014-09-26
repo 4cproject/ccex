@@ -13,6 +13,15 @@ class CCExViewsAnalyseHtml extends JViewHtml
         $userModel = new CCExModelsUser();
         $organization = $userModel->organization();
         
+
+        if(!$userModel->isGuest()){
+            if(!$organization){
+                $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
+            }else if(!$organization->numberIntervals()){
+                $app->redirect(JRoute::_('index.php?view=comparecosts&layout=index', false));
+            }
+        }
+
 /*        if (!$organization) {
             $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
             $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));

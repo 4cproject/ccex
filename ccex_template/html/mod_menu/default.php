@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 // Note. It is important to remove spaces between elements.
 ?>
-<?php // The menu class is deprecated. Use nav instead. ?>
+<?php $menuUser = JFactory::getUser(); ?>
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ccex-navbar">
@@ -36,15 +36,19 @@ defined('_JEXEC') or die;
 			<?php
 			foreach ($list as $i => &$item)
 			{
-				if ($item->link == "index.php?option=com_users&view=registration" && !JFactory::getUser()->get('guest')) {
+				if ($item->link == "index.php?option=com_users&view=registration" && !$menuUser->get('guest')) {
+					continue;
+				}
+
+				if ($item->link == "index.php?option=com_ccex&view=administration&layout=index" && !($menuUser->get('isRoot') || in_array(7, $menuUser->getAuthorisedGroups()))) {
 					continue;
 				}
 
 				if ($item->link == "index.php?option=com_users&view=profile" || $item->link == "index.php?option=com_ccex&view=user&layout=profile") {
-					if (JFactory::getUser()->get('guest')){
+					if ($menuUser->get('guest')){
 						continue;
 					}else{
-						$name = JFactory::getUser()->get('name', "Profile");
+						$name = $menuUser->get('name', "Profile");
 						$item->title = $name;
 						$item->anchor_css .= "nav-name-ellipsis";
 					}
@@ -113,7 +117,7 @@ defined('_JEXEC') or die;
               
 				echo '<li' . $class . '>';
 				
-				if ($item->link == "index.php?option=com_users&view=login" && !JFactory::getUser()->get('guest')){ ?>
+				if ($item->link == "index.php?option=com_users&view=login" && !$menuUser->get('guest')){ ?>
 					<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.logout'); ?>" method="post" class="form-horizontal">
 						<input type="submit" value="Sign out"></input>
 						<input type="hidden" name="return" value="<?php echo base64_encode(JRoute::_('index.php?option=com_users&view=login')); ?>" />

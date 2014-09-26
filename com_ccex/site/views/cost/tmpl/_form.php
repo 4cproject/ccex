@@ -119,7 +119,7 @@
 	</div>
 	<br/>
 	<h2>Activities mapping</h2>
-	<p>Map this cost to activity categories from our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others. Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>. This will enable you to compare your costs with others.</p>
+	<p>Map the amount of the cost unit that you have entered previously to these activity categories. This will enable you to compare your costs with others. </p>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
@@ -150,6 +150,13 @@
 					<span id="cat_access_feedback" class="slider-feedback" data-category="activities"><span class="feedback-currency-symbol"></span><span class="feedback-value editable-field"></span><span class="feedback-percentage-symbol"></span></span>
 				</div>
 			</div>
+
+			<div class="alert alert-info fade in small" role="alert" style="margin-top: 50px; display: table">
+		      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			  <h4>Tip</h4>
+		      <p>If you have a hard time mapping one of your cost units to our activity categories, you can split it into several categories.</p>
+		      <a class="btn btn-default btn-xs pull-right" href="#tip" data-toggle="modal">Read more</a>
+		    </div>
 		</div>
 		<div class="col-md-6">
 			<canvas id="activitiesChart" width="400" height="400" style="margin: 20px 90px 0px;" ></canvas>
@@ -193,6 +200,25 @@
 		<?php } ?>
 	</div>
 </form>
+
+<div id="tip" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tip" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Tip</h3>
+      </div>
+      <div class="modal-body">
+	      <p>If you have a hard time mapping one of your cost units to our activity categories, you can split it into several categories. For example, a cost unit ‘metadata enrichment’ could be split (un)evenly between Pre-Ingest and Ingest, if those are the main activities in your organisation where metadata enrichment takes place. Or if one of your cost units is ‘overhead’, the cost of this unit could be split (un)evenly between 3 or 4 of our categories.</p>
+	      <p>If you want to know more about why we have chosen these exact categories, you can <a href="/get-started/12-how-does-it-work-compare-costs">read more about it here</a>.</p>
+	      <p>We advise you to document for yourself the choices that you make, this will help you to update cost data in the future and to discuss costs with peer organisations.</p>
+      </div>
+      <div class="modal-footer" style="clear: both;">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>

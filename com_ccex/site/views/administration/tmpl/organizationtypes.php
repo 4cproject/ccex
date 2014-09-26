@@ -3,12 +3,12 @@
     <li class="active">Organization types</li>
 </ol>
 
-<h1>Organization types</h1>
+<h1>Organisation types</h1>
 
 <div style="padding: 30px 0">
     <table id="tableOrganizationtype" class="table table-condensed table-font-small">
         <thead>
-            <th>Organization type</th>
+            <th>Organisation type</th>
             <th style="text-align: right; width: 1px;" class="no-sort"></th>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <a href="<?php echo JRoute::_('index.php?view=administration&layout=organizationtype') ?>" class="btn btn-success btn-block">Add new organization type</a>
+        <a href="<?php echo JRoute::_('index.php?view=administration&layout=organizationtype') ?>" class="btn btn-success btn-block">Add new organisation type</a>
     </div>
 </div>
 

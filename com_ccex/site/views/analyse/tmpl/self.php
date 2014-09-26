@@ -12,7 +12,7 @@
           <div class="nav-wedge"></div>
           <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
               <span class="wizard-number">2</span> 
-              Organization profile 
+              Organisation profile 
               <i class="fa fa-check icon-status"></i>
           </a>
           <div class="nav-arrow"></div>
@@ -145,10 +145,10 @@
   <?php echo $this->_activities->render(); ?>
 <?php }else{ ?>
   <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table; width: 100%">
-    <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to define your organisation costs. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
+    <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseself') ?>"><strong>Sign in</strong></a> to define your organisation costs. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseself') ?>"><strong>Sign up</strong></a> now!</a></p>
     <div>
-      <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign in</a>
-      <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
+      <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseself') ?>" class="btn btn-default btn-xs pull-right">Sign in</a>
+      <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseself') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
     </div>
   </div>
 <?php } ?>

@@ -16,7 +16,7 @@
         <dl class="dl-horizontal" >
             <dt>Scope</dt>
             <dd><?php echo $this->collection->scope ?></dd>
-            <dt>Organization</dt>
+            <dt>Organisation</dt>
             <dd><a href="<?php echo JRoute::_('index.php?view=administration&layout=organization&organization_id=' . $this->collection->organization()->organization_id) ?>"><?php echo htmlspecialchars($this->collection->organization()->name ) ?></a></dd>
         </dl>
     </div>

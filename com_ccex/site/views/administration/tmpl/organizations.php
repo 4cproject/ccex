@@ -18,11 +18,11 @@ foreach ($this->organizations as $organization) {
 <?php if(count($orgWithoutResponsible)) { ?>
     <div class="alert alert-warning fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-        <h4>Organizations without responsible</h4>
+        <h4>Organisations without responsible</h4>
         <p class="small" style="line-height:20px">Currently there are <?php echo count($orgWithoutResponsible); ?> organizations without responsible.<br/>
-        These organizations are still available for global and peer comparison. Please check their status, since your data may be unrealistic or outdated.<br/>
+        These organisations are still available for global and peer comparison. Please check their status, since your data may be unrealistic or outdated.<br/>
         This situation occurs when a user account is deleted before your data has been cleared.<br/>
-        Currently the organizations without responsible are:</p>
+        Currently the organisations without responsible are:</p>
         <ul>
             <?php foreach ($orgWithoutResponsible as $organization) { ?>
                 <li>

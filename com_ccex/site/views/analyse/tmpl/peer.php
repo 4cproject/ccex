@@ -1,6 +1,9 @@
 <?php 
   $comparePeer = new CCExModelsComparepeer(); 
-  $currentPeerSimilarity = $comparePeer->similarity($this->organizationsScore[$this->currentPeer->organization_id]);
+
+  if($this->currentPeer){
+    $currentPeerSimilarity = $comparePeer->similarity($this->organizationsScore[$this->currentPeer->organization_id]);
+  }
 ?>
 
 <?php if($this->organization){ ?>
@@ -17,7 +20,7 @@
           <div class="nav-wedge"></div>
           <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
               <span class="wizard-number">2</span> 
-              Organization profile 
+              Organisation profile 
               <i class="fa fa-check icon-status"></i>
           </a>
           <div class="nav-arrow"></div>
@@ -188,10 +191,10 @@
         <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" style="margin-top: 15px">Manage cost data sets</a>
         <?php }else{ ?>
           <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
-            <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to define your organisation costs. With this, we will provide you with the peers that are most alike you and show how you compare to them. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
+            <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>"><strong>Sign in</strong></a> to define your organisation costs. With this, we will provide you with the peers that are most alike you and show how you compare to them. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>"><strong>Sign up</strong></a> now!</a></p>
             <div>
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign in</a>
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>" class="btn btn-default btn-xs pull-right">Sign in</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
             </div>
           </div>
         <?php } ?>
@@ -205,17 +208,16 @@
           <?php } ?>
 
           <?php if($this->organization){ ?>
-            <span class="label label-similarity pull-right <?php echo $currentPeerSimilarity['class']; ?>"><?php echo $currentPeerSimilarity["level"]; ?> silimilarity</span>
+            <span class="label label-similarity pull-right <?php echo $currentPeerSimilarity['class']; ?>"><?php echo $currentPeerSimilarity["level"]; ?> similarity</span>
           <?php } ?>
         </h4>
-        <p style="margin-bottom: 10px">
-          The <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo htmlspecialchars($this->currentPeer->typesToString() ) ?></b> from <b><?php echo htmlspecialchars($this->currentPeer->country()->name ) ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
+        <p style="margin-bottom: 10px;font-size: 15px">
+          <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?> is a <b><?php echo htmlspecialchars($this->currentPeer->typesToString() ) ?></b> from <b><?php echo htmlspecialchars($this->currentPeer->country()->name ) ?></b> with a digital curation staff of average <b><?php echo round($this->currentPeer->staffPonderedAverage(), 1) ?> people</b> and a data volume of average <b><?php echo $this->currentPeer->dataVolumeToString() ?></b>. It has a number of copies policy of average <b><?php echo round($this->currentPeer->numberOfCopiesPonderedAverage(), 1) ?> replicas</b>.
         </p>
-        <?php if(trim($this->currentPeer->description) != ""){ ?>
+        <?php if(trim($this->currentPeer->description) != "" && $this->currentPeer->organization_linked){ ?>
           <p style="line-height: 20px;margin-bottom: 15px" class="small vertical-ellipsis-2l">
-            The organisation is described as: 
-            <?php echo htmlspecialchars(mb_strimwidth($this->currentPeer->description, 0, 130, "...")) ?>
-            <?php if(strlen($this->currentPeer->description) > 130){ ?>
+            <?php echo htmlspecialchars(mb_strimwidth($this->currentPeer->description, 0, 170, "...")) ?>
+            <?php if(strlen($this->currentPeer->description) > 170){ ?>
               <a href="#readMore" data-toggle="modal">read more</a>
             <?php } ?>
           </p>
@@ -232,7 +234,7 @@
   <div class="alert alert-info">
     <div class="row">
       <div class="col-xs-12">
-        At this point, there are no organizations available for comparison.
+        At this point, there are no organisations available for comparison.
         <br/>
         Please, try again later.
       </div>
@@ -240,7 +242,7 @@
   </div>
 <?php } ?>
 
-<?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
+<?php if($this->currentPeer && $this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
   <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <form id="contactForm" action="index.php?option=com_ccex&controller=contact" method="post">
@@ -251,14 +253,14 @@
               <h3 id="contactModalLabel">Sign in to request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
             </div>
             <div class="modal-body">
-               <p style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?>.</p>
-               <p>Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
+               <p style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>"><strong>Sign in</strong></a> to request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?>.</p>
+               <p>Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>"><strong>Sign up</strong></a> now!</a></p>
             </div>
             <div class="modal-footer" style="clear: both;">
               <button class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button>
 
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseglobal') ?>" class="btn btn-primary">Sign up</a>
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-primary">Sign in</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>" class="btn btn-primary">Sign up</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>" class="btn btn-primary">Sign in</a>
             </div>
           <?php }else{ ?>
             <div class="modal-header">
@@ -301,7 +303,9 @@ I'd like to contact you to exchange information, experiences and more details ab
               <th>Name</th>
               <th>Country</th>
               <th>Types</th>
-              <th>Similarity</th>
+              <?php if($this->organization){ ?>
+                <th>Similarity</th>
+              <?php } ?>
             </tr>
           </thead>
           <tbody>
@@ -310,10 +314,14 @@ I'd like to contact you to exchange information, experiences and more details ab
                 <td style="white-space: nowrap "><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?></td>
                 <td><?php echo htmlspecialchars($peer->country()->name ) ?></td>
                 <td><?php echo htmlspecialchars($peer->typesToString() ) ?></td>
-                <td><?php 
-                  $peerSimilarity = $comparePeer->similarity($this->organizationsScore[$peer->organization_id]);
-                  echo $peerSimilarity["level"]; 
-                ?></td>
+                <?php if($this->organization){ ?>
+                  <td>
+                    <?php 
+                      $peerSimilarity = $comparePeer->similarity($this->organizationsScore[$peer->organization_id]);
+                      echo $peerSimilarity["level"]; 
+                    ?>
+                  </td>
+                <?php } ?>
               </tr>
             <?php } ?>
           </tbody>
@@ -326,22 +334,24 @@ I'd like to contact you to exchange information, experiences and more details ab
   </div>
 </div>
 
-<div id="readMore" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="readMore" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="readMoreLabel"><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
-      </div>
-      <div class="modal-body">
-        <?php echo $this->currentPeer->description ?>
-      </div>
-      <div class="modal-footer" style="clear: both;">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<?php if(trim($this->currentPeer->description) != "" && $this->currentPeer->organization_linked){ ?>
+  <div id="readMore" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="readMore" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="readMoreLabel"><?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?></h3>
+        </div>
+        <div class="modal-body">
+          <?php echo $this->currentPeer->description ?>
+        </div>
+        <div class="modal-footer" style="clear: both;">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<?php } ?>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>

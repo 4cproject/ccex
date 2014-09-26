@@ -11,7 +11,7 @@
       <div class="nav-wedge"></div>
       <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
           <span class="wizard-number">2</span> 
-          Organization profile 
+          Organisation profile 
           <i class="fa fa-check icon-status"></i>
       </a>
       <div class="nav-arrow"></div>
@@ -19,7 +19,7 @@
     <li class="active">
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label">
-            <span class="wizard-number">2</span> 
+            <span class="wizard-number">3</span> 
             Cost data sets 
             <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>
         </a>
@@ -28,14 +28,14 @@
     <li class="analyse-ready last-child" style="<?php if(!$this->organization->Intervals()){ echo "display: none"; } ?>">
         <div class="nav-wedge"></div>
         <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="wizard-label">
-            <span class="wizard-number">3</span> 
+            <span class="wizard-number">4</span> 
             Compare costs 
         </a>
     </li>
     <li class="wizard-li-lock analyse-not-ready" style="<?php if($this->organization->Intervals()){ echo "display: none"; } ?>">
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
-            <span class="wizard-number">3</span> 
+            <span class="wizard-number">4</span> 
             Compare costs 
             <i class="fa fa-lock icon-status"></i>
         </a>

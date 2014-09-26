@@ -244,7 +244,12 @@ class CCExModelsComparepeer extends CCExModelsDefault
     private function percentageDifference($first, $second) {
         $difference = abs($first - $second);
         $average = ($first + $second) / (float)2;
-        $result = $difference / $average;
+        
+        if($average > 0){
+            $result = $difference / $average;
+        }else{
+            $result = 0;
+        }
 
         return $result;
     }
@@ -261,19 +266,19 @@ class CCExModelsComparepeer extends CCExModelsDefault
 
         if($similarity > 0.80){
             $result["level"] = "Super";
-            $result["class"] = "super-similarity label-success";
+            $result["class"] = "label-success super-similarity";
         }else if($similarity > 0.70){
             $result["level"] = "Very high";
-            $result["class"] = "very-high-similarity label-primary";
+            $result["class"] = "label-primary very-high-similarity";
         }else if($similarity > 0.60){
             $result["level"] = "High";
-            $result["class"] = "high-similarity label-info";
+            $result["class"] = "label-info high-similarity";
         }else if($similarity > 0.40){
             $result["level"] = "Medium";
-            $result["class"] = "medium-similarity label-warning";
+            $result["class"] = "label-warning medium-similarity";
         }else{
             $result["level"] = "Lower";
-            $result["class"] = "lower-similarity label-default";
+            $result["class"] = "label-default lower-similarity";
         }
 
         return $result;

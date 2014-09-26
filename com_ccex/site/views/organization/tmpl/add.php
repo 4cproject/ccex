@@ -11,7 +11,7 @@
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label">
             <span class="wizard-number">2</span> 
-            Organization profile 
+            Organisation profile 
         </a>
         <div class="nav-arrow"></div>
     </li>
@@ -40,7 +40,7 @@
 	<li class="active">Create profile</li>
 </ol> -->
 
-<h1>Create your organization</h1>
+<h1>Create your organisation</h1>
 <p>Please fill out the following profile information for your organisation to help identify your cost determinants and enable a comparison of costs against similar organisations. None of the information will be shared unless you explicitly allow this.</p>
 
 <?php echo $this->_formView->render(); ?>

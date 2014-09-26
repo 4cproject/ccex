@@ -1,7 +1,7 @@
 <ul class="media-list"> 
   <li class="media"> 
     <a class="pull-left" href="javascript:void(0)"> 
-      <img class="media-object" src="/4c/templates/ccextemplate/images/icons/peppyicons/1405038774_user9_128.png" width="80" alt="User profile">
+      <img class="media-object" src="/templates/ccextemplate/images/icons/peppyicons/1405038774_user9_128.png" width="80" alt="User profile">
     </a> 
     <div class="media-body" style="padding-left: 10px;"> 
       <h3 class="media-heading">
@@ -22,26 +22,30 @@
   </li> 
   <li class="media" style="margin-top: 30px;"> 
     <a class="pull-left" href="javascript:void(0)"> 
-      <img class="media-object" src="/4c/templates/ccextemplate/images/icons/peppyicons/1405038976_Museum_128.png" width="80" alt="Organisation">
+      <img class="media-object" src="/templates/ccextemplate/images/icons/peppyicons/1405038976_Museum_128.png" width="80" alt="Organisation">
     </a> 
     <div class="media-body" style="padding-left: 10px;"> 
       <h3 class="media-heading">
-        <?php echo htmlspecialchars($this->organization->name); ?>
-        <small class="edit">
-          <a style="font-size: 11px" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
-            edit organisation
-          </a>     
-        </small>   
+        <?php if($this->organization){  ?>
+          <?php echo htmlspecialchars($this->organization->name); ?>
+          <small class="edit">
+            <a style="font-size: 11px" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
+              edit organisation
+            </a>     
+          </small>   
+        <?php }else{ ?>
+          Your organisation
+        <?php } ?>
       </h3> 
       <div class="row" style="martin-top: 10px">     
         <?php if($this->organization){  ?>
             <div class="col-sm-1"><strong>Country</strong></div>
             <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->country()->name); ?></div>
-            <div class="col-sm-1"><strong>Types</strong></div>
+            <div class="col-sm-1"><strong><?php echo ngettext('Type', 'Types', count($this->organization->types())) ?></strong></div>
             <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->typesToString()); ?></div>
         <?php } else { ?>
             <div class="col-sm-12">
-                Your profile isn't associated with any organization, please set your organization in <a href="<?php echo JRoute::_('/compare-costs'); ?>">compare costs page</a>.</p>
+                Your profile isn't associated with any organisation, please <a href="<?php echo JRoute::_('index.php?view=organization&layout=add'); ?>">set your organisation</a>.</p>
             </div>
         <?php } ?>
       </div>

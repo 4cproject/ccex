@@ -47,7 +47,7 @@
 	<li class="active"><?php echo htmlspecialchars($this->organization->name ) ?></li>
 </ol> -->
 
-<h1>Edit your organization</h1>
+<h1>Edit your organisation</h1>
 <p>Please fill out the following profile information for your organisation to help identify your cost determinants and enable a comparison of costs against similar organisations. None of the information will be shared unless you explicitly allow this.</p>
 
 <?php echo $this->_formView->render(); ?>

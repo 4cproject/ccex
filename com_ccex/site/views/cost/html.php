@@ -29,7 +29,7 @@ class CCExViewsCostHtml extends JViewHtml
                 
                 if (!$interval) {
                     $app->enqueueMessage(JText::_('COM_CCEX_ERROR_NOT_FOUND'), "error");
-                    $app->redirect(JRoute::_('index.php?view=comparecosts&layout=index', false));
+                    $app->redirect(JRoute::_('index.php?view=analyse&layout=global', false));
                 }
                 
                 $collection = $interval->collection();
@@ -50,7 +50,7 @@ class CCExViewsCostHtml extends JViewHtml
                 
                 if (!$cost) {
                     $app->enqueueMessage(JText::_('COM_CCEX_ERROR_NOT_FOUND'), "error");
-                    $app->redirect(JRoute::_('index.php?view=comparecosts&layout=index', false));
+                    $app->redirect(JRoute::_('index.php?view=analyse&layout=global', false));
                 }
                 
                 $interval = $cost->interval();

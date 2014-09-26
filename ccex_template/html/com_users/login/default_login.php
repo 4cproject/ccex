@@ -11,7 +11,11 @@ $navbar = $app->input->get('navbar', null);
 
 if($redirect){
     if($redirect == "analyseglobal"){
-       $redirect_url = JRoute::_('index.php?view=analyse&layout=global');
+       $redirect_url = JRoute::_('/compare-costs?view=analyse&layout=global');
+    }else if($redirect == "analysepeer"){
+       $redirect_url = JRoute::_('/compare-costs?view=analyse&layout=peer');
+    }else if($redirect == "analyseself"){
+       $redirect_url = JRoute::_('/compare-costs?view=analyse&layout=self');
     }
 }
 
@@ -31,7 +35,7 @@ if($redirect){
             <div class="nav-wedge"></div>
             <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
                 <span class="wizard-number">2</span> 
-                Organization profile 
+                Organisation profile 
                 <i class="fa fa-lock icon-status"></i>
             </a>
             <div class="nav-arrow"></div>

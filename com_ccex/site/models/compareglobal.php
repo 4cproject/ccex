@@ -123,7 +123,7 @@ class CCExModelsCompareglobal extends CCExModelsDefault
                     $label.= $year;
                 }
             }else{
-                $label = "You :: No organization";
+                $label = "You :: No organisation";
             }  
             
             $data = $this->seriesData($intervals);
@@ -405,7 +405,12 @@ class CCExModelsCompareglobal extends CCExModelsDefault
     private function percentageDifference($first, $second) {
         $difference = abs($first - $second);
         $average = ($first + $second) / (float)2;
-        $result = $difference / $average;
+        
+        if($average > 0){
+            $result = $difference / $average;
+        }else{
+            $result = 0;
+        }
 
         return $result;
     }

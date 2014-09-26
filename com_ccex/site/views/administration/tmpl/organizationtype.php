@@ -1,17 +1,17 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=index') ?>">Administration</a></li>
-    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=organizationtypes') ?>">Organization types</a></li>
+    <li><a href="<?php echo JRoute::_('index.php?view=administration&layout=organizationtypes') ?>">Organisation types</a></li>
     <?php if(isset($this->organizationType)) { ?>
         <li class="active"><?php echo $this->organizationType->name ?></li>
     <?php } else { ?>
-        <li class="active">New organization type</li>
+        <li class="active">New organisation type</li>
     <?php } ?>
 </ol>
 
 <?php if(isset($this->organizationType)) { ?>
     <h1><?php echo $this->organizationType->name ?></h1>
 <?php } else { ?>
-    <h1>New organization type</h1>
+    <h1>New organisation type</h1>
 <?php } ?>
 <br/>
 
@@ -44,7 +44,7 @@
                 <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=administration&layout=organizationtypes') ?>">Cancel</span></a>
             </div>
             <?php if($this->existsOrganizationsOfType) { ?>
-                <div class="col-sm-2" data-toggle="tooltip" data-placement="top" title="You can't delete the organizationtypes that are being used by organizations.">
+                <div class="col-sm-2" data-toggle="tooltip" data-placement="top" title="You can't delete the organisation types that are being used by organisations.">
                     <a class="btn btn-danger btn-block" href="javascript:void(0)" disabled >Delete</span></a>
                 </div>
             <?php } else { ?>
