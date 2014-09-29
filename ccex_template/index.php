@@ -32,39 +32,30 @@ unset($doc->_scripts[$this->baseurl.'/media/jui/js/jquery-noconflict.js']);
 unset($doc->_scripts[$this->baseurl.'/media/jui/js/jquery-migrate.min.js']);
 unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']);
 
-$doc->addScript($tpath.'/libs/Chart.min.js');
-
 $doc->addStyleSheet($tpath.'/libs/bootstrap/3.1.1/css/bootstrap.min.css');
-$doc->addScript($tpath.'/libs/bootstrap/3.1.1/js/bootstrap.min.js');
-
 $doc->addStyleSheet($tpath.'/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.min.css');
-$doc->addScript($tpath.'/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js');
-
 $doc->addStyleSheet($tpath.'/theme/bolt/css/main.css');
 $doc->addStyleSheet($tpath.'/theme/bolt/css/font-awesome.min.css');
-
-
 $doc->addStyleSheet($tpath.'/libs/bootstrap-slider/css/bootstrap-slider.min.css');
+$doc->addStyleSheet($tpath.'/assets/css/ccex.css');
+$doc->addStyleSheet($tpath.'/libs/pace/pace-flash.css');
+$doc->addStyleSheet($tpath.'/assets/css/bootstrap-editable.css');
+$doc->addStyleSheet($tpath.'/libs/datatables/css/jquery.dataTables.css');
+$doc->addStyleSheet($tpath.'/libs/datatables/extensions/TableTools/css/dataTables.tableTools.css');
+$doc->addStyleSheet($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.bootstrap.css');
+
+$doc->addScript($tpath.'/libs/bootstrap/3.1.1/js/bootstrap.min.js');
 $doc->addScript($tpath.'/libs/modernizr/2.7.1/modernizr.min.js');
 $doc->addScript($tpath.'/libs/bootstrap-slider/js/bootstrap-slider.min.js');
 $doc->addScript($tpath.'/libs/humanize.min.js');
 $doc->addScript($tpath.'/assets/js/ccex.js');
-$doc->addStyleSheet($tpath.'/assets/css/ccex.css');
-
+$doc->addScript($tpath.'/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js');
 $doc->addScript($tpath.'/libs/pace/pace.min.js');
-$doc->addStyleSheet($tpath.'/libs/pace/pace-flash.css');
-
-$doc->addStyleSheet($tpath.'/assets/css/bootstrap-editable.css');
 $doc->addScript($tpath.'/libs/bootstrap3-editable/js/bootstrap-editable.min.js');
-
-$doc->addStyleSheet($tpath.'/libs/datatables/css/jquery.dataTables.css');
 $doc->addScript($tpath.'/libs/datatables/js/jquery.dataTables.min.js');
-
-$doc->addStyleSheet($tpath.'/libs/datatables/extensions/TableTools/css/dataTables.tableTools.css');
 $doc->addScript($tpath.'/libs/datatables/extensions/TableTools/js/dataTables.tableTools.min.js');
-
-$doc->addStyleSheet($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.bootstrap.css');
 $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.bootstrap.js');
+$doc->addScript($tpath.'/libs/Chart.min.js');
 
 ?>
 <!doctype html>
@@ -75,12 +66,11 @@ $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.boots
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="Curation Cost Exchange Platform">
       <meta name="author" content="4C project">
-      <script src="<?php echo $tpath ?>/libs/jquery/2.1.0/jquery.min.js"></script>
-      <jdoc:include type="head" />
       <title><?php echo $sitename; ?></title>
-
+      <script src="<?php echo $tpath ?>/libs/jquery/2.1.0/jquery.min.js"></script>
       <script src="http://code.highcharts.com/highcharts.js"></script>
       <script src="http://code.highcharts.com/modules/exporting.js"></script>
+      <jdoc:include type="head" />
     </head>
     <body>
         <jdoc:include type="modules" name="cookie" />

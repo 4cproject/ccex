@@ -168,6 +168,8 @@
                                 <span class="filter-title"><?php echo htmlspecialchars($collection->name) ; ?></span>
                                 <?php if(!$collection->final){ ?>
                                     <small><span class="label label-default label-draft">Draft</span></small>
+                                <?php }else{ ?>  
+                                    <small><span class="label label-default label-draft">Final</span></small>
                                 <?php } ?>  
                                 <select data-update="singular" class="form-control input-xs collectionSelect generalCheck pull-right" name="yearsSelected[<?php echo $collection->collection_id ?>]">
                                   <option value="all">All years</option>
@@ -228,8 +230,8 @@
     </form>
   </div>
 
-  <?php echo $this->_financialAccounting->render(); ?>
   <?php echo $this->_activities->render(); ?>
+  <?php echo $this->_financialAccounting->render(); ?>
 <?php }else{ ?>
   <div class="alert alert-info">
     <div class="row">
@@ -297,7 +299,7 @@ I'd like to contact you to exchange information, experiences and more details ab
         <h3 id="completeListPeersLabel">Compare with other peers</h3>
       </div>
       <div class="modal-body">
-        <table class="table table-hover small">
+        <table class="table table-hover small table-peers">
           <thead>
             <tr>
               <th>Name</th>

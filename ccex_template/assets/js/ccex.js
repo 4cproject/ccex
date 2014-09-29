@@ -206,6 +206,8 @@ SliderUtils.prototype = {
                         percentValue = 100;
                     }
 
+                    percentValue = +(percentValue.toFixed(2));
+
                     var slider = utils.getSlider(selector);
                     slider.slider('setValue', percentValue);
 
@@ -279,3 +281,35 @@ function significantFigures(n, sig) {
 function formatNumber(n, sig) {
     return significantFigures(n, sig).toLocaleString();
 }
+
+jQuery(function() {
+    var isVisible = false;
+    var clickedAway = false;
+
+    $('.popup-marker').each(function() {
+        $(this).popover({
+            trigger: 'focus',
+            template: '<div class="popover" role="tooltip" style="width: 500px;"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"><div class="data-content"></div></div></div>',
+            html: true,
+            trigger: 'manual'
+        }).click(function(e) {
+            $(this).popover('show');
+            isVisible = true;
+            //e.preventDefault();
+        });
+    });
+
+    $(document).click(function(e) {
+      if(isVisible & clickedAway)
+      {
+         $('.popup-marker').each(function() {
+              $(this).popover('hide');
+         });
+        isVisible = clickedAway = false;
+      }
+      else
+      {
+        clickedAway = true;
+      }
+    });
+});

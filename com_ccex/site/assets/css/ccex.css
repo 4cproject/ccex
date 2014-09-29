@@ -543,3 +543,11 @@ span.pencil-editable:hover {
 .alert.alert-warning .btn.pull-right{
     margin-left: 5px;
 }
+
+.table-peers tbody>tr:nth-child(odd){ 
+    background-color: #f9f9f9;
+}
+
+.table-peers{
+    border-bottom: 2px solid #ddd;
+}

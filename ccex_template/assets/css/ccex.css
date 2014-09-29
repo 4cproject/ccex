@@ -727,8 +727,8 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
   }
 
   .nav-pills.nav-wizard.nav>li>a {
-    padding: 11.5px 0;
-    font-size: 12px;
+    padding: 12px 0;
+    font-size: 10px;
     text-align: center;
   }
 }

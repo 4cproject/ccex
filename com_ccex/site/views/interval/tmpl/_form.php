@@ -55,12 +55,16 @@
     </div>
     <br/>
     <div class="form-group">
-        <div class="col-sm-3">
+        <div class="col-sm-12">
             <h3>Asset types</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
+            <div class="alert alert-info fade in small" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <strong>Tip: </strong> Use the slider or enter an amount clicking in the current value.
+            </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_unformatted_text">Unformatted text</label>
                 <div class="col-sm-8">
@@ -84,7 +88,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_graphics">
-                <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Graphics" data-content="For example .jpg, .png, .bmp">Graphics </button>
+                <button type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="Graphics" data-content="For example .jpg, .png, .bmp">Graphics </button>
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_graphics' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_graphics) ? $this->interval->asset_graphics : 0) ?>" id="asset_graphics" name="interval[asset_graphics]" type="text" value="<?php echo (isset($this->interval->asset_graphics) ? $this->interval->asset_graphics : 0) ?>"/>
@@ -93,7 +97,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_audio">
-                    <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Audio" data-content="For example .mp3, .wav, .m4a">Audio </button>
+                    <button type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="Audio" data-content="For example .mp3, .wav, .m4a">Audio </button>
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_audio' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_audio) ? $this->interval->asset_audio : 0) ?>" id="asset_audio" name="interval[asset_audio]" type="text" value="<?php echo (isset($this->interval->asset_audio) ? $this->interval->asset_audio : 0) ?>"/>
@@ -102,7 +106,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_video">
-                    <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Video" data-content="For example .mov, .avi, .wmv">Video </button>
+                    <button type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="Video" data-content="For example .mov, .avi, .wmv">Video </button>
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_video' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_video) ? $this->interval->asset_video : 0) ?>" id="asset_video" name="interval[asset_video]" type="text" value="<?php echo (isset($this->interval->asset_video) ? $this->interval->asset_video : 0) ?>"/>
@@ -132,7 +136,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_database_feedback">
-                    <button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Database" data-content="For example .fp7, .mdb, .sql">Database </button>
+                    <button type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="Database" data-content="For example .fp7, .mdb, .sql">Database </button>
                 </label>
                 <div class="col-sm-8">
                     <input class="slider" data-slider-id='asset_database' data-slider-max="100" data-slider-min="0" data-slider-step="1" data-slider-value="<?php echo (isset($this->interval->asset_database) ? $this->interval->asset_database : 0) ?>" id="asset_database" name="interval[asset_database]" type="text" value="<?php echo (isset($this->interval->asset_database) ? $this->interval->asset_database : 0) ?>"/>
@@ -150,9 +154,17 @@
     <a id="collectionCosts"></a>
     <div class="form-group">
         <div class="col-sm-3">
-            <h3>Cost units</h3>
+            <h3>
+                Cost units
+
+<!--                 <?php if(isset($this->interval->interval_id)){ ?>
+                    <a class="edit" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">add cost unit</a>
+                <?php } else { ?>
+                    <a class="edit" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">add cost unit</a>
+                <?php } ?> -->
+            </h3>
         </div>
-        <div style="padding: 75px 15px;">
+        <div style="padding: 75px 15px 10px 15px;">
             <?php if(isset($this->interval->interval_id)){ 
                 $this->_indexCost->editable = true;
                 $this->_indexCost->costs = $this->interval->costs();
@@ -232,10 +244,4 @@ $("#interval_data_volume_number").change(function () {
 $("#interval_data_volume_unit").change(function () {
     sliderUtils.updateLabels();
 });
-
-$('.popover-dismiss').popover({
-  trigger: 'focus',
-  template: '<div class="popover" role="tooltip" style="width: 500px;"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"><div class="data-content"></div></div></div>'
-});
-
 </script>

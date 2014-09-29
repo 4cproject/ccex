@@ -123,6 +123,8 @@
                                 <span class="filter-title"><?php echo htmlspecialchars($collection->name) ; ?></span>
                                 <?php if(!$collection->final){ ?>
                                     <small><span class="label label-default label-draft">Draft</span></small>
+                                <?php }else{ ?>  
+                                    <small><span class="label label-default label-draft">Final</span></small>
                                 <?php } ?>  
                               </label>          
                           </div>
@@ -141,8 +143,8 @@
     </form>
   </div>
 
-  <?php echo $this->_financialAccounting->render(); ?>
   <?php echo $this->_activities->render(); ?>
+  <?php echo $this->_financialAccounting->render(); ?>
 <?php }else{ ?>
   <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table; width: 100%">
     <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseself') ?>"><strong>Sign in</strong></a> to define your organisation costs. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analyseself') ?>"><strong>Sign up</strong></a> now!</a></p>
