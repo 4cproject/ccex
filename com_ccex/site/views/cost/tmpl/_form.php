@@ -29,7 +29,13 @@
 	<h2>Activities mapping</h2>
 	<p>Map the amount of the cost unit that you have entered previously to these activity categories. This will enable you to compare your costs with others. </p>
 	<div class="row">
-		<div class="col-md-6" style="margin-top: 80px">
+		<div class="col-md-6">
+			<div class="alert alert-info fade in small" role="alert" style="margin-bottom: 60px; display: table">
+		      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			  <p><strong>Tip:</strong> Use the slider or enter an amount clicking in the current value.</p>
+
+			  <p>If you have a hard time mapping one of your cost units to our activity categories, you can split it into several categories. <a class="" style="color: #31708f; font-weight: bold" href="#tip" data-toggle="modal">Read more</a></p>
+		    </div>
 			<div class="form-group">
 				<label for="cat_pre_ingest" class="col-sm-4 control-label"><button type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="Pre-Ingest" data-content="Digital content production involves any activity related to the preparation of digital assets for archiving. This might encompass digitisation, extraction of data from databases, metadata enrichment, migration of production formats to preservation formats, etc.">Pre-Ingest <i class="fa fa-info-circle small"></i></button></label>
 				<div class="col-sm-8">
@@ -58,13 +64,6 @@
 					<span id="cat_access_feedback" class="slider-feedback" data-category="activities"><span class="feedback-currency-symbol"></span><span class="feedback-value editable-field"></span><span class="feedback-percentage-symbol"></span></span>
 				</div>
 			</div>
-
-			<div class="alert alert-info fade in small" role="alert" style="margin-top: 50px; display: table">
-		      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-			  <p><strong>Tip:</strong> Use the slider or enter an amount clicking in the current value.</p>
-
-			  <p>If you have a hard time mapping one of your cost units to our activity categories, you can split it into several categories. <a class="" style="color: #31708f; font-weight: bold" href="#tip" data-toggle="modal">Read more</a></p>
-		    </div>
 		</div>
 		<div class="col-md-6">
 			<canvas id="activitiesChart" width="400" height="400" style="margin: 20px 90px 0px;" ></canvas>
@@ -75,10 +74,14 @@
 	</div>
 	<br/>
 	<h2>Financial accounting mapping</h2>
-	<p>Map this cost to financial accounting categories from our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others. Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>. This will enable you to compare your costs with others.</p>
+	<p>Map this cost to financial accounting categories from our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>. This will enable you to compare your costs with others.</p>
 
 	<div class="row">
 		<div class="col-md-6">
+            <div class="alert alert-info fade in small" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <strong>Tip: </strong> Use the slider or enter an amount clicking in the current value.
+            </div>
 			<div class="form-group">
 				<div class="col-sm-4 text-right">
 					<h3>Purchases</h3>

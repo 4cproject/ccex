@@ -81,7 +81,7 @@
                     <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                     Allow the use of my anonymised cost data for peer comparisons.
                 </label>
-                <span class="description-block"><small>Only mappings to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others. Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a> will be shown with this option.</small></span>
+                <span class="description-block"><small>Only mappings to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a> will be shown with this option.</small></span>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">

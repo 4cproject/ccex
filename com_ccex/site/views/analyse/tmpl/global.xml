@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <metadata>
-    <layout title="COM_CCEX_COMPARE_COSTS_INDEX">
+    <layout title="COM_CCEX_ANALYSE_INDEX">
         <message>
-            <![CDATA[COM_CCEX_COMPARE_COSTS_INDEX_DESC]]>
+            <![CDATA[COM_CCEX_ANALYSE_INDEX_DESC]]>
         </message>
     </layout>
 </metadata>

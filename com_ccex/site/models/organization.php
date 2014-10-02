@@ -720,7 +720,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
 
         if ($total == 0) {
-            return 1;
+            return 0;
         } else {
             return $match / (float)$total;
         }
@@ -739,7 +739,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
         
         if ($total == 0) {
-            return 1;
+            return 0;
         } else {
             return $match / (float)$total;
         }
@@ -758,7 +758,7 @@ class CCExModelsOrganization extends CCExModelsDefault
         }
         
         if ($total == 0) {
-            return 1;
+            return 0;
         } else {
             return $match / (float)$total;
         }

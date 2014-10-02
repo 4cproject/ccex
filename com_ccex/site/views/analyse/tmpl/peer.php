@@ -193,10 +193,10 @@
         <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" style="margin-top: 15px">Manage cost data sets</a>
         <?php }else{ ?>
           <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
-            <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>"><strong>Sign in</strong></a> to define your organisation costs. With this, we will provide you with the peers that are most alike you and show how you compare to them. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>"><strong>Sign up</strong></a> now!</a></p>
+            <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>"><strong>Sign in</strong></a> to define your organisation costs. With this, we will provide you with the peers that are most alike you and show how you compare to them. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analysepeer') ?>"><strong>Sign up</strong></a> now!</a></p>
             <div>
               <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>" class="btn btn-default btn-xs pull-right">Sign in</a>
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analysepeer') ?>" class="btn btn-default btn-xs pull-right">Sign up</a>
             </div>
           </div>
         <?php } ?>
@@ -256,12 +256,12 @@
             </div>
             <div class="modal-body">
                <p style="margin-bottom: 0px"><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>"><strong>Sign in</strong></a> to request contact with <?php if($this->currentPeer->organization_linked){ echo htmlspecialchars($this->currentPeer->name) ; }else{ echo "Anonymous Organisation"; } ?>.</p>
-               <p>Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>"><strong>Sign up</strong></a> now!</a></p>
+               <p>Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analysepeer') ?>"><strong>Sign up</strong></a> now!</a></p>
             </div>
             <div class="modal-footer" style="clear: both;">
               <button class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button>
 
-              <a href="<?php echo JRoute::_('index.php?option=com_users&view=signup&redirect_url=analysepeer') ?>" class="btn btn-primary">Sign up</a>
+              <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analysepeer') ?>" class="btn btn-primary">Sign up</a>
               <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analysepeer') ?>" class="btn btn-primary">Sign in</a>
             </div>
           <?php }else{ ?>
@@ -299,7 +299,7 @@ I'd like to contact you to exchange information, experiences and more details ab
         <h3 id="completeListPeersLabel">Compare with other peers</h3>
       </div>
       <div class="modal-body">
-        <table class="table table-hover small table-peers">
+        <table class="table table-hover small table-peers" style="margin-bottom: 0px;">
           <thead>
             <tr>
               <th>Name</th>
@@ -313,7 +313,7 @@ I'd like to contact you to exchange information, experiences and more details ab
           <tbody>
             <?php foreach ($this->complete as $peer) { ?>
               <tr style="cursor: pointer" onclick="document.location = '<?php echo JRoute::_('index.php?view=analyse&layout=peer&organization=' . $peer->organization_id) ?>';">
-                <td style="white-space: nowrap "><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?></td>
+                <td><?php if($peer->organization_linked){ echo htmlspecialchars($peer->name) ; }else{ echo "Anonymous Organisation"; } ?></td>
                 <td><?php echo htmlspecialchars($peer->country()->name ) ?></td>
                 <td><?php echo htmlspecialchars($peer->typesToString() ) ?></td>
                 <?php if($this->organization){ ?>

@@ -196,7 +196,7 @@ class CCExModelsInterval extends CCExModelsDefault
                     $nrCopies.= "More than three";
                 }
                 
-                $nrCopies.= " replicas";
+                $nrCopies.= " copies";
             }
         }
         

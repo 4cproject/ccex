@@ -248,7 +248,11 @@ class CCExModelsComparepeer extends CCExModelsDefault
         if($average > 0){
             $result = $difference / $average;
         }else{
-            $result = 0;
+            if($first == $second){
+                $result = 0;
+            }else{
+                $result = 1;
+            }
         }
 
         return $result;

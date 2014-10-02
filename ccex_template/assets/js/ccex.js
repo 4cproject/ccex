@@ -288,18 +288,17 @@ jQuery(function() {
 
     $('.popup-marker').each(function() {
         $(this).popover({
-            trigger: 'focus',
             template: '<div class="popover" role="tooltip" style="width: 500px;"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"><div class="data-content"></div></div></div>',
             html: true,
             trigger: 'manual'
-        }).click(function(e) {
+        }).on('click', function(e) {
             $(this).popover('show');
             isVisible = true;
-            //e.preventDefault();
+            e.preventDefault();
         });
     });
 
-    $(document).click(function(e) {
+    $(document).on('click', function(e) {
       if(isVisible & clickedAway)
       {
          $('.popup-marker').each(function() {
