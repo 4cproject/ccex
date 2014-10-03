@@ -124,7 +124,7 @@ class CCExModelsComparepeer extends CCExModelsDefault
                     $label.= $year;
                 }
             }else{
-                $label = "You :: No organization";
+                $label = "You";
             }  
             
             $data = $this->seriesData($intervals);
