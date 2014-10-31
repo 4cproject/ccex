@@ -3,7 +3,7 @@
       <li>
           <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
               <span class="wizard-number">1</span> 
-              Sign in
+              Edit my profile
               <i class="fa fa-check icon-status"></i>
           </a>
           <div class="nav-arrow"></div>
@@ -12,7 +12,7 @@
           <div class="nav-wedge"></div>
           <a href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>" class="wizard-label">
               <span class="wizard-number">2</span> 
-              Organisation profile 
+              Edit organisation 
               <i class="fa fa-check icon-status"></i>
           </a>
           <div class="nav-arrow"></div>
@@ -21,7 +21,7 @@
           <div class="nav-wedge"></div>
           <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
               <span class="wizard-number">3</span> 
-              Cost data sets 
+              Edit cost data sets 
               <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>        </a>
           <div class="nav-arrow"></div>
       </li>

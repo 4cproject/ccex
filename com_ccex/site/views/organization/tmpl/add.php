@@ -2,7 +2,7 @@
     <li class="">
         <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
             <span class="wizard-number">1</span> 
-            Sign in
+            Edit my profile
             <i class="fa fa-check icon-status"></i>
         </a>
         <div class="nav-arrow"></div>
@@ -11,7 +11,7 @@
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label">
             <span class="wizard-number">2</span> 
-            Organisation profile 
+            Add organisation
         </a>
         <div class="nav-arrow"></div>
     </li>
@@ -19,7 +19,7 @@
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label wizard-label-lock">
             <span class="wizard-number">3</span> 
-            Cost data sets 
+            Add cost data sets
             <i class="fa fa-lock icon-status"></i>
         </a>
         <div class="nav-arrow"></div>
