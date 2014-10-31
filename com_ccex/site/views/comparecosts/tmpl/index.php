@@ -1,6 +1,6 @@
 <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
     <li class="">
-        <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
+        <a href="<?php echo JRoute::_('/profile?wizard=true') ?>" class="wizard-label">
             <span class="wizard-number">1</span> 
             Edit my profile
             <i class="fa fa-check icon-status"></i>
@@ -20,7 +20,7 @@
         <div class="nav-wedge"></div>
         <a href="javascript:void(0)" class="wizard-label">
             <span class="wizard-number">3</span> 
-            <?php if($this->organization->readyForComparison()){ ?>
+            <?php if($this->organization->intervals()){ ?>
                 Edit cost data sets
             <?php }else{ ?>
                 Add cost data sets
@@ -46,7 +46,7 @@
     </li>
 </ul>
 
-<h1>Cost data sets</h1>
+<h1>Manage cost data sets</h1>
 <p>Define your cost data sets, describe the associated curation costs and map them to the categories of our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>.</p>
 
 <?php echo $this->_indexCollection->render(); ?>

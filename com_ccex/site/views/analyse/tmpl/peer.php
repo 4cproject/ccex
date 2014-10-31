@@ -9,7 +9,7 @@
 <?php if($this->organization){ ?>
   <ul class="nav nav-pills nav-wizard" style="margin-bottom: 30px;">
       <li>
-          <a href="<?php echo JRoute::_('/profile') ?>" class="wizard-label">
+          <a href="<?php echo JRoute::_('/profile?wizard=true') ?>" class="wizard-label">
               <span class="wizard-number">1</span> 
               Edit my profile
               <i class="fa fa-check icon-status"></i>
