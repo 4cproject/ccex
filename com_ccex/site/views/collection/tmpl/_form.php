@@ -1,17 +1,5 @@
 <form class="form-horizontal" id="collectionForm" role="form">
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="organisation_name">Name</label>
-        <div class="col-sm-10">
-            <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo htmlspecialchars($this->collection->name) ; } ?>">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="collection_description">Description</label>
-        <div class="col-sm-10">
-            <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo htmlspecialchars($this->collection->description) ; }?></textarea>
-        </div>
-    </div>
-    <div class="form-group">
         <label class="col-sm-2 control-label" for="collection_scope">Scope</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="You may not want to give cost information about the whole organisation, but just for a single department, project or even cost data set. Please describe the scope here.">
             <select class="form-control" id="collection_scope" name="collection[scope]">
@@ -21,6 +9,18 @@
                 <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'A collection'){ echo "selected=\"true\""; }?> value="A collection">A collection</option>
                 <option <?php if(isset($this->collection->scope) && $this->collection->scope == 'Other'){ echo "selected=\"true\""; }?> value="Other">Other</option>
             </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="organisation_name">Name</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo htmlspecialchars($this->collection->name) ; } ?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="collection_description">Description</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo htmlspecialchars($this->collection->description) ; }?></textarea>
         </div>
     </div>
     <div class="form-group interval-tabs">
@@ -73,13 +73,21 @@
                 <input type="hidden" name="collection[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
             <?php } ?>
             <?php if(isset($this->new_interval)) { ?>
-                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
             <?php } else { ?>
-                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
+                    <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                <?php }else{ ?>
+                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                <?php } ?>
             <?php } ?>
         </div>
         <div class="col-sm-2">
-            <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+            <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
+                <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+            <?php }else{ ?>
+                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+            <?php } ?>
         </div>
         <div class="col-sm-2">
             <div class="alert alert-dismissable" id="_message_container" style="display: none;">

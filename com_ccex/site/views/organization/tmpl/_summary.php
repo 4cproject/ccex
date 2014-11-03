@@ -20,7 +20,7 @@
                     <dd><?php echo $this->organization->formattedTotalCostPerGBPerYear() ?></dd>
                     <dt>Map to activities</dt>
                     <dd><?php echo $this->organization->percentageActivityMapping() ?>%</dd>
-                    <dt style='white-space: normal;'>Map to financial accounting</dt>
+                    <dt style='white-space: normal;'>Map to purchases and staff</dt>
                     <dd><?php echo $this->organization->percentageFinancialAccountingMapping() ?>%</dd>
                 </dl>
             </div>

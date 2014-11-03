@@ -32,6 +32,7 @@ class CCExViewsCollectionHtml extends JViewHtml
                 $this->_formView->organization = $organization;
                 $this->_formView->new_interval = $collection->newInterval();
                 $this->_formView->intervals = $collection->intervals();
+                $this->_formView->interval = $this->_formView->new_interval;
                 
                 $this->_formView->_intervalFormView = CCExHelpersView::load('Interval', '_form', 'phtml');
                 $this->_formView->_intervalFormView->interval = $this->_formView->new_interval;
@@ -59,10 +60,12 @@ class CCExViewsCollectionHtml extends JViewHtml
                 if ($new_year) {
                     $this->_formView->new_interval = $collection->newInterval();
                     $this->_formView->intervals = $collection->intervals();
+                    $this->_formView->interval = $collection->newInterval();
                     $this->_formView->_intervalFormView->interval = $this->_formView->new_interval;
                 } else {
                     $this->_formView->active_interval = $collection->activeInterval($active_interval);
                     $this->_formView->intervals = $collection->intervals();
+                    $this->_formView->interval = $collection->activeInterval($active_interval);
                     $this->_formView->_intervalFormView->interval = $this->_formView->active_interval;
                 }
                 break;

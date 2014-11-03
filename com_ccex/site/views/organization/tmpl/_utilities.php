@@ -3,7 +3,13 @@
         <a href="<?php echo JRoute::_('index.php?view=collection&layout=add') ?>" class="btn btn-success btn-block">Add new cost data set</a>
     </div>
     <div class="col-md-3 col-md-offset-6">
-        <div id="analyse-btn-ready" class="analyse-ready" style="<?php if(!$this->organization->numberIntervals()){ echo "display: none"; } ?>" data-toggle="tooltip" data-placement="top" title="Click here to see the summary of your submitted costs and compare them with other organisations">
+        <div id="analyse-btn-ready" class="analyse-ready analyse-check-ready" style="<?php if(!$this->organization->numberIntervals() || !$this->organization->readyForComparison()){ echo "display: none"; } ?>" data-toggle="tooltip" data-placement="top" title="Click here to see the summary of your submitted costs and compare them with other organisations">
+            <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="btn btn-info btn-block">
+                Analyse and compare costs
+                <i class="fa fa-angle-right" style="padding-left: 10px"></i>
+            </a>
+        </div>
+        <div id="analyse-btn-ready" class="analyse-ready analyse-check-not-ready" style="<?php if(!$this->organization->numberIntervals() || $this->organization->readyForComparison()){ echo "display: none"; } ?>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Thank you for allowing the sharing of your information. To do this, switch your cost data set(s) from Draft to Final mode. You can return to Draft mode anytime you want to update your cost information.">
             <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="btn btn-info btn-block">
                 Analyse and compare costs
                 <i class="fa fa-angle-right" style="padding-left: 10px"></i>

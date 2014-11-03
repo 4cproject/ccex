@@ -8,7 +8,7 @@
 		<th class="text-right">Cost</th>
 		<th class="text-right" data-toggle="tooltip" data-placement="top" data-container="body" title="A relative cost calculted by dividing the cost by the total data volume in Gigabytes. You can change the data volume in your profile.">Cost per GB</th>
 		<th class="text-right">Map to activities</th>
-		<th class="text-right">Map to financial accounting</th>
+		<th class="text-right">Map to purchases and staff</th>
 		<th class="text-right"></th>
 	</thead>
 	<tbody>

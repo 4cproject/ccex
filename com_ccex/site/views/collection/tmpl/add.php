@@ -53,6 +53,8 @@
 </ol>
 
 <h1>Add cost data set</h1>
-<p>Please fill out the following information for your cost data set and your content to help identify your cost determinants and enable a comparison of costs against similar organisations. This information is used to nuance and give sense to the submitted cost data. For example, the information "Data volume" will enable the calculation of costs per gigabyte, terabyte, petabyte...</p>
+<p class="no-margin">You now start a two-step process. On this page you enter information about your costs. On the next page, you enter the costs themselves.</p>
+
+<p>Please fill out the following information for your costs and your digital material (‘Asset types’) to enable a comparison of costs against similar organisations. You can either add costs for the whole organisation or for smaller parts such as a department, a collection or a project (‘Scope’). </p>
 
 <?php echo $this->_formView->render(); ?>

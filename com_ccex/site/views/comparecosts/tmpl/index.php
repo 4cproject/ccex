@@ -29,7 +29,15 @@
         </a>
         <div class="nav-arrow"></div>
     </li>
-    <li class="analyse-ready last-child" style="<?php if(!$this->organization->Intervals()){ echo "display: none"; } ?>">
+
+    <li class="analyse-ready analyse-check-ready last-child" style="<?php if(!$this->organization->Intervals() || !$this->organization->readyForComparison()){ echo "display: none"; } ?>" >
+        <div class="nav-wedge"></div>
+        <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="wizard-label">
+            <span class="wizard-number">4</span> 
+            Compare costs 
+        </a>
+    </li>
+    <li class="analyse-ready analyse-check-not-ready last-child" style="<?php if(!$this->organization->Intervals() || $this->organization->readyForComparison()){ echo "display: none"; } ?>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Thank you for allowing the sharing of your information. To do this, switch your cost data set(s) from Draft to Final mode. You can return to Draft mode anytime you want to update your cost information.">
         <div class="nav-wedge"></div>
         <a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>" class="wizard-label">
             <span class="wizard-number">4</span> 
@@ -44,10 +52,17 @@
             <i class="fa fa-lock icon-status"></i>
         </a>
     </li>
+
 </ul>
 
 <h1>Manage cost data sets</h1>
-<p>Define your cost data sets, describe the associated curation costs and map them to the categories of our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>.</p>
+<p>
+    <?php if($this->organization->collections()){ ?>
+        Please remember to add cost units to your cost data set(s) by clicking ‘edit’. When your cost data set is complete, remember to switch it from Draft to Final mode to share your information and enable comparisons.
+    <?php }else{ ?>
+        A cost data set covers the curation costs of an organisation, a department, a collection or a project. Each cost data set normally consists of a total cost and detailed costs. For example, the total cost of a digitisation project includes detailed costs for hardware, software, scanning, quality assurance, etc.
+    <?php } ?>
+</p>
 
 <?php echo $this->_indexCollection->render(); ?>
 <?php echo $this->_utilitiesOrganization->render(); ?>

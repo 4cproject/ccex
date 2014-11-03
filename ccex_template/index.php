@@ -43,6 +43,7 @@ $doc->addStyleSheet($tpath.'/assets/css/bootstrap-editable.css');
 $doc->addStyleSheet($tpath.'/libs/datatables/css/jquery.dataTables.css');
 $doc->addStyleSheet($tpath.'/libs/datatables/extensions/TableTools/css/dataTables.tableTools.css');
 $doc->addStyleSheet($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.bootstrap.css');
+$doc->addStyleSheet($tpath.'/libs/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css');
 
 $doc->addScript($tpath.'/libs/bootstrap/3.1.1/js/bootstrap.min.js');
 $doc->addScript($tpath.'/libs/modernizr/2.7.1/modernizr.min.js');
@@ -56,6 +57,7 @@ $doc->addScript($tpath.'/libs/datatables/js/jquery.dataTables.min.js');
 $doc->addScript($tpath.'/libs/datatables/extensions/TableTools/js/dataTables.tableTools.min.js');
 $doc->addScript($tpath.'/libs/datatables/extensions/bootstrap/3/dataTables.bootstrap.js');
 $doc->addScript($tpath.'/libs/Chart.min.js');
+$doc->addScript($tpath.'/libs/bootstrap-switch/js/bootstrap-switch.min.js');
 
 ?>
 <!doctype html>
@@ -111,7 +113,9 @@ $doc->addScript($tpath.'/libs/Chart.min.js');
           </div>
         </div>
     </body>
-
+    <script>
+      $("[data-toggle='popover']").popover();
+    </script>
     <script>
       $("[data-toggle='tooltip']").tooltip();
     </script>

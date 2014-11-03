@@ -1,6 +1,6 @@
 <div>
     <div class="caption" style="margin-top: 30px">
-        <h3>Financial accounting comparison</h3>
+        <h3>Purchases and staff comparison</h3>
     </div>
     <div id="global_financial_accounting_chart" class="col-md-12" style="width: 100%; height: 400px;margin-top:20px;margin-bottom:20px;"></div>
     

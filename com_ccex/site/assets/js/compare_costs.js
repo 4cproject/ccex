@@ -8,10 +8,10 @@
 //     $('.nav-tabs a[href=#interval' + getURLParameter('interval') + ']').tab('show');
 // } 
 
-$(".onoffswitch-checkbox").on("change", function() {
+$('input[name="final"]').on('switchChange.bootstrapSwitch', function(event, state) {
     var final = 0;
     var checkbox = $(this);
-    var checked = checkbox.is(":checked");
+    var checked = state;
     var form = checkbox.closest("form");
     var data = form.serializeArray();
 
@@ -26,9 +26,11 @@ $(".onoffswitch-checkbox").on("change", function() {
             }
             
             if (data.readyForComparison) {
+                $(".analyse-check-not-ready").hide();
                 $(".analyse-check-ready").show();
             } else {
                 $(".analyse-check-ready").hide();
+                $(".analyse-check-not-ready").show();
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {

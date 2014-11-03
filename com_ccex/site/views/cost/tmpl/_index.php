@@ -6,7 +6,7 @@
         <th class="text-right">Cost per Year</th>
         <th class="text-right">Cost per GB per Year</th>
         <th class="text-right">Map to activities</th>
-        <th class="text-right">Map to financial accounting</th>
+        <th class="text-right">Map to purchases and staff</th>
         <?php if(isset($this->editable) && $this->editable) { ?>
             <th class="text-right"></th>
         <?php } ?>    
@@ -36,8 +36,8 @@
 				<td class="text-right nowrap"><?php echo $this->interval->formattedSumCostsPerGB() ?></td>
 				<td class="text-right nowrap"><?php echo $this->interval->formattedSumCostsPerYear() ?></td>
 				<td class="text-right nowrap"><?php echo $this->interval->formattedSumCostsPerGBPerYear() ?></td>
-				<td class="text-right nowrap <?php if($this->interval->percentageActivityMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageActivityMapping() ?>%</td>
-				<td class="text-right nowrap <?php if($this->interval->percentageFinancialAccountingMapping() < 50){ echo 'danger'; } ?>"><?php echo $this->interval->percentageFinancialAccountingMapping() ?>%</td>
+				<td class="text-right nowrap <?php if($this->interval->percentageActivityMapping() < 75){ echo 'danger'; } ?>"><?php echo $this->interval->percentageActivityMapping() ?>%</td>
+				<td class="text-right nowrap <?php if($this->interval->percentageFinancialAccountingMapping() < 75){ echo 'danger'; } ?>"><?php echo $this->interval->percentageFinancialAccountingMapping() ?>%</td>
 			<?php } else { ?>
                 <?php if(isset($this->editable) && $this->editable) { ?>
 				    <td class="text-right" colspan="7"></td>
@@ -55,9 +55,9 @@
 <div style="margin-right: 10px">
     <?php if(isset($this->editable) && $this->editable) { ?>
         <?php if(isset($this->interval->interval_id)){ ?>
-            <a class="pull-right" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">add new cost unit</a>
+            <a class="btn btn-xs btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">Add new cost unit</a>
         <?php } else { ?>
-            <a class="pull-right" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">add new cost unit</a>
+            <a class="btn btn-xs btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">Add new cost unit</a>
         <?php } ?>
     <?php } ?>
 </div>

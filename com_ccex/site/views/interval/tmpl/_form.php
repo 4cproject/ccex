@@ -57,6 +57,7 @@
     <div class="form-group">
         <div class="col-sm-12">
             <h3>Asset types</h3>
+            <p class="no-margin">Allocate the data volume to the various asset types within the scope that you indicated above.</p>
         </div>
     </div>
     <div class="row">
@@ -153,16 +154,17 @@
     </div>
     <a id="collectionCosts"></a>
     <div class="form-group">
-        <div class="col-sm-3">
+        <div class="col-sm-12">
             <h3>
                 Cost units
-
-<!--                 <?php if(isset($this->interval->interval_id)){ ?>
-                    <a class="edit" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">add cost unit</a>
-                <?php } else { ?>
-                    <a class="edit" data-toggle="tooltip" data-placement="left" title="Click here to add curation costs to this cost data set" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">add cost unit</a>
-                <?php } ?> -->
             </h3>
+            <p>
+                <?php if($this->interval->costs()){ ?>
+                    When you have added the cost units, please verify that your mappings are complete in the table below under ‘Map to activities’ and ‘Map to purchases and staff’. Click here to <?php if(isset($this->interval->interval_id)){ ?><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">add new cost unit</a><?php } else { ?><a href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">add new cost unit</a><?php } ?>.
+                <?php }else{ ?>
+                    Now you need to enter the costs by clicking ‘<?php if(isset($this->interval->interval_id)){ ?><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">Add new cost unit</a><?php } else { ?><a href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">Add new cost unit</a><?php } ?>’. To enable comparisons, at least one cost unit per cost data set is required, but it is recommended to provide more fine-grained information, i.e. several cost units.
+                <?php } ?>
+            </p>
         </div>
         <div style="padding: 75px 15px 10px 15px;">
             <?php if(isset($this->interval->interval_id)){ 

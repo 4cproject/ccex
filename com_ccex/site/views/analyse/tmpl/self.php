@@ -41,7 +41,7 @@
 </ol> -->
 
 <h1>Analyse and compare costs</h1>
-<p>See the summary of your submitted costs and compare them with other organisations.</p>
+<p>See the summary of your submitted costs and compare them with other organisations'. <?php if($this->organization){ ?> Please remember that others can only compare their costs with yours if your cost data sets are marked “Final”. <?php } ?></p> 
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">

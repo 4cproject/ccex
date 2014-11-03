@@ -33,7 +33,7 @@
 
 <form class="form-horizontal">
     <input id="cost_value" type="hidden" min="0" class="form-control" name="cost[cost]" value="<?php if(isset($this->cost->cost)){ echo $this->cost->cost; } ?>">
-    <h2>Financial accounting mapping</h2>
+    <h2>Purchases and staff mapping</h2>
 
     <div class="row">
         <div class="col-md-6">

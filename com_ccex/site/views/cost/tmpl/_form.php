@@ -37,7 +37,7 @@
 			  <p>If you have a hard time mapping one of your cost units to our activity categories, you can split it into several categories. <a class="" style="color: #31708f; font-weight: bold" href="#tip" data-toggle="modal">Read more</a></p>
 		    </div>
 			<div class="form-group">
-				<label for="cat_pre_ingest" class="col-sm-4 control-label"><button type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="Pre-Ingest" data-content="Digital content production involves any activity related to the preparation of digital assets for archiving. This might encompass digitisation, extraction of data from databases, metadata enrichment, migration of production formats to preservation formats, etc.">Pre-Ingest <i class="fa fa-info-circle small"></i></button></label>
+				<label for="cat_pre_ingest" class="col-sm-4 control-label"><button type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="Pre-Ingest" data-content="Pre-ingest involves any activity related to the preparation of digital assets for archiving. This might encompass digitisation, extraction of data from databases, metadata enrichment, migration of production formats to preservation formats, etc.">Pre-Ingest <i class="fa fa-info-circle small"></i></button></label>
 				<div class="col-sm-8">
 					<input id="cat_pre_ingest" name="cost[cat_pre_ingest]" class="slider" data-slider-id='cat_pre_ingest' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<?php if(isset($this->cost->cat_pre_ingest)){ echo $this->cost->cat_pre_ingest; } ?>" value="<?php if(isset($this->cost->cat_pre_ingest)){ echo $this->cost->cat_pre_ingest; } ?>"/>
 					<span id="cat_pre_ingest_feedback" class="slider-feedback" data-category="activities"><span class="feedback-currency-symbol"></span><span class="feedback-value editable-field"></span><span class="feedback-percentage-symbol"></span></span>
@@ -73,8 +73,8 @@
 		</div>
 	</div>
 	<br/>
-	<h2>Financial accounting mapping</h2>
-	<p>Map this cost to financial accounting categories from our <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>. This will enable you to compare your costs with others.</p>
+	<h2>Purchases and staff mapping</h2>
+	<p>Now attribute the same amount that you indicated above to all relevant costs of purchases and staff. This will allow you to compare your costs with others based on purchases and salaries.</p>
 
 	<div class="row">
 		<div class="col-md-6">

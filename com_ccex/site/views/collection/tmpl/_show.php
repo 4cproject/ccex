@@ -16,19 +16,11 @@
                         <form class="switchCollection pull-right">
                             <?php if($this->collection->haveCosts()){ ?>
                                 <div class="onoffswitch">
-                                    <input <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?> type="checkbox" name="final" class="onoffswitch-checkbox" id="onoffswitch<?php echo $this->collection->collection_id ?>">
-                                    <label class="onoffswitch-label" for="onoffswitch<?php echo $this->collection->collection_id ?>">
-                                        <span class="onoffswitch-inner"></span>
-                                        <span class="onoffswitch-switch"></span>
-                                    </label>
+                                    <input name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
                                 </div>
                             <?php } else { ?>
-                                <div class="onoffswitch" style="opacity: 0.6;" data-toggle="tooltip" data-placement="top" title="Please add costs to be able to finalize this cost data set">
-                                    <input disabled="" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?> type="checkbox" name="final" class="onoffswitch-checkbox" id="onoffswitch<?php echo $this->collection->collection_id ?>">
-                                    <label class="onoffswitch-label" for="onoffswitch<?php echo $this->collection->collection_id ?>">
-                                        <span class="onoffswitch-inner"></span>
-                                        <span class="onoffswitch-switch"></span>
-                                    </label>
+                                <div class="onoffswitch">
+                                    <input disabled name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
                                 </div>
                             <?php } ?>
                             <input type="hidden" name="collection_id" value="<?php echo $this->collection->collection_id ?>">
@@ -49,3 +41,8 @@
         ?>
     </div>
 </div>
+<script>
+    $.fn.bootstrapSwitch.defaults.onText = 'Final';
+    $.fn.bootstrapSwitch.defaults.offText = 'Draft';
+    $("[name='final']").bootstrapSwitch();
+</script>
