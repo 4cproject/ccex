@@ -4,7 +4,7 @@
     <div id="self_financial_accounting_master_chart" class="col-md-12" style="width: 100%; height: 100px;margin-bottom:20px;<?php if(!$this->master){ echo 'display:none;'; } ?>"></div>
 
 <p>
-    This graph provides an overview of your aggregated costs from the data sets you selected. Hover on each section of the bar or use the key to identify the areas in which you have invested, in terms of a financial accounting breakdown. The figure at the head of the bar for each year shows your total spend per year. 
+    This graph provides an overview of your aggregated costs from the data sets you selected. Hover on each section of the bar or use the key to identify the areas in which you have invested, in terms of a purchases and staff breakdown. The figure at the head of the bar for each year shows your total spend per year. 
     <?php if($this->master){ ?>Use the grey slider beneath the graph to select and display results for up to five years at a time.<?php } ?> 
     You can export your data by clicking the icon in the top right hand corner of this graph. 
     <a target="_blank" href="<?php echo JRoute::_('/index.php/62-analyse-and-compare-costs#self_financial_accounting'); ?>">Learn more about how these results are calculated.</a> 

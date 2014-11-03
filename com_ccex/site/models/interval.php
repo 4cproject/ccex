@@ -181,10 +181,10 @@ class CCExModelsInterval extends CCExModelsDefault
     
     public function formattedNumberOfCopies() {
         $nrCopies = "";
-        
+
         if (is_numeric($this->number_copies)) {
             if ($this->number_copies == 1) {
-                $nrCopies.= "One replica";
+                $nrCopies.= "One copy";
             } else {
                 if ($this->number_copies == 0) {
                     $nrCopies.= "No";
