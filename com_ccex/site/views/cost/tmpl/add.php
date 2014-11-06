@@ -50,6 +50,6 @@
     <li class="active">Add cost unit</li>
 </ol>
 <h1>Add cost unit</h1>
-<p>Allocate the cost above to one or more curation activities. This will enable you to compare your costs with others on an activity-based level.</p>
+<p>Add a new cost unit.</p>
 
 <?php echo $this->_formView->render(); ?>

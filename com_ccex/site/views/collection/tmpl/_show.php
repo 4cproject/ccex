@@ -19,7 +19,7 @@
                                     <input name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
                                 </div>
                             <?php } else { ?>
-                                <div class="onoffswitch">
+                                <div class="onoffswitch" data-toggle="tooltip" data-container="body" data-placement="top" title="You cannot make a cost data set public that has no cost units. Please click the 'edit' link next to your cost data set to add cost units to your cost data set.">
                                     <input disabled name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
                                 </div>
                             <?php } ?>

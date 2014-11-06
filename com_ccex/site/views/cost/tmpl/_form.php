@@ -27,12 +27,12 @@
 	</div>
 	<br/>
 	<h2>Activities mapping</h2>
-	<p>Map the amount of the cost unit that you have entered previously to these activity categories. This will enable you to compare your costs with others. </p>
+	<p>Allocate the cost above to one or more curation activities. This will enable you to compare your costs with others on an activity-based level.</p>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="alert alert-info fade in small" role="alert" style="margin-bottom: 60px; display: table">
 		      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-			  <p><strong>Tip:</strong> Use the slider or enter an amount clicking in the current value.</p>
+			  <p><strong>Tip:</strong> Use the slider or enter an amount clicking on the current value.</p>
 
 			  <p>If you have a hard time mapping one of your cost units to our activity categories, you can split it into several categories. <a class="" style="color: #31708f; font-weight: bold" href="#tip" data-toggle="modal">Read more</a></p>
 		    </div>
@@ -80,7 +80,7 @@
 		<div class="col-md-6">
             <div class="alert alert-info fade in small" role="alert">
               <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-              <strong>Tip: </strong> Use the slider or enter an amount clicking in the current value.
+              <strong>Tip: </strong> Use the slider or enter an amount clicking on the current value.
             </div>
 			<div class="form-group">
 				<div class="col-sm-4 text-right">
@@ -102,7 +102,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="cat_external" class="col-sm-4 control-label"><button style="text-align: right" type="button" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="External or 3rd party services" data-content="Costs spent to buy services from 3rd party providers. Includes outsourcing, renting and leasing of hardware and software.">External or 3<sup>rd</sup> party services <i class="fa fa-info-circle small"></i></button></label>
+				<label for="cat_external" class="col-sm-4 control-label"><button style="text-align: right" type="button" data-container="body" class="popover-dismiss tooltip-button popup-marker" data-toggle="popover" title="External or 3rd party services" data-content="Costs spent to buy services from 3rd party providers. Includes outsourcing, renting and leasing of hardware and software.">External or 3<sup>rd</sup> party services <i class="fa fa-info-circle small"></i></button></label>
 				<div class="col-sm-8">
 					<input id="cat_external" name="cost[cat_external]" class="slider" data-slider-id='cat_external' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<?php if(isset($this->cost->cat_external)){ echo $this->cost->cat_external; } ?>" value="<?php if(isset($this->cost->cat_external)){ echo $this->cost->cat_external; } ?>"/>
 					<span id="cat_external_feedback" class="slider-feedback" data-category="financial-accounting"><span class="feedback-currency-symbol"></span><span class="feedback-value editable-field"></span><span class="feedback-percentage-symbol"></span></span>

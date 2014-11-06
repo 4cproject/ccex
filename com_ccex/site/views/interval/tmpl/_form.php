@@ -64,7 +64,7 @@
         <div class="col-md-6">
             <div class="alert alert-info fade in small" role="alert">
               <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-              <strong>Tip: </strong> Use the slider or enter an amount clicking in the current value.
+              <strong>Tip: </strong> Use the slider or enter an amount clicking on the current value.
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="asset_unformatted_text"><button type="button" class="popover-dismiss tooltip-button popup-marker" data-container="body" data-toggle="popover" title="Unformatted text" data-content="Unformatted text, or plain text, is the contents of an ordinary sequential file readable as textual material without much processing. Examples: ISO 8859-1, ISO 8859-15, UTF-8, Windows Western 1252, IBM 437, ISO 646">Unformatted text <i class="fa fa-info-circle small"></i></button></label>
@@ -151,7 +151,7 @@
                 Cost units
             </h3>
             <p>
-                <?php if($this->interval->costs()){ ?>
+                <?php if(isset($this->interval->interval_id) && $this->interval->costs()){ ?>
                     When you have added the cost units, please verify that your mappings are complete in the table below under ‘Map to activities’ and ‘Map to purchases and staff’. Click here to <?php if(isset($this->interval->interval_id)){ ?><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">add new cost unit</a><?php } else { ?><a href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">add new cost unit</a><?php } ?>.
                 <?php }else{ ?>
                     Now you need to enter the costs by clicking ‘<?php if(isset($this->interval->interval_id)){ ?><a href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">Add new cost unit</a><?php } else { ?><a href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">Add new cost unit</a><?php } ?>’. To enable comparisons, at least one cost unit per cost data set is required, but it is recommended to provide more fine-grained information, i.e. several cost units.
@@ -209,6 +209,8 @@ var format_formatter = function(total) {
             
             if(volume>0){
                 return humanFileSize(volume, 2).format;
+            }else{
+                return "GB";
             }
         }
 

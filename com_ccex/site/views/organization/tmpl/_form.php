@@ -4,13 +4,13 @@
 
 <form class="form-horizontal" id="organizationForm" role="form">
     <div class="form-group">
-        <label  data-toggle="tooltip" data-placement="right" title="Is your organisation for example a National Library, an archive or a data centre? You can also add a mission statement or other background information you would like to share/provide" class="col-sm-2 control-label" for="organisation_name">Name</label>
+        <label  data-toggle="tooltip" data-placement="right" title="Please add the name of your organisation, institution, employer here" class="col-sm-2 control-label" for="organisation_name">Name</label>
         <div class="col-sm-10">
             <input class="form-control" id="organisation_name" name="organization[name]" type="text" value="<?php if(isset($this->organization->name)){ echo htmlspecialchars($this->organization->name) ; } ?>">
         </div>
     </div>
     <div class="form-group">
-        <label data-toggle="tooltip" data-placement="right" title="Please add the name of your organisation, institution, employer here" class="col-sm-2 control-label" for="organisation_description">Description, purpose and mission</label>
+        <label data-toggle="tooltip" data-placement="right" title="Is your organisation for example a National Library, an archive or a data centre? You can also add a mission statement or other background information you would like to share/provide" class="col-sm-2 control-label" for="organisation_description">Description, purpose and mission</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="organisation_description" name="organization[description]" rows="3" type="text"><?php if(isset($this->organization->description)){ echo htmlspecialchars($this->organization->description) ; }?></textarea>
         </div>
@@ -20,11 +20,25 @@
         <div class="col-sm-10">
             <div class="input-group">
                 <?php for($i=0, $n = count($this->orgTypes);$i<$n;$i++) { ?>
+                    <?php if($this->orgTypes[$i]->name == "Other"){ ?>
+                        <?php $other = $this->orgTypes[$i]; ?> 
+                    <?php }else{ ?>
+                        <div class="col-sm-6">
+                            <div class="checkbox">
+                                <label>
+                                  <input class="org-type-checkbox" <?php if(isset($this->organization->organization_id) && $this->organization->isOfType($this->orgTypes[$i]->org_type_id)){ echo 'checked'; } ?> type="checkbox" name="org_type[]" value="<?php echo $this->orgTypes[$i]->org_type_id; ?>">
+                                    <?php echo htmlspecialchars($this->orgTypes[$i]->name ) ?>
+                                </label>
+                            </div>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+                <?php if(isset($other)){ ?>
                     <div class="col-sm-6">
                         <div class="checkbox">
                             <label>
-                              <input class="org-type-checkbox" <?php if(isset($this->organization->organization_id) && $this->organization->isOfType($this->orgTypes[$i]->org_type_id)){ echo 'checked'; } ?> type="checkbox" name="org_type[]" value="<?php echo $this->orgTypes[$i]->org_type_id; ?>">
-                                <?php echo htmlspecialchars($this->orgTypes[$i]->name ) ?>
+                              <input class="org-type-checkbox" <?php if(isset($this->organization->organization_id) && $this->organization->isOfType($other->org_type_id)){ echo 'checked'; } ?> type="checkbox" name="org_type[]" value="<?php echo $other->org_type_id; ?>">
+                                <?php echo htmlspecialchars($other->name ) ?>
                             </label>
                         </div>
                     </div>

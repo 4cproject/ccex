@@ -50,6 +50,6 @@
     <li class="active"><?php echo htmlspecialchars($this->cost->name ) ?></li>
 </ol>
 <h1>Edit cost unit</h1>
-<p>Edit the selected cost unit and map it to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>.</p>
-
+<br/>
+<!-- <p>Edit the selected cost unit and map it to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>.</p> -->
 <?php echo $this->_formView->render(); ?>
