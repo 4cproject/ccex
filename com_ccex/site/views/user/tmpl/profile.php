@@ -117,7 +117,7 @@
             <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->country()->name); ?></div>
             <div class="col-sm-1"><strong><?php echo ngettext('Type', 'Types', count($this->organization->types())) ?></strong></div>
             <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->typesToString()); ?></div>
-            <div class="col-sm-12"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="text-success small">Manage cost data sets</a></div> -->
+            <div class="col-sm-12"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="text-success small">Manage cost data sets</a></div>
 
             <div class="col-sm-12" style="margin-top: 10px">
               <?php foreach ($this->collections as $collection) { ?> 
@@ -133,7 +133,7 @@
                     <div class="small col-sm-2"><strong>Number of year spans</strong></div>
                     <div class="small col-sm-10"><?php echo $collection->numberOfIntervals(); ?></div>
                     <div class="small col-sm-2"><strong>Costs</strong></div>
-                    <div class="small col-sm-10"><?php echo $collection->formattedSumCostsPerGB(); ?></div>
+                    <div class="small col-sm-10"><?php echo $collection->formattedSumCosts(); ?></div>
                   </div>
                 </div>
               <?php } ?> 

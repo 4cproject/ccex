@@ -241,6 +241,18 @@
 
   <?php echo $this->_activities->render(); ?>
   <?php echo $this->_financialAccounting->render(); ?>
+
+    <!-- Action -->
+    <div class="form-group utils">
+      <div class="col-sm-2 col-sm-offset-7">
+          <a class="btn btn-default btn-block btn-border" href="/">Home</span></a>
+      </div>
+      <div class="col-sm-3">
+          <a class="btn btn-success btn-block btn-border" href="/make-the-case">Understand Costs</span></a>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
 </div>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>

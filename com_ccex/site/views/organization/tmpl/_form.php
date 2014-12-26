@@ -136,7 +136,7 @@
                 <?php if(isset($this->organization->organization_id)){ ?>
                     <input type="hidden" name="organization[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
                 <?php } ?>
-                <a class="btn btn-success btn-block btn-save-org" href="javascript:void(0)" onclick="<?php if(isset($this->organization->organization_id)){ echo 'ccexUpdate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets') . '\')'; }else{ echo 'ccexCreate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets') . '\')'; } ?>">Save</span></a>
+                <a class="btn btn-success btn-block btn-save-org" href="javascript:void(0)" onclick="<?php if(isset($this->organization->organization_id)){ echo 'ccexUpdate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets') . '\')'; }else{ echo 'ccexCreate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets') . '\')'; } ?>">Save and next</span></a>
             </div>
         </div>
 		<div class="col-sm-2">

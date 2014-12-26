@@ -144,6 +144,19 @@
 
     <?php echo $this->_activities->render(); ?>
     <?php echo $this->_financialAccounting->render(); ?>
+
+
+    <!-- Action -->
+    <div class="form-group utils">
+      <div class="col-sm-2 col-sm-offset-7">
+          <a class="btn btn-default btn-block btn-border" href="/">Home</span></a>
+      </div>
+      <div class="col-sm-3">
+          <a class="btn btn-success btn-block btn-border" href="/make-the-case">Understand Costs</span></a>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
   <?php }else{ ?>
     <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table; width: 100%">
       <p><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseself') ?>"><strong>Sign in</strong></a> to define your organisation costs. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analyseself') ?>"><strong>Sign up</strong></a> now!</a></p>

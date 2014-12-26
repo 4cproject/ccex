@@ -411,7 +411,7 @@ class CCExModelsCollection extends CCExModelsDefault
         return $sum;
     }
 
-    public function formattedSumCostsPerGB() {
-        return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->currency()->symbol));
+    public function formattedSumCosts() {
+        return sprintf('%s', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->currency()->symbol));
     }
 }
