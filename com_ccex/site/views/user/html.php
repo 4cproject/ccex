@@ -16,6 +16,7 @@ class CCExViewsUserHtml extends JViewHtml
             case "profile":
                 $this->user = $userModel->user();
                 $this->organization = $userModel->organization();
+                $this->collections = $this->organization->collections();
                 $this->wizard = $wizard;
                 break;
             default:

@@ -389,4 +389,29 @@ class CCExModelsCollection extends CCExModelsDefault
         
         return $main;
     }
+
+    public function numberOfIntervals() {
+        return count($this->intervals());
+    }
+
+    public function numberOfCosts() {
+        return count($this->costs());
+    }
+
+    public function currency(){
+        return $this->organization()->currency();
+    }
+
+    public function sumCosts() {
+        $sum = 0;
+        foreach ($this->costs() as $cost) {
+            $sum+= $cost->cost;
+        }
+        
+        return $sum;
+    }
+
+    public function formattedSumCostsPerGB() {
+        return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->sumCosts(), $this->currency()->symbol));
+    }
 }

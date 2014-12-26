@@ -32,7 +32,7 @@ class CCExViewsOrganizationHtml extends JViewHtml
                 
                 if (!$organization) {
                     $app->enqueueMessage(JText::_('COM_CCEX_ERROR_NOT_FOUND'), "error");
-                    $app->redirect(JRoute::_('index.php?view=analyse&layout=global', false));
+                    $app->redirect(JRoute::_('index.php?view=comparecosts&layout=start', false));
                 }
                 
                 $this->organization = $organization;

@@ -18,7 +18,7 @@ class CCExControllersDefault extends JControllerBase
         $layoutName = $app->input->getWord('layout', 'global');
         
         $user = JFactory::getUser();
-        if ($user->get('guest') && $viewName != "analyse") {
+        if ($user->get('guest') && ($viewName != "comparecosts" || $layoutName != "start")) {
             $app->enqueueMessage(JText::_('COM_CCEX_ACCOUNT_REQUIRED_MSG'), "warning");
             $app->redirect(JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal'));
         }

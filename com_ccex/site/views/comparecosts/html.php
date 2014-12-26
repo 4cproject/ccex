@@ -11,14 +11,20 @@ class CCExViewsComparecostsHtml extends JViewHtml
         
         $userModel = new CCExModelsUser();
         $organization = $userModel->organization();
-        
-        if (!$organization) {
-            $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
-            $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
+
+        if(!$userModel->isGuest()) {
+            if (!$organization) {
+                $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
+                $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
+            }
+
+            if($layout == "start"){
+                $app->redirect(JRoute::_('/compare-costs?view=analyse&layout=global'));
+            }
         }
         
         switch ($layout) {
-            case "index":
+            case "datasets":
                 $this->organization = $organization;
 
                 $this->_utilitiesOrganization = CCExHelpersView::load('Organization', '_utilities', 'phtml');
@@ -33,6 +39,9 @@ class CCExViewsComparecostsHtml extends JViewHtml
                 $this->_indexCollection->_showCollection->_indexInterval = CCExHelpersView::load('Interval', '_index', 'phtml');
                 $this->_indexCollection->_showCollection->_indexInterval->_showInterval = CCExHelpersView::load('Interval', '_show', 'phtml');
                 $this->_indexCollection->_showCollection->_indexInterval->_showInterval->_indexCost = CCExHelpersView::load('Cost', '_index', 'phtml');
+                break;
+
+            case "start":
                 break;
 
             default:

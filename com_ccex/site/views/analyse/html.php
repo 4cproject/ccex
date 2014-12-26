@@ -14,11 +14,13 @@ class CCExViewsAnalyseHtml extends JViewHtml
         $organization = $userModel->organization();
         
 
-        if(!$userModel->isGuest()){
+        if($userModel->isGuest()){
+            $app->redirect(JRoute::_('index.php?view=comparecosts&layout=start', false));
+        }else{
             if(!$organization){
                 $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
             }else if(!$organization->numberIntervals()){
-                $app->redirect(JRoute::_('index.php?view=comparecosts&layout=index', false));
+                $app->redirect(JRoute::_('index.php?view=comparecosts&layout=datasets', false));
             }
         }
 

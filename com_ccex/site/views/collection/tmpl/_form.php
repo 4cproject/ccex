@@ -84,9 +84,9 @@
         </div>
         <div class="col-sm-2">
             <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
-                <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+                <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
             <?php }else{ ?>
-                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=index#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
             <?php } ?>
         </div>
         <div class="col-sm-2">
@@ -98,11 +98,11 @@
         </div>
         <?php if(isset($this->collection->collection_id)){ ?>
             <div class="col-sm-2 col-sm-offset-4">
-                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" data-type="collection" data-id="<?php echo $this->collection->collection_id; ?>">Delete</span></a>
+                <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" data-type="collection" data-id="<?php echo $this->collection->collection_id; ?>">Delete</span></a>
             </div>
         <?php } else { ?>
             <div class="col-sm-2 col-sm-offset-4">
-                <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index')?>">Cancel</span></a>
+                <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets')?>">Cancel</span></a>
             </div>
         <?php } ?>
     </div>

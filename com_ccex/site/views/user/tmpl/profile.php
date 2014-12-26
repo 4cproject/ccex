@@ -20,7 +20,7 @@
           </li>
           <li>
               <div class="nav-wedge"></div>
-              <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
+              <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="wizard-label">
                   <span class="wizard-number">3</span> 
                   <?php if($this->organization->intervals()){ ?>
                       Edit cost data sets
@@ -84,11 +84,9 @@
     <div class="media-body" style="padding-left: 10px;"> 
       <h3 class="media-heading">
         <?php echo htmlspecialchars($this->user->name); ?>
-        <small class="edit">
-            <a style="font-size: 11px" href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->user->id);?>">
-              edit username or password
-            </a>
-        </small>
+        <a class="text-success" style="font-size: 11px;" href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->user->id);?>">
+          Edit username or password
+        </a>
       </h3> 
       <div class="row" style="margin-top: 10px">
         <div class="col-sm-1"><strong>Username</strong></div>
@@ -105,12 +103,10 @@
     <div class="media-body" style="padding-left: 10px;"> 
       <h3 class="media-heading">
         <?php if($this->organization){  ?>
-          <?php echo htmlspecialchars($this->organization->name); ?>
-          <small class="edit">
-            <a style="font-size: 11px" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
-              edit organisation
-            </a>     
-          </small>   
+          <?php echo htmlspecialchars($this->organization->name); ?> 
+            <a class="text-success" style="font-size: 11px;" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
+              Edit organisation
+            </a>
         <?php }else{ ?>
           Your organisation
         <?php } ?>
@@ -121,7 +117,29 @@
             <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->country()->name); ?></div>
             <div class="col-sm-1"><strong><?php echo ngettext('Type', 'Types', count($this->organization->types())) ?></strong></div>
             <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->typesToString()); ?></div>
-            <div class="col-sm-11"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="small">Manage cost data sets</a></div>
+            <div class="col-sm-12"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="text-success small">Manage cost data sets</a></div> -->
+
+            <div class="col-sm-12" style="margin-top: 10px">
+              <?php foreach ($this->collections as $collection) { ?> 
+                <?php $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection); ?>
+                <div class="">
+                  <h4>
+                    <?php echo $collection->name ?>
+                    <a class="text-success" style="font-size: 11px;" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $collection->collection_id) ?>">
+                      Edit cost data set
+                    </a> 
+                  </h4>
+                  <div class="row">
+                    <div class="small col-sm-2"><strong>Number of year spans</strong></div>
+                    <div class="small col-sm-10"><?php echo $collection->numberOfIntervals(); ?></div>
+                    <div class="small col-sm-2"><strong>Costs</strong></div>
+                    <div class="small col-sm-10"><?php echo $collection->formattedSumCostsPerGB(); ?></div>
+                  </div>
+                </div>
+              <?php } ?> 
+            </div>
+
+
         <?php } else { ?>
             <div class="col-sm-12">
                 Your profile isn't associated with any organisation, please <a href="<?php echo JRoute::_('index.php?view=organization&layout=add'); ?>">set your organisation</a>.</p>

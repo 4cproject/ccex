@@ -3,19 +3,19 @@
 ?>
 
 <form class="form-horizontal" id="organizationForm" role="form">
-    <div class="form-group">
+    <div class="form-group tour-step tour-step-org-name">
         <label  data-toggle="tooltip" data-placement="right" title="Please add the name of your organisation, institution, employer here" class="col-sm-2 control-label" for="organisation_name">Name</label>
         <div class="col-sm-10">
             <input class="form-control" id="organisation_name" name="organization[name]" type="text" value="<?php if(isset($this->organization->name)){ echo htmlspecialchars($this->organization->name) ; } ?>">
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group tour-step tour-step-org-description">
         <label data-toggle="tooltip" data-placement="right" title="Is your organisation for example a National Library, an archive or a data centre? You can also add a mission statement or other background information you would like to share/provide" class="col-sm-2 control-label" for="organisation_description">Description, purpose and mission</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="organisation_description" name="organization[description]" rows="3" type="text"><?php if(isset($this->organization->description)){ echo htmlspecialchars($this->organization->description) ; }?></textarea>
         </div>
     </div>
-    <div class="form-group" id="organisation_type_container">
+    <div class="form-group tour-step tour-step-org-type" style="padding-bottom: 8px;" id="organisation_type_container">
         <label data-toggle="tooltip" data-placement="right" title="Please select your organization types" class="col-sm-2 control-label" for="organization_type">Type</label>
         <div class="col-sm-10">
             <div class="input-group">
@@ -46,14 +46,14 @@
             </div>
         </div>
     </div>
-    <div class="form-group has-feedback" id="organisation_type_other_container" <?php if(!$this->organization->haveOtherType()){ echo "style=\"display: none;\""; } ?>>
+    <div class="form-group has-feedback tour-step tour-step-org-type-other" id="organisation_type_other_container" <?php if(!$this->organization->haveOtherType()){ echo "style=\"display: none;\""; } ?>>
         <label class="col-sm-2 control-label" for="organisation_type_other">Other type</label>
         <div class="col-sm-10">
             <input value="<?php if(isset($this->organization->other_org_type)){ echo htmlspecialchars($this->organization->other_org_type) ; }?>" class="form-control" id="organisation_type_other" name="organization[other_org_type]" type="text" >
-            <span class="description-block"><small>If you select the 'Other' type, describe your organisation type here.</small></span>
+            <!-- <span class="description-block"><small>If you select the 'Other' type, describe your organisation type here.</small></span> -->
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group tour-step tour-step-org-country">
         <label class="col-sm-2 control-label" for="organization_country">Country</label>
         <div class="col-sm-10">
             <select class="form-control" id="organization_country" name="organization[country_id]">
@@ -62,10 +62,10 @@
                     <option <?php if(isset($this->organization->country_id) && $this->countries[$i]->country_id == $this->organization->country_id){ echo "selected=\"true\""; }?> value="<?php echo $this->countries[$i]->country_id; ?>"><?php echo htmlspecialchars($this->countries[$i]->name) ; ?></option>
                 <?php } ?>
             </select>
-            <span class="description-block"><small>Indicate in which country where the organisation's headquarters are located.</small></span>
-        </div>
+<!--             <span class="description-block"><small>Indicate in which country where the organisation's headquarters are located.</small></span>
+ -->        </div>
     </div>
-    <div class="form-group">
+    <div class="form-group tour-step tour-step-org-currency">
         <label data-toggle="tooltip" data-placement="right" title="For global and peer-to-peer comparison all information on this website will be expressed in Euro. This is done by using the average exchange rate for the year the expenditures were made" class="col-sm-2 control-label" for="collection_data_volume">Currency</label>
         <div class="col-sm-10">
             <select class="form-control" id="organization_currency" name="organization[currency_id]">
@@ -74,55 +74,57 @@
                     <option <?php if(isset($this->organization->currency_id) && $this->currencies[$i]->currency_id == $this->organization->currency_id){ echo "selected=\"true\""; }?> value="<?php echo $this->currencies[$i]->currency_id; ?>"><?php echo htmlspecialchars($this->currencies[$i]->name) ; ?></option>
                 <?php } ?>
             </select>
-            <span class="description-block"><small>Indicate the currency in which you would prefer to provide costs.</small></span>
-        </div>
+<!--             <span class="description-block"><small>Indicate the currency in which you would prefer to provide costs.</small></span>
+ -->        </div>
     </div>
     <br/>
-    <h2>Information sharing</h2>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input name="organization[global_comparison]" <?php echo (!isset($this->organization->global_comparison) || $this->organization->global_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                    Allow the use of my anonymised cost data to calculate averages in the global comparison result.
-                </label>
-                <span class="description-block"><small>Averages will always have at least <?php echo $configurationModel->configurationValue("minimum_organizations_global_comparison", 5) ?> organisations.</small></span>
+    <div class="tour-step tour-step-org-sharing">
+        <h2>Information sharing</h2>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="organization[global_comparison]" <?php echo (!isset($this->organization->global_comparison) || $this->organization->global_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                        Allow the use of my anonymised cost data to calculate averages in the global comparison result.
+                    </label>
+                    <span class="description-block"><small>Averages will always have at least <?php echo $configurationModel->configurationValue("minimum_organizations_global_comparison", 5) ?> organisations.</small></span>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                    Allow the use of my anonymised cost data for peer comparisons.
-                </label>
-                <span class="description-block"><small>Only mappings to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a> will be shown with this option.</small></span>
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                        Allow the use of my anonymised cost data for peer comparisons.
+                    </label>
+                    <span class="description-block"><small>Only mappings to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a> will be shown with this option.</small></span>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input name="organization[organization_linked]" <?php echo (!isset($this->organization->organization_linked) || $this->organization->organization_linked ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                     Allow my organisation to be linked to the cost data I provide.
-                </label>
-                <span class="description-block"><small>Your organisation name will be shown linked to your cost data in peer comparisons.</small></span>
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="organization[organization_linked]" <?php echo (!isset($this->organization->organization_linked) || $this->organization->organization_linked ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                         Allow my organisation to be linked to the cost data I provide.
+                    </label>
+                    <span class="description-block"><small>Your organisation name will be shown linked to your cost data in peer comparisons.</small></span>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input name="organization[contact_and_sharing]" <?php echo (!isset($this->organization->contact_and_sharing) || $this->organization->contact_and_sharing ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                    Allow registered users to contact me and allow my cost data to be shared with them.
-                </label>
-                <span class="description-block"><small>Your email is kept private at all times and contact requests can be ignored.</small></span>
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="organization[contact_and_sharing]" <?php echo (!isset($this->organization->contact_and_sharing) || $this->organization->contact_and_sharing ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
+                        Allow registered users to contact me and allow my cost data to be shared with them.
+                    </label>
+                    <span class="description-block"><small>Your email is kept private at all times and contact requests can be ignored.</small></span>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input name="organization[snapshots]" <?php echo (!isset($this->organization->snapshots) || $this->organization->snapshots ? 'checked="true"' : '') ?> type="checkbox" value="1">
-                    Allow snapshots of my anonymised cost data to be collected periodically.
-                </label>
-                <span class="description-block"><small>Snapshots are taken for the sole purpose of contributing towards the development future research and helping to improve and refine tools and services.</small></span>
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="organization[snapshots]" <?php echo (!isset($this->organization->snapshots) || $this->organization->snapshots ? 'checked="true"' : '') ?> type="checkbox" value="1">
+                        Allow snapshots of my anonymised cost data to be collected periodically.
+                    </label>
+                    <span class="description-block"><small>Snapshots are taken for the sole purpose of contributing towards the development future research and helping to improve and refine tools and services.</small></span>
+                </div>
             </div>
         </div>
     </div>
@@ -130,10 +132,12 @@
     <!-- Action -->
     <div class="form-group utils">
         <div class="col-sm-2">
-            <?php if(isset($this->organization->organization_id)){ ?>
-                <input type="hidden" name="organization[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
-            <?php } ?>
-            <a class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->organization->organization_id)){ echo 'ccexUpdate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; }else{ echo 'ccexCreate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=index') . '\')'; } ?>">Save</span></a>
+            <div class="tour-step tour-step-org-save">
+                <?php if(isset($this->organization->organization_id)){ ?>
+                    <input type="hidden" name="organization[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
+                <?php } ?>
+                <a class="btn btn-success btn-block btn-save-org" href="javascript:void(0)" onclick="<?php if(isset($this->organization->organization_id)){ echo 'ccexUpdate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets') . '\')'; }else{ echo 'ccexCreate(\'organization\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets') . '\')'; } ?>">Save</span></a>
+            </div>
         </div>
 		<div class="col-sm-2">
 			<div class="alert alert-dismissable" id="_message_container" style="display: none;">
@@ -144,7 +148,7 @@
 	    </div>
         <?php if(isset($this->organization->organization_id)){ ?>
             <div class="col-sm-2 col-sm-offset-4">
-                <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Cancel</span></a>
+                <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>">Cancel</span></a>
             </div>
             <div class="col-sm-2">
                 <button type="button" class="btn btn-danger btn-block" id="clear-all-data">Clear all data</button>

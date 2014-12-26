@@ -13,7 +13,7 @@ class CCExViewsAdministrationHtml extends JViewHtml
         
         if (!$userModel->isAdmin()) {
             $app->enqueueMessage(JText::_('COM_CCEX_ERROR_PERMITIONS_MSG'), "error");
-            $app->redirect(JRoute::_('/compare-costs'));
+            $app->redirect(JRoute::_('index.php?view=comparecosts&layout=start', false));
         }
         
         switch ($layout) {

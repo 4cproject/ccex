@@ -19,7 +19,7 @@
       </li>
       <li>
           <div class="nav-wedge"></div>
-          <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" class="wizard-label">
+          <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="wizard-label">
               <span class="wizard-number">3</span> 
               Edit cost data sets 
               <i class="fa fa-check icon-status analyse-check-ready" style="<?php if(!$this->organization->readyForComparison()){ echo "display: none"; } ?>"></i>        </a>
@@ -36,7 +36,7 @@
 <?php } ?>
 
 <!-- <ol class="breadcrumb">
-    <li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>">Compare costs</a></li>
+    <li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the overview of all cost data sets you have submitted so far" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>">Compare costs</a></li>
     <li class="active">Analyse and compare costs</li>
 </ol> -->
 
@@ -180,7 +180,7 @@
             </li>
           </ul>
         </nav>
-        <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=index') ?>" style="margin-top: 15px">Manage cost data sets</a>
+        <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" style="margin-top: 15px">Manage cost data sets</a>
         <?php }else{ ?>
             <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
               <p style="margin-bottom: 13px"><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to define your organisation costs. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
