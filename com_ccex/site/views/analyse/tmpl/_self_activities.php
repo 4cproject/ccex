@@ -28,7 +28,8 @@
                     zoomType: 'x',
                     type: 'column',
                     style: {
-                        fontFamily: 'Lato',
+                        fontFamily: 'Roboto',
+                        fontWeight: 300
                     },
                     events: {
 
@@ -193,7 +194,8 @@
                     reflow: false,
                     style: {
                         position: 'absolute',
-                        fontFamily: 'Lato',
+                        fontFamily: 'Roboto',
+                        fontWeight: 300
                     },
                     type: 'column'
                 },
@@ -245,6 +247,9 @@
                     symbolWidth: 15,
                     symbolHeight: 15,
                     symbolRadius: 10,
+                    itemStyle: {
+                        fontWeight: 300
+                    }
                 },
                 plotOptions: {
                     column: {

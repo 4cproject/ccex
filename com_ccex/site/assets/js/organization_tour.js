@@ -6,7 +6,7 @@ var organizationTour = {
 
 function orgTour(){
     var tour = new Tour({
-        name: "OrganiZation_tour",
+        name: "organization_tour",
         backdrop: true,
         backdropPadding: 10,
         orphan: true,

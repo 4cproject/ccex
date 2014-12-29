@@ -52,9 +52,18 @@
     <li class="active">Add cost data set</li>
 </ol>
 
-<h1>Add cost data set</h1>
+<h1 style="display: inline-block">Add cost data set </h1>
+<!-- <span class="tour-step tour-step-org-help">
+    <a onclick="collectionTour.restart()" style="cursor: pointer">
+         Need help? Start Tour 
+        <i style="font-size: 12px" class="fa fa-play"></i>
+    </a>
+</span> -->
+
 <p class="no-margin">You now start a two-step process. On this page you enter information about your costs. On the next page, you enter the costs themselves.</p>
 
 <p>Please fill out the following information for your costs and your digital material (‘Asset types’) to enable a comparison of costs against similar organisations. You can either add costs for the whole organisation or for smaller parts such as a department, a collection or a project (‘Scope’). </p>
 
 <?php echo $this->_formView->render(); ?>
+
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/collection_tour.js') ?>"></script>

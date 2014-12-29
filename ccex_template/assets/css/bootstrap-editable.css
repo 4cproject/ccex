@@ -180,7 +180,8 @@ a.editable-click:hover {
 }
 
 .editable-click:hover {
-    color: #f85c37;
+    color: #47a447;
+    /*color: #f85c37;*/
 }
 
 .editable-click.editable-disabled, 

@@ -190,6 +190,59 @@ class CCExModelsOrganization extends CCExModelsDefault
         
         return $intervals;
     }
+
+  public function totalCost(){
+    $cost = 0;
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCost();
+    }
+    return $cost;
+  }
+  public function totalCostPerGB() {
+    $cost = 0;
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCostPerGB();
+    }
+    return $cost;
+  }
+  public function totalCostPerYear() {
+    $cost = 0;
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCostPerYear();
+    }
+    return $cost;
+  }
+  public function totalCostPerGBPerYear() {
+    $cost = 0;
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $cost += $collection->totalCostPerGBPerYear();
+    }
+    return $cost;
+  }
+  public function formattedSumCostPerGB() {
+    return sprintf('%s/GB', CCExHelpersTag::formatCurrencyWithSymbol($this->totalCostPerGB(), $this->currency()->symbol));
+  }
+  public function formattedTotalCostPerYear() {
+    return sprintf('%s/Y', CCExHelpersTag::formatCurrencyWithSymbol($this->totalCostPerYear(), $this->currency()->symbol));
+  }
+    public function formattedTotalCostPerGBPerYear() {
+    return sprintf('%s/GB·Y', CCExHelpersTag::formatCurrencyWithSymbol($this->totalCostPerGBPerYear(), $this->currency()->symbol));
+  }
+  public function formattedTotalCost() {
+    return CCExHelpersTag::formatCurrencyWithSymbol($this->totalCost(), $this->currency()->symbol);
+  }
+  public function totalDuration(){
+    $duration = 0;
+    foreach ($this->collections() as $collection) {
+      $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection);
+      $duration += $collection->totalDuration();
+    }
+    return $duration;
+  }
     
     public function costs() {
         $costs = array();

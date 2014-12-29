@@ -114,7 +114,8 @@
 }
 
 .close-tab:hover{
-    color: #f85c37;
+    color: #47a447;
+    /*color: #f85c37;*/
 }
 
 .collections-empty{
@@ -241,7 +242,7 @@
 }
 
 .onoffswitch-inner:before, .onoffswitch-inner:after {
-    font-family: "Lato" !important;
+    font-family: "Roboto" !important;
     font-weight: 600 !important;
 }
 
@@ -517,11 +518,13 @@ span.pencil-editable {
 }
 
 span.pencil-editable:hover {
-    color: #f85c37;
+    color: #47a447;
+    /*color: #f85c37;*/
 }
 
 .hover {
-    color: #f85c37 !important;
+    color: #47a447 !important;
+    /*color: #f85c37; !important*/
 }
 
 .label.label-similarity{

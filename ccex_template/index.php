@@ -71,6 +71,7 @@ $doc->addScript($tpath.'/libs/bootstrap-tour/bootstrap-tour-0.10.1/build/js/boot
       <meta name="description" content="Curation Cost Exchange Platform">
       <meta name="author" content="4C project">
       <title><?php echo $sitename; ?></title>
+      <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,900,300,100' rel='stylesheet' type='text/css'>
       <script src="<?php echo $tpath ?>/libs/jquery/2.1.0/jquery.min.js"></script>
       <script src="http://code.highcharts.com/highcharts.js"></script>
       <script src="http://code.highcharts.com/modules/exporting.js"></script>

@@ -17,7 +17,8 @@
       chart: {
         type: 'column',
         style: {
-          fontFamily: 'Lato',
+          fontFamily: 'Roboto',
+          fontWeight: 300
         }
       },
       credits: {
@@ -79,6 +80,9 @@
       symbolWidth: 15,
       symbolHeight: 15,
       symbolRadius: 10,
+      itemStyle: {
+          fontWeight: 300
+      }
     },
     series: <?php echo $this->series; ?>
   });

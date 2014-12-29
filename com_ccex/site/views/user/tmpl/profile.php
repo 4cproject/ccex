@@ -76,79 +76,116 @@
     </ul>
 <?php } ?>
 
-<ul class="media-list" style="margin-top: 40px"> 
-  <li class="media"> 
-    <a class="pull-left" href="javascript:void(0)"> 
-      <img class="media-object" src="/templates/ccextemplate/images/icons/peppyicons/1405038774_user9_128.png" width="80" alt="User profile">
-    </a> 
-    <div class="media-body" style="padding-left: 10px;"> 
-      <h3 class="media-heading">
-        <?php echo htmlspecialchars($this->user->name); ?>
-        <a class="text-success" style="font-size: 11px;" href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->user->id);?>">
-          Edit username or password
-        </a>
-      </h3> 
-      <div class="row" style="margin-top: 10px">
-        <div class="col-sm-1"><strong>Username</strong></div>
-        <div class="col-sm-11"><?php echo htmlspecialchars($this->user->username); ?></div>
-        <div class="col-sm-1"><strong>Email</strong></div>
-        <div class="col-sm-11"><?php echo htmlspecialchars($this->user->email); ?></div>
+<div class="row profile-container">
+  <div class="col-md-2 text-center">
+    <div class="vcenter">
+      <img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405038774_user9_128.png" width="80" alt="User profile">
+    </div>
+  </div>
+  <div class="col-md-4">
+      <div class="vcenter">
+        <h3>
+          <?php echo htmlspecialchars($this->user->name); ?>
+        </h3> 
+        <div class="row" style="margin-top: 10px">
+          <div class="col-sm-3"><strong>Username</strong></div>
+          <div class="col-sm-9"><?php echo htmlspecialchars($this->user->username); ?></div>
+          <div class="col-sm-3"><strong>Email</strong></div>
+          <div class="col-sm-9"><?php echo htmlspecialchars($this->user->email); ?></div>
+        </div>
       </div>
-    </div> 
-  </li> 
-  <li class="media" style="margin-top: 30px;"> 
-    <a class="pull-left" href="javascript:void(0)"> 
-      <img class="media-object" src="/templates/ccextemplate/images/icons/peppyicons/1405038976_Museum_128.png" width="80" alt="Organisation">
-    </a> 
-    <div class="media-body" style="padding-left: 10px;"> 
-      <h3 class="media-heading">
+  </div>
+  <div class="col-md-4 col-md-offset-1">
+    <div style="padding-top:47px">
+      <button class="btn btn-success btn-lg btn-block">Edit username or password</button>
+    </div>
+  </div>
+</div>
+
+<div class="row profile-container">
+  <div class="col-md-2 text-center">
+    <div class="vcenter">
+      <img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405038976_Museum_128.png" width="80" alt="Organisation">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="vcenter">
+      <h3>
         <?php if($this->organization){  ?>
           <?php echo htmlspecialchars($this->organization->name); ?> 
-            <a class="text-success" style="font-size: 11px;" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
-              Edit organisation
-            </a>
         <?php }else{ ?>
           Your organisation
         <?php } ?>
       </h3> 
       <div class="row" style="martin-top: 10px">     
         <?php if($this->organization){  ?>
-            <div class="col-sm-1"><strong>Country</strong></div>
-            <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->country()->name); ?></div>
-            <div class="col-sm-1"><strong><?php echo ngettext('Type', 'Types', count($this->organization->types())) ?></strong></div>
-            <div class="col-sm-11"><?php echo htmlspecialchars($this->organization->typesToString()); ?></div>
-            <div class="col-sm-12"><a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="text-success small">Manage cost data sets</a></div>
-
-            <div class="col-sm-12" style="margin-top: 10px">
-              <?php foreach ($this->collections as $collection) { ?> 
-                <?php $collection = CCExHelpersCast::cast('CCExModelsCollection', $collection); ?>
-                <div class="">
-                  <h4>
-                    <?php echo $collection->name ?>
-                    <a class="text-success" style="font-size: 11px;" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $collection->collection_id) ?>">
-                      Edit cost data set
-                    </a> 
-                  </h4>
-                  <div class="row">
-                    <div class="small col-sm-2"><strong>Number of year spans</strong></div>
-                    <div class="small col-sm-10"><?php echo $collection->numberOfIntervals(); ?></div>
-                    <div class="small col-sm-2"><strong>Costs</strong></div>
-                    <div class="small col-sm-10"><?php echo $collection->formattedSumCosts(); ?></div>
-                  </div>
-                </div>
-              <?php } ?> 
-            </div>
-
-
+            <div class="col-sm-3"><strong>Country</strong></div>
+            <div class="col-sm-9"><?php echo htmlspecialchars($this->organization->country()->name); ?></div>
+            <div class="col-sm-3"><strong><?php echo ngettext('Type', 'Types', count($this->organization->types())) ?></strong></div>
+            <div class="col-sm-9"><?php echo htmlspecialchars($this->organization->typesToString()); ?></div>
         <?php } else { ?>
             <div class="col-sm-12">
-                Your profile isn't associated with any organisation, please <a href="<?php echo JRoute::_('index.php?view=organization&layout=add'); ?>">set your organisation</a>.</p>
+                Your profile isn't associated with any organisation.
             </div>
         <?php } ?>
       </div>
-    </div> 
-  </li> 
-</ul>
+    </div>
+  </div>
+  <div class="col-md-4 col-md-offset-1">
+    <div style="padding-top:47px">
+      <?php if($this->organization){  ?>
+        <a class="btn btn-success btn-lg btn-block" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
+          Edit organisation
+        </a>
+      <?php }else{ ?>
+        <a class="btn btn-success btn-lg btn-block" href="<?php echo JRoute::_('index.php?view=organization&layout=add'); ?>">Set your organisation</a>
+      <?php } ?>
+    </div>
+  </div>
+</div>
+
+<?php if($this->organization){  ?>
+<div class="row profile-container">
+  <div class="col-md-2 text-center">
+    <div class="vcenter">
+      <img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405039249_statistics_128.png" width="80" alt="Cost data sets">
+    </div>
+  </div>
+  <div class="col-md-4">
+      <div class="vcenter">
+        <h3>
+          Cost data sets
+        </h3> 
+        <div class="row" style="margin-top: 10px">
+          <div class="col-sm-7"><strong>Number of cost data sets</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->numberCollections() ?></div>
+          <div class="col-sm-7"><strong>Number of year spans</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->numberIntervals() ?></div>
+          <div class="col-sm-7"><strong>Duration</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->totalDuration() ?></div>
+          <div class="col-sm-7"><strong>Cost</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->formattedTotalCost() ?></div>
+          <div class="col-sm-7"><strong>Cost per GB</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->formattedSumCostPerGB() ?></div>
+          <div class="col-sm-7"><strong>Cost per Year</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->formattedTotalCostPerYear() ?></div>
+          <div class="col-sm-7"><strong>Cost per GB per Year</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->formattedTotalCostPerGBPerYear() ?></div>
+          <div class="col-sm-7"><strong>Map to activities</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->percentageActivityMapping() ?>%</div>
+          <div class="col-sm-7"><strong>Map to purchases and staff</strong></div>
+          <div class="col-sm-5"><?php echo $this->organization->percentageFinancialAccountingMapping() ?>%</div>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-4 col-md-offset-1">
+    <div style="padding-top:47px">
+      <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="btn btn-success btn-lg btn-block">Manage cost data sets</a>
+    </div>
+  </div>
+</div>
+<?php } ?>
+
 <div class="utils" style="padding-top: 30px">
     <div class="col-sm-2 col-sm-offset-10">
         <form action="<?php echo JRoute::_('index.php?option=com_users&task=user.logout'); ?>" method="post" class="form-horizontal">

@@ -1,5 +1,5 @@
 <form class="form-horizontal" id="collectionForm" role="form">
-    <div class="form-group">
+    <div class="form-group tour-step tour-step-coll-scope">
         <label class="col-sm-2 control-label" for="collection_scope">Scope</label>
         <div class="col-sm-10" data-container="body" data-placement="right" data-toggle='tooltip' title="You may not want to give cost information about the whole organisation, but just for a single department, project or even cost data set. Please describe the scope here.">
             <select class="form-control" id="collection_scope" name="collection[scope]">
@@ -11,13 +11,13 @@
             </select>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group tour-step tour-step-coll-name">
         <label class="col-sm-2 control-label" for="organisation_name">Name</label>
         <div class="col-sm-10">
             <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo htmlspecialchars($this->collection->name) ; } ?>">
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group tour-step tour-step-coll-description">
         <label class="col-sm-2 control-label" for="collection_description">Description</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo htmlspecialchars($this->collection->description) ; }?></textarea>
