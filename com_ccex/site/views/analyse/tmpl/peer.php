@@ -234,11 +234,12 @@
 
 
     <!-- Action -->
+    <!-- Action -->
     <div class="form-group utils">
-      <div class="col-sm-2 col-sm-offset-7">
-          <a class="btn btn-default btn-block btn-border" href="/">Home</span></a>
-      </div>
       <div class="col-sm-3">
+          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>"><i class="fa fa-arrow-left"> Global comparison</i></span></a>
+      </div>
+      <div class="col-sm-3 col-sm-offset-6">
           <a class="btn btn-success btn-block btn-border" href="/make-the-case">Understand Costs</span></a>
       </div>
     </div>

@@ -68,27 +68,34 @@
     <!-- Action -->
     <div class="form-group utils">
         <div class="col-sm-2">
-            <input type="hidden" name="collection[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
-            <?php if(isset($this->collection->collection_id)){ ?>
-                <input type="hidden" name="collection[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
-            <?php } ?>
-            <?php if(isset($this->new_interval)) { ?>
-                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
-            <?php } else { ?>
-                <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
-                    <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
-                <?php }else{ ?>
-                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries. You will remain on this page" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
-                <?php } ?>
-            <?php } ?>
-        </div>
-        <div class="col-sm-2">
             <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
                 <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
             <?php }else{ ?>
                 <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
             <?php } ?>
         </div>
+
+        <div class="col-sm-3">
+            <input type="hidden" name="collection[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
+            <?php if(isset($this->collection->collection_id)){ ?>
+                <input type="hidden" name="collection[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
+            <?php } ?>
+            <?php if(isset($this->interval->interval_id)){ ?>
+                <a class="btn btn-success btn-block" data-toggle="tooltip" data-placement="left" title="Click here to save your entries and add a new cost" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">Save and add new cost unit</a>
+            <?php } else { ?>
+                <a class="btn btn-success btn-block" data-toggle="tooltip" data-placement="left" title="Click here to save your entries and add a new cost" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">Save and add new cost unit</a>
+            <?php } ?>
+<!--             <?php if(isset($this->new_interval)) { ?>
+                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and add a new cost" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+            <?php } else { ?>
+                <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
+                    <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                <?php }else{ ?>
+                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and add a new cost" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
+                <?php } ?>
+            <?php } ?> -->
+        </div>
+        
         <div class="col-sm-2">
             <div class="alert alert-dismissable" id="_message_container" style="display: none;">
                 <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>

@@ -844,20 +844,20 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 }
 
 .responsive-video {
-position: relative;
-padding-bottom: 56.25%;
-overflow: hidden;
+  position: relative;
+  padding-bottom: 56.25%;
+  overflow: hidden;
 }
 
 
 .responsive-video iframe,
 .responsive-video object,
 .responsive-video embed {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .icon-link.text-primary:hover{
@@ -872,10 +872,21 @@ height: 100%;
   border: 5px solid #f0f0f0;
   background-color: #f9f9f9;
   padding: 15px 15px;
-  margin-bottom: 20px
+  display: table;
+  margin: 10px;
 }
 
+.profile-container .sep{
+  height: 20px;
+}
 
+.small-profile-container{
+  height: 275px;
+}
+
+.big-profile-container{
+  height: 570px;
+}
 
 .nav-tabs>li>a{
   font-weight: 500;
@@ -897,4 +908,18 @@ height: 100%;
 
 .vcenter h3{
   margin-top: 0;
+}
+
+.btn.btn-help{
+  background: none;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 5px 10px;
+  color: #777;
+}
+
+.btn.btn-help:hover{
+  color: #333;
+  background-color: #e7e7e7;
 }

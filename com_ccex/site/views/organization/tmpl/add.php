@@ -43,7 +43,8 @@
 <h1>
     Create your organisation
     <span class="pull-right">
-        <i title="Need help? Start tour" onclick="organizationTour.restart()" class="fa fa-question-circle text-primary icon-link"></i>
+        <a  onclick="organizationTour.restart()" class="btn btn-default btn-help"><i class="fa fa-life-ring"></i> Show help</a>
+        <!-- <i title="Need help? Start tour" onclick="organizationTour.restart()" class="fa fa-question-circle text-primary icon-link"></i> -->
     </span> 
 </h1>
 

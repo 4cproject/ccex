@@ -19,7 +19,7 @@ class CCExViewsCostHtml extends JViewHtml
         
         $organization = $userModel->organization();
         if (!$organization) {
-            $app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");
+            /*$app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");*/
             $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
         }
         
