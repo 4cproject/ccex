@@ -43,7 +43,7 @@
 <h1>
     Create your organisation
     <span class="pull-right">
-        <a  onclick="organizationTour.restart()" class="btn btn-default btn-help"><i class="fa fa-life-ring"></i> Show help</a>
+        <a onclick="organizationTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
         <!-- <i title="Need help? Start tour" onclick="organizationTour.restart()" class="fa fa-question-circle text-primary icon-link"></i> -->
     </span> 
 </h1>
@@ -53,4 +53,7 @@
 <?php echo $this->_formView->render(); ?>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/organization_tour.js') ?>"></script>
-
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/help_tour.js') ?>"></script>
+<script>
+    helpTour.restart();
+</script>
