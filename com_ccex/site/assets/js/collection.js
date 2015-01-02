@@ -120,3 +120,6 @@ function ccexSaveUpdateRedirectCollection(data, redirect_url, addID){
 
     return redirect_url;
 }
+function ccexFakeHistoryCollection(data){
+    return "/compare-costs?view=collection&layout=edit&collection_id=" + data.collection_id;
+}

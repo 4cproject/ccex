@@ -244,10 +244,10 @@
     <!-- Action -->
     <div class="form-group utils">
       <div class="col-sm-3">
-          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>"><i class="fa fa-arrow-left"> My costs</i></span></a>
+          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>"><i class="fa fa-fw fa-angle-left"></i> My costs</span></a>
       </div>
       <div class="col-sm-3 col-sm-offset-6">
-          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison <i class="fa fa-arrow-right"></i></span></a>
+          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison <i class="fa fa-fw fa-angle-right"></i></span></a>
       </div>
     </div>
 

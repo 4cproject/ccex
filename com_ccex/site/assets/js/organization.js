@@ -154,3 +154,7 @@ function ccexSaveOrganization(info) {
 
     return info;
 }
+
+function ccexFakeHistoryOrganization(data){
+    return "/compare-costs?view=organization&layout=edit&organization_id=" + data.organization_id;
+}

@@ -100,7 +100,7 @@
         </div>
         <div class="col-sm-12">
           <div style="padding-top:30px">
-            <button class="btn btn-primary btn-lg btn-block">Edit username or password</button>
+            <a class="btn btn-primary btn-lg btn-block" href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->user->id);?>">Edit username or password</a>
           </div>
         </div>
       </div>

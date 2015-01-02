@@ -48,9 +48,9 @@ function helpTourStart(){
     helpTour.tour.start();
 }
 
-/*$(document).ready(function($) {
-    $(".btn-save-org").on('click', function() {
-        organizationTour.tour.end();
+$(document).ready(function($) {
+    $(".tour-step.tour-step-help").on('click', function() {
+        helpTour.tour.end();
     });
 });
-*/
+

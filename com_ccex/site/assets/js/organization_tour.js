@@ -15,14 +15,10 @@ function orgTour(){
 
     tour.addSteps([
       {
-        title: "Create your organization",
-        content: "On this tour will be presented all the necessary steps to fill out the following profile information for your organisation to help identify your cost determinants and enable a comparison of costs against similar organisations."
-      },
-      {
         element: ".tour-step.tour-step-org-name",
         placement: "bottom",
         title: "Organisation name",
-        content: "Start by adding here the name of your organisation, institution or employer."
+        content: "Please add here the name of your organisation, institution or employer."
       },
       {
         element: ".tour-step.tour-step-org-description",

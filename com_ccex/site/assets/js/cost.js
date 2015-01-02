@@ -121,3 +121,7 @@ function validateCostForm() {
     }
     return true;
 }
+
+function ccexFakeHistoryCost(data){
+    return "/compare-costs?view=cost&layout=edit&cost_id=" + data.cost_id;
+}

@@ -55,5 +55,5 @@
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/organization_tour.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/help_tour.js') ?>"></script>
 <script>
-    helpTour.restart();
+    helpTour.start();
 </script>
