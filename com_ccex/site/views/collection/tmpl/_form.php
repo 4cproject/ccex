@@ -70,8 +70,10 @@
         <div class="col-sm-2">
             <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
                 <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
-            <?php }else{ ?>
+            <?php }else if(isset($this->interval->interval_id) && $this->interval->costs()){ ?>
                 <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+            <?php }else{ ?>
+                <button type="button" class="btn btn-success btn-block save-and-close-coll" data-toggle="modal" data-target="#confirm-no-costs">Save and close</span></a>
             <?php } ?>
         </div>
 
@@ -85,15 +87,6 @@
             <?php } else { ?>
                 <a class="btn btn-success btn-block" data-toggle="tooltip" data-placement="left" title="Click here to save your entries and add a new cost" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">Save and add new cost unit</a>
             <?php } ?>
-<!--             <?php if(isset($this->new_interval)) { ?>
-                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and add a new cost" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=' . $this->collection->collection_id . '&active_interval=') . '\' , false, \'interval\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
-            <?php } else { ?>
-                <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
-                    <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
-                <?php }else{ ?>
-                    <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and add a new cost" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'reload\')'; }else{ echo 'ccexCreate(\'collection\',  \'' . JRoute::_('index.php?view=comparecosts&view=collection&layout=edit&collection_id=') . '\' , false, \'collection\')'; } ?>">Save</span></a>
-                <?php } ?>
-            <?php } ?> -->
         </div>
         
         <div class="col-sm-2">
@@ -104,16 +97,49 @@
             </div>
         </div>
         <?php if(isset($this->collection->collection_id)){ ?>
-            <div class="col-sm-2 col-sm-offset-4">
+            <div class="col-sm-2 col-sm-offset-1">
                 <a class="btn btn-danger btn-block" href="javascript:void(0)" id="delete-button" data-redirect="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" data-type="collection" data-id="<?php echo $this->collection->collection_id; ?>">Delete</span></a>
             </div>
+            <div class="col-sm-2">
+                <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets')?>">Cancel</span></a>
+            </div>
         <?php } else { ?>
-            <div class="col-sm-2 col-sm-offset-4">
+            <div class="col-sm-2 col-sm-offset-3">
                 <a class="btn btn-default btn-block btn-border" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets')?>">Cancel</span></a>
             </div>
         <?php } ?>
     </div>
 </form>
+
+<div class="modal fade" id="confirm-no-costs">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">×</button>
+        <h3>
+          Please confirm
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          Are you sure you want to save your cost data set without cost units? To enable comparisons, at least one cost unit per cost data set is required, but it is recommended to provide more fine-grained information, i.e. several cost units.
+        </p>
+      </div>
+      <div class="modal-footer utils">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-6">
+            <button class="btn btn-default btn-block btn-border" data-dismiss=
+            "modal">Cancel</button>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-block btn-danger" data-dismiss=
+            "modal" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/jquery.validate.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/exists.js') ?>"></script>

@@ -872,7 +872,7 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
   border: 5px solid #f0f0f0;
   background-color: #f9f9f9;
   padding: 15px 15px;
-  display: table;
+  display: block;
   margin: 10px;
 }
 
@@ -881,11 +881,11 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 }
 
 .small-profile-container{
-  height: 275px;
+  min-height: 275px;
 }
 
 .big-profile-container{
-  height: 570px;
+  min-height: 570px;
 }
 
 .nav-tabs>li>a{
@@ -922,4 +922,8 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 .btn.btn-help:hover{
   color: #333;
   background-color: #e7e7e7;
+}
+
+.switchCollection{
+  margin-right: 10px
 }

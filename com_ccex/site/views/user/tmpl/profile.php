@@ -80,12 +80,12 @@
   <div class="col-md-6">
     <div class="row">
       <div class="profile-container small-profile-container">
-        <div class="col-md-4 text-center">
+        <div class="col-sm-4 text-center">
           <div class="vcenter">
             <img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405038774_user9_128.png" width="80" alt="User profile">
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-sm-8">
             <div class="vcenter">
               <h3>
                 <?php echo htmlspecialchars($this->user->name); ?>
@@ -98,7 +98,7 @@
               </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-sm-12">
           <div style="padding-top:30px">
             <button class="btn btn-primary btn-lg btn-block">Edit username or password</button>
           </div>
@@ -107,12 +107,12 @@
     </div>
     <div class="row">
       <div class="profile-container small-profile-container">
-        <div class="col-md-4 text-center">
+        <div class="col-sm-4 text-center">
           <div class="vcenter">
             <img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405038976_Museum_128.png" width="80" alt="Organisation">
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-sm-8">
           <div class="vcenter">
             <h3>
               <?php if($this->organization){  ?>
@@ -135,7 +135,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-sm-12">
           <div style="padding-top:30px">
             <?php if($this->organization){  ?>
               <a class="btn btn-primary btn-lg btn-block" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
@@ -152,12 +152,12 @@
   <div class="col-md-6">
     <div class="row">
       <div class="profile-container big-profile-container">
-        <div class="col-md-4 text-center">
+        <div class="col-sm-4 text-center">
           <div class="vcenter">
             <img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405039249_statistics_128.png" width="80" alt="Cost data sets">
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-sm-8">
             <div class="vcenter">
               <h3>
                 Cost data sets
@@ -165,15 +165,9 @@
               <div class="row" style="margin-top: 10px">
                 <?php if($this->organization){  ?>
                   <?php if($this->organization->numberCollections() > 0){  ?>
-                    <div class="col-sm-9"><strong>Number of cost data sets</strong></div>
-                    <div class="col-sm-3"><?php echo $this->organization->numberCollections() ?></div>
-                    <div class="col-sm-9"><strong>Number of cost units</strong></div>
-                    <div class="col-sm-3"><?php echo $this->organization->numberOfCosts() ?></div>
-                    <div class="col-sm-9"><strong>Number of year spans</strong></div>
-                    <div class="col-sm-3"><?php echo $this->organization->numberIntervals() ?></div>
-                    <div class="col-sm-9"><strong>Duration</strong></div>
-                    <div class="col-sm-3"><?php echo $this->organization->totalDuration() ?></div>
-                  <?php }else{ ?>
+                    <div class="col-sm-12"><strong><?php echo $this->organization->numberCollections() ?></strong> cost data sets</div>
+                    <div class="col-sm-12"><strong><?php echo $this->organization->numberOfCosts() ?></strong> cost units in total</div>
+                    <div class="col-sm-12"><strong><?php echo $this->organization->numberIntervals() ?></strong> year spans</div>                  <?php }else{ ?>
                     <div class="col-sm-12">
                         You don't have any cost data set, please create the first on manage cost data sets.
                     </div>            
@@ -187,7 +181,7 @@
             </div>
         </div>
         <?php if($this->organization && $this->organization->numberCollections() > 0){  ?>
-          <div class="col-md-12" style="margin: 35px 0 20px;">
+          <div class="col-sm-12" style="margin: 35px 0 20px;">
             <div class="col-sm-7"><strong>Cost</strong></div>
             <div class="col-sm-5"><?php echo $this->organization->formattedTotalCost() ?></div>
             <div class="col-sm-7"><strong>Cost per GB</strong></div>
@@ -212,20 +206,20 @@
         <?php } ?>
         <?php if($this->organization){  ?>
           <?php if($this->organization->numberCollections() > 0){ ?>
-            <div class="col-md-12">
+            <div class="col-sm-12">
               <div style="padding-top:30px">
                 <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="btn btn-primary btn-lg btn-block">Manage cost data sets</a>
               </div>
             </div>
           <?php }else{ ?>
-            <div class="col-md-12">
+            <div class="col-sm-12">
               <div style="padding-top:325px">
                 <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="btn btn-primary btn-lg btn-block">Manage cost data sets</a>
               </div>
             </div>
           <?php } ?>
         <?php }else{ ?>
-          <div class="col-md-12">
+          <div class="col-sm-12">
             <div style="padding-top:325px">
               <a href disabled class="btn btn-primary btn-lg btn-block">Manage cost data sets</a>
             </div>

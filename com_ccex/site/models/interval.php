@@ -212,7 +212,7 @@ class CCExModelsInterval extends CCExModelsDefault
         
         if (is_numeric($this->_interval_id)) {
             return $costModel->listItemsByInterval($this->_interval_id);
-        } else if (is_numeric($this->interval_id)) {
+        } else if (isset($this->interval_id) && is_numeric($this->interval_id)) {
             return $costModel->listItemsByInterval($this->interval_id);
         } else {
             return array();

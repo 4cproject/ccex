@@ -11,8 +11,7 @@
         <li><a href="<?php echo JRoute::_('index.php?view=collection&layout=edit&new_year=true&collection_id=' . $this->collection->collection_id) ?>"><i class="fa fa-plus"></i></a></li>
     <?php } ?>
 </ul>
-<br/>
-<div class="tab-content">
+<div class="tab-content collection-tab-content">
 	<?php foreach ($this->intervals as $interval) { ?>
         <?php $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval); ?>
 		

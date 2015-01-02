@@ -6,7 +6,7 @@
 .collection .container{
     background-color: #f9f9f9;
     border: 5px solid #f0f0f0;
-    padding: 5px 25px;
+    padding: 5px 25px 20px 25px;
 }
 
 .collection:last-child {
@@ -554,3 +554,13 @@ span.pencil-editable:hover {
 .table-peers{
     border-bottom: 2px solid #ddd;
 }
+
+.collection-tab-content{
+  border: 1px solid #ddd;
+  border-top: 0;
+  padding: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.bootstrap-switch

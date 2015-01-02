@@ -58,7 +58,7 @@
 <h1>Manage cost data sets</h1>
 <p>
     <?php if($this->organization->collections()){ ?>
-        Please remember to add cost units to your cost data set(s) by clicking ‘edit’. When your cost data set is complete, remember to switch it from Draft to Final mode to share your information and enable comparisons.
+        Please remember to add cost units to your cost data set(s) by clicking ‘Edit cost data set’. When your cost data set is complete, remember to switch it from Draft to Final mode to share your information and enable comparisons.
     <?php }else{ ?>
         A cost data set covers the curation costs of an organisation, a department, a collection or a project. Each cost data set normally consists of a total cost and detailed costs. For example, the total cost of a digitisation project includes detailed costs for hardware, software, scanning, quality assurance, etc.
     <?php } ?>

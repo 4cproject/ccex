@@ -7,7 +7,6 @@
                     <div class="col-md-10 col-sm-10 col-xs-9">
                         <h2>
                             <?php echo htmlspecialchars($this->collection->name ) ?> 
-                            <small class="edit"><a href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id) ?>"> edit</a></small>
                             <br>
                             <small><?php echo $this->collection->scope ?></small>
                         </h2>
@@ -28,17 +27,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <p><?php echo htmlspecialchars($this->collection->description ) ?></p>
-            </div>
+            <?php if($this->collection->description){ ?>
+                <div class="col-md-12">
+                    <p><?php echo htmlspecialchars($this->collection->description ) ?></p>
+                </div>
+            <?php } ?>
         </div>
-        <div class="clearfix"></div>
         <?php
             $this->_indexInterval->intervals = $this->collection->intervals();
             $this->_indexInterval->lastInterval = $this->collection->lastInterval();
             $this->_indexInterval->collection = $this->collection;
             echo $this->_indexInterval->render();
         ?>
+
+        <div class="row">
+            <div class="col-md-3 col-md-offset-9">
+            <a class="btn btn-sm btn-block btn-success" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id) ?>"> Edit cost data set</a>
+            </div>
+        </div>
     </div>
 </div>
 <script>
