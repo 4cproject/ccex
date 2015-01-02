@@ -58,10 +58,6 @@
         <?php if($this->organization){ ?>
           <h4>
             <?php echo htmlspecialchars($this->organization->name) ?>
-
-            <a class="edit" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
-              edit
-            </a>
           </h4>
           <p class="small" style="margin-bottom: 17px;">You can select which data sets to analyse, by selecting the options below:</p>
         <?php }else{ ?>
@@ -181,6 +177,9 @@
           </ul>
         </nav>
         <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" style="margin-top: 15px">Manage cost data sets</a>
+        <a class="btn btn-primary btn-xs" style="margin-top: 15px" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
+          Edit organisation
+        </a>
         <?php }else{ ?>
             <div class="alert alert-warning fade in" role="alert" style="padding: 12px;border-radius: 0; display: table">
               <p style="margin-bottom: 13px"><a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>"><strong>Sign in</strong></a> to define your organisation costs. Don't have an account? <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analyseglobal') ?>"><strong>Sign up</strong></a> now!</a></p>
