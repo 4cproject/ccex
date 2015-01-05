@@ -52,13 +52,12 @@
     <li class="active">Add cost data set</li>
 </ol>
 
-<h1 style="display: inline-block">Add cost data set </h1>
-<!-- <span class="tour-step tour-step-org-help">
-    <a onclick="collectionTour.restart()" style="cursor: pointer">
-         Need help? Start Tour 
-        <i style="font-size: 12px" class="fa fa-play"></i>
-    </a>
-</span> -->
+<h1>
+    Add cost data set
+    <span class="pull-right">
+        <a onclick="newCollectionTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+    </span>
+</h1>
 
 <p class="no-margin">You now start a two-step process. On this page you enter information about your costs. On the next page, you enter the costs themselves.</p>
 
@@ -67,3 +66,7 @@
 <?php echo $this->_formView->render(); ?>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/collection_tour.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/help_tour.js') ?>"></script>
+<script>
+    helpTour.start();
+</script>

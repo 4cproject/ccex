@@ -1,12 +1,12 @@
-var collectionTour = {
-    restart: collTourRestart,
-    start: collTourStart,
-    tour: collTour()
+var newCollectionTour = {
+    restart: restartNewCollectionTour,
+    start: startNewCollectionTour,
+    tour: newCollTour()
 };
 
-function collTour(){
+function newCollTour(){
     var tour = new Tour({
-        name: "collection_tour",
+        name: "new_collection_tour",
         backdrop: true,
         backdropPadding: 10,
         orphan: true,
@@ -15,9 +15,151 @@ function collTour(){
 
     tour.addSteps([
       {
-        title: "Add cost data set",
-        content: "You now start a two-step process. On this page you enter information about your costs. On the next page, you enter the costs themselves.<br><br>On this tour will be presented all the necessary steps to add a new cost data set to your organisation."
+        element: ".tour-step.tour-step-coll-scope",
+        placement: "bottom",
+        title: "Scope",
+        content: "You may not want to give cost information about the whole organisation, but just for a single department, project or even cost data set. Please describe the scope here."
       },
+      {
+        element: ".tour-step.tour-step-coll-name-description",
+        placement: "bottom",
+        title: "Name and description",
+        content: "Please enter a name for the cost data set. Optionally you can share/provide additional informations about your cost data set."
+      },
+      {
+        element: ".tour-step.tour-step-coll-interval",
+        placement: "bottom",
+        title: "Year span",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },   
+      {
+        element: ".tour-step.tour-step-coll-year",
+        placement: "bottom",
+        title: "Begin year and duration",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },   
+      {
+        element: ".tour-step.tour-step-coll-staff",
+        placement: "bottom",
+        title: "Curation staff",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },      
+      {
+        element: ".tour-step.tour-step-coll-data-volume",
+        placement: "bottom",
+        title: "Data volume",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },      
+      {
+        element: ".tour-step.tour-step-coll-number-of-copies",
+        placement: "bottom",
+        title: "Number of copies",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },        
+      {
+        element: ".tour-step.tour-step-coll-unformatted-text-info",
+        placement: "bottom",
+        title: "Asset information",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-unformatted-text-slider",
+        placement: "bottom",
+        title: "Map with slider",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-unformatted-text-value",
+        placement: "bottom",
+        title: "Map manually",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-cost-units",
+        placement: "top",
+        title: "Cost units",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-add-cost-unit",
+        placement: "left",
+        title: "Add new cost unit",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-save",
+        placement: "top",
+        title: "Save cost data set",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
+    ]);
+    tour.init();
+
+    return tour;
+}
+
+var partialCollectionTour = {
+    restart: restartPartialCollectionTour,
+    start: startPartialCollectionTour,
+    tour: parcialEditCollTour()
+};
+
+function parcialEditCollTour(){
+    var tour = new Tour({
+        name: "parcial_edit_collection_tour",
+        backdrop: true,
+        backdropPadding: 10,
+        orphan: true,
+        template: collTourTemplate
+    });
+
+    tour.addSteps([
+      {
+        element: ".tour-step.tour-step-coll-cost-view",
+        placement: "bottom",
+        title: "Cost unit",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-cost-edit",
+        placement: "bottom",
+        title: "Edit cost unit",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-add-cost-unit",
+        placement: "left",
+        title: "Add new cost unit",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-save",
+        placement: "top",
+        title: "Save cost data set",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
+    ]);
+    tour.init();
+
+    return tour;
+}
+
+var editCollectionTour = {
+    restart: restartPartialCollectionTour,
+    start: startPartialCollectionTour,
+    tour: editCollTour()
+};
+
+function editCollTour(){
+    var tour = new Tour({
+        name: "parcial_edit_collection_tour",
+        backdrop: true,
+        backdropPadding: 10,
+        orphan: true,
+        template: collTourTemplate
+    });
+
+    tour.addSteps([
       {
         element: ".tour-step.tour-step-coll-scope",
         placement: "bottom",
@@ -25,21 +167,103 @@ function collTour(){
         content: "You may not want to give cost information about the whole organisation, but just for a single department, project or even cost data set. Please describe the scope here."
       },
       {
-        element: ".tour-step.tour-step-coll-name",
+        element: ".tour-step.tour-step-coll-name-description",
         placement: "bottom",
-        title: "Name",
-        content: "Please enter a name for the cost data set"
+        title: "Name and description",
+        content: "Please enter a name for the cost data set. Optionally you can share/provide additional informations about your cost data set."
       },
       {
-        element: ".tour-step.tour-step-coll-description",
+        element: ".tour-step.tour-step-coll-interval",
         placement: "bottom",
-        title: "Description",
-        content: "Optionally you can share/provide additional informations about your cost data set."
+        title: "Year span",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },   
+      {
+        element: ".tour-step.tour-step-coll-year",
+        placement: "bottom",
+        title: "Begin year and duration",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },   
+      {
+        element: ".tour-step.tour-step-coll-staff",
+        placement: "bottom",
+        title: "Curation staff",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },      
+      {
+        element: ".tour-step.tour-step-coll-data-volume",
+        placement: "bottom",
+        title: "Data volume",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },      
+      {
+        element: ".tour-step.tour-step-coll-number-of-copies",
+        placement: "bottom",
+        title: "Number of copies",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },        
+      {
+        element: ".tour-step.tour-step-coll-unformatted-text-info",
+        placement: "bottom",
+        title: "Asset information",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
+      {
+        element: ".tour-step.tour-step-coll-unformatted-text-slider",
+        placement: "bottom",
+        title: "Map with slider",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-unformatted-text-value",
+        placement: "bottom",
+        title: "Map manually",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-cost-units",
+        placement: "top",
+        title: "Cost units",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-cost-view",
+        placement: "bottom",
+        title: "Cost unit",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-add-cost-unit",
+        placement: "left",
+        title: "Add new cost unit",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        element: ".tour-step.tour-step-coll-save",
+        placement: "top",
+        title: "Save cost data set",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
     ]);
     tour.init();
 
     return tour;
+}
+
+function restartNewCollectionTour(){
+    newCollectionTour.tour.restart();
+}
+
+function startNewCollectionTour(){
+    newCollectionTour.tour.start();
+}
+
+function restartPartialCollectionTour(){
+    partialCollectionTour.tour.restart();
+}
+
+function startPartialCollectionTour(){
+    partialCollectionTour.tour.start();
 }
 
 function collTourTemplate(i, step){
@@ -57,13 +281,7 @@ function collTourTemplate(i, step){
     </div>"
 }
 
-function collTourRestart(){
-    collectionTour.tour.restart();
-}
 
-function collTourStart(){
-    collectionTour.tour.start();
-}
 
 /*$(document).ready(function($) {
     $(".btn-save-org").on('click', function() {

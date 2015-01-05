@@ -77,13 +77,6 @@
     color: #333; 
 }
 
-.interval-tab-content{
-    padding: 50px;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    border: 1px solid #ddd;
-}
-
 .form-group.interval-tabs{
     margin-top: 40px;
     margin-bottom: 0px;
@@ -561,4 +554,31 @@ span.pencil-editable:hover {
   padding: 30px;
   padding-bottom: 10px;
   margin-bottom: 20px;
+}
+
+.interval-tab-content{
+    padding: 40px 30px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+
+.interval-tab-content .interval-tab-row{
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.form-row{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.margin-top-bottom-none{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.interval-tabs .collection-year-tabs{
+    display: inline-block;
+    margin-bottom: -5px;
 }

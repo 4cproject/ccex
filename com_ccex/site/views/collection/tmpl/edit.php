@@ -52,3 +52,11 @@
 <p>Please fill out the following information for your cost data set and your content to help identify your cost determinants and enable a comparison of costs against similar organisations. This information is used to nuance and give sense to the submitted cost data. For example, the information "Data volume" will enable the calculation of costs per gigabyte, terabyte, petabyte...</p>
 
 <?php echo $this->_formView->render(); ?>
+
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/collection_tour.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/help_tour.js') ?>"></script>
+<script>
+    if(<?php if(count($this->organization->costs()) == 1){ echo "true"; }else{ echo "false"; } ?> && newCollectionTour.tour.ended()){
+        partialCollectionTour.start();
+    }
+</script>

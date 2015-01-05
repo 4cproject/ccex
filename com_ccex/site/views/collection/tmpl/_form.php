@@ -11,21 +11,23 @@
             </select>
         </div>
     </div>
-    <div class="form-group tour-step tour-step-coll-name">
-        <label class="col-sm-2 control-label" for="organisation_name">Name</label>
-        <div class="col-sm-10">
-            <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo htmlspecialchars($this->collection->name) ; } ?>">
+    <div class="tour-step tour-step-coll-name-description">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="organisation_name">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="collection_name" name="collection[name]" type="text" value="<?php if(isset($this->collection->name)){ echo htmlspecialchars($this->collection->name) ; } ?>">
+            </div>
         </div>
-    </div>
-    <div class="form-group tour-step tour-step-coll-description">
-        <label class="col-sm-2 control-label" for="collection_description">Description</label>
-        <div class="col-sm-10">
-            <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo htmlspecialchars($this->collection->description) ; }?></textarea>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="collection_description">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="collection_description" name="collection[description]" rows="3" type="text"><?php if(isset($this->collection->description)){ echo htmlspecialchars($this->collection->description) ; }?></textarea>
+            </div>
         </div>
     </div>
     <div class="form-group interval-tabs">
         <div class="col-sm-12">
-            <ul class="nav nav-tabs" id="collection_year_tabs">
+            <ul class="nav nav-tabs tour-step tour-step-coll-interval collection-year-tabs" id="collection_year_tabs">
                 <?php foreach ($this->intervals as $interval) { ?>
                     <?php $interval = CCExHelpersCast::cast('CCExModelsInterval', $interval); ?>
                     
@@ -67,26 +69,30 @@
     <br/>
     <!-- Action -->
     <div class="form-group utils">
-        <div class="col-sm-2">
-            <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
-                <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
-            <?php }else if(isset($this->interval->interval_id) && $this->interval->costs()){ ?>
-                <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
-            <?php }else{ ?>
-                <button type="button" class="btn btn-success btn-block save-and-close-coll" data-toggle="modal" data-target="#confirm-no-costs">Save and close</span></a>
-            <?php } ?>
-        </div>
+        <div class="col-sm-5 tour-step tour-step-coll-save">
+            <div class="row">
+                <div class="col-sm-5">
+                    <?php if(isset($this->interval->interval_id) && $this->interval->costs() && ($this->interval->percentageActivityMapping() < 75 || $this->interval->percentageFinancialAccountingMapping() < 75)){ ?>
+                        <a data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Your costs have only been mapped partially. To enable more accurate comparisons, please try and achieve 100% mapping" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+                    <?php }else if(isset($this->interval->interval_id) && $this->interval->costs()){ ?>
+                        <a data-toggle="tooltip" data-placement="top" title="Click here to save your entries and go back to the overview of all cost data sets you have submitted so far" class="btn btn-success btn-block" href="javascript:void(0)" onclick="<?php if(isset($this->collection->collection_id)){ echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection' . $this->collection->collection_id) . '\')'; }else{ echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?view=comparecosts&layout=datasets#collection') . '\', false, \'collection\')'; } ?>">Save and close</span></a>
+                    <?php }else{ ?>
+                        <button type="button" class="btn btn-success btn-block save-and-close-coll" data-toggle="modal" data-target="#confirm-no-costs">Save and close</span></a>
+                    <?php } ?>
+                </div>
 
-        <div class="col-sm-3">
-            <input type="hidden" name="collection[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
-            <?php if(isset($this->collection->collection_id)){ ?>
-                <input type="hidden" name="collection[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
-            <?php } ?>
-            <?php if(isset($this->interval->interval_id)){ ?>
-                <a class="btn btn-success btn-block" data-toggle="tooltip" data-placement="left" title="Click here to save your entries and add a new cost" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">Save and add new cost unit</a>
-            <?php } else { ?>
-                <a class="btn btn-success btn-block" data-toggle="tooltip" data-placement="left" title="Click here to save your entries and add a new cost" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">Save and add new cost unit</a>
-            <?php } ?>
+                <div class="col-sm-7">
+                    <input type="hidden" name="collection[organization_id]" value="<?php echo $this->organization->organization_id; ?>">
+                    <?php if(isset($this->collection->collection_id)){ ?>
+                        <input type="hidden" name="collection[collection_id]" value="<?php echo $this->collection->collection_id; ?>">
+                    <?php } ?>
+                    <?php if(isset($this->interval->interval_id)){ ?>
+                        <a class="btn btn-success btn-block" data-toggle="tooltip" data-placement="left" title="Click here to save your entries and add a new cost" href="javascript:void(0)" onclick="<?php echo 'ccexUpdate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' . $this->interval->interval_id ) . '\', true)'; ?>">Save and add new cost unit</a>
+                    <?php } else { ?>
+                        <a class="btn btn-success btn-block" data-toggle="tooltip" data-placement="left" title="Click here to save your entries and add a new cost" href="javascript:void(0)" onclick="<?php echo 'ccexCreate(\'collection\', \'' . JRoute::_('index.php?option=com_ccex&view=cost&layout=add&interval_id=' ) . '\', true, \'interval\')'; ?>">Save and add new cost unit</a>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
         
         <div class="col-sm-2">
