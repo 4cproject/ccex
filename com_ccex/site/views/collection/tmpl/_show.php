@@ -1,4 +1,4 @@
-<div class="row collection">
+<div class="row collection <?php if($this->index == 1){echo "tour-step tour-step-man-collection";} ?>">
     <a name="collection<?php echo $this->collection->collection_id ?>"></a>
     <div class="container">
         <div class="row">
@@ -12,18 +12,23 @@
                         </h2>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-3">
-                        <form class="switchCollection pull-right">
-                            <?php if($this->collection->haveCosts()){ ?>
-                                <div class="onoffswitch">
-                                    <input name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
-                                </div>
-                            <?php } else { ?>
-                                <div class="onoffswitch" data-toggle="tooltip" data-container="body" data-placement="top" title="You cannot make a cost data set public that has no cost units. Please click the 'edit' link next to your cost data set to add cost units to your cost data set.">
-                                    <input disabled name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
-                                </div>
-                            <?php } ?>
-                            <input type="hidden" name="collection_id" value="<?php echo $this->collection->collection_id ?>">
-                        </form>
+                            <form class="switchCollection pull-right">
+                                
+                                <?php if($this->collection->haveCosts()){ ?>
+                                    <div class="onoffswitch">
+                                        <div class="<?php if($this->index == 1){echo "tour-step tour-step-man-collection-final";} ?>" style="<?php if($this->index == 1){echo "margin-right: -10px";} ?>">
+                                            <input name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
+                                        </div>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="onoffswitch" data-toggle="tooltip" data-container="body" data-placement="top" title="You cannot make a cost data set public that has no cost units. Please click the 'edit' link next to your cost data set to add cost units to your cost data set.">
+                                        <div class="<?php if($this->index == 1){echo "tour-step tour-step-man-collection-final";} ?>" style="<?php if($this->index == 1){echo "margin-right: -10px";} ?>">
+                                            <input disabled name="final" id="onoffswitch<?php echo $this->collection->collection_id ?>" type="checkbox" <?php echo (!isset($this->collection->final) || $this->collection->final ? 'checked="true"' : '') ?>>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <input type="hidden" name="collection_id" value="<?php echo $this->collection->collection_id ?>">
+                            </form>
                     </div>
                 </div>
             </div>
@@ -41,8 +46,10 @@
         ?>
 
         <div class="row">
-            <div class="col-md-3 col-md-offset-9">
-            <a class="btn btn-sm btn-block btn-success" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id) ?>"> Edit cost data set</a>
+            <div class="col-md-3">
+                <div class="<?php if($this->index == 1){echo "tour-step tour-step-man-collection-edit";} ?>">
+                    <a class="btn btn-sm btn-block btn-primary" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id) ?>"> Edit cost data set</a>
+                </div>
             </div>
         </div>
     </div>

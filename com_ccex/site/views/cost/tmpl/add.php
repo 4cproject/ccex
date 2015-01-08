@@ -49,7 +49,15 @@
     <li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the cost data set in this <?php echo ngettext('year', 'years', $this->interval->duration) ?>" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id . "&active_interval=" . $this->interval->interval_id) ?>"><?php echo $this->interval->toString() ?></a></li>
     <li class="active">Add cost unit</li>
 </ol>
-<h1>Add cost unit</h1>
+<h1>
+    Add cost unit
+    <span class="pull-right">
+        <a onclick="newCostUnitTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+    </span>
+</h1>
 <p>Add a new cost unit.</p>
 
 <?php echo $this->_formView->render(); ?>
+
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/cost_tour.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/help_tour.js') ?>"></script>

@@ -55,7 +55,16 @@
 
 </ul>
 
-<h1>Manage cost data sets</h1>
+<h1>
+    Manage cost data sets
+    <span class="pull-right">
+        <?php if($this->organization->collections()){ ?>
+            <a onclick="notEmptyManageTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+        <?php }else{ ?>
+            <a onclick="emptyManageTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+        <?php } ?>
+    </span>
+</h1>
 <p>
     <?php if($this->organization->collections()){ ?>
         Please remember to add cost units to your cost data set(s) by clicking ‘Edit cost data set’. When your cost data set is complete, remember to switch it from Draft to Final mode to share your information and enable comparisons.
@@ -68,3 +77,9 @@
 <?php echo $this->_utilitiesOrganization->render(); ?>
 
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare_costs.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/manage_tour.js') ?>"></script>
+<script>
+    if(<?php if($this->organization->collections()){ echo "true"; }else{ echo "false"; } ?> && emptyManageTour.tour.ended()){
+        notEmptyManageTour.start();
+    }
+</script>

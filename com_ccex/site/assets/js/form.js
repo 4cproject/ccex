@@ -47,7 +47,7 @@ function ccexSave(model, action, redirect_url, silent, update_redirect, success_
                         if(redirect_url == 'reload'){
                             window.location.reload();
                         }else{
-                            if(action == 'add' && typeof window["ccexFakeHistory" + capitalize(model)] != 'undefined'){
+                            if(typeof history.pushState !== "undefined" && action == 'add' && typeof window["ccexFakeHistory" + capitalize(model)] != 'undefined'){
                                 history.pushState({}, model,  window["ccexFakeHistory" + capitalize(model)](data));
                             }
 

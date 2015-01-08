@@ -51,7 +51,15 @@
 	<li class="active"><?php echo htmlspecialchars($this->organization->name ) ?></li>
 </ol> -->
 
-<h1>Edit your organisation</h1>
+<h1>
+    Edit your organisation
+    <span class="pull-right">
+        <a onclick="organizationTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+    </span> 
+</h1>
 <p>Please fill out the following profile information for your organisation to help identify your cost determinants and enable a comparison of costs against similar organisations. None of the information will be shared unless you explicitly allow this.</p>
 
 <?php echo $this->_formView->render(); ?>
+
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/organization_tour.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/help_tour.js') ?>"></script>

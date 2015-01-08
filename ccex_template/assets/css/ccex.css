@@ -821,7 +821,31 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
 .video-login-container .sign-up-container {
   padding: 50px;
   margin: 2px;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 0 5px 0;
+}
+
+@media screen and (max-width: 992px) {
+    .video-login-container .sign-in-container {
+        border-radius: 0 0 0 0;
+    }
+
+    .video-login-container .sign-up-container {
+        border-radius: 0 0 5px 5px;
+    }
+
+    .video-login-container .video-container {
+      border-radius: 5px 5px 0 0;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .video-login-container .sign-in-container {
+    padding: 20px 50px;
+  }
+
+  .video-login-container .sign-up-container {
+    padding: 40px 50px 20px 50px;
+  }
 }
 
 .video-login-container .in-or-up{

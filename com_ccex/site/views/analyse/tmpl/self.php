@@ -137,7 +137,7 @@
                 </li>
               </ul>
             </nav>
-            <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" style="margin-top: 15px">Manage cost data sets</a>
+            <a class="btn btn-success btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" style="margin-top: 15px">Manage cost data sets</a>
         </div>
       </form>
     </div>

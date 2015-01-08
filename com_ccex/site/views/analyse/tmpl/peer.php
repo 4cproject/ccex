@@ -185,7 +185,7 @@
               </li>
             </ul>
           </nav>
-          <a class="btn btn-primary btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" style="margin-top: 15px">Manage cost data sets</a>
+          <a class="btn btn-success btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" style="margin-top: 15px">Manage cost data sets</a>
           <a class="btn btn-primary btn-xs" style="margin-top: 15px" href="<?php echo JRoute::_('index.php?view=organization&layout=edit&organization_id=' . $this->organization->organization_id) ?>">
             Edit organisation
           </a>
@@ -218,9 +218,9 @@
               <?php } ?>
             </p>
           <?php } ?>
-          <a href="#completeListPeers" data-toggle="modal" class="btn btn-primary btn-xs">Compare with other peers</a>
+          <a href="#completeListPeers" data-toggle="modal" class="btn btn-success btn-xs">Compare with other peers</a>
           <?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
-            <a class="btn btn-primary btn-xs"  href="#contactModal" data-toggle="modal">Request contact</a>
+            <a class="btn btn-success btn-xs"  href="#contactModal" data-toggle="modal">Request contact</a>
           <?php } ?>
         </div>
       <input type="hidden" name="currentPeer" value="<?php echo $this->currentPeer->organization_id; ?>"/>
@@ -235,7 +235,7 @@
     <!-- Action -->
     <div class="form-group utils">
       <div class="col-sm-3">
-          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>"><i class="fa fa-fw fa-angle-left"> Global comparison</i></span></a>
+          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>"><i class="fa fa-fw fa-angle-left"></i> Global comparison</span></a>
       </div>
       <div class="col-sm-3 col-sm-offset-6">
           <a class="btn btn-success btn-block btn-border" href="/make-the-case">Understand Costs</span></a>

@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    jQuery.validator.addMethod('greaterThanZero', function(value, element) {
+      return ( value > 0 );
+    }, 'Must be greater than 0' );
+
     jQuery.validator.addMethod("durationCoverDefinedYears", function(value, element) {
         var value = parseInt($('#interval_begin_year').val()) + parseInt(value) - 1;
         var valid = true;
@@ -65,13 +69,13 @@ $(document).ready(function() {
                 required: true,
                 blank: false,
                 number: true,
-                min: 1
+                greaterThanZero: true
             },
             'interval[staff]': {
                 required: true,
                 blank: false,
                 number: true,
-                min: 0.1
+                greaterThanZero: true
             }
         },
         messages: {

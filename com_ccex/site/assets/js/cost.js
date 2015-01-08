@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    jQuery.validator.addMethod('greaterThanZero', function(value, element) {
+      return ( value > 0 );
+    }, 'Must be greater than 0' );
+
     $('form#costForm').validate({
         rules: {
             'cost[name]': {
@@ -9,7 +13,7 @@ $(document).ready(function() {
                 required: true,
                 blank: false,
                 number: true,
-                min: 0.01
+                greaterThanZero: true
             }
         },
         messages: {

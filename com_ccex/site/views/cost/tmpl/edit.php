@@ -49,7 +49,15 @@
     <li><a data-toggle="tooltip" data-placement="right" title="Click here to go back to the cost data set in this <?php echo ngettext('year', 'years', $this->interval->duration) ?>" href="<?php echo JRoute::_('index.php?view=collection&layout=edit&collection_id=' . $this->collection->collection_id . "&active_interval=" . $this->interval->interval_id) ?>"><?php echo $this->interval->toString() ?></a></li>
     <li class="active"><?php echo htmlspecialchars($this->cost->name ) ?></li>
 </ol>
-<h1>Edit cost unit</h1>
+<h1>
+    Edit cost unit
+    <span class="pull-right">
+        <a onclick="newCostUnitTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+    </span>
+</h1>
 <br/>
 <!-- <p>Edit the selected cost unit and map it to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a>.</p> -->
 <?php echo $this->_formView->render(); ?>
+
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/cost_tour.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/help_tour.js') ?>"></script>
