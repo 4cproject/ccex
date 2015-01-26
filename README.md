@@ -8,10 +8,35 @@ This is the development page of the curationexchange.org platform, specifically 
 You can install your own version of the www.curationexchange.org and allow your institution and partners to submit and share curation costs.
 
 ## Installation guide
-*To be described.*
+
+The CCEx tool is implemented by a theme (**ccex_template**) and an extension (**com_ccex**), both with a simple and straight forward installation, very similar with other Joomla 3rd party components.
+
+#### Installing the CCEx template
+
+**1. Download template**
+Before you begin, remember to download as **zip** the latest version of the CCEx Template (**ccex_template**) from the [releases page](https://github.com/4cproject/ccex/releases) .
+
+**2. Install via Admin Panel**
+Once you have the template downloaded on your computer, login to the administrative area of your Joomla website *(yourdomain/administrator)* and upload the template through the **Extension Manager** *(Extensions -> Extension Manager -> Upload Package File)*.
+
+**3. Verify installation**
+Go from (Extension Manager: Install) to (**Extension Manager: Manage**), and search extensions by "**CCEx Template**". The installed template should appear in the list. If it does, the template is properly installed. 
+
+**4. Change default Joomla template**
+Once the template is properly installed, you need to make it default for your website so your pages get the new design. 
+
+Go to **Template Manager** *(Extensions -> Template Manager)*,  where you will see a list of the installed templates available for your site and the administrative area,  locate the **CCExTemplate** and click on the star icon next to it.
 
 ### Requirements
-*To be described.*
+
+For the correct operation of the CCEx tool, is recommended the following environment.
+
+    Joomla! 3.3: version 3.3.1 or greater (>= 3.3.6 recommended)
+
+    PHP: version 5.3.1 or greater (>= 5.3.1 recommended)
+    MySQL: version 5.1 or greater (>= 5.5.4 recommended)
+
+*Please note that the tool was only tested in the recommended versions.* 
 
 ### Download
 *To be described.*
