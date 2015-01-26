@@ -28,7 +28,8 @@
                     type: 'column',
                     style: {
                         fontFamily: 'Roboto',
-                        fontWeight: 300
+                        fontWeight: 300,
+                        fontSize: '14px'
                     },
                     events: {
 
@@ -194,7 +195,8 @@
                     style: {
                         position: 'absolute',
                         fontFamily: 'Roboto',
-                        fontWeight: 300
+                        fontWeight: 300,
+                        fontSize: '14px'
                     },
                     type: 'column'
                 },

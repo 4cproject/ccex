@@ -80,6 +80,7 @@
     <br/>
     <div class="tour-step tour-step-org-sharing">
         <h2>Information sharing</h2>
+        <p>When you register you give us some basic information about yourself.  We won’t abuse that information and we’d like to take this opportunity to draw your attention to our <a href="<?php echo JRoute::_('/60-privacy-policy'); ?>">privacy policy</a>.</p>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
@@ -96,28 +97,28 @@
                         <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                         Allow the use of my anonymised cost data for peer comparisons.
                     </label>
-                    <span class="description-block"><small>Only mappings to the <a data-toggle="tooltip" data-placement="right" title="The framework of comparable costs is the template that was developed to make it easy for you to submit your cost data set information in order to make them comparable with others." href="<?php echo JRoute::_('/get-started/12-how-does-it-work-compare-costs') ?>">framework of comparable costs</a> will be shown with this option.</small></span>
+                    <span class="description-block"><small>Your cost data will be used in peer-to-peer comparisons, but your organisation will not be disclosed. Likewise, the peer organisation might be anonymous</small></span>
                 </div>
             </div>
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
                     <label>
                         <input name="organization[organization_linked]" <?php echo (!isset($this->organization->organization_linked) || $this->organization->organization_linked ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                         Allow my organisation to be linked to the cost data I provide.
+                         Allow the use of my non-anonymised cost data for peer comparisons.
                     </label>
-                    <span class="description-block"><small>Your organisation name will be shown linked to your cost data in peer comparisons.</small></span>
+                    <span class="description-block"><small>Your organisation name will be shown linked to your cost data in peer-to-peer comparisons.</small></span>
                 </div>
             </div>
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
                     <label>
                         <input name="organization[contact_and_sharing]" <?php echo (!isset($this->organization->contact_and_sharing) || $this->organization->contact_and_sharing ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
-                        Allow registered users to contact me and allow my cost data to be shared with them.
+                        Allow registered users to contact me through the site.
                     </label>
                     <span class="description-block"><small>Your email is kept private at all times and contact requests can be ignored.</small></span>
                 </div>
             </div>
-            <div class="col-sm-offset-2 col-sm-10">
+<!--             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
                     <label>
                         <input name="organization[snapshots]" <?php echo (!isset($this->organization->snapshots) || $this->organization->snapshots ? 'checked="true"' : '') ?> type="checkbox" value="1">
@@ -125,7 +126,7 @@
                     </label>
                     <span class="description-block"><small>Snapshots are taken for the sole purpose of contributing towards the development future research and helping to improve and refine tools and services.</small></span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <br/>

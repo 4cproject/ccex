@@ -16,7 +16,8 @@
         type: 'column',
         style: {
           fontFamily: 'Roboto',
-          fontWeight: 300
+          fontWeight: 300,
+          fontSize: '14px'
         }
       },
       credits: {
@@ -63,6 +64,9 @@
         }
       },
       tooltip: {
+        style: {
+            fontSize: '13px'
+        },
         formatter: function(){
             var value=0;
             if(this.y == 0){value = "0";}else if(this.y < 0.01){value = this.y.toPrecision(2);}else{value = this.y.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');}

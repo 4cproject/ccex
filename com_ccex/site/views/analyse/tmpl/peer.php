@@ -348,7 +348,7 @@ I'd like to contact you to exchange information, experiences and more details ab
   </div>
 </div>
 
-<?php if(trim($this->currentPeer->description) != "" && $this->currentPeer->organization_linked){ ?>
+<?php if($this->currentPeer && (trim($this->currentPeer->description) != "" && $this->currentPeer->organization_linked)){ ?>
   <div id="readMore" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="readMore" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

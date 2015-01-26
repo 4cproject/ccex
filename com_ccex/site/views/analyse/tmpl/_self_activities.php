@@ -29,7 +29,8 @@
                     type: 'column',
                     style: {
                         fontFamily: 'Roboto',
-                        fontWeight: 300
+                        fontWeight: 300,
+                        fontSize: '14px'
                     },
                     events: {
 
@@ -195,7 +196,8 @@
                     style: {
                         position: 'absolute',
                         fontFamily: 'Roboto',
-                        fontWeight: 300
+                        fontWeight: 300,
+                        fontSize: '14px'
                     },
                     type: 'column'
                 },
@@ -229,6 +231,9 @@
                     }
                 },
                 tooltip: {
+                    style: {
+                        fontSize: '13px'
+                    },
                     formatter: function(){
                         var value=0;
                         if(this.point.y){value = this.point.y;}
