@@ -35,9 +35,9 @@ You can install your own version of the www.curationexchange.org and allow your 
 *To be described.*
 
 ## Contribute
-1. Fork the GitHub project
+1. [Fork the GitHub project](https://help.github.com/articles/fork-a-repo)
 2. Change the code and push into the forked project
-3. Submit a pull request
+3. [Submit a pull request](https://help.github.com/articles/using-pull-requests)
 
 To increase the chances of your changes being accepted and merged into the official source here’s a checklist of things to go over before submitting a contribution. For example:
 * Has unit tests (that covers at least 80% of the code)
