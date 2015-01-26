@@ -23,7 +23,7 @@ You can install your own version of the www.curationexchange.org and allow your 
 *To be described.*
 
 ## License
-*To be described.*
+All source code is available under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). 
 
 ## Features
 *To be described.*
