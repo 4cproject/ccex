@@ -39,7 +39,7 @@ Once you have the template downloaded on your computer, login to the administrat
 
 **2. Verify installation**
 
-Go to `Extension Manager > Manage`, and search for `CCEx Template`. If the template appears on the list it is properly installed. 
+Go to `Extension Manager > Manage` and search for `CCEx Template`. If the template appears on the list it is properly installed. 
 
 **3. Change default Joomla template**
 
