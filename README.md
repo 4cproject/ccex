@@ -57,7 +57,6 @@ After login you can also access your own profile by clicking the menu item with 
 ### Troubleshooting
 
 **Error installing template: Copy failed**
-
 When changing the template via the administrator and then installing a new version of the template the error message `Copy failed` might appear. You will need to undo the changes done to the template or uninstall the previous version of the template prior to installing the new one.
 
 ## More information
