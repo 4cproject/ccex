@@ -44,27 +44,81 @@
 
 <p>This is the development page of the curationexchange.org platform, specifically the curation cost comparison tool, which allows you to submit and compare your costs with others.</p>
 
-<p><a href="http://www.curationexchange.org/"><strong>www.curationexchange.org</strong></a> is a site that allows you to <em>understand what you and others are and should be spending in digital curation</em>. It is based on <a href="http://www.joomla.org/">Joomla!</a> and is implemented by a theme and an extension that implements the interactive part of the site, the cost comparison tool.</p>
+<p><a href="http://www.curationexchange.org/"><strong>www.curationexchange.org</strong></a> is a site that allows you to <em>understand what you and others are and should be spending in digital curation</em>. It is based on <a href="http://www.joomla.org/">Joomla!</a> and is implemented by a theme and a component that implements the interactive part of the site, the cost comparison tool.</p>
 
 <p>You can install your own version of the <a href="http://www.curationexchange.org">www.curationexchange.org</a> and allow your institution and partners to submit and share curation costs.</p>
 
 <h2>
 <a id="installation-guide" class="anchor" href="#installation-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation guide</h2>
 
-<p><em>To be described.</em></p>
+<p>The CCEx tool is implemented by a template (<strong>ccex_template</strong>) and a component (<strong>com_ccex</strong>), both with a simple and straight forward installation, very similar with other Joomla 3rd party components.</p>
 
 <h3>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h3>
 
-<p><em>To be described.</em></p>
+<p>For the correct operation of the CCEx tool, is recommended the following environment.</p>
+
+<ul>
+<li>
+<strong>Joomla! 3.3</strong>: version 3.3.1 or greater (&gt;= 3.3.6 recommended)</li>
+<li>
+<strong>PHP</strong>: version 5.3.1 or greater (&gt;= 5.3.1 recommended)</li>
+<li>
+<strong>MySQL</strong>: version 5.1 or greater (&gt;= 5.5.4 recommended)</li>
+</ul>
+
+<p><em>Please note that, although the CCEx can work with different version, it was only tested in the versions recommended above.</em> </p>
 
 <h3>
 <a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h3>
 
-<p><em>To be described.</em></p>
+<p>Download the latest version:</p>
+
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Size</th>
+<th>SHA1</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.0.1</td>
+<td>7.3 MB<br>0.2 MB</td>
+<td>
+<sub>e6b10d8c2893533e6173633519fc618069bbd263</sub><br><sub>ffc89ae3ffcb74eedaf9ef1ba6bdec13699f91a6</sub>
+</td>
+<td>
+<a href="https://github.com/4cproject/ccex/releases/download/v1.0.1/ccex_template.zip">template</a><br><a href="https://github.com/4cproject/ccex/releases/download/v1.0.1/com_ccex.zip">component</a>
+</td>
+</tr>
+</tbody>
+</table>
 
 <h3>
 <a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing</h3>
+
+<p>Installing comprises two steps: installing the CCEx template and installing the CCEx component.</p>
+
+<h4>
+<a id="1-installing-the-ccex-template" class="anchor" href="#1-installing-the-ccex-template" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Installing the CCEx template</h4>
+
+<p><strong>1.1. Install via Admin Panel</strong></p>
+
+<p>Once you have the template downloaded on your computer, login to the administrative area of your Joomla website and upload the template <code>ccex_template.zip</code> through <code>Extensions &gt; Extension Manager &gt; Upload Package File</code>.</p>
+
+<p><strong>1.2. Verify installation</strong></p>
+
+<p>Go to <code>Extension Manager &gt; Manage</code> and search for <code>CCEx Template</code>. If the template appears on the list it is properly installed. </p>
+
+<p><strong>1.3. Change default Joomla template</strong></p>
+
+<p>Now you need to make it default for your website so your pages get the new design. Go to <code>Extensions &gt; Template Manager</code>, where you will see a list of the installed templates available for your site and the administrative area,  locate the <code>CCExTemplate</code> and click on the star icon next to it.</p>
+
+<h4>
+<a id="2-installing-the-ccex-component" class="anchor" href="#2-installing-the-ccex-component" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Installing the CCEx component</h4>
 
 <p><em>To be described.</em></p>
 
