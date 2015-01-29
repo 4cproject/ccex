@@ -44,11 +44,20 @@ Installing the CCEx component:
 
 
 ### Use
-*To be described.*
+After installation the Cost Comparison Tool will be available under the menu item you have selected. If you are not signed in and click on the menu item you will be presented with a video and a step-by-step tutorial similar to the one available at the [official site](http://www.curationexchange.org/compare-costs). Signing-in you will be taken into a workflow to define your organisation, define your costs and compare them with the other organisations available on your instance.
+
+Please note that cost information of othen organisations available on the oficial site will not be available on your instance. Also, the information you provide in your own instance will **not** be shared with the oficial site.
+
+Also, please note that other static information available on the oficial site, like: About, Understand your costs, Read more, and Vendor Services will not be available on your instance.
+
+If your user has the role of "Super User" on Joomla! you will be able to access the Administrator menu, where you can manage the Cost Comparison Tool.
+
+After login you can also access your own profile by clicking the menu item with your user full name.
 
 ### Troubleshooting
 
 **Error installing template: Copy failed**
+
 When changing the template via the administrator and then installing a new version of the template the error message `Copy failed` might appear. You will need to undo the changes done to the template or uninstall the previous version of the template prior to installing the new one.
 
 ## More information
