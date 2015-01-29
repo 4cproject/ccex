@@ -49,7 +49,7 @@
 <p>You can install your own version of the <a href="http://www.curationexchange.org">www.curationexchange.org</a> and allow your institution and partners to submit and share curation costs.</p>
 
 <h2>
-<a id="installation-guide" class="anchor" href="#installation-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation guide</h2>
+<a id="how-to-install-and-use" class="anchor" href="#how-to-install-and-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install and use</h2>
 
 <p>The CCEx tool is implemented by a template (<strong>ccex_template</strong>) and a component (<strong>com_ccex</strong>), both with a simple and straight forward installation, very similar with other Joomla 3rd party components.</p>
 
@@ -98,7 +98,7 @@
 </table>
 
 <h3>
-<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing</h3>
+<a id="install-instructions" class="anchor" href="#install-instructions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install instructions</h3>
 
 <p>Installing comprises two steps: installing the CCEx template and installing the CCEx component.</p>
 
@@ -113,18 +113,41 @@
 <p>Installing the CCEx component:
 <em>To be described.</em></p>
 
-<h2>
-<a id="using" class="anchor" href="#using" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using</h2>
+<h3>
+<a id="use" class="anchor" href="#use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use</h3>
 
-<p><em>To be described.</em></p>
+<p>After installation the Cost Comparison Tool will be available under the menu item you have selected. If you are not signed in and click on the menu item you will be presented with a video and a step-by-step tutorial similar to the one available at the <a href="http://www.curationexchange.org/compare-costs">official site</a>. Signing-in you will be taken into a workflow to define your organisation, define your costs and compare them with the other organisations available on your instance.</p>
+
+<p>Please note that cost information of othen organisations available on the oficial site will not be available on your instance. Also, the information you provide in your own instance will <strong>not</strong> be shared with the oficial site.</p>
+
+<p>Also, please note that other static information available on the oficial site, like: About, Understand your costs, Read more, and Vendor Services will not be available on your instance.</p>
+
+<p>If your user has the role of "Super User" on Joomla! you will be able to access the Administrator menu, where you can manage the Cost Comparison Tool.</p>
+
+<p>After login you can also access your own profile by clicking the menu item with your user full name.</p>
+
+<h3>
+<a id="troubleshooting" class="anchor" href="#troubleshooting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Troubleshooting</h3>
+
+<p><strong>Error installing template: Copy failed</strong></p>
+
+<p>When changing the template via the administrator and then installing a new version of the template the error message <code>Copy failed</code> might appear. You will need to undo the changes done to the template or uninstall the previous version of the template prior to installing the new one.</p>
 
 <h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+<a id="more-information" class="anchor" href="#more-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>More information</h2>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
 
 <p>All source code is available under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. </p>
 
+<h3>
+<a id="publications" class="anchor" href="#publications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Publications</h3>
+
+<p>Related publication are available on the <a href="http://www.curationexchange.org/read-more/67-4c-project-outputs">4C project outputs page</a>.</p>
+
 <h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+<a id="features-and-development-roadmap" class="anchor" href="#features-and-development-roadmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features and development roadmap</h2>
 
 <p><em>To be described.</em></p>
 
@@ -138,8 +161,34 @@
 
 <p><em>To be described.</em></p>
 
+<h3>
+<a id="development-roadmap" class="anchor" href="#development-roadmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development roadmap</h3>
+
+<p>List of features envisioned to be implemented in following versions:</p>
+
+<ul>
+<li>Support for multiple organizations per user</li>
+<li>Support for multiple users per organization (including ownership and transfer)</li>
+</ul>
+
 <h2>
-<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h2>
+<a id="develop" class="anchor" href="#develop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Develop</h2>
+
+<h3>
+<a id="requirements-1" class="anchor" href="#requirements-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h3>
+
+<p>The source code is all on PHP and doesn't need any special requirements to develop.</p>
+
+<h3>
+<a id="build" class="anchor" href="#build" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build</h3>
+
+<p>To build zip the folders <strong>ccex_template/</strong> and <strong>com_ccex/</strong>:</p>
+
+<div class="highlight highlight-bash"><pre>zip -r ccex_template.zip ccex_template/
+zip -r com_ccex.zip com_ccex/</pre></div>
+
+<h3>
+<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h3>
 
 <ol>
 <li><a href="https://help.github.com/articles/fork-a-repo">Fork the GitHub project</a></li>
@@ -153,16 +202,6 @@
 <li>Has unit tests (that covers at least 80% of the code)</li>
 <li>Has documentation (at least 80% of public API)</li>
 <li>Agrees to contributor license agreement, certifying that any contributed code is original work and that the copyright is turned over to the project</li>
-</ul>
-
-<h2>
-<a id="development-roadmap" class="anchor" href="#development-roadmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development roadmap</h2>
-
-<p>List of features envisioned to be implemented in following versions:</p>
-
-<ul>
-<li>Support for multiple organizations per user</li>
-<li>Support for multiple users per organization (including ownership and transfer)</li>
 </ul>
       </section>
       <footer>
