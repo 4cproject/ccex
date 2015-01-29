@@ -68,14 +68,25 @@ All source code is available under [Apache License 2.0](http://www.apache.org/li
 ### Publications
 Related publication are available on the [4C project outputs page](http://www.curationexchange.org/read-more/67-4c-project-outputs).
 
-## Features and development roadmap
-*To be described.*
+## Features and roadmap
+Features developed on every version and proposed features for next versions.
 
 ### Version 1.1.0
-*To be described.*
+* Video tour and step-by-step tutorial on start page
+* In-page help tours on every page ("Show help" button on the top-right)
+* Updated profile page
+* Updated template
 
 ### Version 1.0.0
-*To be described.*
+* Organisation profile
+* Manage cost data sets, add cost units and map costs into categories
+* Analyse own costs, compare costs with groups and with peers
+* Creating cost groups automatically with organisation profile and cost data set properties
+* Peer similarity based on organisation profile and cost data set properties
+* Request peer contact
+* Profile page
+* Administration page with browse and export features of all data and control over configurations
+* Design template
 
 ### Development roadmap
 List of features envisioned to be implemented in following versions:
