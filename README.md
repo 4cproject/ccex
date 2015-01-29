@@ -3,7 +3,7 @@ Curation Cost Exchange
 
 This is the development page of the curationexchange.org platform, specifically the curation cost comparison tool, which allows you to submit and compare your costs with others.
 
-[**www.curationexchange.org**](http://www.curationexchange.org/) is a site that allows you to *understand what you and others are and should be spending in digital curation*. It is based on [Joomla!](http://www.joomla.org/) and is implemented by a theme and an extension that implements the interactive part of the site, the cost comparison tool.
+[**www.curationexchange.org**](http://www.curationexchange.org/) is a site that allows you to *understand what you and others are and should be spending in digital curation*. It is based on [Joomla!](http://www.joomla.org/) and is implemented by a theme and a component that implements the interactive part of the site, the cost comparison tool.
 
 You can install your own version of the www.curationexchange.org and allow your institution and partners to submit and share curation costs.
 
@@ -14,41 +14,40 @@ The CCEx tool is implemented by a template (**ccex_template**) and a component (
 ### Requirements
 
 For the correct operation of the CCEx tool, is recommended the following environment.
+* **Joomla! 3.3**: version 3.3.1 or greater (>= 3.3.6 recommended)
+* **PHP**: version 5.3.1 or greater (>= 5.3.1 recommended)
+* **MySQL**: version 5.1 or greater (>= 5.5.4 recommended)
 
-    Joomla! 3.3: version 3.3.1 or greater (>= 3.3.6 recommended)
-
-    PHP: version 5.3.1 or greater (>= 5.3.1 recommended)
-    MySQL: version 5.1 or greater (>= 5.5.4 recommended)
-
-*Please note that the tool was only tested in the recommended versions.* 
+*Please note that, although the CCEx can work with different version, it was only tested in the versions recommended above.* 
 
 ### Download
-*To be described.*
+
+Download the latest version:
+
+| Version | Size   | SHA1                                                    | Download             |
+|---------|--------|---------------------------------------------------------|----------------------|
+| v1.0.1  | 7.3 MB<br>0.2 MB | <sub>e6b10d8c2893533e6173633519fc618069bbd263</sub><br><sub>ffc89ae3ffcb74eedaf9ef1ba6bdec13699f91a6</sub> |[template](https://github.com/4cproject/ccex/releases/download/v1.0.1/ccex_template.zip)<br>[component](https://github.com/4cproject/ccex/releases/download/v1.0.1/com_ccex.zip)|
 
 ### Installing
+Installing comprises two steps: installing the CCEx template and installing the CCEx component.
+
 #### Installing the CCEx template
 
-**1. Download template**
+**1. Install via Admin Panel**
 
-Before you begin, remember to download as **zip** the latest version of the CCEx Template (**ccex_template**) from the [releases page](https://github.com/4cproject/ccex/releases) .
+Once you have the template downloaded on your computer, login to the administrative area of your Joomla website and upload the template `ccex_template.zip` through `Extensions > Extension Manager > Upload Package File`.
 
-**2. Install via Admin Panel**
+**2. Verify installation**
 
-Once you have the template downloaded on your computer, login to the administrative area of your Joomla website *(yourdomain/administrator)* and upload the template through the **Extension Manager** *(Extensions -> Extension Manager -> Upload Package File)*.
+Go to `Extension Manager > Manage`, and search for `CCEx Template`. If the template appears on the list it is properly installed. 
 
-**3. Verify installation**
+**3. Change default Joomla template**
 
-Go from (Extension Manager: Install) to (**Extension Manager: Manage**), and search extensions by "**CCEx Template**". The installed template should appear in the list. If it does, the template is properly installed. 
-
-**4. Change default Joomla template**
-
-Once the template is properly installed, you need to make it default for your website so your pages get the new design. 
-
-Go to **Template Manager** *(Extensions -> Template Manager)*,  where you will see a list of the installed templates available for your site and the administrative area,  locate the **CCExTemplate** and click on the star icon next to it.
+Now you need to make it default for your website so your pages get the new design. Go to `Extensions > Template Manager`, where you will see a list of the installed templates available for your site and the administrative area,  locate the `CCExTemplate` and click on the star icon next to it.
 
 #### Installing the CCEx component
 
-**1. Download component**
+*To be described.*
 
 
 
