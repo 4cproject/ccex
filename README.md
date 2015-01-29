@@ -31,13 +31,13 @@ Download the latest version:
 ### Installing
 Installing comprises two steps: installing the CCEx template and installing the CCEx component.
 
-Installing the CCEx template `ccex_template.zip`:
+Installing the CCEx template *ccex_template.zip*:
 
- 1. **Install via Admin Panel:** Login to the administrative area of your Joomla website and upload the template  through `Extensions > Extension Manager > Upload Package File`.
+ 1. **Install via Admin Panel:** Login to the administrative area of your Joomla website and upload the template  through *Extensions > Extension Manager > Upload Package File*.
 
- 2. **Verify installation:** Go to `Extension Manager > Manage` and search for `CCEx Template`. If the template appears on the list then it is properly installed. 
+ 2. **Verify installation:** Go to *Extension Manager > Manage* and search for *CCEx Template*. If the template appears on the list then it is properly installed. 
 
- 3. **Change default Joomla template:** Now you need to make it default for your website so your pages get the new design. Go to `Extensions > Template Manager` and locate the `CCExTemplate`. Click on the :star: star icon next to it.  
+ 3. **Change default Joomla template:** Now you need to make it default for your website so your pages get the new design. Go to *Extensions > Template Manager* and locate the *CCExTemplate*. Click on the :star: star icon next to it.  
 
 Installing the CCEx component:
 *To be described.*
