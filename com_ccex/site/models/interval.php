@@ -183,17 +183,17 @@ class CCExModelsInterval extends CCExModelsDefault
         $nrCopies = "";
 
         if (is_numeric($this->number_copies)) {
-            if ($this->number_copies == 1) {
-                $nrCopies.= "One copy";
-            } else {
-                if ($this->number_copies == 0) {
-                    $nrCopies.= "No";
-                } else if ($this->number_copies == 2) {
-                    $nrCopies.= "Two";
+            if ($this->number_copies == 0) {
+                $nrCopies .= "Only the original";
+            }else if($this->number_copies == 1){
+                $nrCopies .= "Original plus one copy";
+            }else {
+                if ($this->number_copies == 2) {
+                    $nrCopies .= "Original plus two";
                 } else if ($this->number_copies == 3) {
-                    $nrCopies.= "Three";
+                    $nrCopies .= "Original plus three";
                 } else {
-                    $nrCopies.= "More than three";
+                    $nrCopies .= "Original and more than three";
                 }
                 
                 $nrCopies.= " copies";

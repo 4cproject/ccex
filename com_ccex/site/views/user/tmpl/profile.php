@@ -207,7 +207,7 @@
         <?php if($this->organization){  ?>
           <?php if($this->organization->numberCollections() > 0){ ?>
             <div class="col-sm-12">
-              <div style="padding-top:30px">
+              <div style="padding-top:10px">
                 <a href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" class="btn btn-primary btn-lg btn-block">Manage cost data sets</a>
               </div>
             </div>

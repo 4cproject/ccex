@@ -42,7 +42,15 @@ function peerTour(){
         element: ".tour-step.tour-step-peer-compare-other",
         placement: "right",
         title: "Compare with other peers",
-        content: "The tool automatically selects the organisation that is most similar to you. Here you can make other choices."
+        content: "The tool automatically selects the organisation that is most similar to you. Here you can make other choices.",
+        onNext: function (tour) {
+            if($("#request-contact-btn").length){
+                tour.goTo(tour.getCurrentStep()+1);
+            }else{
+                tour.goTo(tour.getCurrentStep()+2);
+            }
+            return (new jQuery.Deferred()).promise();
+        }
       },   
       {
         element: ".tour-step.tour-step-peer-contact",
@@ -54,7 +62,15 @@ function peerTour(){
         element: ".tour-step.tour-step-peer-activities",
         placement: "top",
         title: "Activities",
-        content: "This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with cost data sets shared by the organisation most similar to yours.<br><br>The comparison is done in terms of activity categories: pre-ingest, ingest, archival storage and access."
+        content: "This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with cost data sets shared by the organisation most similar to yours.<br><br>The comparison is done in terms of activity categories: pre-ingest, ingest, archival storage and access.",
+        onPrev: function (tour) {
+            if($("#request-contact-btn").length){
+                tour.goTo(tour.getCurrentStep()-1);
+            }else{
+                tour.goTo(tour.getCurrentStep()-2);
+            }
+            return (new jQuery.Deferred()).promise();
+        }
       },   
       {
         element: ".tour-step.tour-step-peer-purchases",
@@ -90,7 +106,7 @@ function startAnalysePeerTour(){
 }
 
 function peerTourTemplate(i, step){
-    return "<div class='popover tour'> \
+    var template = "<div class='popover tour'> \
       <div class='arrow'></div> \
       <div style='padding: 9px 14px;'> \
         <button type='button' class='close' data-role='end' aria-label='End tour'><span aria-hidden='true'>&times;</span></button> \
@@ -98,10 +114,18 @@ function peerTourTemplate(i, step){
         <div>" + step.content + "</div> \
       </div> \
       <div class='popover-navigation'> \
-        <button class='btn btn-sm btn-default' data-role='prev'><i class='fa fa-angle-left'></i> Previous</button> \
-        <button class='btn btn-sm btn-success pull-right' data-role='next'>Next step <i class='fa fa-angle-right'></i></button> \
-      </div> \
+        <button class='btn btn-sm btn-default' data-role='prev'><i class='fa fa-angle-left'></i> Previous</button> ";
+    
+    if(step.next == -1){
+        template += "<button class='btn btn-sm btn-success pull-right' data-role='end'>End tour</button>";
+    }else{
+        template += "<button class='btn btn-sm btn-success pull-right' data-role='next'>Next step <i class='fa fa-angle-right'></i></button>";
+    }
+
+    template += "</div> \
     </div>";
+
+    return template;
 }
 
 $(document).ready(function() {

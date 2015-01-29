@@ -97,7 +97,7 @@
                         <input name="organization[peer_comparison]" <?php echo (!isset($this->organization->peer_comparison) || $this->organization->peer_comparison ? 'checked="true"' : '') ?> type="checkbox" value="1"> 
                         Allow the use of my anonymised cost data for peer comparisons.
                     </label>
-                    <span class="description-block"><small>Your cost data will be used in peer-to-peer comparisons, but your organisation will not be disclosed. Likewise, the peer organisation might be anonymous</small></span>
+                    <span class="description-block"><small>Your cost data will be used in peer-to-peer comparisons, but your organisation will not be disclosed. Likewise, the peer organisation might be anonymous.</small></span>
                 </div>
             </div>
             <div class="col-sm-offset-2 col-sm-10">

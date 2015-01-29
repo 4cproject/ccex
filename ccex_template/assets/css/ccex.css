@@ -896,7 +896,7 @@ select.form-control + .chzn-container-multi .chzn-results li.result-selected{
   border: 5px solid #f0f0f0;
   background-color: #f9f9f9;
   padding: 15px 15px;
-  display: block;
+  display: table;
   margin: 10px;
 }
 

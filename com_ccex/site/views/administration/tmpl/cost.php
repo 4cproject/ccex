@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="cat_access" class="col-sm-4 control-label"><button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Access" data-content="This activity covers processes related to accessing the stored digitial assets. Examples of activities that could fit into this activity category are: providing access to digital assets and describing them meaningfully by adding relevant metadata to them.">Access </button></label>
+                <label for="cat_access" class="col-sm-4 control-label"><button type="button" class="popover-dismiss tooltip-button" data-toggle="popover" title="Access" data-content="This activity covers processes related to accessing the stored digital assets. Examples of activities that could fit into this activity category are: providing access to digital assets and describing them meaningfully by adding relevant metadata to them.">Access </button></label>
                 <div class="col-sm-8">
                     <input id="cat_access" name="cost[cat_access]" class="slider" data-slider-id='cat_access' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<?php if(isset($this->cost->cat_access)){ echo $this->cost->cat_access; } ?>" value="<?php if(isset($this->cost->cat_access)){ echo $this->cost->cat_access; } ?>"/>
                     <span id="cat_access_feedback" class="slider-feedback" data-category="activities"><span class="feedback-currency-symbol"></span><span class="feedback-value editable-field"><span class="feedback-percentage-symbol"></span></span></span>

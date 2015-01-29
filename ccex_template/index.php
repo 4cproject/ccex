@@ -85,7 +85,7 @@ $doc->addScript($tpath.'/libs/bootstrap-tour/bootstrap-tour-0.10.1/build/js/boot
               <img src="<?php echo $tpath; ?>/images/CCEx_logo_125_white.png" class="pull-left" style="margin: 15px 45px 0 0;width: 100px;"/>
             </a>
             <h1 style="font-weight: 600;font-size: 53px;margin-bottom: 2px;"><?php echo $sitename; ?></h1>
-            <p><?php echo $metadesc; ?></p>
+            <p style="font-size: 20px;font-weight: 300;"><?php echo $metadesc; ?></p>
           </div>
         </div>
 

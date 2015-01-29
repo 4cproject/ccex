@@ -236,7 +236,7 @@
           </div>
           <div class="tour-step tour-step-peer-contact" style="display: inline-block">
             <?php if($this->currentPeer->contact_and_sharing && $this->currentPeer->user()) { ?>
-              <a class="btn btn-success btn-xs"  href="#contactModal" data-toggle="modal">Request contact</a>
+              <a id="request-contact-btn" class="btn btn-success btn-xs"  href="#contactModal" data-toggle="modal">Request contact</a>
             <?php } ?>
           </div>
         </div>
