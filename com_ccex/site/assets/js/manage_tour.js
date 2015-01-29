@@ -18,7 +18,7 @@ function emptyManTour(){
         element: ".tour-step.tour-step-man-add-cost",
         placement: "right",
         title: "Add new cost data set",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "To compare costs an organisation needs at least one cost data set."
       }
     ]);
     tour.init();
@@ -46,25 +46,25 @@ function notEmptyManTour(){
         element: ".tour-step.tour-step-man-collection",
         placement: "top",
         title: "Cost data set",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "This page shows your cost data set(s) and the cost units."
       },
       {
         element: ".tour-step.tour-step-man-collection-final",
         placement: "left",
-        title: "Final cost data set",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        title: "Finalise cost data set",
+        content: "Switch to Final when you’re ready, to compare your cost data set with others. You can return to Draft mode anytime you want update your costs."
       },
       {
         element: ".tour-step.tour-step-man-collection-edit",
         placement: "left",
         title: "Edit cost data set",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "Click here to edit your cost data set."
       },
       {
         element: ".tour-step.tour-step-man-analyse",
         placement: "left",
         title: "Analyse and compare costs",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "See the summary of your submitted costs and compare them with other organisation. Only “Final” cost data sets can be analysed."
       }
     ]);
     tour.init();

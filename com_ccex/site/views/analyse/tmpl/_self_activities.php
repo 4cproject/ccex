@@ -1,4 +1,4 @@
-<div>
+<div class="tour-step tour-step-self-activities">
     <h3>Activities</h3>
     <div id="self_activities_chart" class="col-md-12" style="width: 100%; height: 400px;margin-top:20px"></div>
     <div id="self_activities_master_chart" class="col-md-12" style="width: 100%; height: 100px;margin-bottom:20px;<?php if(!$this->master){ echo 'display:none;'; } ?>"></div>

@@ -1,26 +1,13 @@
-<h1>Compare costs</h1>
+<h1>Cost Comparison Tool</h1>
 <p>The Cost Comparison Tool has been developed by the <a href="/about">4C project</a> to help you better manage and understand curation costs through collaboration and comparisons with other organisations.</p>
 
 <div class="row no-gutter video-login-container">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="row video-container">
             <div class="responsive-video" style="margin-bottom: 12px;">
                 <iframe src="http://player.vimeo.com/video/117789715?byline=false&amp;portrait=0&amp;color=ffffff&amp;title=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>
             <span>Watch a short video of what is this all about</span>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="sign-in-container">
-            <a href="<?php echo JRoute::_('index.php?option=com_users&view=login&redirect_url=analyseglobal') ?>" class="btn btn-success btn-lg btn-block" style="margin-bottom: 10px;">Sign in</a>
-            <span>You already have an account? Sign in to your user space.</span>
-        </div>
-        <div>
-            <div class="in-or-up">OR</div>
-        </div>
-        <div class="sign-up-container">
-            <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration&redirect_url=analyseglobal') ?>" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 10px;">Sign up</a>
-            <span>New to the Cost Comparison Tool? Sign up today, it's easy and free!</span>
         </div>
     </div>
 </div>

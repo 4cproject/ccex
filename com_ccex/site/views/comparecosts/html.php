@@ -14,7 +14,6 @@ class CCExViewsComparecostsHtml extends JViewHtml
 
         if(!$userModel->isGuest()) {
             if (!$organization) {
-                /*$app->enqueueMessage(JText::_('COM_CCEX_ORGANIZATION_REQUIRED_MSG'), "notice");*/
                 $app->redirect(JRoute::_('index.php?view=organization&layout=add', false));
             }
 
@@ -42,6 +41,9 @@ class CCExViewsComparecostsHtml extends JViewHtml
                 break;
 
             case "start":
+                break;
+
+            case "tour":
                 break;
 
             default:

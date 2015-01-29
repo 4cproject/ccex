@@ -1,4 +1,4 @@
-<div>
+<div class="tour-step tour-step-global-activities">
     <div class="caption" style="margin-top: 30px">
         <h3>Activities comparison</h3>
     </div>

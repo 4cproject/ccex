@@ -1,4 +1,4 @@
-<div>
+<div class="tour-step tour-step-self-purchases">
     <h3>Purchases and staff</h3>
     <div id="self_financial_accounting_chart" class="col-md-12" style="width: 100%; height: 400px;margin-top:20px"></div>
     <div id="self_financial_accounting_master_chart" class="col-md-12" style="width: 100%; height: 100px;margin-bottom:20px;<?php if(!$this->master){ echo 'display:none;'; } ?>"></div>
@@ -249,7 +249,8 @@
                     symbolHeight: 15,
                     symbolRadius: 10,
                     itemStyle: {
-                        fontWeight: 300
+                        fontWeight: 300,
+                        fontSize: '10px'
                     }
                 },
                 plotOptions: {

@@ -24,25 +24,25 @@ function newCostTour(){
         element: ".tour-step.tour-step-cost-cost",
         placement: "bottom",
         title: "Cost",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "Enter the costs of the current cost unit."
       },   
       {
         element: ".tour-step.tour-step-cost-activities-mapping",
         placement: "top",
         title: "Activities mapping",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "The costs concern one or more curation activities. Make a mapping here."
       }, 
       {
         element: ".tour-step.tour-step-cost-purchases-staff-mapping",
         placement: "top",
         title: "Purchases and staff mapping",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "Similarly, map here the costs to staffing, purchases and/or overhead."
       },     
       {
         element: ".tour-step.tour-step-cost-save",
         placement: "right",
         title: "Save cost unit",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: "Use the right-hand button to add the next cost unit, or choose 'Save' to leave this page."
       }
     ]);
     tour.init();

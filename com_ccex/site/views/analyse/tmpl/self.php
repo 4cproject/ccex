@@ -40,11 +40,16 @@
     <li class="active">Analyse and compare costs</li>
 </ol> -->
 
-<h1>Analyse and compare costs</h1>
+<h1>
+    Analyse and compare costs
+    <span class="pull-right">
+        <a onclick="analyseSelfTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+    </span>
+</h1>
 <p>See the summary of your submitted costs and compare them with other organisations'. <?php if($this->organization){ ?> Please remember that others can only compare their costs with yours if your cost data sets are marked “Final”. <?php } ?></p> 
 
 <!-- Nav tabs -->
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs tour-step tour-step-self-tabs">
   <li class="active"><a href="<?php echo JRoute::_('index.php?view=analyse&layout=self') ?>">My costs</a></li>
   <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>">Global comparison</a></li>
   <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison</a></li>
@@ -54,102 +59,107 @@
 
   <?php if($this->organization){ ?>
     <p style="margin-bottom: 10px">Select which data sets to analyse:</p>
-    <div class="row" style="margin-bottom:35px">
-      <form id ="selfComparisonForm" class="form-inline">
-        <div class="col-md-6">
-            <nav id="cbp-hrmenu" class="cbp-hrmenu">
-              <ul>
-                <li id="my-costs-filters">
-                  <a href="javascript:void(0)">
-                    <div class="tagsinput">
-                      <?php if(count($this->collections)){ ?>
-                        <span class="tag selected-filter">All cost data sets combined</span>
-                      <?php }else{ ?>
-                        <span class="tag selected-filter">No cost data sets</span>
-                      <?php } ?>
-                      <span class="tag pull-right"><i class="fa fa-angle-down"></i></span>
-                    </div>
-                  </a>
-                  <div class="cbp-hrsub">
-                    <div class="cbp-hrsub-inner"> 
-                      <div class="radio">
+    <div>
+      <div class="row">
+        <form id ="selfComparisonForm" class="form-inline">
+          <div class="col-md-6 tour-step tour-step-self-select-set">
+              <nav id="cbp-hrmenu" class="cbp-hrmenu">
+                <ul>
+                  <li id="my-costs-filters">
+                    <a href="javascript:void(0)">
+                      <div class="tagsinput">
                         <?php if(count($this->collections)){ ?>
-                          <label>
-                            <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
-                            <span class="filter-title">All cost data sets combined</span>
-                            <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
-                          </label>
+                          <span class="tag selected-filter">All cost data sets combined</span>
                         <?php }else{ ?>
-                          <label class="label-disabled">
-                            <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" disabled>
-                            <span class="filter-title">All cost data sets combined</span>
-                            <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
-                          </label>
+                          <span class="tag selected-filter">No cost data sets</span>
                         <?php } ?>
+                        <span class="tag pull-right"><i class="fa fa-angle-down"></i></span>
                       </div>
-                      <div class="radio">
-                        <?php if($this->organization->readyForComparison()){ ?>
-                          <label>
-                            <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
-                            <span class="filter-title">Final cost data sets combined</span>
-                            <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
-                          </label>
-                        <?php }else{ ?>
-                          <label class="label-disabled">
-                            <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled="">
-                            <span class="filter-title">Final cost data sets combined</span>
-                            <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
-                          </label>
-                        <?php } ?>
-                      </div>
-                      <div>
-                        <?php if(count($this->collections)) { ?>
-                          <div class="radio">
+                    </a>
+                    <div class="cbp-hrsub">
+                      <div class="cbp-hrsub-inner"> 
+                        <div class="radio">
+                          <?php if(count($this->collections)){ ?>
                             <label>
-                                <input data-update="singular" class="generalCheck" type="radio" name="collectionsMode" id="separatedMode" value="separated">
-                                Separate and select cost data sets:
+                              <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" checked>
+                              <span class="filter-title">All cost data sets combined</span>
+                              <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
                             </label>
-                          </div>
-                          <div class="radio" id="collectionsRadios" style="margin-right: 15px">
-                            <?php $i = 1 ?>
-                            <?php foreach ($this->collections as $collection) { 
-                              $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
-                              
-                              <div class="row" style="margin-left: 20px;">
-                                <label>
-                                  <input data-update="singular" class="collectionCheck" style="margin-top: 8px;" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  checked> 
-                                  <span class="badge">#<?php echo $i; ?></span> 
-                                  <span class="filter-title"><?php echo htmlspecialchars($collection->name) ; ?></span>
-                                  <?php if(!$collection->final){ ?>
-                                      <small><span class="label label-default label-draft">Draft</span></small>
-                                  <?php }else{ ?>  
-                                      <small><span class="label label-default label-draft">Final</span></small>
-                                  <?php } ?>  
-                                </label>          
+                          <?php }else{ ?>
+                            <label class="label-disabled">
+                              <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeAll" value="combinedAll" disabled>
+                              <span class="filter-title">All cost data sets combined</span>
+                              <small><span class="label label-default label-draft"><?php echo count($this->collections); ?></span></small>
+                            </label>
+                          <?php } ?>
+                        </div>
+                        <div class="radio">
+                          <?php if($this->organization->readyForComparison()){ ?>
+                            <label>
+                              <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal">
+                              <span class="filter-title">Final cost data sets combined</span>
+                              <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
+                            </label>
+                          <?php }else{ ?>
+                            <label class="label-disabled">
+                              <input data-update="general" class="generalCheck" type="radio" name="collectionsMode" id="combinedModeFinal" value="combinedFinal" disabled="">
+                              <span class="filter-title">Final cost data sets combined</span>
+                              <small><span class="label label-default label-draft"><?php echo count($this->collectionsFinal); ?></span></small>
+                            </label>
+                          <?php } ?>
+                        </div>
+                        <div>
+                          <?php if(count($this->collections)) { ?>
+                            <div class="radio">
+                              <label>
+                                  <input data-update="singular" class="generalCheck" type="radio" name="collectionsMode" id="separatedMode" value="separated">
+                                  Separate and select cost data sets:
+                              </label>
                             </div>
-                            <?php $i++; ?>
-                            <?php } ?>
-                          </div>
-                        <?php } ?>
+                            <div class="radio" id="collectionsRadios" style="margin-right: 15px">
+                              <?php $i = 1 ?>
+                              <?php foreach ($this->collections as $collection) { 
+                                $collection = CCExHelpersCast::cast('CCExModelsCollection',  $collection); ?>
+                                
+                                <div class="row" style="margin-left: 20px;">
+                                  <label>
+                                    <input data-update="singular" class="collectionCheck" style="margin-top: 8px;" type="checkbox" name="collectionsSelected[]" disabled value="<?php echo $collection->collection_id ?>"  checked> 
+                                    <span class="badge">#<?php echo $i; ?></span> 
+                                    <span class="filter-title"><?php echo htmlspecialchars($collection->name) ; ?></span>
+                                    <?php if(!$collection->final){ ?>
+                                        <small><span class="label label-default label-draft">Draft</span></small>
+                                    <?php }else{ ?>  
+                                        <small><span class="label label-default label-draft">Final</span></small>
+                                    <?php } ?>  
+                                  </label>          
+                              </div>
+                              <?php $i++; ?>
+                              <?php } ?>
+                            </div>
+                          <?php } ?>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-            </nav>
-            <a class="btn btn-success btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>" style="margin-top: 15px">Manage cost data sets</a>
+                  </li>
+                </ul>
+              </nav>
+          </div>
+        </form>
+      </div>
+      <div style="margin-top: 15px; margin-bottom: 35px;">
+        <div class="tour-step tour-step-self-manage-costs" style="display: inline-block">
+          <a class="btn btn-success btn-xs" href="<?php echo JRoute::_('index.php?view=comparecosts&layout=datasets') ?>">Manage cost data sets</a>
         </div>
-      </form>
+      </div>
     </div>
-
     <?php echo $this->_activities->render(); ?>
     <?php echo $this->_financialAccounting->render(); ?>
 
 
     <!-- Action -->
     <div class="form-group utils">
-      <div class="col-sm-3 col-sm-offset-9">
-          <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>">Global comparison <i class="fa fa-fw fa-angle-right"></i></span></a>
+      <div class="col-sm-3 col-sm-offset-9 tour-step tour-step-self-go-global">
+          <a class="btn btn-success btn-block btn-border btn-go" href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>">Global comparison <i class="fa fa-fw fa-angle-right"></i></span></a>
       </div>
     </div>
 
@@ -170,6 +180,7 @@
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/serialize-all.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/compare-self.js') ?>"></script>
 <script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/cbpHorizontalMenu.js') ?>"></script>
+<script type="text/javascript" src="<?php echo (JURI::base().'components/com_ccex/assets/js/analyse_self_tour.js') ?>"></script>
 <script>
     $(function() {
         cbpHorizontalMenu.init();

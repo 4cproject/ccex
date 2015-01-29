@@ -1,4 +1,4 @@
-<div>
+<div class="tour-step tour-step-peer-purchases">
     <div class="caption" style="margin-top: 30px">
         <h3>Purchases and staff comparison</h3>
     </div>
