@@ -9,8 +9,23 @@ You can install your own version of the www.curationexchange.org and allow your 
 
 ## Installation guide
 
-The CCEx tool is implemented by a theme (**ccex_template**) and an extension (**com_ccex**), both with a simple and straight forward installation, very similar with other Joomla 3rd party components.
+The CCEx tool is implemented by a template (**ccex_template**) and a component (**com_ccex**), both with a simple and straight forward installation, very similar with other Joomla 3rd party components.
 
+### Requirements
+
+For the correct operation of the CCEx tool, is recommended the following environment.
+
+    Joomla! 3.3: version 3.3.1 or greater (>= 3.3.6 recommended)
+
+    PHP: version 5.3.1 or greater (>= 5.3.1 recommended)
+    MySQL: version 5.1 or greater (>= 5.5.4 recommended)
+
+*Please note that the tool was only tested in the recommended versions.* 
+
+### Download
+*To be described.*
+
+### Installing
 #### Installing the CCEx template
 
 **1. Download template**
@@ -31,22 +46,12 @@ Once the template is properly installed, you need to make it default for your we
 
 Go to **Template Manager** *(Extensions -> Template Manager)*,  where you will see a list of the installed templates available for your site and the administrative area,  locate the **CCExTemplate** and click on the star icon next to it.
 
-### Requirements
+#### Installing the CCEx component
 
-For the correct operation of the CCEx tool, is recommended the following environment.
+**1. Download component**
 
-    Joomla! 3.3: version 3.3.1 or greater (>= 3.3.6 recommended)
 
-    PHP: version 5.3.1 or greater (>= 5.3.1 recommended)
-    MySQL: version 5.1 or greater (>= 5.5.4 recommended)
 
-*Please note that the tool was only tested in the recommended versions.* 
-
-### Download
-*To be described.*
-
-### Installing
-*To be described.*
 
 ## Using
 *To be described.*
