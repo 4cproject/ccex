@@ -18,7 +18,7 @@ function newCostTour(){
         element: ".tour-step.tour-step-cost-name-description",
         placement: "bottom",
         title: "Name and description",
-        content: "Please enter a name for the cost unit. Optionally you can share/provide additional informations about your cost unit."
+        content: "Please enter a name for the cost unit. Optionally you can provide additional informations about your cost unit.<br><br>For example: digitalization of collection X, or conversion of Microsoft Word files into PDF."
       },
       {
         element: ".tour-step.tour-step-cost-cost",

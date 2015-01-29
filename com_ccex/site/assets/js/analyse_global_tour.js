@@ -24,7 +24,7 @@ function globalTour(){
         element: ".tour-step.tour-step-global-select-set",
         placement: "bottom",
         title: "Select cost data sets",
-        content: "If you have several Final cost data sets, you can select which to include here. "
+        content: "If you have several cost data sets, you can select which to include here. "
       },   
       {
         element: ".tour-step.tour-step-global-manage-costs",
@@ -48,13 +48,13 @@ function globalTour(){
         element: ".tour-step.tour-step-global-activities",
         placement: "top",
         title: "Activities",
-        content: "This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with other cost data sets shared with the CCEx."
+        content: "This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with other cost data sets shared with the CCEx.<br><br>The comparison is done in terms of activity categories: pre-ingest, ingest, archival storage and access."
       },   
       {
         element: ".tour-step.tour-step-global-purchases",
         placement: "top",
         title: "Purchases and staff",
-        content: "This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with other cost data sets shared with the CCEx."
+        content: "This graph takes an average total spend for all years and either compares an aggregated figure for all your data sets or selected data sets, with other cost data sets shared with the CCEx.<br><br>The comparison is done in terms of purchase categories: hardware, software and external 3rd party services; staff categories: producer, IT-developer, operations, preservation specialist and manager; and also into overhead."
       },   
       {
         element: ".tour-step.tour-step-global-go-peer",

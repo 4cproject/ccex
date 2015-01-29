@@ -24,7 +24,7 @@ function selfTour(){
         element: ".tour-step.tour-step-self-select-set",
         placement: "bottom",
         title: "Select cost data sets",
-        content: "If you have several Final cost data sets, you can select which to include here. "
+        content: "If you have several cost data sets, you can select which to include here. "
       },   
       {
         element: ".tour-step.tour-step-self-manage-costs",
@@ -36,13 +36,13 @@ function selfTour(){
         element: ".tour-step.tour-step-self-activities",
         placement: "top",
         title: "Activities",
-        content: "This graph provides an overview of your aggregated costs from the data sets you selected."
+        content: "This graph provides an overview of your aggregated costs from the data sets you selected in terms of activity categories: pre-ingest, ingest, archival storage and access."
       },   
       {
         element: ".tour-step.tour-step-self-purchases",
         placement: "top",
         title: "Purchases and staff",
-        content: "This graph provides an overview of your aggregated costs from the data sets you selected."
+        content: "This graph provides an overview of your aggregated costs from the data sets you selected in terms of purchase categories: hardware, software and external 3rd party services; staff categories: producer, IT-developer, operations, preservation specialist and manager; and also into overhead."
       },   
       {
         element: ".tour-step.tour-step-self-go-global",

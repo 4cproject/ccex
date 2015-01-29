@@ -18,19 +18,19 @@ function orgTour(){
         element: ".tour-step.tour-step-org-name",
         placement: "bottom",
         title: "Organisation name",
-        content: "Please add here the name of your organisation, institution or employer."
+        content: "Please add here the name of your organisation, institution or employer.<br><br>Tip: You can do it while one this help tour!"
       },
       {
         element: ".tour-step.tour-step-org-description",
         placement: "bottom",
         title: "Description, purpose and mission",
-        content: "Optionally you can share/provide additional informations about your organization, by example: Is your organisation for example a National Library, an archive or a data centre? What is your organization's Mission?"
+        content: "You can provide additional information about your organization, like what it does and for what purpose and a short mission statement."
       },
       {
         element: ".tour-step.tour-step-org-type",
         placement: "bottom",
         title: "Organisation types",
-        content: "Then, you need to select your organization types.<br><br>Please select 'other' if you don't have your organization type listed.",
+        content: "Then you need to select your organization types so we can pair your organisation with others.<br><br>Please select 'other' if you don't have your organization type listed.",
         onNext: function (tour) {
             if($("#organisation_type_other_container").is(":visible")){
                 tour.goTo(tour.getCurrentStep()+1);
@@ -44,13 +44,13 @@ function orgTour(){
         element: ".tour-step.tour-step-org-type-other",
         placement: "bottom",
         title: "Other type",
-        content: "Please describe here your organisation type."
+        content: "Provide a short description of your organisation type, we will consider adding it to the list above."
       },
       {
         element: ".tour-step.tour-step-org-country",
         placement: "bottom",
         title: "Country",
-        content: "Now you need to select in which country where the organisation's headquarters are located.",
+        content: "Select the country where the organisation's headquarters are located.",
         onPrev: function (tour) {
             if($("#organisation_type_other_container").is(":visible")){
                 tour.goTo(tour.getCurrentStep()-1);
@@ -64,7 +64,7 @@ function orgTour(){
         element: ".tour-step.tour-step-org-currency",
         placement: "bottom",
         title: "Currency",
-        content: "In this step you need to indicate the currency in which you would prefer to provide costs."
+        content: "Indicate the currency in which you would prefer to provide costs. We will automatically convert the cost into Euros (€) to have a common comparison currency. This conversion is based on yearly convert rates.<br><br>Can't find your currency? Contact us and we will consider adding it."
       },
       {
         element: ".tour-step.tour-step-org-sharing",
@@ -76,7 +76,7 @@ function orgTour(){
         element: ".tour-step.tour-step-org-save",
         placement: "right",
         title: "Save your organisation",
-        content: "Congratulations you have finished the tour! Click save to submit the fulfilled informations and to be able to define your organisation's cost data sets.",
+        content: "Congratulations you have finished the help tour! Click save to submit your data and go to the next step.",
         next: -1
       }
     ]);
