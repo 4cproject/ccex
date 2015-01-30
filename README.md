@@ -39,12 +39,18 @@ Installing the CCEx template **ccex_template.zip**:
 
  3. **Change default Joomla template:** Now you need to make it default for your website so your pages get the new design. Go to `Extensions > Template Manager` and locate the "CCExTemplate". Click on the :star: star icon next to it.  
 
-Installing the CCEx component:
-*To be described.*
+Installing the CCEx component  **com_ccex.zip**:
 
+ 1. **Install component:** Login to the administrative area of your Joomla website and upload the component through `Extensions > Extension Manager > Upload Package File`.
+
+2. **Create a new menu item for CCEx Tool**  After installation of the component, click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. On  New Menu Item's Page you need to fill in the `Menu Title`, and select the Menu Item Type: `Curation Cost Exchange > Compare Costs`. After selecting your Menu Item Type, click `Save & Close` to save and be redirected to Menu Items' page where you can reorder all the menu items.
+
+3. ***Create a new menu item for Administration*** Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. On  New Menu Item's Page you need to fill in the `Menu Title`, and select the Menu Item Type: `Curation Cost Exchange > Administration`. After selecting your Menu Item Type, set Access to `Super Users` and click `Save`.
+
+4. ***Create a new menu item for Profile*** Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. On  New Menu Item's Page you need to fill in the `Menu Title`, and select the Menu Item Type: `Curation Cost Exchange > Profile`. After selecting your Menu Item Type click `Save`.
 
 ### Use
-After installation the Cost Comparison Tool will be available under the menu item you have selected. If you are not signed in and click on the menu item you will be presented with a video and a step-by-step tutorial similar to the one available at the [official site](http://www.curationexchange.org/compare-costs). Signing-in you will be taken into a workflow to define your organisation, define your costs and compare them with the other organisations available on your instance.
+After installation the Cost Comparison Tool will be available under the menu item you have selected. If you are not signed in and click on the menu item you will be presented with a video and a step-by-step tutorial similar to the one available at the [official site](http://www.curationexchange.org/compare-costs?view=comparecosts&layout=tour). Signing-in you will be taken into a workflow to define your organisation, define your costs and compare them with the other organisations available on your instance.
 
 Please note that cost information of othen organisations available on the oficial site will not be available on your instance. Also, the information you provide in your own instance will **not** be shared with the oficial site.
 
