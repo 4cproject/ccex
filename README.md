@@ -41,13 +41,13 @@ Installing the CCEx template **ccex_template.zip**:
 
 Installing the CCEx component  **com_ccex.zip**:
 
-1. **Install component:** Login to the administrative area of your Joomla website and upload the component through `Extensions > Extension Manager > Upload Package File`.
+1. **Install component:** On the administrative area upload the component through `Extensions > Extension Manager > Upload Package File`.
 
-2. **Add "Curation costs" to menu:**  Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. Set *Menu Title* as "Curation costs" and select the *Menu Item Type* as `Curation Cost Exchange > Compare Costs`. Click `Save & Close` to save and be redirected to *Menu Items*' page where you can reorder all the menu items.
+2. **Add "Curation costs" to menu:**  On  `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Curation costs" and select the *Menu Item Type* as `Curation Cost Exchange > Compare Costs`. Click `Save & Close` to save and be redirected to *Menu Items*' page where you can reorder all the menu items.
 
-3. **Add "Administration" menu:** Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. Set *Menu Title* as "Administration" and select the *Menu Item Type* as `Curation Cost Exchange > Administration`. Set Access to `Super Users` and click `Save`.
+3. **Add "Administration" menu:** On `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Administration" and select the *Menu Item Type* as `Curation Cost Exchange > Administration`. Set Access to `Super Users` and click `Save`.
 
-4. **Add profile menu:** Click on `Menus > Main Menu > Add New Menu Item` in the administration menu on top. Set *Menu Title* as "Profile" and select the *Menu Item Type* as `Curation Cost Exchange > Profile`. Click `Save`.
+4. **Add profile menu:** On `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Profile" and select the *Menu Item Type* as `Curation Cost Exchange > Profile`. Click `Save`.
 
 ### Use
 After installation the Cost Comparison Tool will be available under the menu item you have selected. If you are not signed in and click on the menu item you will be presented with a video and a step-by-step tutorial similar to the one available at the [official site](http://www.curationexchange.org/compare-costs?view=comparecosts&layout=tour). Signing-in you will be taken into a workflow to define your organisation, define your costs and compare them with the other organisations available on your instance.
