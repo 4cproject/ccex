@@ -32,7 +32,7 @@ Download the latest version:
 
 | Version | Size   | SHA1                                                    | Download             |
 |---------|--------|---------------------------------------------------------|----------------------|
-| v1.0.1  | 7.3 MB<br>0.2 MB | <sub>e6b10d8c2893533e6173633519fc618069bbd263</sub><br><sub>ffc89ae3ffcb74eedaf9ef1ba6bdec13699f91a6</sub> |[ccex_template.zip](https://github.com/4cproject/ccex/releases/download/v1.0.1/ccex_template.zip)<br>[com_ccex.zip](https://github.com/4cproject/ccex/releases/download/v1.0.1/com_ccex.zip)|
+| v1.1.0  | 8.57 MB<br>231 KB<br>98.2 KB | <sub>02f8728fb444b0656bfabc16d3aca0c383aceac6</sub><br><sub>569d5c97032a9c952cde918af36102b60b29b174</sub><br><sub>a63ab9f2cfd455b21a6502f510f201b4e221170f</sub> |[ccex_template.zip](https://github.com/4cproject/ccex/releases/download/v1.1.0/ccex_template.zip)<br>[com_ccex.zip](https://github.com/4cproject/ccex/releases/download/v1.1.0/com_ccex.zip)<br>[static_pages.xml](https://github.com/4cproject/ccex/releases/download/v1.1.0/static_pages.xml)|
 
 ### Install instructions
 Installing comprises tree steps: installing the CCEx template, installing the CCEx component and load the static pages.
