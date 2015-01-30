@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE j2xml PUBLIC "-//eshiol.it//DTD J2XML data file 12.5.0//EN" "http://www.eshiol.it/j2xml/12500/j2xml-12.5.0.dtd">
+<j2xml version="12.5.0">
+<content>
+<id>69</id>
+<title><![CDATA[About]]></title>
+<alias><![CDATA[about]]></alias>
+<introtext><![CDATA[&lt;h1&gt;About&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;This website is about the costs of digital &lt;a href="get-started/11-what-do-we-mean-by-curation"&gt;curation&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href="get-started/11-what-do-we-mean-by-curation"&gt;Curation&lt;/a&gt;&nbsp;Costs Exchange (CCEx) is a community owned platform which helps organisations of any kind assess the costs of curation practices through comparison and analysis. The CCEx aims to provide real &nbsp;information about costs to help make more informed investments in digital curation.&lt;/p&gt;
+&lt;p&gt;The CCEx was launched in 2014 by the 4C &lsquo;Collaboration to Clarify the Costs of Curation&rsquo; Project.&lt;a href="#4cproject"&gt; Made up of 13 expert organisations from across Europe&lt;/a&gt;, 4C has aimed to help organisations to invest more effectively in digital curation and preservation. Research in digital preservation and curation has tended to emphasise the cost and complexity of the task in hand. 4C reminded us that the point of this investment is to realise a benefit, so research has encompassed related concepts such as &lsquo;value&rsquo;, &lsquo;quality&rsquo;, &lsquo;risk&rsquo; and &lsquo;sustainability&rsquo;. Organisations that understand this will be more able to effectively control and manage their digital assets over time, and they may also be able to create new cost-effective solutions and services for &lt;a href="read-more"&gt;others&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The CCEx is now maintained and governed by the &lt;a href="http://www.dpconline.org/"&gt;Digital Preservation Coalition (DPC)&lt;/a&gt;&nbsp;with help from &lt;a href="http://www.langzeitarchivierung.de/Subsites/nestor/EN/Home/home_node.html"&gt;nestor&lt;/a&gt;&nbsp;and &lt;a href="http://www.ncdd.nl/en/"&gt;NCDD&lt;/a&gt;. Read more about how your data is managed by the DPC in the &lt;a href="60-privacy-policy"&gt;CCEx Privacy policy&lt;/a&gt;, &lt;a href="mailto:info@4cproject.eu"&gt;contact&lt;/a&gt;&nbsp;the DPC or &lt;a href="mailto:info@4cproject.eu?subject=[CCEx]%20Problem%20report"&gt;report a problem&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The CCEx is a community resource, with content that is contributed by the digital curation specialists who use and gain value from it. To share your costs, &lt;a href="sign-up"&gt;sign up to the CCEx now&lt;/a&gt;. Find out about the future of the CCEx and any planned developments by &lt;a href="mailto:info@4cproject.eu"&gt;contacting the DPC&lt;/a&gt;.&nbsp;&lt;/p&gt;
+&lt;h1 id="4cproject"&gt;The 4C Project comprised 13 partners in 7 different countries:&lt;/h1&gt;
+&lt;p&gt;&lt;a href="http://www.jisc.ac.uk/"&gt;Jisc (UK) (Project Co-ordinator)&lt;/a&gt;&lt;br /&gt; Jisc provides relevant and useful advice, digital content and network and IT services, whilst researching and developing new technologies and ways of working.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.jisc.ac.uk/"&gt;The Royal Library &ndash; National Library of Denmark (Denmark)&lt;/a&gt;&lt;br /&gt; The Royal Library is Denmark&rsquo;s national library and university library for the University of Copenhagen. The institution administers the national cultural heritage of both Danish and foreign origin in both traditional and digital formats, providing optimal access to the collections and preserving them for posterity.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.inesc-id.pt/"&gt;INESC-ID &ndash; Institute for System and Computer Engineering (Portugal)&lt;/a&gt;&lt;br /&gt; INESC-ID is a research institute dedicated to advanced research and development in the areas of Electronics, Communications, and Information Technologies. Created in 2000, INESC-ID was a result of the reorganization of the Research &amp;amp; Development activities of its parent institution, INESC, in Lisbon.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.sa.dk/content/us/"&gt;Danish National Archives (Denmark)&lt;/a&gt;&lt;br /&gt; The Danish National Archives collects and stores historic sources, ensuring that authorities arrange and transfer their records in a condition that renders them useful to future users of the archives - and not least, to the authorities themselves.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.sa.dk/content/us/"&gt;Deutsche Nationalbibliothek (Germany)&lt;/a&gt;&lt;br /&gt; The German National Library collects, archives, classifies and provides access to all German and German-language publications from 1913, foreign publications about Germany, translations of German works, and the works of German-speaking emigrants published abroad between 1933 and 1945.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.gla.ac.uk/schools/humanities/research/hatiiresearch/"&gt;Humanities Advanced Technology and Information Institute (HATII) - University of Glasgow (UK)&lt;/a&gt;&lt;br /&gt; HATII investigates a range of topics in the fields of information studies, digital culture and the humanites, focusing particularly on fundamental concepts such as identity, memory, authenticity, trust, transparency, accountability, representation, engagement, preservation and access.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.essex.ac.uk/"&gt;University of Essex (UK)&lt;/a&gt;&lt;br /&gt; The University of Essex is the home of the UK Data Archive and the UK's largest collection of digital research data in the social sciences and humanities. The archive acquires high quality data from the academic, public, and commercial sectors, providing continuous access whilst supporting existing and emerging communities of data users.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.keep.pt/?lang=en"&gt;Keep Solutions (Portugal)&lt;/a&gt;&lt;br /&gt; KEEP SOLUTIONS (KEEPS) is dedicated to the development of advanced solutions for digital preservation. KEEPS provides a range of services to support the creation of digital archives/repositories, museums and libraries - predominantly the development of information management systems, consulting, research, and training.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.dpconline.org/"&gt;Digital Preservation Coalition (UK)&lt;/a&gt;&lt;br /&gt; The Digital Preservation Coalition (DPC) is an advocate and catalyst for digital preservation, raising awareness of the importance of the preservation of digital material and the attendant strategic, cultural and technological issues through knowledge exchange, capacity building, assurance, advocacy and partnership.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.sba-research.org/"&gt;Secure Business Austria (Austria)&lt;/a&gt;&lt;br /&gt; SBA Research is an industrial research center for IT-Security founded by the Vienna University of Technology, Graz University of Technology and University of Vienna. In its second research phase from 2010 to 2017, the Vienna University of Economics and Business has joined the center as a fourth full academic partner.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.dcc.ac.uk/"&gt;Digital Curation Centre &ndash; University of Edinburgh (UK)&lt;/a&gt;&lt;br /&gt; The Digital Curation Centre (DCC) is a world-leading centre of expertise in digital information curation with a focus on building capacity, capability and skills for research data management across the UK's higher education research community.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.dcc.ac.uk/"&gt;DANS &ndash; Data Archiving and Networked Services (KNAW/NWO) (Netherlands)&lt;/a&gt;&lt;br /&gt; DANS promotes sustained access to digital research data, encouraging researchers to archive and reuse data in a sustained manner through their online archiving system EASY. DANS also provides access, via NARCIS, to thousands of scientific datasets, e-publications and other research information in the Netherlands.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.nlib.ee/"&gt;National Library of Estonia (Estonia)&lt;/a&gt;&lt;br /&gt; The National Library of Estonia acts as a development centre for librarianship, conducting professional research and development activities in cooperation with other libraries and institutions at both national and international levels.&lt;/p&gt;]]></introtext>
+<fulltext></fulltext>
+<state>1</state>
+<created><![CDATA[2015-01-30 11:05:16]]></created>
+<created_by_alias></created_by_alias>
+<modified><![CDATA[2015-01-30 11:40:07]]></modified>
+<publish_up><![CDATA[2015-01-30 11:05:16]]></publish_up>
+<publish_down><![CDATA[0000-00-00 00:00:00]]></publish_down>
+<images><![CDATA[{"image_intro":"","float_intro":"","image_intro_alt":"","image_intro_caption":"","image_fulltext":"","float_fulltext":"","image_fulltext_alt":"","image_fulltext_caption":""}]]></images>
+<urls><![CDATA[{"urla":false,"urlatext":"","targeta":"","urlb":false,"urlbtext":"","targetb":"","urlc":false,"urlctext":"","targetc":""}]]></urls>
+<attribs><![CDATA[{"show_title":"","link_titles":"","show_tags":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_vote":"","show_hits":"","show_noauth":"","urls_position":"","alternative_readmore":"","article_layout":"","show_publishing_options":"","show_article_options":"","show_urls_images_backend":"","show_urls_images_frontend":""}]]></attribs>
+<version>3</version>
+<ordering>0</ordering>
+<metakey></metakey>
+<metadesc></metadesc>
+<access>1</access>
+<hits>18</hits>
+<metadata><![CDATA[{"robots":"","author":"","rights":"","xreference":""}]]></metadata>
+<language><![CDATA[*]]></language>
+<xreference></xreference>
+<catid><![CDATA[uncategorised]]></catid>
+<created_by><![CDATA[asantos]]></created_by>
+<modified_by><![CDATA[lfaria]]></modified_by>
+<featured>0</featured>
+<rating_sum>0</rating_sum>
+<rating_count>0</rating_count>
+</content><content>
+<id>66</id>
+<title><![CDATA[Help]]></title>
+<alias><![CDATA[help]]></alias>
+<introtext><![CDATA[&lt;h1&gt;Help&lt;/h1&gt;
+&lt;p style="margin-bottom: 0;"&gt;Frequently asked questions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#faq1"&gt;How can I see what others spend on digital curation?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#faq2"&gt;What is digital curation?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#faq3"&gt;What qualifies as costs of digital curation?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#faq4"&gt;I don&rsquo;t want others to see my cost data right now.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#faq5"&gt;How do I start?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#faq6"&gt;Why are our curation costs lower/ higher than in other organisations?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#faq7"&gt;What happens to my data?&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="faq1"&gt;1. How can I see what others spend on digital curation?&lt;/h3&gt;
+&lt;p&gt;After you submit 1) a little profile information about your organisation, 2) cost data about (a part of) your organisation, and 3) share this data with other registered users, you can compare your cost data to theirs. The tool offers two kinds of comparison with others: you either compare your costs to the average costs of a group of organisations, or one-to-one with a single peer organisation.&nbsp;&lt;/p&gt;
+&lt;p&gt;Please note that you and others can submit these data anonymously, even when you decide to contact another organisation to discuss differences in spending and curation practices.&lt;/p&gt;
+&lt;h3 id="faq2"&gt;2. What is digital curation?&lt;/h3&gt;
+&lt;p&gt;Digital curation is a series of repository activities including ingest, data management, (archival) storage, preservation planning, access, common services, repository administration, as well as pre-repository (production and pre-ingest - appraisal, selection, preparation, rights), post-repository and management activities.&lt;/p&gt;
+&lt;h3 id="faq3"&gt;3. What qualifies as costs of digital curation?&lt;/h3&gt;
+&lt;p&gt;The tool assumes the widest possible definition of digital curation from the point a digital object is conceived through various changes and storage systems, which may range from a researcher&rsquo;s laptop to a national library or archive, through to its discovery and use. This implies that different organisations might submit different types of costs to the tool.&lt;/p&gt;
+&lt;h3 id="faq4"&gt;4. I don&rsquo;t want others to see my cost data right now.&lt;/h3&gt;
+&lt;p&gt;That&rsquo;s fine. You can use the tool for a self-assessment: it can provide a high level overview of your current spending in digital curation, which may be used as evidence to inform your strategic decisions.&nbsp;&lt;/p&gt;
+&lt;p&gt;In your organisation profile you can select the sharing options that suit you. You can choose to submit your cost data anonymously. For all three kinds of cost comparison - with a peer organisation, with a group of organisations, or as a self-assessment - the cost data must be switched from &ldquo;Draft&rdquo; to &ldquo;Final&rdquo;. However, you can return them to &ldquo;Draft&rdquo; mode, should you want to do so.&lt;/p&gt;
+&lt;h3 id="faq5"&gt;5. How do I start?&lt;/h3&gt;
+&lt;p&gt;When you already know the costs of digital curation in (a part of) your organisation, &hellip; &amp;gt; video and steps&lt;/p&gt;
+&lt;p&gt;When you want to know how you can model your costs, &hellip; &amp;gt; understand your costs.&lt;/p&gt;
+&lt;h3 id="faq6"&gt;6. Why are our curation costs lower/ higher than in other organisations?&nbsp;&lt;/h3&gt;
+&lt;p&gt;That is a crucial question, but one that tools cannot answer. The budget spent on digital curation is related to the mission and ambition of an organisation, as well as on the value that the digital assets have for this organisation. &ldquo;Value&rdquo; is one of several indirect, intangible, cost drivers. Read more about indirect cost drivers.&lt;/p&gt;
+&lt;p&gt;Nevertheless, the Curation Costs Exchange helps you to gain insights from experiences of others and pinpoint challenges, which you then can discuss with colleagues or other stakeholders. You can use the e-mail option in the tool to contact other users.&lt;/p&gt;
+&lt;h3 id="faq7"&gt;7. What happens to my data?&lt;/h3&gt;
+&lt;p&gt;All data that you submit to the tool will be used solely for the purposes of building up aggregated data sets for comparison. You may edit personal information at any time and no personally identifiable information will be published without the express permission of the individual or organisation concerned. Read the privacy policy.&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #000000; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif; font-size: 14px; line-height: 17.8048000335693px; white-space: pre-wrap; background-color: #eeeeee;"&gt;{emailcloak=off}&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;{source}&lt;span style="font-family: courier new, courier, monospace;"&gt;&lt;br /&gt;&amp;lt;br/&amp;gt;&lt;br /&gt;&amp;lt;div class="row"&amp;gt;&lt;br /&gt; &amp;lt;div class="col-md-4"&amp;gt;&lt;br /&gt; &amp;lt;div class="text-center" onclick="location.href='/compare-costs?view=comparecosts&amp;amp;layout=tour';" style="cursor: pointer;"&amp;gt;&lt;br /&gt; &amp;lt;img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405039272_play_128.png" width="128"&amp;gt;&lt;br /&gt; &amp;lt;div class="caption"&amp;gt;&lt;br /&gt; &amp;lt;h3&amp;gt;Video tour&amp;lt;/h3&amp;gt;&lt;br /&gt; &amp;lt;p&amp;gt;See a video about the Curation Costs Exchange.&amp;lt;/p&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;div class="col-md-4"&amp;gt;&lt;br /&gt; &amp;lt;div class="text-center" onclick="location.href='mailto:info@4cproject.eu';" style="cursor: pointer;"&amp;gt;&lt;br /&gt; &amp;lt;img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405038991_email_128.png" width="128"&amp;gt;&lt;br /&gt; &amp;lt;div class="caption"&amp;gt;&lt;br /&gt; &amp;lt;h3&amp;gt;Contact us&amp;lt;/h3&amp;gt;&lt;br /&gt; &amp;lt;p&amp;gt;Send us an email with your comments or questions.&amp;lt;/p&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;div class="col-md-4"&amp;gt;&lt;br /&gt; &amp;lt;div class="text-center" onclick="location.href='mailto:info@4cproject.eu?subject=[CCEx]%20Problem%20report';" style="cursor: pointer;"&amp;gt;&lt;br /&gt; &amp;lt;img class="icon" src="/templates/ccextemplate/images/icons/peppyicons/1405039022_Bandage_128.png" width="128"&amp;gt;&lt;br /&gt; &amp;lt;div class="caption"&amp;gt;&lt;br /&gt; &amp;lt;h3&amp;gt;Report a problem&amp;lt;/h3&amp;gt;&lt;br /&gt; &amp;lt;p&amp;gt;Send a report to our developer team.&amp;lt;/p&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt; &amp;lt;/div&amp;gt;&lt;br /&gt;&amp;lt;/div&amp;gt;&lt;br /&gt;&lt;/span&gt;{/source}&lt;/p&gt;]]></introtext>
+<fulltext></fulltext>
+<state>1</state>
+<created><![CDATA[2014-12-18 11:49:44]]></created>
+<created_by_alias></created_by_alias>
+<modified><![CDATA[2015-01-30 11:51:38]]></modified>
+<publish_up><![CDATA[2014-12-18 11:49:44]]></publish_up>
+<publish_down><![CDATA[0000-00-00 00:00:00]]></publish_down>
+<images><![CDATA[{"image_intro":"","float_intro":"","image_intro_alt":"","image_intro_caption":"","image_fulltext":"","float_fulltext":"","image_fulltext_alt":"","image_fulltext_caption":""}]]></images>
+<urls><![CDATA[{"urla":false,"urlatext":"","targeta":"","urlb":false,"urlbtext":"","targetb":"","urlc":false,"urlctext":"","targetc":""}]]></urls>
+<attribs><![CDATA[{"show_title":"","link_titles":"","show_tags":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_vote":"","show_hits":"","show_noauth":"","urls_position":"","alternative_readmore":"","article_layout":"","show_publishing_options":"","show_article_options":"","show_urls_images_backend":"","show_urls_images_frontend":""}]]></attribs>
+<version>24</version>
+<ordering>3</ordering>
+<metakey></metakey>
+<metadesc></metadesc>
+<access>1</access>
+<hits>43</hits>
+<metadata><![CDATA[{"robots":"","author":"","rights":"","xreference":""}]]></metadata>
+<language><![CDATA[*]]></language>
+<xreference></xreference>
+<catid><![CDATA[uncategorised]]></catid>
+<created_by><![CDATA[lfaria]]></created_by>
+<modified_by><![CDATA[asantos]]></modified_by>
+<featured>0</featured>
+<rating_sum>0</rating_sum>
+<rating_count>0</rating_count>
+</content><content>
+<id>62</id>
+<title><![CDATA[Analyse and compare costs]]></title>
+<alias><![CDATA[analyse-and-compare-costs]]></alias>
+<introtext><![CDATA[&lt;h1&gt;Analyse and compare costs&lt;/h1&gt;
+&lt;p&gt;The analyses of the submitted cost data is automated and based on mathematical models and restrictions&nbsp;that are further explained in this page.&nbsp;The analyses serve two purposes. The first is to be able to produce diverse results that are interesting to&nbsp;the stakeholders. The second is to understand cost data, to learn how tostructure it and to learn which parameters are needed in order to better understand and compare data as&nbsp;well as build &lt;a href="understand-your-costs/14-cost-concept-model"&gt;cost concept model&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;A word on precision and significant figures&lt;/h3&gt;
+&lt;p&gt;There are a number of factors that affect the potential precision of the figures used in calculations. Due to&nbsp;the nature of the domain and the objectives of the Cost Comparison Tool, the accuracy of the submitted&nbsp;costs (which are mapped into normalised categories) as well as those generated as part of the comparison&nbsp;of costs with other groups and peers must be performed with limited precision and interpreted with&nbsp;caution. The information requested from the users should always be seen through the lens of &lsquo;rough&nbsp;numbers&rsquo;. The objective of the curation cost comparison&nbsp;is to guide users towards strategies that could potentially reduce the&nbsp;cost of their curation through giving a general idea of how they compare with others, and not to serve as a&nbsp;precise tool to evaluate and compare costs. It would perhaps be better to describe the figures as&nbsp;plausible as opposed to precise.&nbsp;Examples of this reduction in precision are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the smallest available units for data volume and date intervals, which go down to Gigabyte and&nbsp;Year and not smaller.&lt;/li&gt;
+&lt;li&gt;lack of support for partial numbers (only positive integers are supported) for data volume, date&nbsp;intervals, and costs&nbsp;&lt;/li&gt;
+&lt;li&gt;the main mapping tool into categories is the slider, which goes into integer steps on a percentage&nbsp;scale&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To avoid misleading precision, the processed information that goes back to the user is rounded to the&nbsp;maximum number of significant figures. As the least precise input data tool is the slider, which is used&nbsp;both on asset types distribution and on cost data mapping into categories, it was calculated that the&nbsp;maximum number of significant figures is 2. Therefore, all mapped costs and asset type data volumes are&nbsp;rounded to 2 figures (e.g. 12345 is rounded to 12000, 0.0012345 is rounded to 0.0012).&lt;/p&gt;
+&lt;h3&gt;Currency conversion and reasons for common currency on output&lt;/h3&gt;
+&lt;p&gt;Costs can be entered using various currencies, as every organisation can select the currency they use on&nbsp;their profile. The costs are entered within a cost data set and cost data sets have defined date intervals.&nbsp;Conversion rates between two currencies change often but we have chosen to use a single rate for each&nbsp;year. In addition, conversion rates are not transitive. In other words, converting from currency A to B is&nbsp;not the same as converting A to C and then C to B. Due to these two issues, and to reduce error and&nbsp;provide coherent results to all users independently of their currency, the output results are always&nbsp;presented in Euros (which is the common currency for output results, selected by the 4C partners).&lt;/p&gt;
+&lt;p&gt;Costs&nbsp;are converted into Euros when they are entered, providing to the users feedback as they are entering the&nbsp;information. The conversion into Euros is made using the average conversion rate for the years that the&nbsp;cost applies. Yearly conversion rates from supported currencies into Euros are defined on an&nbsp;administrative page within the system, and more currencies and conversion rates can be easily added. On&nbsp;the first released version, yearly conversion rates for British pound and US dollar for the last 15 years&nbsp;(from 1998) were added. If costs are added from a date interval for which no yearly rate exists, the rate&nbsp;for the closest year is used. If yearly rates are changed or added after cost data for that year is entered,&nbsp;converted values are re-calculated.&lt;/p&gt;
+&lt;h3&gt;Concept and calculation of relative costs&lt;/h3&gt;
+&lt;p&gt;To make the costs between organisations of different sizes comparable, the concept of relative cost must&nbsp;be introduced. This tries to provide a value that is independent of variables that significantly affect the&nbsp;value, such as data volume and the date interval applied to the cost data set. The currently selected&nbsp;relative cost definition is cost (in Euros) per Gigabyte per Year (&euro;/GB/Y). T his value is calculated by&nbsp;dividing the cost value, converted into Euros, by the data volume in Gigabytes and then by the duration in&nbsp;years for which the cost data set applies.&lt;/p&gt;
+&lt;h3&gt;Calculation of combined cost data sets&lt;/h3&gt;
+&lt;p&gt;In the combined output results sections&mdash;My costs, Group comparison and Peer comparison&mdash;information&nbsp;from several cost data sets can be combined into a single distribution of relative costs of the defined&nbsp;categories. The costs to be combined can be filtered using the options of those areas. Mapped relative&nbsp;costs ( {source}x&lt;span style="font-family: courier new, courier, monospace;"&gt;&amp;amp;#773;&lt;/span&gt;{/source} ) from different cost data sets ( x ) are combined using a weighted arithmetic mean formula&nbsp;(below), where the weight (w) is the data volume.&lt;/p&gt;
+&lt;figure class="pull-center"&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="images/equation.png" alt="Weighted arithmetic mean formula" /&gt;&lt;/figure&gt;
+&lt;p&gt;With this formula, costs from cost data sets with a bigger data volume have more importance on the final&nbsp;combined value.&nbsp;On group comparison, costs from the selected groups are combined with the same formula using all cost&nbsp;data sets from all organisations that fit the selected group profile.&lt;/p&gt;
+&lt;h3&gt;Calculation of peer similarity&lt;/h3&gt;
+&lt;p&gt;The similarity score between peers, shown in the peer comparison area, is calculated by comparing a set&nbsp;of fields from organisation profile and cost data set information, each with a configurable weight that can&nbsp;be changed on the administration pages of the system.&lt;/p&gt;
+&lt;p&gt;The set of fields used and their default weight value are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Organisation type (weight 50)&lt;/li&gt;
+&lt;li&gt;Data volume (weight 40)&lt;/li&gt;
+&lt;li&gt;Main asset type (weight 20)&lt;/li&gt;
+&lt;li&gt;Number of copies (weight 20)&lt;/li&gt;
+&lt;li&gt;Staff size (weight 20)&lt;/li&gt;
+&lt;li&gt;Scope (weight 10)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The weighted arithmetic mean formula is used to calculate and assign &lsquo;similarity&rsquo; into the following levels:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Super similarity (80-100% similarity)&lt;/li&gt;
+&lt;li&gt;Very high similarity (70-80% similarity)&lt;/li&gt;
+&lt;li&gt;High similarity (60-70% similarity)&lt;/li&gt;
+&lt;li&gt;Medium similarity (40-60% similarity)&lt;/li&gt;
+&lt;li&gt;Lower similarity (0-40% similarity)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For the organisation type, the weight of the field is multiplied by the percentage of match between types&nbsp;of the user organisation with the organisation that you are comparing. In this case the score is maximum,&nbsp;(or rather it is equal to the weight of the field) when the organisations have the same types.&nbsp;The score of the data volume, number of copies and staff size fields is calculated in a similar fashion. The&nbsp;weight of the fields is multiplied by the percentage of difference36 between the weighted average of&nbsp;corresponding field in both organisations. Similar weighted averages will result in closest scores to the&nbsp;weight of field.&nbsp;The score of the main asset type and scope fields is calculated in a similar way. The weight of the fields is&nbsp;multiplied by the percentage of match between the set of values of field for each organisation.&nbsp;The percentage of similarity between two organisations is calculated doing the ratio between the&nbsp;calculated score and the maximum score.&lt;/p&gt;]]></introtext>
+<fulltext></fulltext>
+<state>1</state>
+<created><![CDATA[2014-08-07 14:41:18]]></created>
+<created_by_alias></created_by_alias>
+<modified><![CDATA[2014-11-13 15:45:01]]></modified>
+<publish_up><![CDATA[2014-08-07 14:41:18]]></publish_up>
+<publish_down><![CDATA[0000-00-00 00:00:00]]></publish_down>
+<images><![CDATA[{"image_intro":"","float_intro":"","image_intro_alt":"","image_intro_caption":"","image_fulltext":"","float_fulltext":"","image_fulltext_alt":"","image_fulltext_caption":""}]]></images>
+<urls><![CDATA[{"urla":false,"urlatext":"","targeta":"","urlb":false,"urlbtext":"","targetb":"","urlc":false,"urlctext":"","targetc":""}]]></urls>
+<attribs><![CDATA[{"show_title":"","link_titles":"","show_tags":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_vote":"","show_hits":"","show_noauth":"","urls_position":"","alternative_readmore":"","article_layout":"","show_publishing_options":"","show_article_options":"","show_urls_images_backend":"","show_urls_images_frontend":""}]]></attribs>
+<version>17</version>
+<ordering>5</ordering>
+<metakey></metakey>
+<metadesc></metadesc>
+<access>1</access>
+<hits>239</hits>
+<metadata><![CDATA[{"robots":"","author":"","rights":"","xreference":""}]]></metadata>
+<language><![CDATA[*]]></language>
+<xreference></xreference>
+<catid><![CDATA[uncategorised]]></catid>
+<created_by><![CDATA[asantos]]></created_by>
+<modified_by><![CDATA[lfaria]]></modified_by>
+<featured>0</featured>
+<rating_sum>0</rating_sum>
+<rating_count>0</rating_count>
+</content><content>
+<id>60</id>
+<title><![CDATA[Privacy policy]]></title>
+<alias><![CDATA[privacy-policy]]></alias>
+<introtext><![CDATA[&lt;h1 class="MsoNormal"&gt;Curation Costs Exchange&mdash;Terms and Conditions and Privacy Policy&lt;/h1&gt;
+&lt;p class="MsoNormal"&gt;We want you to use our tools.&nbsp; In particular we want you to be comfortable using our tools and to understand clearly the implications of clicking on Register or Save buttons.&nbsp; We want to be fair, transparent and aim to achieve ToS;DR Class A badges&lt;a title="" href="#_ftn1" name="_ftnref1"&gt;&lt;sup&gt;[1]&lt;/sup&gt;&lt;/a&gt; across the board for all our terms and conditions.&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;Broadly speaking these terms and conditions and privacy policy relate to your personal information (things like your name, your email address, and so on), your business information&nbsp;&lt;span style="color: #000000; font-family: calibri, arial, sans, sans-serif; font-size: 14px; line-height: normal; white-space: pre-wrap;"&gt;(including any cost information)&lt;/span&gt;&nbsp;&lt;span style="color: #000000; font-family: calibri, arial, sans, sans-serif; font-size: 14px; line-height: normal; white-space: pre-wrap;"&gt;and your use of this web site&lt;/span&gt;.&lt;/p&gt;
+&lt;h2 class="MsoNormal"&gt;Personal Information&lt;/h2&gt;
+&lt;p class="MsoNormal"&gt;So let&rsquo;s start with the information that relates to you personally.&nbsp; To make best use of our tools you need to register on the site.&nbsp; Many (but not all) of the tools and services require registration before you can access them. Why?&nbsp; Well we need to be able to communicate with you (at the very least when you forget your password and we need to send you reset instructions).&nbsp; We also like to think that you&rsquo;ll want to come back occasionally and update and/or add to information you may have let us use.&nbsp; Registration potentially puts you straight back into your &ldquo;bit&rdquo;.&nbsp; In addition we&rsquo;d like to make sure that those contributing to the site are who they say they are (Spam sucks).&nbsp; Registration helps us do just that.&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;Occasionally we may email you information related to the 4C project and/or the services and tools we provide.&nbsp; It&rsquo;s unlikely that such communications will be more frequent than once a month.&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;If you register with us we will not pass your personal information on to any third party without your express permission.&lt;/p&gt;
+&lt;h2 class="MsoNormal"&gt;Business information&lt;/h2&gt;
+&lt;p class="MsoNormal"&gt;The business information we gather relates to the type, location and mission of your organisation.&nbsp; We also collect and store information relating to the costs you associate with data curation.&nbsp; In an ideal world everyone would be totally open with their costs.&nbsp; However, we recognise that this is not an ideal world and different&nbsp;&lt;span style="color: #000000; font-family: calibri, arial, sans, sans-serif; font-size: 14px; line-height: normal; white-space: pre-wrap;"&gt;organisations may not always be able to share everything&lt;/span&gt;.&nbsp;&nbsp; When you first set-up an organisation to assign costs to we ask you to select the degree of openness you&rsquo;re comfortable with.&nbsp; The levels we have selected&nbsp;are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li class="MsoNormal"&gt;Allow the use of anonymised cost data to calculate averages&lt;a title="" href="#_ftn2" name="_ftnref2"&gt;&lt;sup&gt;[2]&lt;/sup&gt;&lt;/a&gt; in the global comparison result.&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Allow the use of anonymised cost data for peer comparisons.&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Allow registered users to make contact contact through the site&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Allow cost data to be shared with registered users&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Allow snapshots of anonymised cost data to be collected periodically&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class="MsoNormal"&gt;If you enter business data on our system us we not pass that detailed source information on to any third party without your express permission.&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;At the end of the day it&rsquo;s your source data, but the processing and analysis is done by us and belongs to us.&nbsp; We want to clarify the costs of curation and the analysis is part of what will help us to do just that.&lt;/p&gt;
+&lt;h2 class="MsoNormal"&gt;Use of the web site&lt;/h2&gt;
+&lt;p class="MsoNormal"&gt;We&rsquo;re not selling a service; you&rsquo;re not buying a service so &ldquo;service level agreements&rdquo; are a bit of a red herring here.&nbsp; However, we will do our best to keep the site up and running.&nbsp; Inevitably there will be down time, but we&rsquo;ll try and keep you informed should that become necessary.&nbsp; We&rsquo;ll also use our best endeavours to ensure that the site and data used on it remain safe and protected.&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;We&rsquo; re providing a community driven and enabled service.&nbsp; To be truly useful we depend upon you the users to enter accurate information, preferably on a regular&lt;a title="" href="#_ftn3" name="_ftnref3"&gt;&lt;sup&gt;[3]&lt;/sup&gt;&lt;/a&gt; basis.&nbsp; With this in mind we&rsquo;re asking you to spend a little time and care adding your data.&nbsp; The better (and the more comprehensive and accurate) the data in is, the better the results out will be.&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;We don&rsquo;t control the input of data and can&rsquo;t be held liable for the efficacy or accuracy of any results.&nbsp; In other words, to use the information gleaned here as the sole basis for a mission critical business decision would be the height of foolishness.&nbsp; The information we show is but part of the equation and should be treated as such.&nbsp; We can&rsquo;t guarantee its accuracy of fitness for purpose.&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;We&rsquo;re also providing a forum for discussion and the facility to make comments on various pages.&nbsp; We like strong opinions and carefully crafted arguments.&nbsp; We don&rsquo;t like abuse and spam.&nbsp; Respect the opinions of others&mdash;or rather respect their right to express their opinions&mdash;and we&rsquo;ll get along fine.&nbsp; Abuse and spam are likely to lead to loss of privileges (in other words, we&rsquo;ll disable your account).&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;Whilst you&rsquo;re using the site we may use cookies to keep your session alive and personalised to your log-in (and to gather site use analytics).&lt;/p&gt;
+&lt;p class="MsoNormal"&gt;Our cookies help us:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li class="MsoNormal"&gt;Make our website work as you'd expect&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Save you having to login every time you visit the site&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Improve the speed/security of the site&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Allow you to share pages with social networks like Facebook&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class="MsoNormal"&gt;We do not use cookies to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li class="MsoNormal"&gt;Collect any personally identifiable information (without your express permission)&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Collect any sensitive information (without your express permission)&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Pass data to advertising networks&lt;/li&gt;
+&lt;li class="MsoNormal"&gt;Pass personally identifiable data to third parties&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Q&amp;amp;A&lt;/h2&gt;
+&lt;h4 class="MsoNormal"&gt;How do you know someone is who they say they are (for instance, they may be pretending to represent my organisation?)&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;We do check, but our resources are limited so if you do spot something you think is suspicious please let us know.&lt;/p&gt;
+&lt;h4 class="MsoNormal"&gt;What if someone appears to be deliberately abusing the services and tools?&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;We will investigate and take appropriate steps which may even include removing the individual from our systems.&lt;/p&gt;
+&lt;h4 class="MsoNormal"&gt;How do you know the cost information is correct?&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;In short, we don&rsquo;t.&nbsp; We do our best to ensure that appropriate and factual information is entered, but these are community driven tools/services and people make mistakes.&nbsp; If you see something that&rsquo;s looks as if it&rsquo;s not right let us know and we&rsquo;ll look into it.&lt;/p&gt;
+&lt;h4 class="MsoNormal"&gt;You keep referring to &ldquo;We&rdquo; in the terms above.&nbsp; Just who is &ldquo;We&rdquo; in this context?&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;&ldquo;We&rdquo; are the 4C Project. &lt;a href="http://www.4cproject.eu/about-us/partners" target="_blank"&gt; The 4C project is a consortium of 13 partners in 7 different countries&lt;/a&gt;&nbsp;who have come together as part of a European funded project in a Collaboration to Clarify the Costs of Curation (hence 4C).&lt;/p&gt;
+&lt;h4 class="MsoNormal"&gt;What happens if/when the project ends?&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;Your personal information will be archived by a nominated partner or destroyed.&nbsp; Your business information will be retained by a nominated partner in order to allow the web site to outlast the project.&lt;/p&gt;
+&lt;h4 class="MsoNormal"&gt;What happens if/when the project gets taken over by another organisation?&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;Your personal information will only be transferred with your express permission.&nbsp; Should you choose to opt out aggregations of your business information may be retained insofar as it allows the website to continue to function.&nbsp; Data snapshots won&rsquo;t be transferred but may be retained by one more of the original partners for research purposes.&lt;/p&gt;
+&lt;h4 class="MsoNormal"&gt;What happens if a new partner organisation joins the 4C project and I really don&rsquo;t want them to see my business information?&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;Should such a situation arise we&rsquo;ll inform users before the partner joins and will allow you to opt out.&nbsp; We&rsquo;ll keep the aggregations of the business information (that cannot be linked back to your organisation and which will have been incorporated into results sets).&nbsp; We&rsquo;d also like to keep the anonymised detail information, and the data in snapshots but that will only be with your permission.&lt;/p&gt;
+&lt;h4 class="MsoNormal"&gt;What&rsquo;s to stop you from suddenly changing your terms and conditions and privacy policy?&lt;/h4&gt;
+&lt;p class="MsoNormal"&gt;We won&rsquo;t change them without first drawing the potential change to your attention.&nbsp;&lt;/p&gt;
+&lt;div&gt;&lt;hr width="33%" size="1" /&gt;
+&lt;div id="ftn1"&gt;
+&lt;p class="FootnoteParagraph"&gt;&lt;a title="" href="#_ftnref1" name="_ftn1"&gt;&lt;span class="MsoFootnoteReference"&gt;&lt;span style="font-size: 8.0pt; mso-bidi-font-size: 10.0pt; line-height: 115%; font-family: 'Calibri','sans-serif'; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: NL; mso-bidi-language: AR-SA;"&gt;[1]&lt;/span&gt;&lt;/span&gt;&lt;/a&gt; &lt;a href="http://tosdr.org/"&gt;http://tosdr.org/&lt;/a&gt; ToS;DR aims to creating a transparent and peer-reviewed process to rate and analyse Terms of Service and Privacy Policies in order to create a rating from Class A to Class E.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="ftn2"&gt;
+&lt;p class="MsoFootnoteText"&gt;&lt;a title="" href="#_ftnref2" name="_ftn2"&gt;&lt;span class="MsoFootnoteReference"&gt;&lt;span style="font-size: 8.0pt; mso-bidi-font-size: 10.0pt; line-height: 115%; font-family: 'Calibri','sans-serif'; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: NL; mso-bidi-language: AR-SA;"&gt;[2]&lt;/span&gt;&lt;/span&gt;&lt;/a&gt; Averages will always have at least 5 organisations&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="ftn3"&gt;
+&lt;p class="FootnoteParagraph"&gt;&lt;a title="" href="#_ftnref3" name="_ftn3"&gt;&lt;span class="MsoFootnoteReference"&gt;&lt;span style="font-size: 8.0pt; mso-bidi-font-size: 10.0pt; line-height: 115%; font-family: 'Calibri','sans-serif'; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: NL; mso-bidi-language: AR-SA;"&gt;[3]&lt;/span&gt;&lt;/span&gt;&lt;/a&gt; Once a year should do it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;]]></introtext>
+<fulltext></fulltext>
+<state>1</state>
+<created><![CDATA[2014-08-06 15:00:36]]></created>
+<created_by_alias></created_by_alias>
+<modified><![CDATA[2015-01-30 16:10:21]]></modified>
+<publish_up><![CDATA[2014-08-06 15:00:36]]></publish_up>
+<publish_down><![CDATA[0000-00-00 00:00:00]]></publish_down>
+<images><![CDATA[{"image_intro":"","float_intro":"","image_intro_alt":"","image_intro_caption":"","image_fulltext":"","float_fulltext":"","image_fulltext_alt":"","image_fulltext_caption":""}]]></images>
+<urls><![CDATA[{"urla":false,"urlatext":"","targeta":"","urlb":false,"urlbtext":"","targetb":"","urlc":false,"urlctext":"","targetc":""}]]></urls>
+<attribs><![CDATA[{"show_title":"","link_titles":"","show_tags":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_vote":"","show_hits":"","show_noauth":"","urls_position":"","alternative_readmore":"","article_layout":"","show_publishing_options":"","show_article_options":"","show_urls_images_backend":"","show_urls_images_frontend":""}]]></attribs>
+<version>14</version>
+<ordering>6</ordering>
+<metakey></metakey>
+<metadesc></metadesc>
+<access>1</access>
+<hits>537</hits>
+<metadata><![CDATA[{"robots":"","author":"","rights":"","xreference":""}]]></metadata>
+<language><![CDATA[*]]></language>
+<xreference></xreference>
+<catid><![CDATA[uncategorised]]></catid>
+<created_by><![CDATA[asantos]]></created_by>
+<modified_by><![CDATA[asantos]]></modified_by>
+<featured>0</featured>
+<rating_sum>0</rating_sum>
+<rating_count>0</rating_count>
+</content><content>
+<id>11</id>
+<title><![CDATA[What do we mean by curation?]]></title>
+<alias><![CDATA[what-do-we-mean-by-curation]]></alias>
+<introtext><![CDATA[&lt;h1&gt;What do we mean by curation?&lt;/h1&gt;
+&lt;p&gt;Digital curation is a series of repository activities including ingest, data management, (archival) storage, preservation planning, access, common services, repository administration, as well as pre-repository (production and pre-ingest - appraisal, selection, preparation, rights), post-repository and management activities.&lt;/p&gt;
+&lt;p&gt;The costs of digital curation are just one aspect of a complex and evolving practice. The CCEx assumes the widest possible definition of digital curation from the point a digital object is conceived through various changes and storages systems, which may range from a researcher&rsquo;s laptop to a national library or archive, through to its discovery and use.&lt;/p&gt;]]></introtext>
+<fulltext></fulltext>
+<state>1</state>
+<created><![CDATA[2014-07-07 11:07:58]]></created>
+<created_by_alias></created_by_alias>
+<modified><![CDATA[2014-10-03 10:27:25]]></modified>
+<publish_up><![CDATA[2014-07-07 11:07:58]]></publish_up>
+<publish_down><![CDATA[0000-00-00 00:00:00]]></publish_down>
+<images><![CDATA[{"image_intro":"","float_intro":"","image_intro_alt":"","image_intro_caption":"","image_fulltext":"","float_fulltext":"","image_fulltext_alt":"","image_fulltext_caption":""}]]></images>
+<urls><![CDATA[{"urla":false,"urlatext":"","targeta":"","urlb":false,"urlbtext":"","targetb":"","urlc":false,"urlctext":"","targetc":""}]]></urls>
+<attribs><![CDATA[{"show_title":"","link_titles":"","show_tags":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_vote":"","show_hits":"","show_noauth":"","urls_position":"","alternative_readmore":"","article_layout":"","show_publishing_options":"","show_article_options":"","show_urls_images_backend":"","show_urls_images_frontend":""}]]></attribs>
+<version>5</version>
+<ordering>1</ordering>
+<metakey></metakey>
+<metadesc></metadesc>
+<access>1</access>
+<hits>319</hits>
+<metadata><![CDATA[{"robots":"","author":"","rights":"","xreference":""}]]></metadata>
+<language><![CDATA[*]]></language>
+<xreference></xreference>
+<catid><![CDATA[get-started]]></catid>
+<created_by><![CDATA[SMIDDLETON]]></created_by>
+<modified_by><![CDATA[asantos]]></modified_by>
+<featured>0</featured>
+<rating_sum>0</rating_sum>
+<rating_count>0</rating_count>
+</content><content>
+<id>1</id>
+<title><![CDATA[Home]]></title>
+<alias><![CDATA[home]]></alias>
+<introtext><![CDATA[&lt;p style="line-height: 15.8079996109009px;"&gt;{source}&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;h1 class="text-center"&amp;gt;All about the costs of curation&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;p class="lead small" style="margin-top: 10px"&amp;gt;&lt;span style="color: #000000; font-family: calibri, arial, sans, sans-serif; font-size: 14px; line-height: normal; white-space: pre-wrap;"&gt;What am I spending, what are they spending, what should we be spending?&lt;/span&gt;&amp;lt;/p&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="row"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="text-right" onclick="location.href='&amp;lt;?php echo JRoute::_('/understand-your-costs'); ?&amp;gt;';" style="cursor: pointer;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="row"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="col-xs-7"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="caption"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h2&amp;gt;Understand costs&amp;lt;/h2&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;p&amp;gt;&lt;span style="color: #000000; font-family: calibri, arial, sans, sans-serif; font-size: 14px; line-height: normal; white-space: pre-wrap;"&gt;Assessing your costs and using cost models to make smart investments&lt;/span&gt;&amp;lt;/p&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="col-xs-5" style="text-align: center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;img class="icon icon-large&lt;span style="line-height: 15.8079996109009px;"&gt;&nbsp;&lt;/span&gt;&lt;span style="line-height: 15.8079996109009px;"&gt;img-responsive&lt;/span&gt;&lt;span style="line-height: 1.3em;"&gt;" src="/templates/ccextemplate/images/icons/peppyicons/1405038748_Blackboard_256.png" width="256"/&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="text-left" onclick="location.href='&amp;lt;?php echo JRoute::_('/compare-costs'); ?&amp;gt;';" style="cursor: pointer;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="row"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="col-xs-5" style="text-align: center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;img style="float:right" class="icon icon-large img-responsive" src="/templates/ccextemplate/images/icons/peppyicons/1405039002_chart_2_256.png" width="256"/&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="col-xs-7"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div class="caption"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h2&amp;gt;Compare costs&amp;lt;/h2&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;p&amp;gt;Add your curation costs and see how they compare with others&amp;lt;/p&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div id="carousel-testimonies" class="carousel slide" data-ride="carousel" style="margin: 40px 0"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;!-- Indicators --&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;ol class="carousel-indicators"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="0" class="active"&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="1" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="2" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="3" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="4" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="5" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="6" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="7" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;li data-target="#carousel-testimonies" data-slide-to="8" class=""&amp;gt;&amp;lt;/li&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/ol&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;!-- Wrapper for slides --&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="carousel-inner"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item active"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.dpconline.org" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/william_killbride.jpg') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;William Kilbride&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;Digital Preservation Coalition&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.dpconline.org" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/DPCLogo.png') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;The project team has worked hard to ensure the Curation Costs Exchange can help agencies understand the costs and benefits of digital preservation. By sharing our experiences we create opportunities for greater efficiencies and improved practice.&amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.langzeitarchivierung.de/Subsites/nestor/" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/armin_straube.jpg') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Armin Straube&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;nestor - the German network for digital preservation&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.langzeitarchivierung.de/Subsites/nestor/" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/nestor.gif') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;CCex is an important tool for a best-practice network like nestor. It helps the digital preservation community to become more cost-efficient and professional and integrates well with our overall efforts. &amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.jisc.ac.uk" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/neil_grindley.png') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Neil Grindley&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;Jisc, United Kingdom&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.jisc.ac.uk" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/jisc-logo-206.png') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;Trying to compare the costs of digital curation has historically been really hard because it is difficult to get a cost model to comfortably fit more than one organisation. The CCEx is designed to break this deadlock and get the community sharing and comparing. &amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.nwo.nl" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/ron_dekker2.jpg') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Ron Dekker&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;NWO - Netherlands Organisation for Scientific Research&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.nwo.nl" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/nwo_logo.png') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;The CCEx is the platform to help funders realise the benefit of their investments. By being transparent about their costs and plugging them into this platform, projects can demonstrate that the taxpayer is getting value for money. &amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="https://www.sba-research.org" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/stephan_strodl.jpg') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Stephan Strodl&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;Secure Business Austria Research&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.tuwien.ac.at" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/sba_logo.png') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;The CCex helps to capture the efforts of curation activities in a structured way. &amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.keep.pt" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/KEEPS-LMFerros.jpg') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Lu&iacute;s Miguel Ferros&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;KEEP SOLUTIONS&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.keep.pt" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/KEEPS-Logo.png') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;The CCEx is a great tool to develop an investment plan for the implementation of curation activities at your institution.&amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.dans.knaw.nl/en" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/DANS-PeterDoorn.png') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Peter Doorn&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;Data Archiving and Networked Services&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.dans.knaw.nl/en" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/DANS-logo.png') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;DANS has been interested in the issues of the costs and benefits of long-term data access from its very beginning. The CCEx cost model is a great leap forward, making costs comparable across countries and organisations. The limited number of staff roles and OAIS-based activities makes the tool more straightforward than what we had before. We started using the CCEx tool and will continue to do so, also because it gives another view on how we are performing, and showing us where we can become more efficient.&amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.dnb.de/" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/DNB-ReinhardAltenhoener.jpg') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Reinhard Altenh&ouml;ner&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;Deutsche Nationalbibliothek&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.dnb.de/" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/DNB-Logo.gif') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;The CCEx helps institutions in two respects: On the one hand it supports comparing different approaches and implementations of digital preservation, helps evaluating performances and provides quality assurance. On the other hand it emphasises to our funding bodies the cost-efficient, systematical and collaborative way the cultural domain deals with digital preservation; this creates trust in our activities.&amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="item"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="container"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.jisc.ac.uk" class="thumbnail"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 200px; background: url('/templates/ccextemplate/images/testimonies/JISC-RachelBruce.jpg') no-repeat; background-size: cover; background-position: center center;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-7 col-xs-6"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;h1&amp;gt;Rachel Bruce&amp;lt;br/&amp;gt;&amp;lt;small style="display:inline-block"&amp;gt;Jisc, United Kingdom&amp;lt;/small&amp;gt;&amp;lt;/h1&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-2 hidden-sm hidden-xs col-md-offset-1 text-center"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;a href="http://www.jisc.ac.uk" class=""&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;div style="width: 100%; height: 100px; background: url('/templates/ccextemplate/images/testimonies/jisc-logo-206.png') no-repeat; background-size: contain; background-position: center center;"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;div class="col-md-10 col-xs-12"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &nbsp; &nbsp; &amp;lt;i class="fa fa-quote-left" style="color: #ddd; font-size: 150%;"&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;span style="font-style: italic;"&amp;gt;The CCEx is an innovative idea that helps to solve the problem faced by universities and research data managers of how to estimate and allocate the resources required to fulfil their business and research excellence obligations.&amp;lt;/span&amp;gt; &amp;lt;i class="fa fa-quote-right" style="color: #ddd; font-size: 150%; position: absolute; margin: 5px 0 0 3px;"&amp;gt;&amp;lt;/i&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp; &nbsp; &amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;a class="left carousel-control" href="#carousel-testimonies" role="button" data-slide="prev"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;span class="glyphicon glyphicon-chevron-left"&amp;gt;&amp;lt;/span&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;a class="right carousel-control" href="#carousel-testimonies" role="button" data-slide="next"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;span class="glyphicon glyphicon-chevron-right"&amp;gt;&amp;lt;/span&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;!-- Controls --&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&nbsp;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;div class="hidden-sm hidden-md hidden-lg col-sm-12" style="height:100px"&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p style="line-height: 15.8079996109009px;"&gt;{/source}&lt;/p&gt;]]></introtext>
+<fulltext></fulltext>
+<state>1</state>
+<created><![CDATA[2014-05-23 16:16:03]]></created>
+<created_by_alias></created_by_alias>
+<modified><![CDATA[2015-01-30 16:06:45]]></modified>
+<publish_up><![CDATA[2014-05-23 16:16:03]]></publish_up>
+<publish_down><![CDATA[0000-00-00 00:00:00]]></publish_down>
+<images><![CDATA[{"image_intro":"","float_intro":"","image_intro_alt":"","image_intro_caption":"","image_fulltext":"","float_fulltext":"","image_fulltext_alt":"","image_fulltext_caption":""}]]></images>
+<urls><![CDATA[{"urla":false,"urlatext":"","targeta":"","urlb":false,"urlbtext":"","targetb":"","urlc":false,"urlctext":"","targetc":""}]]></urls>
+<attribs><![CDATA[{"show_title":"","link_titles":"","show_tags":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_vote":"","show_hits":"","show_noauth":"","urls_position":"","alternative_readmore":"","article_layout":"","show_publishing_options":"","show_article_options":"","show_urls_images_backend":"","show_urls_images_frontend":""}]]></attribs>
+<version>123</version>
+<ordering>9</ordering>
+<metakey><![CDATA[4C, 4C project, Archiving, Business Case, Collaboration, Compare, Comparison, Cost data, Cost model, Cost modelling, Cost model tools, Curation cost, Curation Costs Exchange, Data, Research Data Management, Digital, Digital assets, Digital curation, Digital curation activities, Digital curation costs, Digital preservation, Economic determinants, ESRM, Economic Sustainability Reference Model, Investment, Long-term preservation, OAIS-model, Pre-ingest, Preservation action, Reference model, Resources, Sustainability, Trustworthiness]]></metakey>
+<metadesc></metadesc>
+<access>1</access>
+<hits>9246</hits>
+<metadata><![CDATA[{"robots":"","author":"","rights":"","xreference":""}]]></metadata>
+<language><![CDATA[*]]></language>
+<xreference></xreference>
+<catid><![CDATA[uncategorised]]></catid>
+<created_by><![CDATA[asantos]]></created_by>
+<modified_by><![CDATA[asantos]]></modified_by>
+<featured>0</featured>
+<rating_sum>0</rating_sum>
+<rating_count>0</rating_count>
+</content><category>
+<id>2</id>
+<path><![CDATA[uncategorised]]></path>
+<extension><![CDATA[com_content]]></extension>
+<title><![CDATA[Uncategorised]]></title>
+<alias><![CDATA[uncategorised]]></alias>
+<note></note>
+<description></description>
+<published>1</published>
+<access>1</access>
+<params><![CDATA[{"category_layout":"","image":""}]]></params>
+<metadesc></metadesc>
+<metakey></metakey>
+<metadata><![CDATA[{"author":"","robots":""}]]></metadata>
+<created_time><![CDATA[2011-01-01 00:00:01]]></created_time>
+<modified_time><![CDATA[0000-00-00 00:00:00]]></modified_time>
+<hits>0</hits>
+<language><![CDATA[*]]></language>
+<version>1</version>
+</category><category>
+<id>11</id>
+<path><![CDATA[get-started]]></path>
+<extension><![CDATA[com_content]]></extension>
+<title><![CDATA[Get Started]]></title>
+<alias><![CDATA[get-started]]></alias>
+<note></note>
+<description></description>
+<published>1</published>
+<access>1</access>
+<params><![CDATA[{"category_layout":"","image":""}]]></params>
+<metadesc></metadesc>
+<metakey></metakey>
+<metadata><![CDATA[{"author":"","robots":""}]]></metadata>
+<created_time><![CDATA[2014-07-07 11:06:18]]></created_time>
+<modified_time><![CDATA[0000-00-00 00:00:00]]></modified_time>
+<hits>0</hits>
+<language><![CDATA[*]]></language>
+<version>1</version>
+<created_user_id><![CDATA[SMIDDLETON]]></created_user_id>
+</category><user>
+<id>142</id>
+<name><![CDATA[Andr&eacute; Santos]]></name>
+<username><![CDATA[asantos]]></username>
+<email><![CDATA[asantos@keep.pt]]></email>
+<password><![CDATA[$2y$10$r2qGucDNrDn5y26O8HaPLORCRhbwSf/yoqVQGDNWUtDR.jda4MkXi]]></password>
+<block>0</block>
+<sendEmail>1</sendEmail>
+<registerDate><![CDATA[2014-05-23 15:52:58]]></registerDate>
+<lastvisitDate><![CDATA[2015-01-30 15:22:45]]></lastvisitDate>
+<activation>0</activation>
+<params><![CDATA[{"admin_style":"","admin_language":"","language":"","editor":"","helpsite":"","timezone":""}]]></params>
+<lastResetTime><![CDATA[0000-00-00 00:00:00]]></lastResetTime>
+<resetCount>0</resetCount>
+<otpKey></otpKey>
+<otep></otep>
+<requireReset>0</requireReset>
+<grouplist>
+<group><![CDATA[["Public","Registered"]]]></group>
+<group><![CDATA[["Public","Super Users"]]]></group>
+<group><![CDATA[["Public","Manager","Administrator"]]]></group>
+</grouplist>
+</user><user>
+<id>143</id>
+<name><![CDATA[Luis Faria]]></name>
+<username><![CDATA[lfaria]]></username>
+<email><![CDATA[lfaria@keep.pt]]></email>
+<password><![CDATA[$2y$10$W/V5THn5ss.ESRTFk6Jvq.FvyMSQNNZb6B1LjGIUrFSyUxcBcPQ3a]]></password>
+<block>0</block>
+<sendEmail>0</sendEmail>
+<registerDate><![CDATA[2014-05-23 17:14:10]]></registerDate>
+<lastvisitDate><![CDATA[2015-01-30 16:19:16]]></lastvisitDate>
+<activation></activation>
+<params><![CDATA[{"admin_style":"","admin_language":"","language":"","editor":"","helpsite":"","timezone":""}]]></params>
+<lastResetTime><![CDATA[0000-00-00 00:00:00]]></lastResetTime>
+<resetCount>0</resetCount>
+<otpKey></otpKey>
+<otep></otep>
+<requireReset>0</requireReset>
+<grouplist>
+<group><![CDATA[["Public","Registered"]]]></group>
+<group><![CDATA[["Public","Super Users"]]]></group>
+<group><![CDATA[["Public","Manager","Administrator"]]]></group>
+</grouplist>
+</user><user>
+<id>153</id>
+<name><![CDATA[Sarah Middleton]]></name>
+<username><![CDATA[SMIDDLETON]]></username>
+<email><![CDATA[sarah@dpconline.org]]></email>
+<password><![CDATA[$2y$10$M3iEDMUUk5WR3X82rv92v.9Ro9.4S3YgvRnYKQZ1K7CyuXjuf4mKy]]></password>
+<block>0</block>
+<sendEmail>0</sendEmail>
+<registerDate><![CDATA[2014-07-07 08:35:34]]></registerDate>
+<lastvisitDate><![CDATA[2015-01-30 13:52:51]]></lastvisitDate>
+<activation></activation>
+<params><![CDATA[{"admin_style":"","admin_language":"","language":"","editor":"","helpsite":"","timezone":""}]]></params>
+<lastResetTime><![CDATA[0000-00-00 00:00:00]]></lastResetTime>
+<resetCount>0</resetCount>
+<otpKey></otpKey>
+<otep></otep>
+<requireReset>0</requireReset>
+<grouplist>
+<group><![CDATA[["Public","Registered"]]]></group>
+<group><![CDATA[["Public","Super Users"]]]></group>
+<group><![CDATA[["Public","Registered","Author"]]]></group>
+<group><![CDATA[["Public","Registered","Author","Editor"]]]></group>
+<group><![CDATA[["Public","Registered","Author","Editor","Publisher"]]]></group>
+<group><![CDATA[["Public","Manager","Administrator"]]]></group>
+</grouplist>
+</user>		<img src="images/equation.png">			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		</img>
+</j2xml>
