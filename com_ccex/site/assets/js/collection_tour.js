@@ -72,7 +72,7 @@ function newCollTour(){
         element: ".tour-step.tour-step-coll-unformatted-text-value",
         placement: "bottom",
         title: "Map manually",
-        content: "Alternatively, you can click and enter the exact value for each asset type. The total cannot exceed the data volume on top of the page.<br><br><img src='/templates/ccextemplate/images/screenshots/help_tour_assets_type_enter_manually.png'/>"
+        content: "Alternatively, you can click and enter the exact value for each asset type. The total cannot exceed the data volume on top of the page.<br><br><img style='width:100%' src='/templates/ccextemplate/images/screenshots/help_tour_assets_type_enter_manually.png'/>"
       },
       {
         element: ".tour-step.tour-step-coll-cost-units",
@@ -164,13 +164,13 @@ function editCollTour(){
         element: ".tour-step.tour-step-coll-name-description",
         placement: "bottom",
         title: "Name and description",
-        content: "Please enter a name for the cost data set. Optionally you can share/provide additional informations about your cost data set."
+        content: "Please enter a name for the cost data set. Optionally you can provide additional informations about your cost data set."
       },
       {
         element: ".tour-step.tour-step-coll-interval",
         placement: "bottom",
         title: "Year span",
-        content: "Here you will see the year and the duration that you enter on the tab. When e.g. the amount of staff changes after this year span, you can add another span by clicking the + sign."
+        content: "Here you will see the year and the duration that you enter on the tab. When e.g. the amount of staff changes after this year span, you can add another span by clicking the <i class='fa fa-plus small'></i> icon."
       },   
       {
         element: ".tour-step.tour-step-coll-year",
@@ -182,13 +182,13 @@ function editCollTour(){
         element: ".tour-step.tour-step-coll-staff",
         placement: "bottom",
         title: "Curation staff",
-        content: "How many staff is involved? Please normalise this to Full Time Equivalents (FTE)."
+        content: "How many staff is involved? Please normalise this to Full Time Equivalents (FTE). You can define decimals, e.g. 0.75 FTE."
       },      
       {
         element: ".tour-step.tour-step-coll-data-volume",
         placement: "bottom",
         title: "Data volume",
-        content: "The tool calculates the costs per Gigabyte of stored data. For this you have to indicate the data volume in GB, TB or PB."
+        content: "The tool calculates the costs per Gigabyte of stored data. For this you have to indicate the data volume in GB, TB or PB. You can define decimals, e.g. 0.75 GB."
       },      
       {
         element: ".tour-step.tour-step-coll-number-of-copies",
@@ -200,7 +200,7 @@ function editCollTour(){
         element: ".tour-step.tour-step-coll-unformatted-text-info",
         placement: "bottom",
         title: "Asset information",
-        content: "Select here the type(s) of digital objects and indicate their proportion in the scope. Use the 'i' icons for more detailed information."
+        content: "Select here the type(s) of digital objects and indicate their proportion in the scope. Click the <i class='fa fa-info-circle small'></i> for more detailed information."
       },
       {
         element: ".tour-step.tour-step-coll-unformatted-text-slider",
@@ -212,7 +212,7 @@ function editCollTour(){
         element: ".tour-step.tour-step-coll-unformatted-text-value",
         placement: "bottom",
         title: "Map manually",
-        content: "Alternatively, you can click and enter the exact value for each asset type. The total cannot exceed the data volume on top of the page."
+        content: "Alternatively, you can click and enter the exact value for each asset type. The total cannot exceed the data volume on top of the page.<br><br><img style='width:100%' src='/templates/ccextemplate/images/screenshots/help_tour_assets_type_enter_manually.png'/>"
       },
       {
         element: ".tour-step.tour-step-coll-cost-units",
@@ -236,7 +236,7 @@ function editCollTour(){
         element: ".tour-step.tour-step-coll-save",
         placement: "top",
         title: "Save cost data set",
-        content: "When you want to add another cost unit within the current scope, click the right-hand button. 'Save and close' takes you to the overview of your cost data sets."
+        content: "When you want to add another cost unit within the current scope, click the 'Save and add new cost unit' button. 'Save and close' takes you to the overview of your cost data sets."
       }
     ]);
     tour.init();

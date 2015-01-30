@@ -15,12 +15,6 @@ function selfTour(){
 
     tour.addSteps([
       {
-        element: ".tour-step.tour-step-self-tabs",
-        placement: "bottom",
-        title: "Analyse and compare costs",
-        content: "The tab 'My costs' gives a visual summary of your cost data. The other tabs compare your costs with the average costs in the tool ('Global') and with a single organisation ('Peer')."
-      },
-      {
         element: ".tour-step.tour-step-self-select-set",
         placement: "bottom",
         title: "Select cost data sets",

@@ -29,7 +29,8 @@
                     style: {
                         fontFamily: 'Roboto',
                         fontWeight: 300,
-                        fontSize: '14px'
+                        fontSize: '14px',
+                        color: '#555555'
                     },
                     events: {
 
@@ -196,7 +197,8 @@
                         position: 'absolute',
                         fontFamily: 'Roboto',
                         fontWeight: 300,
-                        fontSize: '14px'
+                        fontSize: '14px',
+                        color: '#555555'
                     },
                     type: 'column'
                 },
@@ -207,12 +209,24 @@
                     text: null
                 },
                 xAxis: {
-                    categories: <?php echo $this->categories; ?>
+                    categories: <?php echo $this->categories; ?>,
+                    labels: {
+                        style: {
+                            fontWeight: 300,
+                            fontSize: '13px',
+                            color: '#555555'
+                        }           
+                    }
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Relative cost (' + <?php echo "'" . $this->currency->symbol . "'"; ?>  + '/GB·Y)'
+                        text: 'Relative cost (' + <?php echo "'" . $this->currency->symbol . "'"; ?>  + '/GB·Y)',
+                        style: {
+                            fontWeight: 400,
+                            fontSize: '14px',
+                            color: '#555555'
+                        }
                     },
                     stackLabels: {
                         enabled: true,
@@ -249,8 +263,9 @@
                     symbolHeight: 15,
                     symbolRadius: 10,
                     itemStyle: {
-                        fontWeight: 300,
-                        fontSize: '10px'
+                        fontWeight: 400,
+                        fontSize: '10px',
+                        color: '#555555'
                     }
                 },
                 plotOptions: {

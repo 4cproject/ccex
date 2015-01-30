@@ -42,9 +42,6 @@
 
 <h1>
     Analyse and compare costs
-    <span class="pull-right">
-        <a onclick="analyseGlobalTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
-    </span>
 </h1>
 <p>See the summary of your submitted costs and compare them with other organisations'. <?php if($this->organization){ ?> Please remember that others can only compare their costs with yours if your cost data sets are marked “Final”. <?php } ?></p> 
 
@@ -55,7 +52,16 @@
   <li><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison</a></li>
 </ul>
 <div class="comparison-tab-container">
-  <p>The global comparison enables you to see how your costs compare to the average of all other organisations who have submitted cost data sets to the CCEx.</p>
+  <div class="row">
+    <div class="col-md-10">
+      <p>The global comparison enables you to see how your costs compare to the average of all other organisations who have submitted cost data sets to the CCEx.</p>
+    </div>
+    <div class="col-md-2">
+      <span class="pull-right">
+          <a onclick="analyseGlobalTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+      </span>
+    </div>
+  </div>
 
   <div class="row">
     <form id="globalComparisonForm" class="form-inline">

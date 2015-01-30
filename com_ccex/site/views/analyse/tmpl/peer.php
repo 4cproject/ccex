@@ -50,9 +50,6 @@
 
 <h1>
     Analyse and compare costs
-    <span class="pull-right">
-        <a onclick="analysePeerTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
-    </span>
 </h1>
 <p>See the summary of your submitted costs and compare them with other organisations'. <?php if($this->organization){ ?> Please remember that others can only compare their costs with yours if your cost data sets are marked “Final”. <?php } ?></p> 
 
@@ -63,7 +60,16 @@
   <li class="active"><a href="<?php echo JRoute::_('index.php?view=analyse&layout=peer') ?>">Peer comparison</a></li>
 </ul>
 <div class="comparison-tab-container">
-  <p>The peer comparison enables you to see how your costs compare to cost data sets from organisations similar to yours. Use this comparison to pin-point challenges and get in contact with organisations that can help you learn from their experiences.</p>
+  <div class="row">
+    <div class="col-md-10">
+      <p>The peer comparison enables you to see how your costs compare to cost data sets from organisations similar to yours. Use this comparison to pin-point challenges and get in contact with organisations that can help you learn from their experiences.</p>
+    </div>
+    <div class="col-md-2">
+      <span class="pull-right">
+          <a onclick="analysePeerTour.restart()" class="btn btn-default btn-help tour-step tour-step-help"><i class="fa fa-life-ring"></i> Show help</a>
+      </span>
+    </div>
+  </div>
 
   <?php if($this->currentPeer){ ?>
     <div class="row">
@@ -255,7 +261,7 @@
           <a class="btn btn-success btn-block btn-border" href="<?php echo JRoute::_('index.php?view=analyse&layout=global') ?>"><i class="fa fa-fw fa-angle-left"></i> Global comparison</span></a>
       </div>
       <div class="col-sm-3 col-sm-offset-6 tour-step tour-step-peer-go-understand">
-          <a class="btn btn-success btn-block btn-border" href="/make-the-case">Understand Costs</span></a>
+          <a class="btn btn-success btn-block btn-border" href="/understand-your-costs">Understand Costs</span></a>
       </div>
     </div>
 

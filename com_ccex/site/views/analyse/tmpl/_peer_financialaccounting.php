@@ -17,7 +17,8 @@
         style: {
           fontFamily: 'Roboto',
           fontWeight: 300,
-          fontSize: '14px'
+          fontSize: '14px',
+          color: '#555555'
         }
       },
       credits: {
@@ -38,12 +39,24 @@
         'Manager',
         'Overhead',
         'Other',
-        ]
+        ],
+        labels: {
+          style: {
+            fontWeight: 300,
+            fontSize: '13px',
+            color: '#555555'
+          }           
+        }
       },
       yAxis: {
         min: 0,
         title: {
-          text: 'Relative cost (€/GB·Y)'
+          text: 'Relative cost (€/GB·Y)',
+          style: {
+            fontWeight: 400,
+            fontSize: '14px',
+            color: '#555555'
+          }
         },
       },
       plotOptions: {
@@ -83,7 +96,9 @@
       symbolHeight: 15,
       symbolRadius: 10,
       itemStyle: {
-          fontWeight: 300
+        fontWeight: 400,
+        fontSize: '14px',
+        color: '#555555'
       }
     },
     series: <?php echo $this->series; ?>
