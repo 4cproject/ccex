@@ -9,14 +9,17 @@ You can install your own version of the www.curationexchange.org and allow your 
 
 ## How to install and use
 
-The CCEx tool is implemented by a template (**ccex_template**) and a component (**com_ccex**), both with a simple and straight forward installation, very similar with other Joomla 3rd party components.
+The CCEx tool is implemented by a template (**ccex_template**), a component (**com_ccex**) and static pages, all with a simple and straight forward installation, very similar with other Joomla 3rd party components.
 
 ### Requirements
 
 For the correct operation of the CCEx tool, is recommended the following environment.
+
 * **Joomla! 3.3**: version 3.3.1 or greater (>= 3.3.6 recommended)
 * **PHP 5**: version 5.3.1 or greater (>= 5.3.1 recommended)
 * **MySQL 5**: version 5.1 or greater (>= 5.5.4 recommended)
+* **J2XML 3**: version 3.1.1 or greater (>= 3.1.1 recommended)
+* **Forever Sessions 2**: version 2.0.1 or greater (>= 2.0.1 recommended) 
 
 *Please note that, although the CCEx can work with different version, it was only tested in the versions recommended above.*
 
@@ -29,7 +32,7 @@ Download the latest version:
 | v1.0.1  | 7.3 MB<br>0.2 MB | <sub>e6b10d8c2893533e6173633519fc618069bbd263</sub><br><sub>ffc89ae3ffcb74eedaf9ef1ba6bdec13699f91a6</sub> |[ccex_template.zip](https://github.com/4cproject/ccex/releases/download/v1.0.1/ccex_template.zip)<br>[com_ccex.zip](https://github.com/4cproject/ccex/releases/download/v1.0.1/com_ccex.zip)|
 
 ### Install instructions
-Installing comprises two steps: installing the CCEx template and installing the CCEx component.
+Installing comprises tree steps: installing the CCEx template, installing the CCEx component and load the static pages.
 
 Installing the CCEx template **ccex_template.zip**:
 
@@ -48,6 +51,16 @@ Installing the CCEx component  **com_ccex.zip**:
 3. **Add "Administration" menu:** On `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Administration" and select the *Menu Item Type* as `Curation Cost Exchange > Administration`. Set Access to "Super Users" and click Save.
 
 4. **Add profile menu:** On `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Profile" and select the *Menu Item Type* as `Curation Cost Exchange > Profile`. Click Save.
+
+Load static pages:
+
+1. **Import static pages** Go to `Components > J2XML > Control Panel`, choose the `static_pages/j2xml1250020150130165134.xml` file and click `import`.
+
+2. **Add home page** On  `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Home", select the *Menu Item Type* as `Articles > Single Article` and select the article `Home`. Click Save & Close to save and be redirected to *Menu Items*', move the *Home's Menu Item* to top and click on the :star: star icon next to it to set it as default home page.
+
+3. **Add about menu** On  `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "About", select the *Menu Item Type* as `Articles > Single Article` and select the article `About` and save.
+
+4. **Add help menu** On  `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Help", select the *Menu Item Type* as `Articles > Single Article` and select the article `Help` and save.
 
 ### Use
 After installation the Cost Comparison Tool will be available under the menu item you have selected. If you are not signed in and click on the menu item you will be presented with a video and a step-by-step tutorial similar to the one available at the [official site](http://www.curationexchange.org/compare-costs?view=comparecosts&layout=tour). Signing-in you will be taken into a workflow to define your organisation, define your costs and compare them with the other organisations available on your instance.
