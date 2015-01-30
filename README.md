@@ -18,7 +18,7 @@ For the correct operation of the CCEx tool, is recommended the following environ
 * **PHP 5**: version 5.3.1 or greater (>= 5.3.1 recommended)
 * **MySQL 5**: version 5.1 or greater (>= 5.5.4 recommended)
 
-*Please note that, although the CCEx can work with different version, it was only tested in the versions recommended above.* 
+*Please note that, although the CCEx can work with different version, it was only tested in the versions recommended above.*
 
 ### Download
 
@@ -35,19 +35,19 @@ Installing the CCEx template **ccex_template.zip**:
 
  1. **Install template:** Login to the administrative area of your Joomla website and upload the template through `Extensions > Extension Manager > Upload Package File`.
 
- 2. **Verify installation:** Go to `Extension Manager > Manage` and search for "CCEx Template". If the template appears on the list then it is properly installed. 
+ 2. **Verify installation:** Go to `Extension Manager > Manage` and search for "CCEx Template". If the template appears on the list then it is properly installed.
 
  3. **Change default Joomla template:** Now you need to make it default for your website so your pages get the new design. Go to `Extensions > Template Manager` and locate the "CCExTemplate". Click on the :star: star icon next to it.  
 
 Installing the CCEx component  **com_ccex.zip**:
 
- 1. **Install component:** Login to the administrative area of your Joomla website and upload the component through `Extensions > Extension Manager > Upload Package File`.
+1. **Install component:** Login to the administrative area of your Joomla website and upload the component through `Extensions > Extension Manager > Upload Package File`.
 
-2. **Create a new menu item for CCEx Tool**  After installation of the component, click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. On  New Menu Item's Page you need to fill in the `Menu Title`, and select the Menu Item Type: `Curation Cost Exchange > Compare Costs`. After selecting your Menu Item Type, click `Save & Close` to save and be redirected to Menu Items' page where you can reorder all the menu items.
+2. **Add "Curation costs" to menu:**  Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. Set *Menu Title* as "Curation costs" and select the *Menu Item Type* as `Curation Cost Exchange > Compare Costs`. Click `Save & Close` to save and be redirected to *Menu Items*' page where you can reorder all the menu items.
 
-3. ***Create a new menu item for Administration*** Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. On  New Menu Item's Page you need to fill in the `Menu Title`, and select the Menu Item Type: `Curation Cost Exchange > Administration`. After selecting your Menu Item Type, set Access to `Super Users` and click `Save`.
+3. **Add "Administration" menu:** Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. Set *Menu Title* as "Administration" and select the *Menu Item Type* as `Curation Cost Exchange > Administration`. Set Access to `Super Users` and click `Save`.
 
-4. ***Create a new menu item for Profile*** Click on  `Menus > Main Menu > Add New Menu Item` in the administration menu on top. On  New Menu Item's Page you need to fill in the `Menu Title`, and select the Menu Item Type: `Curation Cost Exchange > Profile`. After selecting your Menu Item Type click `Save`.
+4. **Add profile menu:** Click on `Menus > Main Menu > Add New Menu Item` in the administration menu on top. Set *Menu Title* as "Profile" and select the *Menu Item Type* as `Curation Cost Exchange > Profile`. Click `Save`.
 
 ### Use
 After installation the Cost Comparison Tool will be available under the menu item you have selected. If you are not signed in and click on the menu item you will be presented with a video and a step-by-step tutorial similar to the one available at the [official site](http://www.curationexchange.org/compare-costs?view=comparecosts&layout=tour). Signing-in you will be taken into a workflow to define your organisation, define your costs and compare them with the other organisations available on your instance.
@@ -68,7 +68,7 @@ When changing the template via the administrator and then installing a new versi
 ## More information
 
 ### License
-All source code is available under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). 
+All source code is available under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 ### Publications
 Related publication are available on the [4C project outputs page](http://www.curationexchange.org/read-more/67-4c-project-outputs).
@@ -121,4 +121,3 @@ To increase the chances of your changes being accepted and merged into the offic
 * Has unit tests (that covers at least 80% of the code)
 * Has documentation (at least 80% of public API)
 * Agrees to contributor license agreement, certifying that any contributed code is original work and that the copyright is turned over to the project
-
