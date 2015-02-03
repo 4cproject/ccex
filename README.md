@@ -57,7 +57,7 @@ Installing the CCEx component  **com_ccex.zip**:
 
 Install static pages:
 
-1. **Import static pages:** Go to `Components > J2XML > Control Panel`, choose the `static_pages/j2xml1250020150130165134.xml` file and click `import`.
+1. **Import static pages:** Go to `Components > J2XML > Control Panel`, choose the `static_pages.xml` file and click `import`.
 
 2. **Add home page:** On  `Menus > Main Menu > Add New Menu Item` set *Menu Title* as "Home", select the *Menu Item Type* as `Articles > Single Article` and select the article `Home`. Click Save & Close to save and be redirected to *Menu Items*', move the *Home's Menu Item* to top and click on the :star: star icon next to it to set it as default home page.
 
