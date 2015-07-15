@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExHelpersStyle
 {
-    function load() {
+    static function load() {
         $document = JFactory::getDocument();
         
         //javascripts

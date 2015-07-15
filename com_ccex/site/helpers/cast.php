@@ -13,7 +13,7 @@ class CCExHelpersCast
      * @param object $sourceObject
      * @return object
      */
-    function cast($destination, $sourceObject) {
+    static function cast($destination, $sourceObject) {
         if (is_string($destination)) {
             $destination = new $destination();
         }

@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class CCExHelpersTag
 {
-    function formatCurrency($value) {
+    static function formatCurrency($value) {
         if ($value < 0.01 || $value > 99999999) {
             return sprintf('%.2e', $value);
         } else if (is_float($value)) {
@@ -15,15 +15,15 @@ class CCExHelpersTag
         }
     }
     
-    function formatCurrencyWithSymbol($value, $symbol) {
+    static function formatCurrencyWithSymbol($value, $symbol) {
         return sprintf('%s%s', $symbol, CCExHelpersTag::formatCurrency($value));
     }
     
-    function formatWithSymbol($value, $symbol) {
+    static function formatWithSymbol($value, $symbol) {
         return sprintf('%s%s', $symbol, $value);
     }
     
-    function formatBoolean($boolean) {
+    static function formatBoolean($boolean) {
         if ($boolean) {
             return "Yes";
         } else {
