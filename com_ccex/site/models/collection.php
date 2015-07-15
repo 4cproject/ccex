@@ -229,7 +229,8 @@ class CCExModelsCollection extends CCExModelsDefault
     }
     
     public function lastInterval() {
-        return CCExHelpersCast::cast('CCExModelsInterval', end($this->intervals()));
+        $intervals = $this->intervals();
+        return CCExHelpersCast::cast('CCExModelsInterval', end($intervals));
     }
     
     public function newInterval() {
